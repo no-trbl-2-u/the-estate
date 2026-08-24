@@ -68,6 +68,7 @@ Lineage edges are typed. Working vocabulary (names provisional):
 | `parent` | This record branched from another |
 | `branch` | A child record forked from this one |
 | `merge` | Two streams combined into this record |
+| `split` | One stream separated into multiple records |
 | `absorbed` | This record was subsumed into another |
 | `relates` | Non-hierarchical conceptual connection |
 | `incubated-from` | Revived from a retired or dormant state |
@@ -86,9 +87,11 @@ These three dimensions are independent:
 
 Mode does not determine output. A session's output type is chosen independently.
 
-### Session modes (settled, provisional names allowed to evolve)
+### Session modes (current recommended core vocabulary)
 
 `capture` · `frame` · `explore` · `interrogate` · `research` · `connect` · `distill` · `challenge` · `compare` · `decide` · `specify` · `architect` · `phase` · `experiment` · `review` · `incubate` · `retire`
+
+Their functions are established. Exact names, aliases, splits, and combinations remain design questions for the interview.
 
 ### Lenses (optional, combinable)
 
@@ -100,9 +103,10 @@ A session may end with no artifact and no action. The record's session log is up
 
 ### Fork / merge / recombine behavior
 
-- **Branch**: a session on record A produces record B, inheriting A's context and a `parent` edge.
-- **Merge**: a session takes records A and B as joint input and produces record C, which carries `merged` edges to both. A and B are not deleted; their states are updated.
-- **Absorb**: record B is folded into record A. B transitions to state `absorbed` and a lineage edge is recorded.
+- **Branch**: a session on record A produces record B. The operator may branch from A's current state or any recorded historical session state. B records the exact source snapshot and a `parent` edge; A is not altered.
+- **Merge**: a session takes records A and B as joint input and produces record C, which carries `merge` edges to both. A and B are not deleted; their states are updated only if the operator explicitly chooses to update them.
+- **Split**: a session on record A separates conflated concerns into records B and C (or more). Every result records the exact source snapshot and a `split` edge; A is preserved.
+- **Absorb**: record B is folded into record A and an `absorbed` lineage edge is recorded. B remains preserved. Whether its disposition is represented as `retired` with reason `absorbed` or as a dedicated state is an interview and schema decision, not a fact to assume.
 - **Connect**: the `connect` mode draws a `relates` edge between two records. It is a first-class mode, not a metadata tag.
 - **Incubate**: a record transitions to `incubating` state. It is retrievable and resumable at any time.
 - **Retire**: a record transitions to a terminal `retired` state. It is preserved in the graph, not deleted.
@@ -213,10 +217,15 @@ Before the first implementation phase is considered complete:
 
 - An operator can run a full session (capture → explore → close with clean state) on a new idea and retrieve it in a subsequent session with full context
 - The Steward can route a `connect` operation between two records and the resulting edge is queryable
+- Branching from a historical session state preserves that exact origin without altering the source record
+- Merge, split, and absorption operations preserve every source record and produce queryable lineage
+- An artifact or session result can be selected as input to a later session without copying away its provenance
 - A record can be incubated and resumed without loss of context
+- A retired record can be revived through an explicit, queryable lineage transition
 - A session can close with no artifact and no action; the record's log reflects this as a valid outcome
 - No task or assignment is created at any point without explicit operator selection
 - The Steward's index freshness is reported honestly when queried
+- Exactly one Steward is the stable entrypoint, and its routing contract is verified independently for an agent, a skill, and a process
 
 ---
 

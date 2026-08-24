@@ -30,7 +30,7 @@ A session's output can become the input to a later session. This creates **idea 
 - **Branch**: one record forks into two independent records
 - **Merge**: two records combine into one
 - **Split**: a session separates concerns that were conflated
-- **Absorb**: a record is subsumed into another (the absorbed record is retired, not deleted)
+- **Absorb**: a record is subsumed into another; it remains preserved, while its exact terminal disposition is a schema decision
 - **Relate**: a non-hierarchical connection is drawn between two records
 - **Incubate**: a stream is intentionally paused for future return
 - **Retire**: a stream is closed with a terminal state

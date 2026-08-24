@@ -30,7 +30,7 @@ The operator arrives with something — a rough thought, a half-formed question,
 
 The operator can continue, branch, connect, produce an artifact, incubate, retire, or do nothing. All are valid. Nothing happens automatically.
 
-Over time, the graph grows. The operator can retrieve any idea, resume from its last known state, see how it relates to others, and branch from any point. An idea retired two years ago can be revived as a branch without altering the original.
+Over time, the graph grows. The operator can retrieve any idea, resume from its last known state, see how it relates to others, and branch from any recorded session state. The branch records the exact historical session snapshot used as its origin and does not alter the original. An idea retired two years ago can be revived as a branch under the same law.
 
 ## The graph model in detail
 
@@ -41,6 +41,7 @@ Each Idea Record contains:
 - **Identity** — unique ID, title, creation timestamp
 - **Origin** — the prompt or context that initiated it
 - **Session log** — ordered list of sessions applied to this record
+- **Tensions** — unresolved conflicts, competing framings, and open questions
 - **Current state** — one of: `active`, `incubating`, `retired`, `merged`, `branched` (provisional state names)
 - **Lineage edges** — typed connections to related records
 - **Artifacts** — optional produced documents, structures, or outputs
