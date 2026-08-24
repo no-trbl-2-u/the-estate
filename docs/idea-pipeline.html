@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Idea Graph — A Visual Brainstorming Pipeline</title>
+<style>
+  :root {
+    --ink: #eef0e8;
+    --muted: #9da49a;
+    --dim: #646b63;
+    --bg: #0c0f0e;
+    --panel: #131715;
+    --panel-2: #191e1b;
+    --line: #303732;
+    --seed: #e8c979;
+    --diverge: #8fb7ff;
+    --evidence: #80d6b1;
+    --synthesis: #c4a3ff;
+    --output: #ff9f82;
+    --state: #f2e7b4;
+    --shadow: 0 16px 44px rgba(0,0,0,.28);
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); color-scheme: dark; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 20% 0%, rgba(232,201,121,.08), transparent 32rem),
+      radial-gradient(circle at 90% 28%, rgba(143,183,255,.06), transparent 30rem),
+      var(--bg);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  button { font: inherit; }
+  .shell { max-width: 1580px; margin: 0 auto; padding: 30px clamp(16px, 3vw, 46px) 42px; }
+  .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--seed); text-transform: uppercase; letter-spacing: .18em; font-size: 11px; font-weight: 800; }
+  .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--seed); }
+  header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 28px; margin-bottom: 24px; }
+  h1 { margin: 10px 0 8px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(38px, 6vw, 74px); font-weight: 500; letter-spacing: -.045em; line-height: .95; }
+  .dek { max-width: 760px; margin: 0; color: var(--muted); font-size: clamp(15px, 1.4vw, 18px); line-height: 1.55; }
+  .thesis { max-width: 330px; border-left: 1px solid var(--line); padding: 8px 0 8px 22px; color: #c8ccc5; font: italic 15px/1.5 Georgia, serif; }
+
+  .journey-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px; background: rgba(19,23,21,.86); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+  .journey-bar .label { padding: 0 8px; color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+  .preset, .play, .next-choice {
+    border: 1px solid var(--line); background: #171b19; color: #c9cec7; border-radius: 999px; padding: 9px 13px; cursor: pointer; transition: .18s ease;
+  }
+  .preset:hover, .preset.active, .next-choice:hover, .next-choice.active { border-color: var(--seed); color: #fff7d9; background: rgba(232,201,121,.09); transform: translateY(-1px); }
+  .play { margin-left: auto; background: var(--seed); border-color: var(--seed); color: #17140c; font-weight: 850; }
+  .play:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .play:disabled { opacity: .45; cursor: wait; transform: none; }
+
+  .workspace { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 16px; margin-top: 16px; align-items: stretch; }
+  .map-wrap { min-width: 0; overflow-x: auto; border: 1px solid var(--line); border-radius: 20px; background: rgba(17,21,19,.9); box-shadow: var(--shadow); scrollbar-color: #454c47 transparent; }
+  .map { position: relative; min-width: 1050px; min-height: 560px; padding: 24px; overflow: hidden; }
+  .map::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+    background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  #edges { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible; }
+  .edge { fill: none; stroke: #3d4540; stroke-width: 1.35; opacity: .62; }
+  .edge.active { stroke: var(--seed); stroke-width: 2.4; opacity: .94; stroke-dasharray: 7 8; animation: current 1.2s linear infinite; filter: drop-shadow(0 0 5px rgba(232,201,121,.25)); }
+  @keyframes current { to { stroke-dashoffset: -30; } }
+
+  .columns { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(6, minmax(128px, 1fr)); gap: 20px; height: 100%; }
+  .column { position: relative; min-width: 0; }
+  .column-title { height: 42px; border-bottom: 1px solid var(--line); color: var(--dim); font-size: 10px; font-weight: 850; letter-spacing: .16em; text-transform: uppercase; padding: 3px 4px; }
+  .node {
+    position: absolute; left: 0; right: 0; min-height: 74px; padding: 12px 12px 11px; border: 1px solid #343b37; border-radius: 13px; background: #181d1a; color: var(--ink); text-align: left; cursor: pointer; box-shadow: 0 9px 20px rgba(0,0,0,.18); transition: transform .18s ease, border-color .18s ease, opacity .18s ease, background .18s ease;
+  }
+  .node:hover { transform: translateY(-2px); border-color: #687169; }
+  .node .num { display: block; color: var(--dim); font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace; margin-bottom: 7px; }
+  .node strong { display: block; font-size: 14px; letter-spacing: -.01em; }
+  .node small { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; line-height: 1.25; }
+  .node::after { content: ""; position: absolute; top: 12px; right: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--node-color, var(--muted)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--node-color, var(--muted)) 12%, transparent); }
+  .node.on-path { border-color: color-mix(in srgb, var(--node-color) 70%, white 10%); background: color-mix(in srgb, var(--node-color) 9%, #171b19); }
+  .node.visited { box-shadow: 0 0 0 1px color-mix(in srgb, var(--node-color) 32%, transparent), 0 9px 22px rgba(0,0,0,.22); }
+  .node.current { transform: translateY(-3px); border-color: var(--node-color); box-shadow: 0 0 0 3px color-mix(in srgb, var(--node-color) 15%, transparent), 0 14px 30px rgba(0,0,0,.3); }
+  .node.off-path { opacity: .42; }
+  .seed { --node-color: var(--seed); }
+  .diverge { --node-color: var(--diverge); }
+  .evidence { --node-color: var(--evidence); }
+  .synthesis { --node-color: var(--synthesis); }
+  .output { --node-color: var(--output); }
+  .state { --node-color: var(--state); }
+
+  .side { display: flex; flex-direction: column; gap: 16px; }
+  .card { border: 1px solid var(--line); border-radius: 18px; background: rgba(20,24,22,.92); padding: 20px; box-shadow: var(--shadow); }
+  .detail { min-height: 305px; }
+  .detail-kicker { color: var(--muted); text-transform: uppercase; letter-spacing: .14em; font-size: 10px; font-weight: 800; }
+  .detail h2 { margin: 9px 0 8px; font: 500 30px/1.05 Georgia, serif; }
+  .detail p { margin: 0; color: #b4bab2; font-size: 14px; line-height: 1.55; }
+  .packet { display: flex; align-items: center; gap: 9px; margin: 16px 0; padding: 10px; border: 1px solid var(--line); border-radius: 11px; background: #101310; color: #d9ddd5; font: 700 11px/1.3 ui-monospace, monospace; }
+  .packet-mark { display: grid; place-items: center; width: 28px; height: 32px; color: #16130c; background: var(--seed); clip-path: polygon(0 0, 72% 0, 100% 23%, 100% 100%, 0 100%); }
+  .detail ul { margin: 13px 0 0; padding-left: 17px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+  .flow-note { color: var(--muted); font-size: 12px; line-height: 1.45; }
+  .flow-note b { color: var(--ink); }
+
+  .closeout { border-color: rgba(242,231,180,.25); background: linear-gradient(145deg, rgba(242,231,180,.07), rgba(20,24,22,.94) 45%); }
+  .closeout h3 { margin: 0 0 7px; font: 500 22px/1.15 Georgia, serif; }
+  .closeout p { color: var(--muted); font-size: 12px; line-height: 1.45; }
+  .next-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+  .next-choice { padding: 7px 10px; font-size: 11px; }
+  .state-line { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--state); font: 700 11px/1.4 ui-monospace, monospace; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 16px; padding: 0 4px; color: var(--muted); font-size: 11px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+  .foot { display: flex; justify-content: space-between; gap: 20px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--dim); font-size: 11px; }
+
+  @media (max-width: 1320px) {
+    header { grid-template-columns: 1fr; }
+    .thesis { max-width: 680px; }
+    .workspace { grid-template-columns: 1fr; }
+    .side { display: grid; grid-template-columns: 1fr 1fr .72fr; }
+  }
+  @media (max-width: 640px) {
+    .shell { padding: 20px 12px 30px; }
+    h1 { font-size: 43px; }
+    .journey-bar { align-items: stretch; }
+    .journey-bar .label { width: 100%; padding: 3px 4px; }
+    .preset { flex: 1 1 42%; border-radius: 10px; }
+    .play { width: 100%; margin: 3px 0 0; }
+    .map { min-width: 1000px; min-height: 650px; }
+    .side { grid-template-columns: 1fr; }
+    .detail { min-height: 0; }
+    .foot { flex-direction: column; }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main class="shell">
+  <header>
+    <div>
+      <div class="eyebrow">A visual model for durable thought</div>
+      <h1>The Idea Graph</h1>
+      <p class="dek">An idea is not pushed through one factory line. It travels, branches, gathers evidence, merges with other streams, and may end as a plan—or remain deliberately unresolved.</p>
+    </div>
+    <div class="thesis">“The primary output is preserved intellectual movement. Documents are optional products of that movement.”</div>
+  </header>
+
+  <nav class="journey-bar" aria-label="Example idea journeys">
+    <span class="label">Follow one journey</span>
+    <button class="preset active" data-preset="open">Unresolved idea</button>
+    <button class="preset" data-preset="prd">Product → PRD</button>
+    <button class="preset" data-preset="harness">AI harness architecture</button>
+    <button class="preset" data-preset="phases">Molecular phases</button>
+    <button class="play" id="play">▶ Play the journey</button>
+  </nav>
+
+  <section class="workspace">
+    <div class="map-wrap" aria-label="Scrollable brainstorming pipeline graph">
+      <div class="map" id="map">
+        <svg id="edges" aria-hidden="true"><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#59615b"/></marker><marker id="arrowActive" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#e8c979"/></marker></defs></svg>
+        <div class="columns">
+          <div class="column">
+            <div class="column-title">01 · Origin</div>
+            <button class="node seed" id="seed" style="top:76px"><span class="num">RAW INPUT</span><strong>Idea Seed</strong><small>A thought, document, tension, or prior output</small></button>
+            <button class="node seed" id="capture" style="top:232px"><span class="num">CAPTURE</span><strong>Preserve it</strong><small>Flush it out without premature judgment</small></button>
+          </div>
+          <div class="column">
+            <div class="column-title">02 · Clarify</div>
+            <button class="node synthesis" id="frame" style="top:154px"><span class="num">FRAME</span><strong>Name the thing</strong><small>Separate problem, goal, mechanism, assumptions</small></button>
+          </div>
+          <div class="column">
+            <div class="column-title">03 · Expand / Test</div>
+            <button class="node diverge" id="explore" style="top:54px"><span class="num">EXPLORE</span><strong>Diverge</strong><small>Variants, analogies, alternate directions</small></button>
+            <button class="node diverge" id="interrogate" style="top:166px"><span class="num">INTERROGATE</span><strong>Expose unknowns</strong><small>Questions and governing assumptions</small></button>
+            <button class="node evidence" id="research" style="top:278px"><span class="num">RESEARCH</span><strong>Gather evidence</strong><small>Sources, prior art, feasibility, landscape</small></button>
+            <button class="node evidence" id="challenge" style="top:390px"><span class="num">CHALLENGE</span><strong>Attack it</strong><small>Premortem, counterargument, failure modes</small></button>
+          </div>
+          <div class="column">
+            <div class="column-title">04 · Recombine</div>
+            <button class="node synthesis" id="connect" style="top:154px"><span class="num">CONNECT</span><strong>Merge streams</strong><small>Combine, split, absorb, or relate ideas</small></button>
+            <button class="node synthesis" id="distill" style="top:322px"><span class="num">DISTILL</span><strong>Compress</strong><small>Find what survives without forcing action</small></button>
+          </div>
+          <div class="column">
+            <div class="column-title">05 · Possible forms</div>
+            <button class="node output" id="specify" style="top:48px"><span class="num">SPECIFY</span><strong>PRD / Brief</strong><small>Requirements, users, acceptance, non-goals</small></button>
+            <button class="node output" id="architect" style="top:155px"><span class="num">ARCHITECT</span><strong>System design</strong><small>Components, trust, state, flows, failure</small></button>
+            <button class="node output" id="phase" style="top:262px"><span class="num">PHASE</span><strong>Molecular plan</strong><small>Ordered work with proof of done</small></button>
+            <button class="node state" id="incubate" style="top:369px"><span class="num">INCUBATE</span><strong>Leave it open</strong><small>Preserve tension; wait for signal or time</small></button>
+          </div>
+          <div class="column">
+            <div class="column-title">06 · Clean state</div>
+            <button class="node state" id="closeout" style="top:156px"><span class="num">CLOSEOUT</span><strong>Choose the next move</strong><small>Record state; never invent work silently</small></button>
+            <button class="node seed" id="next" style="top:354px"><span class="num">NEW INPUT</span><strong>Another session</strong><small>Any output can become the next seed</small></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="side">
+      <article class="card detail" aria-live="polite">
+        <div class="detail-kicker" id="detailKicker">Current node · raw input</div>
+        <h2 id="detailTitle">Idea Seed</h2>
+        <p id="detailBody">The graph accepts a fragment, a question, an existing document, or the output of another stream. It does not demand that the idea already be coherent.</p>
+        <div class="packet"><span class="packet-mark">◆</span><span id="packetText">IDEA-017 · general brainstorming repository</span></div>
+        <ul id="detailList"><li>May enter from anywhere</li><li>Can reference several parent streams</li><li>Begins without an output obligation</li></ul>
+      </article>
+
+      <article class="card closeout">
+        <h3>What would you like to do next with this idea?</h3>
+        <p>This is the state boundary. Suggestions are advice; only your selection becomes the next edge.</p>
+        <div class="next-list">
+          <button class="next-choice" data-choice="Continue exploring">Explore</button>
+          <button class="next-choice" data-choice="Branch into a new stream">Branch</button>
+          <button class="next-choice" data-choice="Connect another idea">Connect</button>
+          <button class="next-choice" data-choice="Produce an artifact">Produce</button>
+          <button class="next-choice" data-choice="Incubate without action">Incubate</button>
+          <button class="next-choice" data-choice="Retire the stream">Retire</button>
+          <button class="next-choice" data-choice="No next action">Do nothing</button>
+        </div>
+        <div class="state-line" id="stateLine">selected_next: null</div>
+      </article>
+
+      <article class="card flow-note">
+        <b>Read the graph this way:</b> the gold route is one possible journey. Dim nodes remain available. Change the example above, click any node for meaning, or play the document's movement step by step.
+      </article>
+    </aside>
+  </section>
+
+  <div class="legend" aria-label="Color legend">
+    <span><i style="--c:var(--seed)"></i> input / next seed</span>
+    <span><i style="--c:var(--diverge)"></i> divergent thinking</span>
+    <span><i style="--c:var(--evidence)"></i> evidence / challenge</span>
+    <span><i style="--c:var(--synthesis)"></i> framing / synthesis</span>
+    <span><i style="--c:var(--output)"></i> optional artifact</span>
+    <span><i style="--c:var(--state)"></i> unresolved or clean state</span>
+  </div>
+
+  <footer class="foot"><span>One stream may branch. Several streams may merge. No document is the mandatory end.</span><span>Standalone visual · HTML + CSS + JavaScript · no external dependencies</span></footer>
+</main>
+<script>
+const paths = {
+  open: ['seed','capture','frame','explore','interrogate','incubate','closeout'],
+  prd: ['seed','capture','frame','explore','research','connect','distill','specify','closeout'],
+  harness: ['seed','capture','frame','research','challenge','connect','architect','closeout'],
+  phases: ['seed','capture','frame','interrogate','distill','phase','closeout']
+};
+const labels = {
+  open: 'Unresolved idea', prd: 'Product → PRD', harness: 'AI harness architecture', phases: 'Molecular phases'
+};
+const edges = [
+  ['seed','capture'], ['capture','frame'],
+  ['frame','explore'], ['frame','interrogate'], ['frame','research'], ['frame','challenge'],
+  ['explore','connect'], ['interrogate','connect'], ['research','connect'], ['challenge','connect'],
+  ['explore','incubate'], ['interrogate','distill'], ['connect','distill'],
+  ['connect','specify'], ['connect','architect'], ['connect','phase'], ['connect','incubate'],
+  ['distill','specify'], ['distill','architect'], ['distill','phase'], ['distill','incubate'],
+  ['specify','closeout'], ['architect','closeout'], ['phase','closeout'], ['incubate','closeout'],
+  ['closeout','next']
+];
+const detail = {
+  seed: ['Current node · raw input','Idea Seed','The graph accepts a fragment, a question, an existing document, or the output of another stream. It does not demand that the idea already be coherent.',['May enter from anywhere','Can reference several parent streams','Begins without an output obligation']],
+  capture: ['Session · capture','Preserve it','Flush out the thought before evaluation narrows it. Contradiction, uncertainty, and unfinished language are lawful here.',['Raw thought survives','No scoring or premature planning','The creator’s original force is retained']],
+  frame: ['Session · frame','Name the thing','Separate the actual problem, desired outcome, proposed mechanism, assumptions, and incidental details.',['Problem ≠ solution','Goal ≠ mechanism','Constraints may only be assumptions']],
+  explore: ['Session · explore','Diverge','Open the possibility space through variants, analogies, combinations, and alternative directions. Do not rank too soon.',['Generate breadth','Preserve surprising branches','No winner required']],
+  interrogate: ['Session · interrogate','Expose unknowns','Find the questions whose answers would materially change the idea. Turn hidden assumptions into visible objects.',['Assumption ledger','Ambiguous terms','Questions that govern direction']],
+  research: ['Session · research','Gather evidence','Bring external reality into the stream: sources, prior art, feasibility, user evidence, and competitive context.',['Evidence stays distinct from invention','Claims gain provenance','Scope narrows honestly']],
+  challenge: ['Session · challenge','Attack it','Subject the idea to counterargument, failure modes, abuse cases, and a premortem before investment hardens it.',['Reasons not to build','Reversal and abort conditions','Weakness becomes visible']],
+  connect: ['Session · connect','Merge streams','Combine, split, absorb, or relate several idea streams. An earlier artifact can become a constraint or component of a later stream.',['Many inputs are lawful','Relationships remain explicit','No source is silently overwritten']],
+  distill: ['Session · distill','Compress','Find what survives compression: one sentence, governing principles, essential tensions, or a tiny set of phases.',['Compression without false certainty','Ornament falls away','Action remains optional']],
+  specify: ['Optional output · specify','PRD / Brief','Convert sufficiently mature thought into requirements, users, constraints, acceptance criteria, and non-goals.',['A possible ending, not the ending','Traceable to prior sessions','Can feed architecture or challenge']],
+  architect: ['Optional output · architect','System Design','Describe components, agents, trust boundaries, state, control flow, interfaces, failure, and recovery.',['Useful for AI harnesses','Records design consequences','Can return to research or challenge']],
+  phase: ['Optional output · phase','Molecular Plan','Reduce a defined outcome into ordered, independently verifiable units of work.',['Dependencies stay visible','Every phase has proof','Brevity is lawful']],
+  incubate: ['Disposition · incubate','Leave it Open','Preserve the idea without manufacturing urgency. Record what signal, evidence, or time might make it worth reopening.',['No action is a valid state','Unresolved tensions survive','Reactivation can be trigger-based']],
+  closeout: ['State boundary · closeout','Choose the Next Move','Summarize where the idea stands, what changed, what remains open, and what—if anything—you select next.',['Suggestions are not assignments','Selected next move is explicit','Clean state prevents phantom work']],
+  next: ['Graph law · recursion','Another Session','Any result—PRD, architecture, question, research brief, abandoned path, or concise summary—may become the seed of another stream.',['Outputs become inputs','Streams branch and merge','The graph preserves lineage']]
+};
+let activePreset = 'open';
+let playing = false;
+const svg = document.getElementById('edges');
+const map = document.getElementById('map');
+
+function curve(a, b) {
+  const mapRect = map.getBoundingClientRect();
+  const ar = a.getBoundingClientRect();
+  const br = b.getBoundingClientRect();
+  const x1 = ar.right - mapRect.left;
+  const y1 = ar.top + ar.height / 2 - mapRect.top;
+  const x2 = br.left - mapRect.left;
+  const y2 = br.top + br.height / 2 - mapRect.top;
+  const bend = Math.max(24, (x2 - x1) * .48);
+  return `M ${x1} ${y1} C ${x1 + bend} ${y1}, ${x2 - bend} ${y2}, ${x2} ${y2}`;
+}
+function pathPairs(path) { return new Set(path.slice(0,-1).map((id,i) => `${id}>${path[i+1]}`)); }
+function drawEdges() {
+  svg.querySelectorAll('.edge').forEach(el => el.remove());
+  const active = pathPairs(paths[activePreset]);
+  edges.forEach(([from,to]) => {
+    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    const isActive = active.has(`${from}>${to}`);
+    p.setAttribute('d', curve(document.getElementById(from), document.getElementById(to)));
+    p.setAttribute('class', `edge${isActive ? ' active' : ''}`);
+    p.setAttribute('data-edge', `${from}>${to}`);
+    p.setAttribute('marker-end', isActive ? 'url(#arrowActive)' : 'url(#arrow)');
+    svg.appendChild(p);
+  });
+}
+function showDetail(id) {
+  const d = detail[id];
+  document.getElementById('detailKicker').textContent = d[0];
+  document.getElementById('detailTitle').textContent = d[1];
+  document.getElementById('detailBody').textContent = d[2];
+  document.getElementById('detailList').innerHTML = d[3].map(x => `<li>${x}</li>`).join('');
+  document.querySelectorAll('.node').forEach(n => n.classList.toggle('current', n.id === id));
+}
+function selectPreset(name) {
+  activePreset = name;
+  const chosen = new Set(paths[name]);
+  document.querySelectorAll('.preset').forEach(b => b.classList.toggle('active', b.dataset.preset === name));
+  document.querySelectorAll('.node').forEach(n => {
+    n.classList.toggle('on-path', chosen.has(n.id));
+    n.classList.toggle('off-path', !chosen.has(n.id));
+    n.classList.remove('visited','current');
+  });
+  document.getElementById('packetText').textContent = `IDEA-017 · ${labels[name].toLowerCase()} journey`;
+  showDetail(paths[name][0]);
+  drawEdges();
+}
+function wait(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+async function playJourney() {
+  if (playing) return;
+  playing = true;
+  const play = document.getElementById('play');
+  play.disabled = true; play.textContent = 'Journey in motion…';
+  const path = paths[activePreset];
+  document.querySelectorAll('.node').forEach(n => n.classList.remove('visited','current'));
+  for (const id of path) {
+    document.getElementById(id).classList.add('visited');
+    showDetail(id);
+    await wait(620);
+  }
+  play.disabled = false; play.textContent = '↻ Replay the journey';
+  playing = false;
+}
+
+document.querySelectorAll('.preset').forEach(b => b.addEventListener('click', () => selectPreset(b.dataset.preset)));
+document.querySelectorAll('.node').forEach(n => n.addEventListener('click', () => showDetail(n.id)));
+document.getElementById('play').addEventListener('click', playJourney);
+document.querySelectorAll('.next-choice').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.next-choice').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById('stateLine').textContent = `selected_next: "${b.dataset.choice}"`;
+}));
+window.addEventListener('resize', drawEdges);
+selectPreset('open');
+</script>
+</body>
+</html>
