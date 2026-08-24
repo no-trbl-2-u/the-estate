@@ -51,7 +51,7 @@ Mode does not determine output type. Lens does not determine mode. All three are
 
 ### Current session modes
 
-These modes are settled in name and intent, though the implementation may add aliases or combine them:
+These are the current recommended core modes. Their functions are established; exact names, aliases, splits, and combinations remain provisional until implementation design:
 
 | Mode | Operation |
 |------|-----------|
