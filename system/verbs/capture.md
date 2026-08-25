@@ -1,6 +1,7 @@
 ---
-name: capture
-description: Record a raw idea with minimal processing. Transformer, Text → Spark. Use when the operator arrives with a new thought that is not yet in the tank.
+verb: capture
+signature: "Text → Spark"
+agent: TBD
 ---
 
 # capture — `Text → Spark`

@@ -1,6 +1,7 @@
 ---
-name: frame
-description: Define the problem, question, or opportunity space of a Spark. Transformer, Spark → Framing. Use when an idea exists but what it is actually about has not been stated.
+verb: frame
+signature: "Spark → Framing"
+agent: TBD
 ---
 
 # frame — `Spark → Framing`

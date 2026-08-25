@@ -1,6 +1,7 @@
 ---
-name: chart
-description: Chart the rough path from here to a Horizon. Transformer, Horizon → Trajectory. Use when the vision exists but the route to it has not been sketched.
+verb: chart
+signature: "Horizon → Trajectory"
+agent: TBD
 ---
 
 # chart — `Horizon → Trajectory`

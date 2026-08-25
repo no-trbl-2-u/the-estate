@@ -1,6 +1,7 @@
 ---
-name: explore
-description: Open-ended development of any artifact without commitment. Refiner, a → a. Use when the operator wants to think freely inside an idea - widening, riffing, following threads.
+verb: explore
+signature: "a → a"
+agent: TBD
 ---
 
 # explore — `a → a` (refiner)

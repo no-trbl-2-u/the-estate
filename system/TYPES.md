@@ -1,11 +1,12 @@
 # The Type System
 
-Artifacts in think-tank are **typed values**. Skills are functions over those types.
+Artifacts in think-tank are **typed values**. Verbs are functions over those types,
+and each verb is performed by exactly one named agent (`system/LAW.md`).
 Composition is what makes "not the same pipeline every time" possible: the route an
 idea takes is derived from what it *has* versus what it still *needs*, never from a
 fixed sequence.
 
-## Skill families
+## Verb families
 
 | Family | Signature | Behavior | Examples |
 |---|---|---|---|
@@ -57,11 +58,11 @@ An unfalsified, unchallenged Seed may absolutely be exported. It just says so on
 
 ## Lineage: derived, not authored
 
-State is immutable and copied forward (see `templates/idea.md`). Every skill invocation
+State is immutable and copied forward (see `templates/idea.md`). Every verb invocation
 records what it consumed and what it produced. Lineage — branch, merge, split, parent —
 is therefore **read off the composition log**, never hand-drawn. The graph is a view,
 not a database.
 
 **One exception: `relates`.** "This idea reminds me of that idea" is produced by no
-skill — it comes out of the operator's (or Steward's) head. It is the only hand-authored
+verb — it comes out of the operator's (or Steward's) head. It is the only hand-authored
 edge, and the most valuable one, because it's the connection the machinery cannot make.

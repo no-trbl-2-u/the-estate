@@ -1,46 +1,47 @@
 # Routing Registry
 
-The structured list the Steward consults when routing. Adding a specialist here
-is the whole act of installing it — the Steward's interface never changes.
+The structured list the Steward consults when routing. Governed by
+`system/LAW.md`: agents are persons, verbs are verbs, and **every binding is a
+hard dependency** — a verb is performed by its bound agent and by no one else.
 
-## Skills
+## Verbs
 
-Each skill binds to the agent(s) that perform its work. Valid bindings, per
-the interview: **one specific agent**, **multiple agents**, the **general**
-agent (the invoking session itself), or **steward-inline** (the Steward acts
-directly, for reads and routing only). Rebinding a skill is an edit to its
-row here plus an "Agent binding" note in its SKILL.md — the skill's interface
-never changes.
+Verbs live in `system/verbs/` — deliberately outside `.claude/skills/`, so no
+verb is a user-facing command. The operator invokes the Steward only.
 
-| Skill | Family | Signature | Agent(s) | Status |
+| Verb | Family | Signature | Performed by | Status |
 |---|---|---|---|---|
-| `steward` | entrypoint | — | steward-inline | active |
-| `capture` | transformer | `Text → Spark` | general | active |
-| `frame` | transformer | `Spark → Framing` | general | active |
-| `explore` | refiner | `a → a` | general | active |
-| `distill` | refiner | `a → a` | general | active |
-| `challenge` | refiner | `a → a` (sets `challenged`, tests falsifiability) | `devils-advocate` | active |
-| `envision` | transformer | `Framing → Horizon` | general | active |
-| `chart` | transformer | `Horizon → Trajectory` | general | active |
-| `phase` | decomposer | `Trajectory → [Phase]`, `Phase → [Phase]` | general | active |
-| `relate` | edge author | `(Idea, Idea) → relates` | general | active |
-| `seed` | transformer | `Horizon + Trajectory (+ [Phase]) → Seed` | general | active |
+| `capture` | transformer | `Text → Spark` | *unassigned* | pending agent |
+| `frame` | transformer | `Spark → Framing` | *unassigned* | pending agent |
+| `explore` | refiner | `a → a` | *unassigned* | pending agent |
+| `distill` | refiner | `a → a` | *unassigned* | pending agent |
+| `challenge` | refiner | `a → a` | **The Advocate** (`devils-advocate`) | active |
+| `envision` | transformer | `Framing → Horizon` | *unassigned* | pending agent |
+| `chart` | transformer | `Horizon → Trajectory` | *unassigned* | pending agent |
+| `phase` | decomposer | `Trajectory → [Phase]`, `Phase → [Phase]` | *unassigned* | pending agent |
+| `relate` | edge author | `(Idea, Idea) → relates` | *unassigned* | pending agent |
+| `seed` | transformer | `Horizon + Trajectory (+ [Phase]) → Seed` | *unassigned* | pending agent |
 
-## Specialist agents
+A verb marked *unassigned* does not run: per the hard-binding law the Steward
+reports the gap rather than performing it or substituting another agent.
+Assigning the remaining verbs is blocked on the agent-naming theme (ADR 0012).
 
-Specialists live in `.claude/agents/` and are added on demand, never
-pre-populated. **Naming law (T, 2026-08-25): every agent is named
-thematically, in the form "The <something>"** — the frontmatter `name:` stays
-a lowercase slug (the invocation id), while the thematic name opens the
-definition body ("You are The <Name>") and appears here in bold. To install one: create its agent file, add a row here, and
-bind it in the skills table above — the Steward routes to it from then on.
-Every specialist receives a handoff packet (state snapshot + input artifacts +
-requested lens/output) and returns raw findings; the invoking skill owns the
-artifact writes and the session close.
+## Agents
 
-| Agent | Capability | Bound to | Status |
+Agents live in `.claude/agents/`. **Naming law:** every agent is named
+thematically as "The ⟨Something⟩" — the frontmatter `name:` stays a lowercase
+slug (the invocation id), while the thematic name opens the definition body
+("You are The ⟨Name⟩") and appears here in bold. An agent may own several
+verbs; a verb has exactly one agent.
+
+| Agent | Office | Owns verbs | Status |
 |---|---|---|---|
-| `devils-advocate` (**The Advocate**) | Good-faith adversarial attack; falsifiability testing. Classifies, never gates. | `challenge` | active |
+| **The Steward** (`steward` skill) | Sole entrypoint. Orients, derives routes, dispatches, owns record writes. Performs no bound verb. | — | active |
+| **The Advocate** (`devils-advocate`) | Good-faith adversarial attack; falsifiability testing. Classifies, never gates. | `challenge` | active |
+
+To install a specialist: create its agent file (opening "You are The ⟨Name⟩"),
+add a row here, and set the `agent:` field in each verb it owns. The Steward's
+interface never changes.
 
 ## Playbooks
 

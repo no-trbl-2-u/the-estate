@@ -2,7 +2,7 @@
 state: NNNN                 # monotonically increasing; NEVER edit a prior state
 previous: state/NNNN-1.md   # the snapshot this was copied from (omit for 0000)
 date: YYYY-MM-DD
-session-skill: ""           # the skill invocation that produced this state
+session-verb: ""            # the verb invocation that produced this state
 inputs: []                  # artifact paths consumed
 outputs: []                 # artifact paths produced
 ---

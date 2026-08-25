@@ -1,6 +1,7 @@
 ---
-name: seed
-description: Assemble the terminal export - Horizon + Trajectory (+ Phases) → Seed. Use when an idea is ready to leave the tank and become a real project, or when the operator wants to see how far from Seed-shape it is.
+verb: seed
+signature: "Horizon + Trajectory (+ [Phase]) → Seed"
+agent: TBD
 ---
 
 # seed — `Horizon + Trajectory (+ [Phase]) → Seed`

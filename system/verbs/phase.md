@@ -1,6 +1,7 @@
 ---
-name: phase
-description: Break a Trajectory or a Phase into concrete sequenced parts. Decomposer, Trajectory → [Phase] and Phase → [Phase]. Use when a path needs molecular, ordered steps - recursively, to any depth that stays useful.
+verb: phase
+signature: "Trajectory → [Phase]"
+agent: TBD
 ---
 
 # phase — `Trajectory → [Phase]`, `Phase → [Phase]` (decomposer)

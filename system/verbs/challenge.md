@@ -1,6 +1,7 @@
 ---
-name: challenge
-description: Adversarial pressure-test of any artifact - the invocable devil's advocate. Refiner, a → a; sets the challenged classifier and tests Horizon falsifiability. Use when the operator wants an idea attacked, or when the Steward suggests testing before export.
+verb: challenge
+signature: "a → a"
+agent: devils-advocate
 ---
 
 # challenge — `a → a` (refiner)
@@ -19,10 +20,9 @@ held. Set `classifiers.challenged: true`, and for Horizons set
 the operator may stop the attack at any time — this skill exists so pushback
 is invocable, never mandatory. Close per protocol.
 
-## Agent binding
+## Agent binding (hard)
 
-This skill delegates the attack itself to the **`devils-advocate`** agent
-(`.claude/agents/devils-advocate.md`), handing it the target artifact and the
-record's current state snapshot. The skill remains responsible for the
-artifact revision, classifier updates, and the session close. If the agent is
-unavailable, perform the attack inline under the same rules of engagement.
+This verb belongs to **The Advocate** (`devils-advocate`). It is performed by
+that agent and by no one else — not the Steward, not the invoking session. If
+The Advocate is unavailable, the verb does not run; the Steward reports the
+gap to the operator.

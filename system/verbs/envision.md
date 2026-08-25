@@ -1,6 +1,7 @@
 ---
-name: envision
-description: Elaborate the six-month vision of a framed idea. Transformer, Framing → Horizon. Use when an idea knows what it is about but not what it looks like when it is working.
+verb: envision
+signature: "Framing → Horizon"
+agent: TBD
 ---
 
 # envision — `Framing → Horizon`

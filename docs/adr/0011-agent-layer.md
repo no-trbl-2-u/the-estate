@@ -1,6 +1,6 @@
 # ADR 0011: The agent layer — skills bind to agents via the registry
 
-**Status:** accepted · **Date:** 2026-08-25 · **Source:** interview Q3; T's build follow-up
+**Status:** superseded by [ADR 0012](0012-hard-bindings-and-single-entrypoint.md) · **Date:** 2026-08-25 · **Source:** interview Q3; T's build follow-up
 
 ## Context
 The interview settled that "each SKILL may have 1 specific agent it invokes,

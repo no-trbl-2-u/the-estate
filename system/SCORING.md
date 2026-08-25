@@ -14,9 +14,9 @@ operator cannot do alone — holding the whole tank in mind at once.
 
 | Signal | Computation | Role |
 |---|---|---|
-| **Reachability** | Of the Seed components this record is missing, how many would the single best next skill fill? Higher = one session moves it a lot. | Primary rank. Favors early, high-leverage ideas over nearly-done ones, so raw Sparks are not permanently outranked. |
+| **Reachability** | Of the Seed components this record is missing, how many would the single best next verb fill? Higher = one session moves it a lot. | Primary rank. Favors early, high-leverage ideas over nearly-done ones, so raw Sparks are not permanently outranked. |
 | **Appetite** | Hand-set heat (`appetite:` in record frontmatter, 0–3). The one input no metric can compute. | Multiplier. |
-| **Staleness at the threshold** | Days a record has sat within one skill of Seed-shape. | Surfaced as a call-out, not a rank: "this has been one session from a Seed for four months." |
+| **Staleness at the threshold** | Days a record has sat within one verb of Seed-shape. | Surfaced as a call-out, not a rank: "this has been one session from a Seed for four months." |
 | **Convergent notices** | Candidate `relates` edges, duplicate-idea suspicions, dead-Spark-fits-live-record matches. | Surfaced above the ranking. The highest-value output of a portfolio pass. |
 | **Drift** | Distance between current framing and the original Spark. | **Display only, never scored.** Drift usually means the idea is working; a record that never moved from capture is more often the dead one. |
 

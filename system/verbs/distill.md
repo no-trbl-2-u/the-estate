@@ -1,6 +1,7 @@
 ---
-name: distill
-description: Condense accumulated thinking into a sharper form. Refiner, a → a - works on any artifact type including a single Phase. Use when an artifact has grown diffuse and needs its essence extracted.
+verb: distill
+signature: "a → a"
+agent: TBD
 ---
 
 # distill — `a → a` (refiner)

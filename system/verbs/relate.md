@@ -1,6 +1,7 @@
 ---
-name: relate
-description: Draw the one hand-authored edge - "this idea relates to that idea". Use when the operator (or the Steward, as a suggestion) notices two records are connected. First-class operation, not a metadata afterthought.
+verb: relate
+signature: "(Idea, Idea) → relates"
+agent: TBD
 ---
 
 # relate — `(Idea, Idea) → relates`
