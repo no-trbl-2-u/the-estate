@@ -1,9 +1,9 @@
 ---
 name: capture
-description: Record a raw idea with minimal processing. Transformer, Text → Spark. Performed by its bound agent; the Steward normally dispatches this for you.
+description: Record a raw idea with minimal processing. Transformer, Text → Spark. Performed by The Gardener; the Steward normally dispatches this for you.
 verb: capture
 signature: "Text → Spark"
-agent: TBD
+agent: gardener
 ---
 
 # capture — `Text → Spark`
@@ -18,3 +18,8 @@ Produce one artifact from `templates/artifact.md` with `type: Spark`,
 
 Ask at most one clarifying question, and only if the thought is genuinely
 unintelligible as written. Then close per the Steward's close protocol.
+
+## Agent binding (hard)
+
+Performed by **The Gardener** (`gardener`) and by no one else. If that agent is
+unavailable the verb does not run; the Steward reports the gap.

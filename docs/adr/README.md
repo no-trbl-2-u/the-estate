@@ -18,4 +18,5 @@ conducted per Requirement A of `BUILD-PROMPT.md`.
 | [0009](0009-first-build-scope.md) | First build: Steward + ten molecular skills, no specialists, no sync |
 | [0010](0010-process-and-protected-files.md) | Build authorized directly from the confirmed interview; protected files left untouched |
 | [0011](0011-agent-layer.md) | *(superseded by 0012)* Skills bind to swappable agents via the registry |
-| [0012](0012-hard-bindings-and-single-entrypoint.md) | Hard agent-verb bindings; the three-part law; the Steward is the sole entrypoint |
+| [0012](0012-hard-bindings-and-single-entrypoint.md) | Hard agent-verb bindings; the three-part law; the Steward is the entrypoint |
+| [0013](0013-the-estate-roster-and-the-writer-seam.md) | The Estate theme and full roster; agents write artifacts, the Steward writes state; `survey` and the sitemap |

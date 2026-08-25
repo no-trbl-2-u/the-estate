@@ -1,9 +1,9 @@
 ---
 name: relate
-description: Draw the one hand-authored edge - this idea relates to that idea. Performed by its bound agent; the Steward normally dispatches this for you.
+description: Draw the one hand-authored edge - this idea relates to that idea. Performed by The Cartographer; the Steward normally dispatches this for you.
 verb: relate
 signature: "(Idea, Idea) → relates"
-agent: TBD
+agent: cartographer
 ---
 
 # relate — `(Idea, Idea) → relates`
@@ -22,3 +22,8 @@ Do three things:
    name that as an open question for the operator. Suggest; never act.
 
 Close per protocol on whichever record the session was opened against.
+
+## Agent binding (hard)
+
+Performed by **The Cartographer** (`cartographer`) and by no one else. If that agent is
+unavailable the verb does not run; the Steward reports the gap.

@@ -1,9 +1,9 @@
 ---
 name: envision
-description: Elaborate the six-month vision of a framed idea. Transformer, Framing → Horizon. Performed by its bound agent; the Steward normally dispatches this for you.
+description: Elaborate the six-month vision of a framed idea. Transformer, Framing → Horizon. Performed by The Architect; the Steward normally dispatches this for you.
 verb: envision
 signature: "Framing → Horizon"
-agent: TBD
+agent: architect
 ---
 
 # envision — `Framing → Horizon`
@@ -18,3 +18,8 @@ If the operator cannot name one yet, produce the Horizon anyway with
 
 Produce one `type: Horizon` artifact, `potential-next-steps` usually
 `[challenge, chart]`. Close per protocol.
+
+## Agent binding (hard)
+
+Performed by **The Architect** (`architect`) and by no one else. If that agent is
+unavailable the verb does not run; the Steward reports the gap.

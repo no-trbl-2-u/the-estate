@@ -3,7 +3,7 @@ name: challenge
 description: Adversarial pressure-test of any artifact. Refiner, a → a; sets the challenged classifier and tests Horizon falsifiability. Performed by The Advocate; the Steward normally dispatches this for you.
 verb: challenge
 signature: "a → a"
-agent: devils-advocate
+agent: advocate
 ---
 
 # challenge — `a → a` (refiner)
@@ -24,7 +24,7 @@ is invocable, never mandatory. Close per protocol.
 
 ## Agent binding (hard)
 
-This verb belongs to **The Advocate** (`devils-advocate`). It is performed by
+This verb belongs to **The Advocate** (`advocate`). It is performed by
 that agent and by no one else — not the Steward, not the invoking session. If
 The Advocate is unavailable, the verb does not run; the Steward reports the
 gap to the operator.

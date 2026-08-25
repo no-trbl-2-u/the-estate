@@ -33,3 +33,29 @@ as The Advocate. Invocation names the verb; the binding decides who performs
 it, always.
 
 An agent may own several verbs. A verb has exactly one agent.
+
+## Who writes what
+
+The single most important operational rule, and the one that keeps the record
+consistent:
+
+- **Agents write artifacts.** An agent's output is its own — its voice, its
+  findings, verbatim where it matters. No summarizing relay stands between the
+  work and the record.
+- **The Steward writes state.** `state/` snapshots and the session close belong
+  to the Steward alone. State is immutable copy-forward, so its sequence needs
+  a single allocator; and the close protocol ("what was established, what is
+  still open, the honest current state") requires the whole-session view that
+  only the Steward has.
+
+Agents return findings to the Steward; the Steward narrates the session. Where
+fidelity matters the artifact carries it; where perspective matters the state
+carries it.
+
+## Where the law lives
+
+This file is the single source of truth, and **every agent reads it directly**.
+It deliberately does not live in `AGENTS.md`: that file loads into the main
+session, but a spawned agent runs on its own definition and never sees it — so
+law placed there would be invisible to exactly the population it binds.
+`AGENTS.md` points here; agent definitions open by reading here.

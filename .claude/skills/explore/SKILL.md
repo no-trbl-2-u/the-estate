@@ -1,9 +1,9 @@
 ---
 name: explore
-description: Open-ended development of any artifact without commitment. Refiner, a → a. Performed by its bound agent; the Steward normally dispatches this for you.
+description: Open-ended development of any artifact without commitment. Refiner, a → a. Performed by The Forager; the Steward normally dispatches this for you.
 verb: explore
 signature: "a → a"
-agent: TBD
+agent: forager
 ---
 
 # explore — `a → a` (refiner)
@@ -16,3 +16,8 @@ Return the **same type in, sharper out**: a new version of the artifact
 (`inputs:` pointing at its predecessor), richer but still honestly itself.
 Safe to run repeatedly. Update `potential-next-steps` to reflect what the
 exploration opened. Close per protocol.
+
+## Agent binding (hard)
+
+Performed by **The Forager** (`forager`) and by no one else. If that agent is
+unavailable the verb does not run; the Steward reports the gap.

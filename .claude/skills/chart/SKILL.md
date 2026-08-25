@@ -1,9 +1,9 @@
 ---
 name: chart
-description: Chart the rough path from here to a Horizon. Transformer, Horizon → Trajectory. Performed by its bound agent; the Steward normally dispatches this for you.
+description: Chart the rough path from here to a Horizon. Transformer, Horizon → Trajectory. Performed by The Surveyor; the Steward normally dispatches this for you.
 verb: chart
 signature: "Horizon → Trajectory"
-agent: TBD
+agent: surveyor
 ---
 
 # chart — `Horizon → Trajectory`
@@ -18,3 +18,8 @@ criteria are a recorded Seed falsifier — see `system/FALSIFIERS.md`).
 
 Produce one `type: Trajectory` artifact, `potential-next-steps` usually
 `[phase, seed, challenge]`. Close per protocol.
+
+## Agent binding (hard)
+
+Performed by **The Surveyor** (`surveyor`) and by no one else. If that agent is
+unavailable the verb does not run; the Steward reports the gap.

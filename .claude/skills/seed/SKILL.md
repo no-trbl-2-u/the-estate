@@ -1,9 +1,9 @@
 ---
 name: seed
-description: Assemble the terminal export - Horizon + Trajectory (+ Phases) → Seed. Performed by its bound agent; the Steward normally dispatches this for you.
+description: Assemble the terminal export - Horizon + Trajectory (+ Phases) → Seed. Performed by The Sower; the Steward normally dispatches this for you.
 verb: seed
 signature: "Horizon + Trajectory (+ [Phase]) → Seed"
-agent: TBD
+agent: sower
 ---
 
 # seed — `Horizon + Trajectory (+ [Phase]) → Seed`
@@ -22,3 +22,8 @@ Seeds leave **clean**: no session logs, no rejected framings, no baggage —
 the provenance stamp is the only thing that points backward. Write the export
 copy to `exports/`, sized and worded for its `audience:` (a coding agent and
 a friend starting a business need different Seeds). Close per protocol.
+
+## Agent binding (hard)
+
+Performed by **The Sower** (`sower`) and by no one else. If that agent is
+unavailable the verb does not run; the Steward reports the gap.

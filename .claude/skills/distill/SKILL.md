@@ -1,9 +1,9 @@
 ---
 name: distill
-description: Condense accumulated thinking into a sharper form. Refiner, a → a, works on any artifact type. Performed by its bound agent; the Steward normally dispatches this for you.
+description: Condense accumulated thinking into a sharper form. Refiner, a → a, works on any artifact type. Performed by The Distiller; the Steward normally dispatches this for you.
 verb: distill
 signature: "a → a"
-agent: TBD
+agent: distiller
 ---
 
 # distill — `a → a` (refiner)
@@ -16,3 +16,8 @@ just sharper. Depth-free and safe to re-run.
 What gets cut is not lost: prior versions are immutable, so distillation is
 never destruction. Produce the new version with `inputs:` chaining to its
 predecessor. Close per protocol.
+
+## Agent binding (hard)
+
+Performed by **The Distiller** (`distiller`) and by no one else. If that agent is
+unavailable the verb does not run; the Steward reports the gap.
