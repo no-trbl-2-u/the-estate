@@ -82,7 +82,9 @@ Two rules follow: **agents write artifacts, the Steward writes state**; and
 | [system/FALSIFIERS.md](system/FALSIFIERS.md) | What would prove this wrong, and by when |
 | [ideas/](ideas/) | The records. `ideas/SURVEY.md` is the sitemap |
 | [exports/](exports/) | The departure lounge for Seeds |
+| [docs/architecture.html](docs/architecture.html) | Visual model of the whole flow: idea → state → artifacts |
 | [docs/adr/](docs/adr/) | Every major decision, in order |
+| [AUDIT-PROMPT.md](AUDIT-PROMPT.md) | Standalone brief for an outside agent auditing this implementation |
 | [BRAINSTORM.md](BRAINSTORM.md) | Historical design log |
 | [BUILD-PROMPT.md](BUILD-PROMPT.md) | Historical build brief |
 | [AGENTS.md](AGENTS.md) | Orientation for agents in this repo |
