@@ -1,4 +1,6 @@
 ---
+name: seed
+description: Assemble the terminal export - Horizon + Trajectory (+ Phases) → Seed. Performed by its bound agent; the Steward normally dispatches this for you.
 verb: seed
 signature: "Horizon + Trajectory (+ [Phase]) → Seed"
 agent: TBD

@@ -1,4 +1,6 @@
 ---
+name: chart
+description: Chart the rough path from here to a Horizon. Transformer, Horizon → Trajectory. Performed by its bound agent; the Steward normally dispatches this for you.
 verb: chart
 signature: "Horizon → Trajectory"
 agent: TBD

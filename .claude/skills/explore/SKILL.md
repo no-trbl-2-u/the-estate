@@ -1,4 +1,6 @@
 ---
+name: explore
+description: Open-ended development of any artifact without commitment. Refiner, a → a. Performed by its bound agent; the Steward normally dispatches this for you.
 verb: explore
 signature: "a → a"
 agent: TBD

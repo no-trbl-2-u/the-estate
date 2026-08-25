@@ -1,4 +1,6 @@
 ---
+name: distill
+description: Condense accumulated thinking into a sharper form. Refiner, a → a, works on any artifact type. Performed by its bound agent; the Steward normally dispatches this for you.
 verb: distill
 signature: "a → a"
 agent: TBD

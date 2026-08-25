@@ -19,12 +19,17 @@ every time. And forward-compatibility — when agents are granted specific tools
 a verb's capabilities become knowable from its binding alone. A soft fallback
 would silently produce a differently-capable result under the same name.
 
-## One entrypoint
+## One front door, not one door
 
-**The operator invokes the Steward and nothing else.** Verbs are not
-user-facing commands; they live in `system/verbs/` as agent-owned documents,
-deliberately outside `.claude/skills/` so that no verb appears as a slash
-command. The Steward decides which verb runs, dispatches it to the agent that
-owns it, or connects the operator to an agent they ask for by name.
+**The Steward is the front door, not a gate.** The operator is expected to
+arrive by greeting the Steward, who knows the portfolio, proposes what to do,
+and dispatches. But every verb remains directly invocable for an operator who
+already knows what they want.
+
+The goal is **no memorization required**, not manual invocation forbidden.
+
+Invoking a verb directly does not bypass its binding: `/challenge` still runs
+as The Advocate. Invocation names the verb; the binding decides who performs
+it, always.
 
 An agent may own several verbs. A verb has exactly one agent.

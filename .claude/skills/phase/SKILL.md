@@ -1,4 +1,6 @@
 ---
+name: phase
+description: Break a Trajectory or Phase into concrete sequenced parts. Decomposer, Trajectory → [Phase]. Performed by its bound agent; the Steward normally dispatches this for you.
 verb: phase
 signature: "Trajectory → [Phase]"
 agent: TBD

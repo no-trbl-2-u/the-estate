@@ -1,4 +1,6 @@
 ---
+name: challenge
+description: Adversarial pressure-test of any artifact. Refiner, a → a; sets the challenged classifier and tests Horizon falsifiability. Performed by The Advocate; the Steward normally dispatches this for you.
 verb: challenge
 signature: "a → a"
 agent: devils-advocate

@@ -1,4 +1,6 @@
 ---
+name: relate
+description: Draw the one hand-authored edge - this idea relates to that idea. Performed by its bound agent; the Steward normally dispatches this for you.
 verb: relate
 signature: "(Idea, Idea) → relates"
 agent: TBD

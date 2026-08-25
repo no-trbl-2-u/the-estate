@@ -1,4 +1,6 @@
 ---
+name: envision
+description: Elaborate the six-month vision of a framed idea. Transformer, Framing → Horizon. Performed by its bound agent; the Steward normally dispatches this for you.
 verb: envision
 signature: "Framing → Horizon"
 agent: TBD

@@ -1,4 +1,6 @@
 ---
+name: capture
+description: Record a raw idea with minimal processing. Transformer, Text → Spark. Performed by its bound agent; the Steward normally dispatches this for you.
 verb: capture
 signature: "Text → Spark"
 agent: TBD

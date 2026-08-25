@@ -1,4 +1,6 @@
 ---
+name: frame
+description: Define the problem, question, or opportunity space of a Spark. Transformer, Spark → Framing. Performed by its bound agent; the Steward normally dispatches this for you.
 verb: frame
 signature: "Spark → Framing"
 agent: TBD
