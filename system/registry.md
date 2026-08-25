@@ -29,7 +29,10 @@ never changes.
 ## Specialist agents
 
 Specialists live in `.claude/agents/` and are added on demand, never
-pre-populated. To install one: create its agent file, add a row here, and
+pre-populated. **Naming law (T, 2026-08-25): every agent is named
+thematically, in the form "The <something>"** — the frontmatter `name:` stays
+a lowercase slug (the invocation id), while the thematic name opens the
+definition body ("You are The <Name>") and appears here in bold. To install one: create its agent file, add a row here, and
 bind it in the skills table above — the Steward routes to it from then on.
 Every specialist receives a handoff packet (state snapshot + input artifacts +
 requested lens/output) and returns raw findings; the invoking skill owns the
@@ -37,7 +40,7 @@ artifact writes and the session close.
 
 | Agent | Capability | Bound to | Status |
 |---|---|---|---|
-| `devils-advocate` | Good-faith adversarial attack; falsifiability testing. Classifies, never gates. | `challenge` | active |
+| `devils-advocate` (**The Advocate**) | Good-faith adversarial attack; falsifiability testing. Classifies, never gates. | `challenge` | active |
 
 ## Playbooks
 
