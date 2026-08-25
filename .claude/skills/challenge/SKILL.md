@@ -18,3 +18,11 @@ held. Set `classifiers.challenged: true`, and for Horizons set
 **Classification, not certification**: nothing is gated on the outcome, and
 the operator may stop the attack at any time — this skill exists so pushback
 is invocable, never mandatory. Close per protocol.
+
+## Agent binding
+
+This skill delegates the attack itself to the **`devils-advocate`** agent
+(`.claude/agents/devils-advocate.md`), handing it the target artifact and the
+record's current state snapshot. The skill remains responsible for the
+artifact revision, classifier updates, and the session close. If the agent is
+unavailable, perform the attack inline under the same rules of engagement.

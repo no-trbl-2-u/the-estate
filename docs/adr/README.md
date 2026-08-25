@@ -17,3 +17,4 @@ conducted per Requirement A of `BUILD-PROMPT.md`.
 | [0008](0008-frontmatter-route-hints.md) | Every artifact carries frontmatter with `potential-next-steps` route hints |
 | [0009](0009-first-build-scope.md) | First build: Steward + ten molecular skills, no specialists, no sync |
 | [0010](0010-process-and-protected-files.md) | Build authorized directly from the confirmed interview; protected files left untouched |
+| [0011](0011-agent-layer.md) | Skills bind to swappable agents via the registry; devils-advocate ships bound to challenge |
