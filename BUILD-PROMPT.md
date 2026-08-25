@@ -1,3 +1,18 @@
+> **Historical record.** This brief was written to hand to an implementation
+> agent. Requirement A — the 10-question adaptive interview — was conducted on
+> 2026-08-25, its synthesis confirmed, and the system built. Requirement B (one
+> central Steward) is satisfied and strengthened. Preserved unedited as the
+> origin document.
+>
+> The deliverables list below was answered by [docs/adr/](docs/adr/) plus
+> `system/`. Its provisional vocabularies were superseded during the interview:
+> the edge table is now derived lineage (ADR 0005), and the "no large fleet of
+> specialists" guardrail was overtaken by the hard-binding law, which requires
+> an agent per verb (ADR 0013). The current law is
+> [system/LAW.md](system/LAW.md); the current intent is [VISION.md](VISION.md).
+
+---
+
 # Build Prompt
 
 This is a standalone master prompt to give to an implementation agent in a fresh conversation. It fully explains what is to be designed and eventually built. The agent receiving this prompt has no prior context from the design sessions that produced it.

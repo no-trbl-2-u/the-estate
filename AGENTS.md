@@ -10,15 +10,27 @@ Operational guidance for any agent working in this repository.
 
 ## Source of truth
 
-The tracked files in this repository are the operational source of truth:
+**[system/LAW.md](system/LAW.md) is the governing law.** Read it directly — it
+does not reach a spawned agent through this file, because a subagent runs on its
+own definition and never loads `AGENTS.md`. Any agent bound to a verb must read
+`system/LAW.md` itself.
 
-- [README.md](README.md) — overview and current status
-- [VISION.md](VISION.md) — product vision, principles, and non-goals
-- [BRAINSTORM.md](BRAINSTORM.md) — settled decisions and open questions
-- [BUILD-PROMPT.md](BUILD-PROMPT.md) — master prompt for the implementation agent
-- [docs/idea-pipeline.html](docs/idea-pipeline.html) — approved visual (do not modify)
+The operational source of truth, in precedence order:
 
-If something conflicts between agent memory and these files, the files win. Update your understanding from the files, not the other way around.
+1. [system/LAW.md](system/LAW.md) — the three-part law, the writer seam, the
+   three dimensions
+2. [system/](system/) — types and the Seed contract, lenses, scoring, the
+   Steward spec, the routing registry, the falsifiers
+3. [VISION.md](VISION.md) — intent, principles, non-goals, success criteria
+4. [docs/adr/](docs/adr/) — every major decision with its reasoning
+5. [README.md](README.md) — orientation
+
+[BRAINSTORM.md](BRAINSTORM.md) and [BUILD-PROMPT.md](BUILD-PROMPT.md) are
+**historical records**, preserved unedited. Where they conflict with `system/`,
+`system/` wins. [docs/idea-pipeline.html](docs/idea-pipeline.html) is an
+approved visual — do not modify.
+
+If something conflicts between agent memory and these files, the files win.
 
 ## Domain-generality
 
@@ -30,24 +42,41 @@ The repository must remain self-contained. Do not introduce dependencies on exte
 
 ## Lineage and clean state
 
-Every session on an Idea Record must close with an explicit state. Ambiguity must be named, not carried forward silently. Lineage edges must be preserved when records branch, merge, connect, or are absorbed. Do not discard history.
+Every session on an Idea Record must close with an explicit state. Ambiguity is
+named, never carried forward silently.
 
-## The Think Tank Steward (once implemented)
+State is **immutable**: copy the latest snapshot forward and update the copy.
+Never edit a prior state. Lineage is therefore **derived** from `inputs:`/
+`outputs:` chains — record them faithfully on every artifact, because a missing
+link cannot be reconstructed. `relates` is the only hand-authored edge. Nothing
+is ever deleted; retiring preserves the record whole.
 
-Once the Think Tank Steward agent exists, it is the default entrypoint for all work in this repository. Route through it. Do not bypass it by going directly to specialist agents or processes unless the Steward has explicitly delegated.
+## The Think Tank Steward
 
-Until the Steward is implemented, agents should use these files as their orientation and ask T for routing guidance.
+The Steward (`/steward`) is the front door for all work in this repository. It
+greets, orients, derives routes, dispatches to the agent who owns each verb, and
+**writes all state**. It performs no bound verb itself.
+
+Verbs are directly invocable — the goal is that nothing must be *memorized*, not
+that invocation is forbidden — but invoking a verb never bypasses its binding:
+`/challenge` runs as The Advocate either way.
+
+**Agents write artifacts; the Steward writes state.** An agent's output belongs
+to the agent, in its own voice. `state/` snapshots and the session close belong
+to the Steward alone.
 
 ## Before making structural changes
 
-Before proposing or making any structural change to the repository (new directories, new file conventions, changes to the record schema, changes to the mode list, changes to the agent architecture), read these files in full:
+Before proposing or making any structural change (new directories, file
+conventions, record schema, the verb list, the agent roster), read in full:
 
-1. [README.md](README.md)
-2. [VISION.md](VISION.md)
-3. [BRAINSTORM.md](BRAINSTORM.md)
-4. [BUILD-PROMPT.md](BUILD-PROMPT.md)
+1. [system/LAW.md](system/LAW.md)
+2. [system/TYPES.md](system/TYPES.md) and [system/registry.md](system/registry.md)
+3. [VISION.md](VISION.md)
+4. [docs/adr/](docs/adr/) — at minimum the index
 
-Then propose the change to T and wait for explicit approval.
+Then propose the change to T and wait for explicit approval. Adding a verb means
+adding or naming its agent: a verb without a bound agent does not run.
 
 ## How to ask questions
 

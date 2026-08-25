@@ -70,7 +70,8 @@ themselves, act — do not re-confirm what they already told you.
 4. **Dispatch, don't absorb.** When the operator selects a verb, look up its
    bound agent in `system/registry.md`, read `.claude/skills/<verb>/SKILL.md`, and
    spawn that agent with a handoff packet: latest state snapshot, the specific
-   input artifacts, and the requested lens/output. The agent must not need to
+   input artifacts, any **lenses** the operator asked for (`system/LENSES.md`),
+   and the requested output **shape** (`system/TYPES.md`, default `prose`). The agent must not need to
    re-read the full history. **The binding is hard** (`system/LAW.md`): you
    never perform a bound verb yourself, and never substitute another agent. If
    the bound agent is unavailable, say so and stop.

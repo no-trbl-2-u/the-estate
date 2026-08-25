@@ -2,145 +2,200 @@
 
 ## Mission
 
-think-tank exists to make ideas durable, explorable, and connectable — without forcing them toward any particular output. An idea that sits in incubation for six months and then becomes a one-line connection to a different idea has succeeded. An idea that evolves into a full architecture document has also succeeded. The system does not judge by artifact production.
+think-tank exists to make ideas durable, explorable, connectable — and
+**extractable**. Ideas enter loose and leave as **Seeds**: an elaborated
+six-month vision plus a rough path, thin on implementation, carried out to
+become a real project somewhere else.
+
+Extraction is the point, but it is not the only success. An idea that sits in
+incubation for six months and then becomes a one-line connection to a different
+idea has succeeded — that is a `connective` record, and the system is built to
+recognize it rather than rank it last forever. What the system will not do is
+pressure any idea toward an artifact it does not want to become.
 
 ## Problem being solved
 
-Current AI-assisted thinking is ephemeral. Sessions start fresh, context is lost, and the same territory gets re-explored because there is no record of prior work. When ideas do produce artifacts, those artifacts float free of the reasoning that produced them. Branches are forgotten. Dead ends are re-walked. Connections between ideas go unnoticed.
+Two problems, and the second is the sharper one.
 
-think-tank makes the graph of thought a first-class, persistent object.
+**Ideas are ephemeral.** Sessions start fresh, context is lost, the same
+territory gets re-explored. Artifacts float free of the reasoning that produced
+them. Branches are forgotten, dead ends re-walked, connections unnoticed.
+
+**Ideas leave badly.** When an idea does become a project elsewhere, it arrives
+as a starting point with no destination — so every local decision in month three
+is locally reasonable and globally aimless. What was missing was never the
+detail. It was the **horizon**: what this looks like when it is working, and a
+rough sense of how to get there.
 
 ## Core principles
 
-**Ideas are the primary object.** The durable Idea Record — not a document, spec, or task — is what the system manages. Artifacts are optional outputs of records, not the purpose of records.
+**Ideas are the primary object.** The durable Idea Record — not a document,
+spec, or task — is what the system manages.
 
-**Clean state between sessions.** Every session closes with an explicit state declaration. The next session inherits a clear starting point, not accumulated ambiguity.
+**Seeds are the export.** A Seed is horizon plus trajectory, and it leaves
+**clean**: no session logs, no rejected framings, no baggage. One line travels
+backward — the provenance stamp — and it is the return address for any future
+field report.
 
-**Lineage is non-negotiable.** How an idea got where it is matters as much as where it is. Edges — parent, branch, merge, absorb, relate — are first-class data.
+**Clean state between sessions.** Every session closes with an explicit state
+declaration. The next session inherits a clear starting point, not accumulated
+ambiguity.
 
-**Suggestions are not assignments.** The system may propose next steps. It does not act on them without explicit selection by the operator.
+**State is immutable.** Every session copies the latest snapshot forward and
+updates the copy; prior states are never edited. Time travel is opening an older
+file. Branching is copying forward from an older snapshot — the original is
+untouched because nothing is ever touched.
 
-**Domain-general.** The repository imposes no domain, language, or industry assumptions. A product idea, a mathematical conjecture, a narrative premise, and a technical architecture are all valid Idea Records.
+**Lineage is derived, not authored.** Every verb records what it consumed and
+what it produced, so parent, branch, merge, and split are *read off the
+composition chain* rather than maintained by hand. The graph is a view, not a
+database. **`relates` is the sole hand-authored edge** — no verb produces it, it
+comes out of a head, and it is the connection the machinery cannot make.
 
-**Self-contained.** The repository is the source of truth. Nothing critical lives only in an external service, private file system, or agent memory.
+**Three dimensions, never conflated.** A verb decides what cognitive work
+happens; a **lens** decides from what angle; a **shape** decides how the result
+is rendered. The verb determines an artifact's *type* — composition requires
+that — but never its *shape*.
+
+**Classification, not certification.** Quality is recorded structurally and
+never gated. A horizon that names its falsifier and one that does not are
+different types, not good and bad. Everything composes, nothing is blocked, and
+the label travels with the export. **Grade, never gate.**
+
+**Suggestions are not assignments.** The system may propose next steps. It does
+not act on them without explicit selection by the operator.
+
+**Domain-general.** A business, a mathematical conjecture, a narrative premise,
+and a technical architecture are all valid Idea Records, and the Seed contract
+is worded to serve all four.
+
+**Self-contained.** The repository is the source of truth. Nothing critical
+lives only in an external service or agent memory.
 
 ## Intended experience
 
-The operator arrives with something — a rough thought, a half-formed question, a concrete problem. They open a session, pick a mode, and work. The system guides without directing. At the end of the session, the operator sees a clear summary of what was established, what remains open, and the explicit question: *What would you like to do next with this idea?*
+The operator greets **The Steward**, the front door of the estate. It knows the
+portfolio, and rather than listing everything it offers a shortlist with reasons
+— or offers to have The Cartographer `survey` the grounds first.
 
-The operator can continue, branch, connect, produce an artifact, incubate, retire, or do nothing. All are valid. Nothing happens automatically.
+The operator says what they want in their own words: *"I want to find some holes
+in Ledger."* The Steward names the verb and its agent, and offers the runner-up:
+*"So you'd like The Advocate to `challenge` Ledger? Or would you rather The
+Forager `explore` it first?"* That confirmation is how the vocabulary is learned
+without ever being memorized — and it degrades: when the operator names the
+verb, the Steward acts instead of asking again.
 
-Over time, the graph grows. The operator can retrieve any idea, resume from its last known state, see how it relates to others, and branch from any recorded session state. The branch records the exact historical session snapshot used as its origin and does not alter the original. An idea retired two years ago can be revived as a branch under the same law.
+Verbs remain directly invocable for anyone who already knows what they want. The
+goal is that **nothing must be memorized**, not that invocation is forbidden.
 
-## The graph model in detail
+At the end, the operator sees what was established, what remains open, and the
+exact question: *What would you like to do next with this idea?*
+
+## The estate
+
+Agents are **a specific person**; verbs are **verbs**; and a verb is performed
+by its bound agent and **no one else** — a hard dependency, no fallback and no
+substitution. **Agents write artifacts; the Steward writes state.**
+
+| Agent | Office | Verbs |
+|---|---|---|
+| The Steward | The front door; writes all state | — |
+| The Gardener | Receives what arrives, gives it first shape | `capture`, `frame` |
+| The Architect | Draws what it becomes when working | `envision` |
+| The Surveyor | Stakes the route, sequences the ground | `chart`, `phase` |
+| The Forager | Wanders and brings back what is out there | `explore` |
+| The Distiller | Reduces to what is load-bearing | `distill` |
+| The Advocate | Attacks in good faith; tests falsifiability | `challenge` |
+| The Factor | Deals with the world outside the walls | `research` |
+| The Assayer | Weighs and values | `compare`, `review` |
+| The Chancellor | Ratifies and records what was decided | `decide` |
+| The Cartographer | Maps the estate, notices what connects | `relate`, `survey` |
+| The Keeper | Tends what sleeps, closes what is finished | `incubate`, `retire` |
+| The Sower | Sends the idea beyond the walls | `seed` |
+
+## The graph model
 
 ### Nodes: Idea Records
 
-Each Idea Record contains:
+- **Identity** — id, title, creation date
+- **Origin** — the prompt or context that initiated it, verbatim, never edited
+- **State snapshots** — immutable, copied forward; each records decisions, gold
+  nuggets, tensions, open questions and an honest current-state declaration
+- **Tensions** — competing framings pulling against each other. Distinct from
+  open questions: a question awaits an answer, a tension awaits a choice and may
+  never be resolved at all
+- **Status** — `active` · `incubating` · `retired` · `connective`
+- **Artifacts** — typed, shaped, classified
+- **Appetite** — hand-set heat; the one input no metric can compute
 
-- **Identity** — unique ID, title, creation timestamp
-- **Origin** — the prompt or context that initiated it
-- **Session log** — ordered list of sessions applied to this record
-- **Tensions** — unresolved conflicts, competing framings, and open questions
-- **Current state** — one of: `active`, `incubating`, `retired`, `merged`, `branched` (provisional state names)
-- **Lineage edges** — typed connections to related records
-- **Artifacts** — optional produced documents, structures, or outputs
+### Lineage
 
-### Edges (lineage types)
+`parent`, `branch`, `merge`, `split` are **derived** from `inputs:`/`outputs:`
+chains. `relates` is authored by hand. Reviving a retired record is branching
+from any recorded state, under the same law: the original is never altered.
 
-| Edge type | Meaning |
-|-----------|---------|
-| `parent` | This record branched from another |
-| `branch` | A child record forked from this one |
-| `merge` | Two streams combined into this record |
-| `absorbed` | This record was subsumed into another |
-| `relates` | Loose conceptual connection, non-hierarchical |
-| `incubated-from` | Revived from a retired or dormant state |
+## The portfolio
 
-Edge vocabulary is provisional and expected to evolve through the 10-question interview in [BUILD-PROMPT.md](BUILD-PROMPT.md).
+The tank is a portfolio, not a workbench. `survey` computes the sitemap
+(`ideas/SURVEY.md`) — per-record metadata, score, and convergent notices —
+stamped with the exact `state-head` of every record it covers so staleness is
+detectable rather than silent.
 
-### Sessions as transformations
+The score **optimizes for noticing, not finishing**, and ranks by
+**reachability × appetite** — how much would one verb move this — never by
+closest-to-done, which would sort a creative life by tidiness and bury raw ideas
+forever. Drift is displayed, never scored: drift usually means the idea is
+working.
 
-A session is a discrete work unit applied to one or more Idea Records. It has:
-
-- A **mode** (what cognitive operation to perform)
-- Optional **lenses** (which perspective(s) to apply)
-- An **output type** (what, if anything, is produced)
-- A **closing state** (explicit summary and next-question)
-
-Sessions can take one record as input and produce a branch (one-to-many), take two records and produce a merge (many-to-one), or simply advance the record in place.
-
-## Session modes (current list, not exhaustive)
-
-`capture` — record a raw idea with minimal processing  
-`frame` — define the problem, question, or opportunity space  
-`explore` — open-ended development without commitment  
-`interrogate` — surface assumptions, ask hard questions  
-`research` — structured information gathering  
-`connect` — explicitly link this record to another  
-`distill` — condense accumulated thinking into a sharper form  
-`challenge` — adversarial pressure-test  
-`compare` — evaluate two or more approaches or ideas  
-`decide` — drive toward an explicit, recorded decision  
-`specify` — produce a formal or semi-formal specification  
-`architect` — design a system or structural solution  
-`phase` — break a direction into concrete, sequenced phases  
-`experiment` — design a test, prototype, or trial  
-`review` — evaluate an existing artifact or decision  
-`incubate` — intentionally park the idea for future return  
-`retire` — close the idea with a terminal state  
-
-This list is provisional. Modes may be renamed, split, or combined through implementation design.
-
-## Lenses (optional perspective filters)
-
-Lenses are not modes — they bias the angle of a session without changing its operation. Examples:
-
-`user` · `technical` · `creative` · `commercial` · `operational` · `security` · `ethical` · `accessibility` · `competitive` · `narrative` · `psychological` · `organizational` · `legal` · `minimalist` · `long-term` · `adversarial`
-
-Lenses are additive and optional. A session may apply zero, one, or several.
-
-## Output types
-
-Output types describe the artifact (if any) a session produces. They are not mandatory. Valid outputs include:
-
-- PRD (product requirements document)
-- Concise molecular phases (sequenced work breakdown)
-- Full AI harness architecture
-- Research brief
-- Decision record
-- Prototype or experiment design
-- Unresolved thinking (the session log itself is the output)
-- No artifact (session advances the record without producing a document)
-
-The session mode does not dictate the output type. An `explore` session may produce a PRD; a `specify` session may produce nothing but a clearer understanding of what is unknown.
-
-## Clean-state doctrine
-
-Every session must close with:
-
-1. A summary of what was established
-2. An explicit current state for the Idea Record
-3. Open questions that remain unresolved
-4. The exact user-facing question: **"What would you like to do next with this idea?"**
-
-Sessions do not trail off. Ambiguity is named, not silently carried forward.
+The noticing worth surfacing is **convergent** — two records that are secretly
+the same idea, a record one verb from a Seed sitting idle for months, a dead
+Spark that is the missing piece of a live one. Divergent noticing needs no help.
 
 ## Non-goals
 
-- **No forced PRD.** The system does not assume an idea is headed toward a product.
-- **No mandatory action plan.** Exploration without commitment is a valid end state.
-- **No output-type siloing.** Mode does not determine output.
-- **No opaque autonomous task creation.** Suggestions do not become work without explicit selection.
-- **No giant taxonomy.** Mode and lens lists will be kept to a usable size.
-- **No external dependencies as single source of truth.** The repository must be self-contained.
-- **No domain lock-in.** The system is not specialized for software, products, creative writing, or any other domain.
+- **No forced artifact.** No idea is assumed to be headed toward a product, or
+  toward anything.
+- **No mandatory action plan.** Exploration without commitment is a valid end
+  state.
+- **No output-type siloing.** A verb fixes an artifact's type but never its
+  shape; a `Horizon` may be rendered as a PRD.
+- **No gating.** Quality is classified, never enforced. An unfalsified Seed
+  exports freely — labelled.
+- **No opaque autonomous work.** Suggestions do not become work without explicit
+  selection.
+- **No giant taxonomy.** Verbs, lenses, and shapes are kept to a usable size.
+- **No external dependency as source of truth.** One integration exists —
+  The Factor's web access — and it is non-critical by construction.
+- **No domain lock-in.**
+- **No forward baggage.** Seeds leave clean.
 
 ## Success criteria
 
-- An operator can open any Idea Record and immediately understand its current state, its history, and what was last open.
-- A new session can be started from any prior state without re-explaining the idea from scratch.
-- Two ideas can be explicitly connected, and that connection is queryable.
-- An idea can be retired, revived, and branched without altering the original.
-- A session can end with no artifact and no action, and that is treated as a valid outcome.
-- The system never creates tasks, assignments, or work items without explicit operator selection.
+- An operator can open any record and immediately understand its state, its
+  history, and what was last open.
+- A new session starts from any prior state without re-explaining the idea.
+- Two ideas can be connected, and that connection is queryable.
+- A record can be incubated, retired, revived, and branched without altering the
+  original.
+- A session can end with no artifact and no action, and that is a valid outcome.
+- A `connective` record — one whose value is the edges it draws — is recognized
+  as a success rather than ranked last.
+- A Seed leaves and is used to build something real elsewhere.
+- No task or assignment is created without explicit operator selection.
+
+## Falsifiers
+
+Recorded in full at [system/FALSIFIERS.md](system/FALSIFIERS.md). The governing
+one, verbatim:
+
+> "I'll have failed if within a month, I have no evidence of using this outside
+> this repo."
+
+Check date: **2026-09-25**. The named failure mode is that building think-tank
+is more interesting than using it.
+
+## Where the law lives
+
+[system/LAW.md](system/LAW.md) is the operational source of truth and every
+agent reads it directly. This document states the intent; `system/` states the
+rules.

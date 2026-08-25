@@ -34,6 +34,18 @@ it, always.
 
 An agent may own several verbs. A verb has exactly one agent.
 
+## Three dimensions, never conflated
+
+- **Verb** — what cognitive work happens. Bound to one agent.
+- **Lens** — from what angle (`system/LENSES.md`). Optional, additive, needs no
+  agent; it modifies a verb rather than performing work.
+- **Shape** — how the result is rendered for a reader (`system/TYPES.md`).
+  Chosen by the operator, never by the verb.
+
+The verb determines the artifact's *type*, which composition requires. It never
+determines the *shape*. That separation is what keeps the **no output-type
+siloing** non-goal true under a typed system.
+
 ## Who writes what
 
 The single most important operational rule, and the one that keeps the record

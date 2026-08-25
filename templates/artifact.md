@@ -1,6 +1,8 @@
 ---
 id: idea-NNNN/artifacts/NNNN-slug.md
-type: Spark                 # Spark | Framing | Horizon | Trajectory | Phase | Brief | Seed
+type: Spark                 # Spark | Framing | Horizon | Trajectory | Phase | Findings | Appraisal | Decision | Brief | Seed
+shape: prose                # how it is rendered — verb sets type, operator sets shape
+lenses: []                  # lenses applied (optional, additive)
 produced-by: capture        # the verb invocation
 inputs: []                  # artifact paths consumed (lineage is read off this chain)
 date: YYYY-MM-DD
