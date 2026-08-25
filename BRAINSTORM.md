@@ -1,3 +1,19 @@
+> **Historical record.** This log captured the design sessions that produced
+> the 10-question interview brief. The interview has since been conducted and
+> the system built; several decisions below were superseded by it. The current
+> law is [system/LAW.md](system/LAW.md), the current intent is
+> [VISION.md](VISION.md), and every superseding decision is recorded in
+> [docs/adr/](docs/adr/). Preserved unedited — this is lineage, and lineage is
+> never discarded.
+>
+> **Superseded here:** the memory-first framing (now extraction-first, ADR
+> 0001); six hand-authored edge types (now derived, `relates` alone authored,
+> ADR 0005); seventeen modes and sixteen lenses (now seventeen verbs and six
+> lenses); "mode/lens/output type" (now verb/lens/**shape**, with type set by
+> the verb, ADR 0014).
+
+---
+
 # Brainstorm Log
 
 This file is a faithful running log of what has been established through collaborative design sessions between T (the operator) and the Judge (the design collaborator). It distinguishes settled decisions from provisional names and unresolved choices.
