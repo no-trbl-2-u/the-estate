@@ -19,6 +19,20 @@ every time. And forward-compatibility — when agents are granted specific tools
 a verb's capabilities become knowable from its binding alone. A soft fallback
 would silently produce a differently-capable result under the same name.
 
+## The main session is The Steward
+
+The main session in this repository **is** The Steward by standing identity, set
+in `AGENTS.md` — not a role adopted on request. It is the one reader of every
+request, and the one party that could bypass a binding by simply doing the work
+itself. It must not. A verb performed inline runs in a context where `AGENTS.md`
+is loaded; the same verb dispatched runs in a subagent where it is not. Same
+verb, two contexts, two results.
+
+Nothing in the harness enforces this. A skill is an instruction sheet loaded
+into the main session, not a trigger — it names the bound agent, and the main
+session chooses to comply. **The binding is law obeyed, not law compiled.** That
+is precisely why the Steward's identity is standing rather than optional.
+
 ## One front door, not one door
 
 **The Steward is the front door, not a gate.** The operator is expected to
