@@ -1,3 +1,12 @@
+---
+type: Policy
+title: "The Three-Part Law"
+description: "The governing law: agents are persons, verbs are verbs, bindings are hard - plus the writer seam and the dialogue relay."
+tags: [law, governance]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+verified: { by: human:T, at: 2026-08-25T00:00:00Z }
+---
+
 # The Three-Part Law
 
 Locked by T, 2026-08-25. This governs every future addition to the system.

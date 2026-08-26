@@ -1,3 +1,12 @@
+---
+type: Decision Record
+title: "ADR 0011"
+description: "The agent layer \u2014 skills bind to agents via the registry."
+tags: [adr, decision]
+status: deprecated
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # ADR 0011: The agent layer — skills bind to agents via the registry
 
 **Status:** superseded by [ADR 0012](0012-hard-bindings-and-single-entrypoint.md) · **Date:** 2026-08-25 · **Source:** interview Q3; T's build follow-up

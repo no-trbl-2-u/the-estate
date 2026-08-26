@@ -1,3 +1,12 @@
+---
+type: Decision Record
+title: "ADR 0010"
+description: "Build authorized from the confirmed interview; protected files untouched."
+tags: [adr, decision]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+verified: { by: human:T, at: 2026-08-25T00:00:00Z }
+---
+
 # ADR 0010: Build authorized from the confirmed interview; protected files untouched
 
 **Status:** accepted · **Date:** 2026-08-25 · **Source:** T's build instruction

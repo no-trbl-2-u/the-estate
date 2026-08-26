@@ -1,3 +1,11 @@
+---
+type: Specification
+title: "The Steward Specification"
+description: "Full specification of the front door: orientation, routing, dispatch, pushback, and the close protocol."
+tags: [steward, specification]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # The Steward of The Estate
 
 The Steward is the single stable entrypoint for all work in this repository.

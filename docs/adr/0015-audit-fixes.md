@@ -1,3 +1,12 @@
+---
+type: Decision Record
+title: "ADR 0015"
+description: "Audit fixes \u2014 the seam extended, the Spark restored, the algebra reconciled."
+tags: [adr, decision]
+generated: { by: claude-code/2026-08-26, at: 2026-08-26T00:00:00Z }
+verified: { by: human:T, at: 2026-08-26T00:00:00Z }
+---
+
 # ADR 0015: Audit fixes — the seam extended, the Spark restored, the algebra reconciled
 
 **Status:** accepted · **Date:** 2026-08-26 · **Source:** `AUDIT-REPORT.md` (external audit per `AUDIT-PROMPT.md`), fixes approved by T

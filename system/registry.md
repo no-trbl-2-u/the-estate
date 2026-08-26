@@ -1,3 +1,11 @@
+---
+type: Registry
+title: "Routing Registry"
+description: "Every verb, every office, and every hard binding the Steward consults when routing."
+tags: [registry, routing]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # Routing Registry
 
 The structured list the Steward consults when routing. Governed by

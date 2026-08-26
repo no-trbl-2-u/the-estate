@@ -1,3 +1,11 @@
+---
+type: Specification
+title: "The Type System"
+description: "Verb families, artifact types, the Seed contract, boundary inputs, artifact immutability, and output shapes."
+tags: [types, specification]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # The Type System
 
 Artifacts in The Estate are **typed values**. Verbs are functions over those types,

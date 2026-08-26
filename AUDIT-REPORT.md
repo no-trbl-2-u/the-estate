@@ -1,3 +1,11 @@
+---
+type: Report
+title: "Audit Report"
+description: "The 2026-08-26 design-and-coherence audit: seventeen findings, scenario traces, and the Dreamer verdict."
+tags: [audit, report]
+generated: { by: claude-code/2026-08-26, at: 2026-08-26T00:00:00Z }
+---
+
 # Audit Report — think-tank implementation review
 
 Conducted 2026-08-26 against `AUDIT-PROMPT.md`, by an outside session with no

@@ -1,3 +1,12 @@
+---
+type: Decision Record
+title: "ADR 0008"
+description: "Every artifact carries frontmatter with route hints."
+tags: [adr, decision]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+verified: { by: human:T, at: 2026-08-25T00:00:00Z }
+---
+
 # ADR 0008: Every artifact carries frontmatter with route hints
 
 **Status:** accepted · **Date:** 2026-08-25 · **Source:** T's note, interview Q7 turn

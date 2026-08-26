@@ -1,3 +1,12 @@
+---
+type: Policy
+title: "Falsifiers"
+description: "What would prove The Estate wrong, and by when; the named failure mode."
+tags: [falsifiers, governance]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+verified: { by: human:T, at: 2026-08-25T00:00:00Z }
+---
+
 # Falsifiers
 
 Written down before the building started, per this project's own law

@@ -1,6 +1,10 @@
 ---
-generated: never
-covers: []
+type: Survey
+title: "Survey"
+description: "The sitemap of the estate: every record, its score, and the convergent notices. Derived data; not yet generated."
+tags: [survey, derived]
+status: draft
+covers: []          # exact state-head of every record covered; empty = never generated
 ---
 
 # Survey

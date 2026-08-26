@@ -1,3 +1,12 @@
+---
+type: Historical Record
+title: "Brainstorm Log"
+description: "The design sessions that produced the vision interview brief. Preserved unedited; superseded by system/."
+tags: [history, lineage]
+status: deprecated
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 > **Historical record.** This log captured the design sessions that produced
 > the 10-question interview brief. The interview has since been conducted and
 > the system built; several decisions below were superseded by it. The current

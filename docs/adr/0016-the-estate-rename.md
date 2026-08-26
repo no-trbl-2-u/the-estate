@@ -1,3 +1,12 @@
+---
+type: Decision Record
+title: "ADR 0016"
+description: "The project is renamed The Estate."
+tags: [adr, decision]
+generated: { by: claude-code/2026-08-26, at: 2026-08-26T00:00:00Z }
+verified: { by: human:T, at: 2026-08-26T00:00:00Z }
+---
+
 # ADR 0016: The project is renamed The Estate
 
 **Status:** accepted · **Date:** 2026-08-26 · **Source:** T, after PR #3 merged

@@ -1,3 +1,11 @@
+---
+type: Reference
+title: "Lenses"
+description: "The six optional, additive angles that bias a verb without changing its operation."
+tags: [lenses]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # Lenses
 
 A lens biases the **angle** of a verb without changing its operation. Mode,

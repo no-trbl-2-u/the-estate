@@ -1,3 +1,12 @@
+---
+type: Decision Record
+title: "ADR 0012"
+description: "Hard agent-verb bindings; the Steward is the sole entrypoint."
+tags: [adr, decision]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+verified: { by: human:T, at: 2026-08-25T00:00:00Z }
+---
+
 # ADR 0012: Hard agent-verb bindings; the Steward is the sole entrypoint
 
 **Status:** accepted · **Supersedes:** ADR 0011 · **Date:** 2026-08-25 · **Source:** T, locks 1–4

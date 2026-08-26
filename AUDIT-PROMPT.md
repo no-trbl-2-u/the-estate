@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Audit Prompt"
+description: "Standalone brief for an outside agent auditing this implementation."
+tags: [audit]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # Audit Prompt — The Estate implementation review
 
 Paste this into a fresh session with no prior context. It is a standalone
@@ -72,7 +80,7 @@ renders). The verb fixes an artifact's *type*; the operator picks its *shape*.
 9. `.claude/skills/*/SKILL.md` — all seventeen verbs
 10. `.claude/agents/*.md` — all twelve specialist offices
 11. `templates/` — idea, state, artifact, seed
-12. `docs/adr/` — sixteen ADRs; the index first, then any that matter
+12. `docs/adr/` — seventeen ADRs; the index first, then any that matter
 13. `docs/architecture.html` — the visual model of the whole flow
 
 `BRAINSTORM.md` and `BUILD-PROMPT.md` are **historical records**, preserved

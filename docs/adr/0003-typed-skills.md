@@ -1,3 +1,12 @@
+---
+type: Decision Record
+title: "ADR 0003"
+description: "Skills are typed composed functions in three families."
+tags: [adr, decision]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+verified: { by: human:T, at: 2026-08-25T00:00:00Z }
+---
+
 # ADR 0003: Skills are typed composed functions in three families
 
 **Status:** accepted · **Date:** 2026-08-25 · **Source:** interview Q3–Q5

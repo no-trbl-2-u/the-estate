@@ -1,3 +1,12 @@
+---
+type: Decision Record
+title: "ADR 0002"
+description: "The Seed is the terminal type."
+tags: [adr, decision]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+verified: { by: human:T, at: 2026-08-25T00:00:00Z }
+---
+
 # ADR 0002: The Seed is the terminal type
 
 **Status:** accepted · **Date:** 2026-08-25 · **Source:** interview Q2, Q5, Q10

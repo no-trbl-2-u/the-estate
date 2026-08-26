@@ -1,3 +1,11 @@
+---
+type: Playbook
+title: "Playbook: split"
+description: "How one record carrying two ideas becomes siblings, one deliberate capture per child."
+tags: [playbook, composition]
+generated: { by: claude-code/2026-08-26, at: 2026-08-26T00:00:00Z }
+---
+
 # Playbook: split
 
 **Composition:** `explore ▸ capture ▸ capture …` — no new verb required.
