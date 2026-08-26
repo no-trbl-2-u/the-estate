@@ -57,6 +57,11 @@ does not reach a spawned agent through this file, because a subagent runs on its
 own definition and never loads `AGENTS.md`. Any agent bound to a verb must read
 `system/LAW.md` itself.
 
+This file is the orientation's only home. Claude Code loads it through the
+`@AGENTS.md` import in [CLAUDE.md](CLAUDE.md) — never a copy, never a rename
+([ADR 0019](docs/adr/0019-claude-md-imports-agents-md.md)). Keep it under the
+200-line memory-file guidance; anything longer belongs in `system/` or a skill.
+
 The operational source of truth, in precedence order:
 
 1. [system/LAW.md](system/LAW.md) — the three-part law, the writer seam, the

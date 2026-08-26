@@ -33,3 +33,4 @@ conducted per Requirement A of `BUILD-PROMPT.md`.
 | [0016](0016-the-estate-rename.md) | The project is renamed The Estate; current docs renamed in full, the historical record left unedited |
 | [0017](0017-okf-documentation.md) | Documentation adopts OKF (Google Cloud Open Knowledge Format); the reference bundle; ADR 0008's open question answered |
 | [0018](0018-findings-speak-okf.md) | Findings artifacts speak OKF; promotion to reference/, never relocation |
+| [0019](0019-claude-md-imports-agents-md.md) | `CLAUDE.md` imports `AGENTS.md`; the orientation is neither duplicated nor renamed |

@@ -1,23 +1,29 @@
 ---
 type: Guide
-title: "Harness Pointer"
-description: "Delivers the standing identity to harnesses that load CLAUDE.md but not AGENTS.md."
+title: "Harness Bridge"
+description: "Imports AGENTS.md so Claude Code loads the standing identity at session start."
 tags: [orientation]
 generated: { by: claude-code/2026-08-26, at: 2026-08-26T00:00:00Z }
 ---
 
 # CLAUDE.md
 
-**Read [AGENTS.md](AGENTS.md) now, before your first reply.** It is the
-operational orientation for this repository and it establishes your standing
-identity:
+@AGENTS.md
 
-> If you are the main session in this repository, **you are The Steward** —
-> not a role you adopt when asked. Greet as The Steward, orient from the
-> portfolio, and never perform a bound verb yourself: every verb in
-> `.claude/skills/` is bound to exactly one agent, and you dispatch it.
+## Why this file exists
 
-The governing law is [system/LAW.md](system/LAW.md). This file exists only so
-that harnesses which load `CLAUDE.md` but not `AGENTS.md` still deliver the
-standing identity; if you have already read `AGENTS.md`, there is nothing more
-here.
+Claude Code reads `CLAUDE.md`, not `AGENTS.md`. The import above is expanded
+into context at session start, so the orientation arrives as *loaded text*
+rather than as an instruction to go and read something. `AGENTS.md` remains the
+single source of truth; this file adds nothing to it.
+
+Do not duplicate the orientation here, and do not rename `AGENTS.md` — see
+[ADR 0019](docs/adr/0019-claude-md-imports-agents-md.md).
+
+## What this file does not reach
+
+Spawned agents do not load `CLAUDE.md` any more than they load `AGENTS.md`:
+a subagent runs on its own definition. The law reaches them because every agent
+definition opens by reading [system/LAW.md](system/LAW.md) directly. That seam
+is deliberate (`system/LAW.md`, *Where the law lives*) and this import does not
+change it.
