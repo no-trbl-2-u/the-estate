@@ -1,6 +1,6 @@
 # Portfolio Scoring
 
-The tank is a portfolio, not a workbench. The score exists to answer
+The estate is a portfolio, not a workbench. The score exists to answer
 "what should I work on next?" with **zero reasoning** — it is computed from
 structure, never from an LLM's judgment of quality.
 
@@ -8,7 +8,7 @@ structure, never from an LLM's judgment of quality.
 
 **Optimize for noticing, not finishing.** (T, locked, interview Q9.)
 The operator starts things easily; the system's leverage is in what the
-operator cannot do alone — holding the whole tank in mind at once.
+operator cannot do alone — holding the whole estate in mind at once.
 
 ## Signals
 

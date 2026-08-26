@@ -1,6 +1,6 @@
 ---
 name: survey
-description: Walk the whole tank and report what deserves attention next - ranked shortlist plus convergent notices, written to the sitemap. Performed by The Cartographer; the Steward normally offers this at the greeting.
+description: Walk the whole estate and report what deserves attention next - ranked shortlist plus convergent notices, written to the sitemap. Performed by The Cartographer; the Steward normally offers this at the greeting.
 verb: survey
 signature: "[Idea] → Survey"
 agent: cartographer

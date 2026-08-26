@@ -1,4 +1,4 @@
-# Audit Prompt — think-tank implementation review
+# Audit Prompt — The Estate implementation review
 
 Paste this into a fresh session with no prior context. It is a standalone
 briefing.
@@ -7,7 +7,7 @@ briefing.
 
 ## Your task
 
-You are auditing **think-tank**, an AI-assisted idea foundry implemented
+You are auditing **The Estate**, an AI-assisted idea foundry implemented
 entirely as markdown, Claude Code skills, and subagent definitions. There is no
 code to run and no tests to execute — the "implementation" is a set of documents
 that instruct agents, so the audit is a **design and coherence review**, not a
@@ -72,7 +72,7 @@ renders). The verb fixes an artifact's *type*; the operator picks its *shape*.
 9. `.claude/skills/*/SKILL.md` — all seventeen verbs
 10. `.claude/agents/*.md` — all twelve specialist offices
 11. `templates/` — idea, state, artifact, seed
-12. `docs/adr/` — fourteen ADRs; the index first, then any that matter
+12. `docs/adr/` — sixteen ADRs; the index first, then any that matter
 13. `docs/architecture.html` — the visual model of the whole flow
 
 `BRAINSTORM.md` and `BUILD-PROMPT.md` are **historical records**, preserved
@@ -120,8 +120,9 @@ be performed differently by two competent agents.
 - **The derived-lineage fragility** — lineage exists only if agents faithfully
   record `inputs:`. Is that instruction prominent enough to be reliably obeyed?
 - **Taxonomy pressure.** "No giant taxonomy" is a stated non-goal, and the system
-  now carries 17 verbs, 12 agents, 10 types, 6 lenses, 8 shapes. Is it past the
-  point where an operator can hold it in their head? If so, what would you merge?
+  now carries 17 verbs, 13 offices, 10 types, 6 lenses, and an open shape
+  vocabulary. Is it past the point where an operator can hold it in their
+  head? If so, what would you merge?
 
 ---
 
@@ -197,6 +198,6 @@ Two things to be hard about:
   evidence. If a rule cannot be obeyed, say so no matter how well it reads.
 - **Judge it against its own falsifier**, recorded in `system/FALSIFIERS.md`:
   *"I'll have failed if within a month, I have no evidence of using this outside
-  this repo."* The named failure mode is that building think-tank is more
+  this repo."* The named failure mode is that building The Estate is more
   interesting than using it. Weigh every addition you propose against that: does
   it move a Seed out the door, or does it make the machine more interesting?

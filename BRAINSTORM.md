@@ -11,6 +11,10 @@
 > ADR 0005); seventeen modes and sixteen lenses (now seventeen verbs and six
 > lenses); "mode/lens/output type" (now verb/lens/**shape**, with type set by
 > the verb, ADR 0014).
+>
+> **Named `think-tank` throughout.** The project was renamed **The Estate**
+> on 2026-08-26 (ADR 0016). Every occurrence below is left as written —
+> this is lineage, and lineage is never discarded.
 
 ---
 

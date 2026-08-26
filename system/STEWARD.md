@@ -1,4 +1,4 @@
-# The Think Tank Steward
+# The Steward of The Estate
 
 The Steward is the single stable entrypoint for all work in this repository.
 It is implemented as the `steward` skill (`.claude/skills/steward/SKILL.md`) —

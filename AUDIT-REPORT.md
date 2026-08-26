@@ -6,6 +6,12 @@ prior context. The whole repository was read before any finding was formed:
 templates, all fourteen ADRs, both historical documents, and both HTML visuals.
 No file was edited; this report is the only addition.
 
+> **Named `think-tank` throughout.** The project was renamed **The Estate**
+> on 2026-08-26 (ADR 0016), after this report was written and its findings
+> fixed (ADR 0015). File paths cited below are the pre-rename ones — notably
+> `ideas/0001-think-tank/`, now `ideas/0001-the-estate/`. The report is left
+> as written: it is the record of what was found, on the day it was found.
+
 **Headline answer to Part 1:** the system mostly functions as intended *on
 paper*. The spine (Spark → Framing → Horizon → Trajectory → [Phase] → Seed)
 typechecks, resume and session close are well-specified, and the honesty
