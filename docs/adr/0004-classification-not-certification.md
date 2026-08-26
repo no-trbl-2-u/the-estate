@@ -1,3 +1,12 @@
+---
+type: Decision Record
+title: "ADR 0004"
+description: "Classification, not certification."
+tags: [adr, decision]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+verified: { by: human:T, at: 2026-08-25T00:00:00Z }
+---
+
 # ADR 0004: Classification, not certification
 
 **Status:** accepted · **Date:** 2026-08-25 · **Source:** interview Q6

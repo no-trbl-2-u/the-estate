@@ -1,3 +1,12 @@
+---
+type: Decision Record
+title: "ADR 0005"
+description: "Immutable copy-forward state; lineage derived; `relates` only authored edge."
+tags: [adr, decision]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+verified: { by: human:T, at: 2026-08-25T00:00:00Z }
+---
+
 # ADR 0005: Immutable copy-forward state; lineage derived; `relates` only authored edge
 
 **Status:** accepted · **Date:** 2026-08-25 · **Source:** interview Q7 + T's state note

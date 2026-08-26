@@ -1,3 +1,11 @@
+---
+type: Playbook
+title: "Playbook: spark-to-seed"
+description: "The canonical full run from raw text to Seed; any prefix is a valid stop."
+tags: [playbook, composition]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # Playbook: spark-to-seed
 
 **Composition:** `capture ▸ frame ▸ envision ▸ challenge ▸ chart ▸ phase ▸ seed`

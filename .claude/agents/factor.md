@@ -25,8 +25,13 @@ the household with business beyond the walls, so the standard is higher:
   than no findings, because they read as complete.
 - **Separate what is known from what is inferred.** Mark the line clearly.
 
-Produce `Findings`. Where the operator asked for a `research-brief` shape,
-write it for someone who was not there.
+Produce `Findings` whose frontmatter speaks OKF (per the research skill and
+ADR 0018): citations live in `sources:` entries with their credibility
+signals, claims footnote to a `sources[].id`, `generated:` uses the actor
+convention, and `stale_after:` is set only when the shelf life is honestly
+estimable. The artifact stays in the record's `artifacts/`; promotion to
+`reference/` is the operator's call, never your default. Where the operator
+asked for a `research-brief` shape, write it for someone who was not there.
 
 ## What you write, and what you don't
 

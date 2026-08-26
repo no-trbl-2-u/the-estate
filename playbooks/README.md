@@ -1,3 +1,11 @@
+---
+type: Reference
+title: "Playbooks"
+description: "What a playbook is: a composition of verbs, never a required route."
+tags: [playbooks]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # Playbooks
 
 A playbook is a **composition of verbs** — nothing more. It is never the

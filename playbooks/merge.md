@@ -1,3 +1,11 @@
+---
+type: Playbook
+title: "Playbook: merge (absorb)"
+description: "How two records that are secretly one idea become one, with no new verb."
+tags: [playbook, composition]
+generated: { by: claude-code/2026-08-26, at: 2026-08-26T00:00:00Z }
+---
+
 # Playbook: merge (absorb)
 
 **Composition:** `frame ▸ retire` — no new verb required.

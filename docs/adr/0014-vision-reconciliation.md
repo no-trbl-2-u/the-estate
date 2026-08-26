@@ -1,3 +1,12 @@
+---
+type: Decision Record
+title: "ADR 0014"
+description: "Vision reconciliation \u2014 lenses, shapes, restored verbs, connective records."
+tags: [adr, decision]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+verified: { by: human:T, at: 2026-08-25T00:00:00Z }
+---
+
 # ADR 0014: Vision reconciliation — lenses, shapes, restored verbs, connective records
 
 **Status:** accepted · **Date:** 2026-08-25 · **Source:** divergence audit requested by T

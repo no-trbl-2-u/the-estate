@@ -1,3 +1,11 @@
+---
+type: Vision
+title: "Vision"
+description: "Intent, principles, non-goals, and success criteria for The Estate."
+tags: [vision]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # Vision
 
 ## Mission

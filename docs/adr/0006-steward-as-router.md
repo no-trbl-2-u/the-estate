@@ -1,3 +1,12 @@
+---
+type: Decision Record
+title: "ADR 0006"
+description: "The Steward routes by Seed-gap and pushes back only by suggesting a skill."
+tags: [adr, decision]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+verified: { by: human:T, at: 2026-08-25T00:00:00Z }
+---
+
 # ADR 0006: The Steward routes by Seed-gap and pushes back only by suggesting a skill
 
 **Status:** accepted · **Date:** 2026-08-25 · **Source:** interview Q3; `BUILD-PROMPT.md` Requirement B

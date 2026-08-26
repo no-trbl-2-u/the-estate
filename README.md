@@ -1,3 +1,11 @@
+---
+type: Guide
+title: "The Estate"
+description: "Orientation: what The Estate is, the law, the household, and where everything lives."
+tags: [orientation]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # The Estate
 
 An AI-assisted idea foundry. Ideas enter loose and leave as **Seeds** — an
@@ -80,6 +88,7 @@ Two rules follow: **agents write artifacts, the Steward writes state**; and
 | [system/STEWARD.md](system/STEWARD.md) | Full Steward specification |
 | [system/registry.md](system/registry.md) | Routing registry: verbs, agents, bindings |
 | [system/FALSIFIERS.md](system/FALSIFIERS.md) | What would prove this wrong, and by when |
+| [reference/](reference/) | The OKF reference bundle: the spec plus one concept per verb, office, and type |
 | [ideas/](ideas/) | The records. `ideas/SURVEY.md` is the sitemap |
 | [exports/](exports/) | The departure lounge for Seeds |
 | [docs/architecture.html](docs/architecture.html) | Visual model of the whole flow: idea → state → artifacts |

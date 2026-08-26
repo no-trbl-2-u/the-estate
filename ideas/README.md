@@ -1,3 +1,11 @@
+---
+type: Guide
+title: "Idea Records Layout"
+description: "One directory per record; immutable state; the exact branching mechanics."
+tags: [records, layout]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # Ideas
 
 One directory per Idea Record:

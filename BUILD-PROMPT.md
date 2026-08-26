@@ -1,3 +1,12 @@
+---
+type: Historical Record
+title: "Build Prompt"
+description: "The original implementation brief. Preserved unedited as the origin document; superseded by system/."
+tags: [history, lineage]
+status: deprecated
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 > **Historical record.** This brief was written to hand to an implementation
 > agent. Requirement A — the 10-question adaptive interview — was conducted on
 > 2026-08-25, its synthesis confirmed, and the system built. Requirement B (one

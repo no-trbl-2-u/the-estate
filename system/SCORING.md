@@ -1,3 +1,11 @@
+---
+type: Specification
+title: "Portfolio Scoring"
+description: "Reachability times appetite, convergent notices, connective records, and what the score must never do."
+tags: [portfolio, scoring]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # Portfolio Scoring
 
 The estate is a portfolio, not a workbench. The score exists to answer

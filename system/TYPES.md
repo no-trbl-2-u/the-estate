@@ -1,3 +1,11 @@
+---
+type: Specification
+title: "The Type System"
+description: "Verb families, artifact types, the Seed contract, boundary inputs, artifact immutability, and output shapes."
+tags: [types, specification]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # The Type System
 
 Artifacts in The Estate are **typed values**. Verbs are functions over those types,
@@ -64,6 +72,19 @@ the chain: the one no other artifact of the same type names as its `inputs:`
 predecessor; gap derivation and handoff packets always mean the tip.
 `challenge` writes its revision as a new version and sets its classifiers
 there — it never revises in place, because nothing here is ever altered.
+
+### Findings speak OKF
+
+The `Findings` artifact extends the record frontmatter with the OKF v0.2
+families (`reference/okf-spec.md`, ADR 0018): citations are `sources:`
+entries with credibility signals, claims footnote to a `sources[].id`,
+`generated:` follows the actor convention, and `stale_after:` marks the
+facts' honest shelf life. External knowledge rots on a schedule the other
+types don't have; OKF makes the rot a timestamp comparison. The artifact
+remains a record artifact in `artifacts/`; a finding with cross-record
+value is **promoted** — a `reference/` concept citing the artifact as its
+source — never relocated. Whether the remaining types follow is the open
+migration question in ADR 0017.
 
 ## The Seed (terminal type)
 

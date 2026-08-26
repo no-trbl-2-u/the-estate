@@ -1,3 +1,11 @@
+---
+type: Guide
+title: "Exports"
+description: "The departure lounge: where Seeds and Briefs land on their way out."
+tags: [exports]
+generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
+---
+
 # Exports
 
 The departure lounge. When a Seed (or early-exit Brief) leaves for a real
