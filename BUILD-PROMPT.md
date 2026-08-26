@@ -10,6 +10,10 @@
 > specialists" guardrail was overtaken by the hard-binding law, which requires
 > an agent per verb (ADR 0013). The current law is
 > [system/LAW.md](system/LAW.md); the current intent is [VISION.md](VISION.md).
+>
+> **Named `think-tank` throughout.** The project was renamed **The Estate**
+> on 2026-08-26 (ADR 0016). Every occurrence below is left as written —
+> this is lineage, and lineage is never discarded.
 
 ---
 

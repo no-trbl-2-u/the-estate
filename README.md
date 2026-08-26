@@ -1,4 +1,4 @@
-# think-tank
+# The Estate
 
 An AI-assisted idea foundry. Ideas enter loose and leave as **Seeds** — an
 elaborated six-month vision plus a rough path — ready to be built somewhere
@@ -6,7 +6,7 @@ else.
 
 ## What it is
 
-think-tank is a structured workspace where ideas are first-class, durable
+The Estate is a structured workspace where ideas are first-class, durable
 objects rather than chat logs. An idea is captured, framed, envisioned,
 attacked, connected to other ideas, and eventually **extracted** as a Seed that
 carries out to a real project. Every session advances the idea and leaves an
@@ -50,7 +50,7 @@ Three rules govern every addition ([system/LAW.md](system/LAW.md)):
 Two rules follow: **agents write artifacts, the Steward writes state**; and
 **grade, never gate** — quality is classified structurally, never enforced.
 
-## The estate
+## The household
 
 | Agent | Verbs |
 |---|---|
@@ -89,3 +89,4 @@ Two rules follow: **agents write artifacts, the Steward writes state**; and
 | [BRAINSTORM.md](BRAINSTORM.md) | Historical design log |
 | [BUILD-PROMPT.md](BUILD-PROMPT.md) | Historical build brief |
 | [AGENTS.md](AGENTS.md) | Orientation for agents in this repo |
+| [CLAUDE.md](CLAUDE.md) | Delivers the standing identity to harnesses that load it |

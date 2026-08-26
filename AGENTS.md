@@ -85,7 +85,7 @@ Never edit a prior state. Lineage is therefore **derived** from `inputs:`/
 link cannot be reconstructed. `relates` is the only hand-authored edge. Nothing
 is ever deleted; retiring preserves the record whole.
 
-## The Think Tank Steward
+## The Steward
 
 The Steward (`/steward`) is the front door for all work in this repository. It
 greets, orients, derives routes, dispatches to the agent who owns each verb, and

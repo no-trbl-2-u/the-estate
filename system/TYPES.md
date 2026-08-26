@@ -1,6 +1,6 @@
 # The Type System
 
-Artifacts in think-tank are **typed values**. Verbs are functions over those types,
+Artifacts in The Estate are **typed values**. Verbs are functions over those types,
 and each verb is performed by exactly one named agent (`system/LAW.md`).
 Composition is what makes "not the same pipeline every time" possible: the route an
 idea takes is derived from what it *has* versus what it still *needs*, never from a

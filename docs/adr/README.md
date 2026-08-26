@@ -22,3 +22,4 @@ conducted per Requirement A of `BUILD-PROMPT.md`.
 | [0013](0013-the-estate-roster-and-the-writer-seam.md) | The Estate theme and full roster; agents write artifacts, the Steward writes state; `survey` and the sitemap |
 | [0014](0014-vision-reconciliation.md) | Vision reconciliation: lenses restored, type/shape split, six verbs restored, Seed generalized, `connective` status, protected docs rewritten |
 | [0015](0015-audit-fixes.md) | Audit fixes: seam extended to `idea.md`, Spark restored to `capture`, dialogue relay, `state-head` in the close, chain-fraction reachability, algebra reconciled, merge/split as playbooks |
+| [0016](0016-the-estate-rename.md) | The project is renamed The Estate; current docs renamed in full, the historical record left unedited |

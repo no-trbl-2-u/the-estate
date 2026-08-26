@@ -2,7 +2,7 @@
 
 ## Mission
 
-think-tank exists to make ideas durable, explorable, connectable — and
+The Estate exists to make ideas durable, explorable, connectable — and
 **extractable**. Ideas enter loose and leave as **Seeds**: an elaborated
 six-month vision plus a rough path, thin on implementation, carried out to
 become a real project somewhere else.
@@ -91,7 +91,7 @@ goal is that **nothing must be memorized**, not that invocation is forbidden.
 At the end, the operator sees what was established, what remains open, and the
 exact question: *What would you like to do next with this idea?*
 
-## The estate
+## The household
 
 Agents are **a specific person**; verbs are **verbs**; and a verb is performed
 by its bound agent and **no one else** — a hard dependency, no fallback and no
@@ -136,7 +136,7 @@ from any recorded state, under the same law: the original is never altered.
 
 ## The portfolio
 
-The tank is a portfolio, not a workbench. `survey` computes the sitemap
+The estate is a portfolio, not a workbench. `survey` computes the sitemap
 (`ideas/SURVEY.md`) — per-record metadata, score, and convergent notices —
 stamped with the exact `state-head` of every record it covers so staleness is
 detectable rather than silent.
@@ -191,7 +191,7 @@ one, verbatim:
 > "I'll have failed if within a month, I have no evidence of using this outside
 > this repo."
 
-Check date: **2026-09-25**. The named failure mode is that building think-tank
+Check date: **2026-09-25**. The named failure mode is that building The Estate
 is more interesting than using it.
 
 ## Where the law lives

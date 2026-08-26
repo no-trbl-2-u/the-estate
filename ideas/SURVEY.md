@@ -5,7 +5,7 @@ covers: []
 
 # Survey
 
-The sitemap of the tank: every Idea Record with its state, appetite, distance
+The sitemap of the estate: every Idea Record with its state, appetite, distance
 from Seed-shape, computed score, and the convergent notices worth acting on.
 
 **Not yet generated.** Ask The Steward to survey the grounds, or invoke

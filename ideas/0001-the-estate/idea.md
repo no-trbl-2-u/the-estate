@@ -1,14 +1,14 @@
 ---
 id: idea-0001
-title: "think-tank"
+title: "The Estate"
 created: 2026-08-25
-state-head: state/0000.md
+state-head: state/0001.md
 status: active
 appetite: 3
 relates: []
 ---
 
-# think-tank
+# The Estate
 
 ## Origin
 

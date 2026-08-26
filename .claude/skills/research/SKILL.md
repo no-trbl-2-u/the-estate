@@ -1,6 +1,6 @@
 ---
 name: research
-description: Structured information gathering from outside the tank. Transformer, produces Findings. Performed by The Factor; the Steward normally dispatches this for you.
+description: Structured information gathering from outside the estate. Transformer, produces Findings. Performed by The Factor; the Steward normally dispatches this for you.
 verb: research
 signature: "Question → Findings"
 agent: factor
