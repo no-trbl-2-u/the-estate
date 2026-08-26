@@ -8,7 +8,10 @@ agent: keeper
 
 # retire — `Idea → Idea`
 
-Set `status: retired` with an explicit reason. The record is preserved whole.
+Decide the closing and its explicit reason; return both to the Steward, who
+writes `status: retired` in `idea.md` and the reason into the state snapshot —
+record frontmatter is state, and state has one writer (`system/LAW.md`). The
+record is preserved whole.
 
 Retirement is not deletion and not the end: reviving is branching from any
 recorded state, and the original is never altered — because nothing in this

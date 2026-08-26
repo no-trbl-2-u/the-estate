@@ -8,9 +8,13 @@ agent: keeper
 
 # incubate — `Idea → Idea`
 
-Set `status: incubating`. Record **why** it is being parked and **what would
-wake it** — a date, a condition, a dependency. An incubated record with no wake
-condition is an abandoned one wearing a nicer word.
+Decide the parking: **why** it is being parked and **what would wake it** — a
+date, a condition, a dependency. An incubated record with no wake condition is
+an abandoned one wearing a nicer word.
+
+Return the reason and the wake condition to the Steward, who writes
+`status: incubating` in `idea.md` and carries both into the state snapshot —
+record frontmatter is state, and state has one writer (`system/LAW.md`).
 
 Nothing is deleted and nothing is lost; the record remains fully retrievable and
 resumable at any moment.

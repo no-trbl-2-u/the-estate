@@ -1,3 +1,5 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Estate Machine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,20 +40,20 @@ body{
   font-family:Newsreader,Georgia,serif; font-size:17px; line-height:1.62;
   font-optical-sizing:auto; -webkit-text-size-adjust:100%;
 }
-.wrap{max-width:44rem;margin:0 auto;padding:0 1.15rem 5rem}
+.wrap{max-width:50rem;margin:0 auto;padding:0 1.15rem 5rem}
 h1,h2,h3{font-family:"Young Serif",Georgia,serif;font-weight:400;text-wrap:balance;line-height:1.14;margin:0}
 h2{font-size:1.62rem;margin:0 0 .2rem}
-h3{font-size:1.12rem;letter-spacing:.01em}
-p{margin:0 0 .9rem;max-width:62ch}
+h3{font-size:1.08rem;letter-spacing:.01em}
+p{margin:0 0 .9rem;max-width:66ch}
 a{color:var(--accent)}
 code,.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.83em;font-variant-ligatures:none}
+.t{color:var(--type)}
 
 .eyebrow{
   font-family:"JetBrains Mono",monospace;font-size:.66rem;letter-spacing:.17em;
   text-transform:uppercase;color:var(--fg-3);margin:0 0 .55rem;
 }
 
-/* ---- header ---- */
 header{padding:3.4rem 0 2rem;border-bottom:1px solid var(--rule)}
 header h1{font-size:clamp(2.3rem,10vw,3.4rem);letter-spacing:-.012em}
 header h1 em{font-style:normal;color:var(--accent)}
@@ -66,500 +68,542 @@ section{padding:2.9rem 0;border-bottom:1px solid var(--rule-soft)}
 section:last-of-type{border-bottom:0}
 .sub{color:var(--fg-3);font-size:.95rem;margin:.15rem 0 1.5rem;font-style:italic}
 
-/* ---- dispatch chain ---- */
-.chain{display:flex;flex-direction:column;gap:0;margin:1.4rem 0 .4rem}
-.link{
-  display:grid;grid-template-columns:2.1rem 1fr;gap:.85rem;align-items:start;
-  padding:.85rem 0;
-}
-.link + .link{border-top:1px dashed var(--rule-soft)}
-.dot{
-  width:2.1rem;height:2.1rem;border-radius:50%;display:grid;place-items:center;
-  background:var(--surface);border:1px solid var(--rule);
-  font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--fg-3);
-}
-.link.key .dot{border-color:var(--accent);color:var(--accent)}
-.link h3{margin-bottom:.15rem}
-.link p{margin:0;font-size:.95rem;color:var(--fg-2)}
+/* figures + svg */
+figure{margin:1.6rem 0;padding:0}
+.fig{background:var(--surface);border:1px solid var(--rule-soft);border-radius:3px;
+  padding:.9rem;box-shadow:var(--shadow);overflow-x:auto}
+figure svg{display:block;max-width:100%;height:auto;min-width:640px;color:var(--fg-2)}
+figcaption{font-size:.88rem;color:var(--fg-3);margin-top:.6rem;font-style:italic;max-width:66ch}
+svg text{font-family:"JetBrains Mono",ui-monospace,monospace}
+svg .name{font-family:"Young Serif",Georgia,serif}
+svg .box{fill:var(--surface);stroke:var(--fg-3);stroke-width:1}
+svg .sunk{fill:var(--sunk)}
+svg .outer{fill:none;stroke:var(--rule);stroke-width:1;stroke-dasharray:none}
+svg .ghost{fill:none;stroke:var(--fg-3);stroke-dasharray:4 3}
+svg .acc{stroke:var(--accent)}
+svg .accfill{fill:var(--accent)}
+svg .typ{stroke:var(--type)}
+svg .typfill{fill:var(--type)}
+svg .lbl{fill:var(--fg-2);font-size:11px}
+svg .lbl2{fill:var(--fg-3);font-size:10px}
+svg .big{fill:var(--fg);font-size:13px}
+svg .flow{fill:none;stroke:currentColor;stroke-width:1.2}
 
-/* ---- spine / pipeline ---- */
-.spine{position:relative;margin:1.6rem 0 .5rem;padding-left:1.6rem}
-.spine::before{
-  content:"";position:absolute;left:.42rem;top:.7rem;bottom:.7rem;width:1px;
-  background:linear-gradient(var(--rule),var(--accent),var(--rule));
-}
-.stage{position:relative;padding:0 0 1.5rem}
-.stage::before{
-  content:"";position:absolute;left:-1.42rem;top:.62rem;width:.6rem;height:.6rem;
-  border-radius:50%;background:var(--bg);border:1.5px solid var(--accent);
-}
-.stage .type{
-  font-family:"JetBrains Mono",monospace;font-size:.94rem;font-weight:600;
-  color:var(--type);letter-spacing:-.01em;
-}
-.stage .desc{font-size:.95rem;color:var(--fg-2);margin:.18rem 0 .5rem}
-.by{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
+/* tables */
+table{border-collapse:collapse;width:100%;margin:1.1rem 0;font-size:.92rem}
+th{font-family:"JetBrains Mono",monospace;font-size:.66rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--fg-3);text-align:left;font-weight:400;
+  padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+td{padding:.5rem .6rem;border-bottom:1px solid var(--rule-soft);vertical-align:top;color:var(--fg-2)}
+td:first-child{white-space:nowrap}
+.tbl{overflow-x:auto}
 
-/* ---- chips ---- */
-.chip{
-  font-family:"JetBrains Mono",monospace;font-size:.7rem;letter-spacing:.02em;
-  border:1px solid var(--rule);border-radius:2px;padding:.24rem .45rem;
-  background:var(--surface);color:var(--fg);cursor:pointer;
-  transition:border-color .15s,background .15s,color .15s;
-}
-.chip:hover,.chip:focus-visible{border-color:var(--accent)}
-.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
-.who{font-size:.78rem;color:var(--fg-3);letter-spacing:.01em}
-.who b{font-weight:600;color:var(--fg-2);font-family:Newsreader,serif}
+/* type cards */
+.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.65rem;margin-top:1.2rem}
+.tcard{background:var(--surface);border:1px solid var(--rule-soft);border-top:2px solid var(--type);
+  border-radius:2px;padding:.75rem .85rem;box-shadow:var(--shadow)}
+.tcard.terminal{border-top-color:var(--accent)}
+.tcard .ty{font-family:"JetBrains Mono",monospace;font-weight:600;font-size:.95rem;color:var(--type)}
+.tcard.terminal .ty{color:var(--accent)}
+.tcard p{font-size:.88rem;color:var(--fg-2);margin:.3rem 0 .45rem}
+.tcard .io{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--fg-3);line-height:1.7}
+.tcard .io b{color:var(--fg-2);font-weight:600}
 
-/* ---- roster ---- */
-.roster{display:flex;flex-direction:column;gap:.65rem;margin-top:1.3rem}
-.office{
-  background:var(--surface);border:1px solid var(--rule-soft);border-left:2px solid var(--accent);
-  border-radius:2px;padding:.85rem .95rem;box-shadow:var(--shadow);
-  transition:border-left-color .18s,transform .18s;
-}
-.office.dim{opacity:.42}
-.office.hit{border-left-color:var(--type);transform:translateX(2px)}
-.office h3{font-size:1.04rem;display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap}
-.office h3 .slug{font-family:"JetBrains Mono",monospace;font-size:.66rem;color:var(--fg-3);font-weight:400}
-.office .duty{font-size:.93rem;color:var(--fg-2);margin:.25rem 0 .55rem}
+/* roster */
+.roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.65rem;margin-top:1.3rem}
+.office{background:var(--surface);border:1px solid var(--rule-soft);border-left:2px solid var(--accent);
+  border-radius:2px;padding:.8rem .9rem;box-shadow:var(--shadow)}
+.office h3{font-size:1rem}
+.office p{font-size:.85rem;color:var(--fg-3);margin:.25rem 0 .45rem}
 .office .verbs{display:flex;flex-wrap:wrap;gap:.3rem}
-.tool{
-  display:inline-block;margin-top:.5rem;font-family:"JetBrains Mono",monospace;
-  font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);
-}
+.chip{font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:.02em;
+  border:1px solid var(--rule);border-radius:2px;padding:.2rem .4rem;
+  background:var(--sunk);color:var(--fg-2)}
+.office .tool{display:block;font-family:"JetBrains Mono",monospace;font-size:.62rem;
+  color:var(--accent);margin-top:.45rem;letter-spacing:.04em}
 
-/* ---- fp cards ---- */
-.fam{display:flex;flex-direction:column;gap:.7rem;margin:1.3rem 0}
-.card{
-  border:1px solid var(--rule-soft);border-radius:2px;padding:.9rem .95rem;background:var(--surface);
-}
-.card .sig{
-  font-family:"JetBrains Mono",monospace;font-size:1rem;font-weight:600;color:var(--type);
-  display:block;margin-bottom:.28rem;
-}
-.card h3{font-size:1rem;margin-bottom:.2rem}
-.card p{font-size:.93rem;color:var(--fg-2);margin:0}
-.card .ex{margin-top:.5rem;display:flex;flex-wrap:wrap;gap:.3rem}
+/* law list */
+.law{list-style:none;margin:1.2rem 0 0;padding:0;counter-reset:law}
+.law li{position:relative;padding:.7rem 0 .7rem 2.4rem;border-top:1px dashed var(--rule-soft);
+  color:var(--fg-2);font-size:.98rem;max-width:66ch}
+.law li::before{counter-increment:law;content:counter(law,upper-roman);
+  position:absolute;left:0;top:.78rem;font-family:"JetBrains Mono",monospace;
+  font-size:.7rem;color:var(--accent)}
+.law li b{color:var(--fg)}
 
-/* ---- state chain ---- */
-.states{
-  display:flex;gap:.5rem;overflow-x:auto;padding:.3rem .1rem 1rem;margin:1.2rem -1.15rem 0;
-  padding-left:1.15rem;padding-right:1.15rem;scroll-snap-type:x proximity;
-}
-.snap{
-  flex:0 0 auto;width:10.5rem;scroll-snap-align:start;background:var(--surface);
-  border:1px solid var(--rule-soft);border-radius:2px;padding:.7rem .75rem;
-}
-.snap.current{border-color:var(--accent);box-shadow:var(--shadow)}
-.snap .n{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--accent);letter-spacing:.08em}
-.snap .v{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--fg-3);margin-top:.15rem}
-.snap .t{font-size:.86rem;color:var(--fg-2);margin-top:.35rem;line-height:1.45}
-.frozen{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);font-family:"JetBrains Mono",monospace}
-
-/* ---- contract ---- */
-.contract{counter-reset:c;list-style:none;padding:0;margin:1.2rem 0 0;display:flex;flex-direction:column;gap:.55rem}
-.contract li{
-  counter-increment:c;display:grid;grid-template-columns:1.5rem 1fr;gap:.7rem;
-  font-size:.96rem;color:var(--fg-2);
-}
-.contract li::before{
-  content:counter(c);font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--accent);
-  border:1px solid var(--rule);border-radius:2px;height:1.5rem;display:grid;place-items:center;
-}
-.contract b{color:var(--fg);font-weight:600}
-
-/* ---- dimension grid ---- */
-.dims{display:flex;flex-direction:column;gap:.7rem;margin-top:1.2rem}
-.dim{border:1px solid var(--rule-soft);border-left:2px solid var(--type);border-radius:2px;padding:.8rem .9rem;background:var(--surface)}
-.dim h3{font-size:.98rem}
-.dim p{font-size:.92rem;color:var(--fg-2);margin:.2rem 0 .5rem}
-.pills{display:flex;flex-wrap:wrap;gap:.28rem}
-.pill{
-  font-family:"JetBrains Mono",monospace;font-size:.66rem;padding:.2rem .42rem;
-  border:1px solid var(--rule);border-radius:9px;color:var(--fg-2);
-}
-
-/* ---- law ---- */
-.law{
-  background:var(--sunk);border:1px solid var(--rule-soft);border-radius:2px;
-  padding:1.1rem 1.05rem;margin:1.3rem 0 0;
-}
-.law ol{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.45rem}
-.law li{font-size:.96rem;color:var(--fg-2)}
-.law b{color:var(--fg)}
-blockquote{
-  margin:1.3rem 0 0;padding:.2rem 0 .2rem 1rem;border-left:2px solid var(--accent);
-  font-style:italic;font-size:1.06rem;color:var(--fg);
-}
-.tbl{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.88rem}
-.tbl th{
-  text-align:left;font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--fg-3);font-weight:400;padding:.4rem .5rem .4rem 0;
-  border-bottom:1px solid var(--rule);
-}
-.tbl td{padding:.55rem .5rem .55rem 0;border-bottom:1px solid var(--rule-soft);color:var(--fg-2);vertical-align:top}
-.tbl td:first-child{color:var(--fg)}
-.scroll{overflow-x:auto}
-footer{padding:2.6rem 0 0;color:var(--fg-3);font-size:.85rem}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+blockquote{margin:1.4rem 0;padding:.2rem 0 .2rem 1.1rem;border-left:2px solid var(--accent);
+  color:var(--fg-2);font-style:italic}
 </style>
 
 <div class="wrap">
 
 <header>
   <p class="eyebrow">think-tank · architecture</p>
-  <h1>The <em>Estate</em> Machine</h1>
-  <p class="lede">An idea foundry. Ideas enter loose, pass through thirteen offices as typed values, and leave as <strong>Seeds</strong> — a horizon plus a trajectory, ready to be built somewhere else.</p>
+  <h1>The Estate <em>Machine</em></h1>
+  <p class="lede">An idea foundry. Ideas enter loose, pass through thirteen
+  offices as typed values, and leave as <b>Seeds</b> — a horizon plus a
+  trajectory, ready to be built somewhere else.</p>
   <div class="meta">
-    <span class="tag">17 verbs</span>
-    <span class="tag">13 offices</span>
-    <span class="tag">10 types</span>
-    <span class="tag">6 lenses</span>
-    <span class="tag">immutable state</span>
+    <span class="tag">17 verbs</span><span class="tag">13 offices</span>
+    <span class="tag">10 types</span><span class="tag">7 families</span>
+    <span class="tag">6 lenses</span><span class="tag">immutable state</span>
   </div>
 </header>
 
+<!-- ===================== 01 · mechanism ===================== -->
 <section>
   <p class="eyebrow">01 · the mechanism</p>
   <h2>How a request becomes work</h2>
-  <p class="sub">Nothing here is automatic. Each arrow is a decision something makes.</p>
+  <p class="sub">Nothing here is automatic. Every arrow is a decision something makes.</p>
 
-  <div class="chain">
-    <div class="link key">
-      <div class="dot">you</div>
-      <div><h3>You speak</h3><p>“Find some holes in Ledger.” Plain words — no verb required, nothing to memorize.</p></div>
+  <p>The main session <b>is The Steward</b> by standing identity
+  (<code>CLAUDE.md</code> → <code>AGENTS.md</code>). It reads the registry,
+  derives the route, and dispatches the verb to its bound agent — it never
+  performs one. For a <em>new</em> idea it creates only the record shell, then
+  dispatches <code>capture</code>: The Gardener writes the first Spark, because
+  recording the origin is not capturing it.</p>
+
+  <figure>
+    <div class="fig">
+    <svg viewBox="0 0 920 400" role="img"
+         aria-label="The operator speaks to the Steward; the Steward dispatches an agent with a handoff packet; the agent writes the artifact into the record; the agent returns findings or a question to the Steward; the Steward writes state and updates state-head; the Steward returns the next question to the operator.">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+        </marker>
+        <marker id="ah-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="typfill"/>
+        </marker>
+        <marker id="ah-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="accfill"/>
+        </marker>
+      </defs>
+
+      <!-- operator -->
+      <rect class="box" x="20" y="240" width="140" height="70" rx="3"/>
+      <text class="big name" x="90" y="270" text-anchor="middle">The operator</text>
+      <text class="lbl2" x="90" y="290" text-anchor="middle">T · decides everything</text>
+
+      <!-- steward -->
+      <rect class="box" x="230" y="230" width="160" height="90" rx="3"/>
+      <text class="big name" x="310" y="262" text-anchor="middle">The Steward</text>
+      <text class="lbl2" x="310" y="281" text-anchor="middle">main session · router</text>
+      <text class="lbl2" x="310" y="297" text-anchor="middle">writes all state</text>
+
+      <!-- agent -->
+      <rect class="box" x="440" y="60" width="180" height="74" rx="3"/>
+      <text class="big name" x="530" y="90" text-anchor="middle">The ⟨Agent⟩</text>
+      <text class="lbl2" x="530" y="109" text-anchor="middle">own context · one verb</text>
+      <text class="lbl2" x="530" y="123" text-anchor="middle">reads LAW.md itself</text>
+
+      <!-- record -->
+      <rect class="outer" x="700" y="40" width="200" height="340" rx="4"/>
+      <text class="lbl" x="800" y="66" text-anchor="middle">the record</text>
+      <text class="lbl2" x="800" y="80" text-anchor="middle">ideas/NNNN-slug/</text>
+
+      <rect class="box typ" x="716" y="96" width="168" height="100" rx="3"/>
+      <text class="lbl" x="800" y="120" text-anchor="middle" style="font-weight:600">artifacts/</text>
+      <text class="lbl2" x="800" y="140" text-anchor="middle">typed · immutable</text>
+      <text class="lbl2" x="800" y="155" text-anchor="middle">versioned by inputs:</text>
+      <text class="lbl2" x="800" y="170" text-anchor="middle">the agent's own voice</text>
+
+      <rect class="box acc" x="716" y="236" width="168" height="124" rx="3"/>
+      <text class="lbl" x="800" y="260" text-anchor="middle" style="font-weight:600">state/ + idea.md</text>
+      <text class="lbl2" x="800" y="280" text-anchor="middle">snapshots, copy-forward</text>
+      <text class="lbl2" x="800" y="295" text-anchor="middle">status · relates ·</text>
+      <text class="lbl2" x="800" y="310" text-anchor="middle">appetite · state-head</text>
+      <text class="lbl2" x="800" y="330" text-anchor="middle">one writer:</text>
+      <text class="lbl2" x="800" y="345" text-anchor="middle">the Steward</text>
+
+      <!-- operator <-> steward -->
+      <line class="flow" x1="160" y1="258" x2="228" y2="258" marker-end="url(#ah)"/>
+      <text class="lbl2" x="194" y="248" text-anchor="middle">plain words</text>
+      <line class="flow" x1="228" y1="296" x2="160" y2="296" marker-end="url(#ah)"/>
+      <text class="lbl2" x="194" y="316" text-anchor="middle">what next?</text>
+
+      <!-- steward -> agent (dispatch) -->
+      <path class="flow" d="M310,228 C310,160 360,110 436,100" marker-end="url(#ah)"/>
+      <text class="lbl2" x="298" y="158" text-anchor="end">dispatches with a</text>
+      <text class="lbl2" x="298" y="172" text-anchor="end">handoff packet —</text>
+      <text class="lbl2" x="298" y="186" text-anchor="end">state · artifacts ·</text>
+      <text class="lbl2" x="298" y="200" text-anchor="end">lenses · shape</text>
+
+      <!-- agent -> steward (returns) -->
+      <path class="flow" d="M470,138 C430,180 400,205 372,226" marker-end="url(#ah)"/>
+      <text class="lbl2" x="452" y="186" text-anchor="start">returns findings —</text>
+      <text class="lbl2" x="452" y="200" text-anchor="start">or a question to relay</text>
+
+      <!-- agent -> artifacts (verdigris) -->
+      <path class="flow typ" d="M622,97 C660,100 680,110 712,124" marker-end="url(#ah-t)"/>
+      <text class="lbl" x="660" y="82" text-anchor="middle" style="fill:var(--type)">writes the</text>
+      <text class="lbl" x="660" y="96" text-anchor="middle" style="fill:var(--type)">artifact</text>
+
+      <!-- steward -> state (brass) -->
+      <path class="flow acc" d="M392,290 C500,290 600,292 712,296" marker-end="url(#ah-a)"/>
+      <text class="lbl" x="552" y="278" text-anchor="middle" style="fill:var(--accent)">copies state forward · bumps state-head</text>
+    </svg>
     </div>
-    <div class="link key">
-      <div class="dot">◆</div>
-      <div><h3>The Steward reads it</h3><p>The main session <em>is</em> The Steward by standing identity. It derives the route: compare what the record has against Seed-shape, and name the verb that closes the most gap.</p></div>
-    </div>
-    <div class="link">
-      <div class="dot">sk</div>
-      <div><h3>The verb loads</h3><p><code>challenge/SKILL.md</code> loads into the Steward's context. It is an <em>instruction sheet, not a trigger</em> — it names its bound agent and nothing more.</p></div>
-    </div>
-    <div class="link key">
-      <div class="dot">⇢</div>
-      <div><h3>The agent is spawned</h3><p>The Advocate, in its own context, with a handoff packet: state snapshot, input artifacts, lenses, shape. It reads <code>system/LAW.md</code> itself — <code>AGENTS.md</code> never reaches a subagent.</p></div>
-    </div>
-    <div class="link">
-      <div class="dot">✎</div>
-      <div><h3>The agent writes the artifact</h3><p>In its own voice, verbatim where it matters. No summarizing relay stands between the thinking and the record.</p></div>
-    </div>
-    <div class="link key">
-      <div class="dot">▣</div>
-      <div><h3>The Steward writes state</h3><p>Copies the last snapshot forward, records what was established, the tensions, the gold nuggets — then asks: <em>What would you like to do next with this idea?</em></p></div>
-    </div>
-  </div>
+    <figcaption>The writer seam, drawn: the verdigris hand is the agent's and
+    touches only <code>artifacts/</code>; the brass hand is the Steward's and
+    touches only <code>state/</code> and <code>idea.md</code>. A dispatched
+    agent has no channel to the operator — a question comes back along the
+    findings arrow and the Steward relays it.</figcaption>
+  </figure>
+
+  <p>The skill file for a verb is an instruction sheet, not a trigger: it
+  loads into the Steward's context and names its bound agent. The binding is
+  <b>law obeyed, not law compiled</b> — which is exactly why the Steward's
+  identity is standing rather than optional.</p>
 </section>
 
+<!-- ===================== 02 · pipeline ===================== -->
 <section>
   <p class="eyebrow">02 · the pipeline</p>
   <h2>Idea → Seed</h2>
-  <p class="sub">The canonical route. Most ideas never take it — the Steward derives a path from the gaps, so no two runs match. Tap any verb to find its office.</p>
+  <p class="sub">The canonical route. Most ideas never take it — routes are derived from gaps, so no two runs match.</p>
 
-  <div class="spine">
-    <div class="stage">
-      <span class="type">Text → Spark</span>
-      <p class="desc">The raw thought, made durable. Your words, your metaphors, your energy — fidelity beats polish.</p>
-      <div class="by"><button class="chip" data-verb="capture" data-agent="gardener">capture</button><span class="who">by <b>The Gardener</b></span></div>
-    </div>
-    <div class="stage">
-      <span class="type">Spark → Framing</span>
-      <p class="desc">The problem underneath, who it's for, what's in and out, and the tension that makes it interesting. Naming the ground is the whole job.</p>
-      <div class="by"><button class="chip" data-verb="frame" data-agent="gardener">frame</button><span class="who">by <b>The Gardener</b></span></div>
-    </div>
-    <div class="stage">
-      <span class="type">Framing → Horizon</span>
-      <p class="desc">Six months out, working. Told from inside the finished thing — and it must attempt its own falsifier.</p>
-      <div class="by"><button class="chip" data-verb="envision" data-agent="architect">envision</button><span class="who">by <b>The Architect</b></span></div>
-    </div>
-    <div class="stage">
-      <span class="type">Horizon → Trajectory</span>
-      <p class="desc">The rough path. Deliberately thin on implementation — but it must bottom out in something startable.</p>
-      <div class="by"><button class="chip" data-verb="chart" data-agent="surveyor">chart</button><span class="who">by <b>The Surveyor</b></span></div>
-    </div>
-    <div class="stage">
-      <span class="type">Trajectory → [Phase]</span>
-      <p class="desc">Sequenced, concrete steps. Recursive — a Phase decomposes into Phases, until a step is startable as-is.</p>
-      <div class="by"><button class="chip" data-verb="phase" data-agent="surveyor">phase</button><span class="who">by <b>The Surveyor</b></span></div>
-    </div>
-    <div class="stage">
-      <span class="type">Horizon + Trajectory → Seed</span>
-      <p class="desc">The export. It leaves clean — no session logs, no rejected framings. One line points home.</p>
-      <div class="by"><button class="chip" data-verb="seed" data-agent="sower">seed</button><span class="who">by <b>The Sower</b></span></div>
-    </div>
-  </div>
+  <figure>
+    <div class="fig">
+    <svg viewBox="0 0 960 250" role="img"
+         aria-label="Text becomes Spark via capture, Spark becomes Framing via frame, Framing becomes Horizon via envision, Horizon becomes Trajectory via chart, Trajectory becomes Phases via phase, and seed assembles Horizon plus Trajectory plus Phases into a Seed. Refiners interleave anywhere; stopping early yields a Brief.">
+      <defs>
+        <marker id="ph" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+        </marker>
+        <marker id="ph-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="accfill"/>
+        </marker>
+      </defs>
 
-  <p style="font-size:.92rem;color:var(--fg-3);margin-top:.4rem">Refiners — <code>explore</code>, <code>distill</code>, <code>challenge</code> — interleave at any point, because <code>a → a</code> composes anywhere. Stopping early yields a <strong>Brief</strong>, a legitimate exit.</p>
+      <!-- refiner loop over Horizon -->
+      <path class="ghost" d="M420,98 C400,48 500,48 480,96" marker-end="url(#ph)"/>
+      <text class="lbl2" x="450" y="38" text-anchor="middle">a → a · explore · distill · challenge — interleave anywhere</text>
+
+      <!-- nodes -->
+      <rect class="ghost" x="16" y="100" width="64" height="36" rx="3"/>
+      <text class="lbl" x="48" y="122" text-anchor="middle">Text</text>
+
+      <rect class="box typ" x="140" y="100" width="76" height="36" rx="3"/>
+      <text class="lbl t" x="178" y="122" text-anchor="middle" style="font-weight:600">Spark</text>
+
+      <rect class="box typ" x="276" y="100" width="86" height="36" rx="3"/>
+      <text class="lbl t" x="319" y="122" text-anchor="middle" style="font-weight:600">Framing</text>
+
+      <rect class="box typ" x="422" y="100" width="86" height="36" rx="3"/>
+      <text class="lbl t" x="465" y="122" text-anchor="middle" style="font-weight:600">Horizon</text>
+
+      <rect class="box typ" x="568" y="100" width="100" height="36" rx="3"/>
+      <text class="lbl t" x="618" y="122" text-anchor="middle" style="font-weight:600">Trajectory</text>
+
+      <rect class="box typ" x="728" y="100" width="80" height="36" rx="3"/>
+      <text class="lbl t" x="768" y="122" text-anchor="middle" style="font-weight:600">[Phase]</text>
+
+      <rect class="box acc" x="868" y="100" width="76" height="36" rx="3"/>
+      <text class="lbl" x="906" y="122" text-anchor="middle" style="font-weight:600;fill:var(--accent)">Seed</text>
+
+      <!-- arrows + verbs -->
+      <line class="flow" x1="80" y1="118" x2="136" y2="118" marker-end="url(#ph)"/>
+      <text class="lbl t" x="108" y="94" text-anchor="middle">capture</text>
+      <text class="lbl2" x="108" y="152" text-anchor="middle">Gardener</text>
+
+      <line class="flow" x1="216" y1="118" x2="272" y2="118" marker-end="url(#ph)"/>
+      <text class="lbl t" x="246" y="94" text-anchor="middle">frame</text>
+      <text class="lbl2" x="246" y="152" text-anchor="middle">Gardener</text>
+
+      <line class="flow" x1="362" y1="118" x2="418" y2="118" marker-end="url(#ph)"/>
+      <text class="lbl t" x="391" y="94" text-anchor="middle">envision</text>
+      <text class="lbl2" x="391" y="152" text-anchor="middle">Architect</text>
+
+      <line class="flow" x1="508" y1="118" x2="564" y2="118" marker-end="url(#ph)"/>
+      <text class="lbl t" x="537" y="94" text-anchor="middle">chart</text>
+      <text class="lbl2" x="537" y="152" text-anchor="middle">Surveyor</text>
+
+      <line class="flow" x1="668" y1="118" x2="724" y2="118" marker-end="url(#ph)"/>
+      <text class="lbl t" x="697" y="94" text-anchor="middle">phase</text>
+      <text class="lbl2" x="697" y="152" text-anchor="middle">Surveyor</text>
+
+      <line class="flow acc" x1="808" y1="118" x2="864" y2="118" marker-end="url(#ph-a)"/>
+      <text class="lbl" x="837" y="94" text-anchor="middle" style="fill:var(--accent)">seed</text>
+      <text class="lbl2" x="837" y="152" text-anchor="middle">Sower</text>
+
+      <!-- brief early exit -->
+      <path class="ghost" d="M319,138 C319,180 380,196 428,200" marker-end="url(#ph)"/>
+      <rect class="ghost" x="432" y="186" width="70" height="30" rx="3"/>
+      <text class="lbl2" x="467" y="205" text-anchor="middle">Brief</text>
+      <text class="lbl2" x="560" y="205" text-anchor="start">stop early at any prefix — a legitimate exit</text>
+    </svg>
+    </div>
+    <figcaption><code>seed</code> assembles <code>Horizon + Trajectory (+ [Phase])</code>
+    into the export; <code>phase</code> recurses (<code>Phase → [Phase]</code>) until a
+    step is startable as-is. Refiners return the same type sharper, so they
+    compose at every position.</figcaption>
+  </figure>
 </section>
 
+<!-- ===================== 03 · types ===================== -->
 <section>
-  <p class="eyebrow">03 · functional core</p>
-  <h2>Verbs are functions</h2>
-  <p class="sub">Molecular, single-purpose, composable. A playbook is nothing but <code>f ∘ g</code>.</p>
+  <p class="eyebrow">03 · the types</p>
+  <h2>Ten typed values, seven verb families</h2>
+  <p class="sub">Type is for the machine — composition and gap-derivation. Shape is for the reader.</p>
 
-  <p>Composition only works when the output type of one verb <em>is</em> the input type of the next. That contract is what makes the Steward able to <strong>derive routes</strong>: it knows what a record has, it knows Seed-shape, and it computes the difference. Routes differ because <em>gaps</em> differ — which is how you get a different path every time without ever hand-authoring a pipeline.</p>
+  <p>Composition works because the output type of one verb is the input type
+  of the next. That contract is what lets the Steward <b>derive routes</b>: it
+  knows what a record has, it knows Seed-shape, and it computes the
+  difference. Routes differ because gaps differ.</p>
 
-  <div class="fam">
-    <div class="card">
-      <span class="sig">a → a</span>
-      <h3>Refiners</h3>
-      <p>Endomorphisms. Same kind in, sharper kind out. Safe to re-run, safe to nest, depth-free — a distilled Phase is still a Phase.</p>
-      <div class="ex"><button class="chip" data-verb="explore" data-agent="forager">explore</button><button class="chip" data-verb="distill" data-agent="distiller">distill</button><button class="chip" data-verb="challenge" data-agent="advocate">challenge</button></div>
-    </div>
-    <div class="card">
-      <span class="sig">a → b</span>
-      <h3>Transformers</h3>
-      <p>Change of kind. These move the idea across the graph toward Seed-shape.</p>
-      <div class="ex"><button class="chip" data-verb="capture" data-agent="gardener">capture</button><button class="chip" data-verb="frame" data-agent="gardener">frame</button><button class="chip" data-verb="envision" data-agent="architect">envision</button><button class="chip" data-verb="chart" data-agent="surveyor">chart</button><button class="chip" data-verb="research" data-agent="factor">research</button><button class="chip" data-verb="decide" data-agent="chancellor">decide</button><button class="chip" data-verb="review" data-agent="assayer">review</button><button class="chip" data-verb="seed" data-agent="sower">seed</button></div>
-    </div>
-    <div class="card">
-      <span class="sig">a → [b]</span>
-      <h3>Decomposers</h3>
-      <p>One into many. Where recursion lives: <code>Phase → [Phase]</code>, to any depth that stays useful.</p>
-      <div class="ex"><button class="chip" data-verb="phase" data-agent="surveyor">phase</button><button class="chip" data-verb="compare" data-agent="assayer">compare</button></div>
-    </div>
-    <div class="card">
-      <span class="sig">[Idea] → r</span>
-      <h3>Readers</h3>
-      <p>Read across every record, change none. Pure in the strict sense — no side effects on the graph.</p>
-      <div class="ex"><button class="chip" data-verb="survey" data-agent="cartographer">survey</button></div>
-    </div>
-    <div class="card">
-      <span class="sig">Idea → Idea</span>
-      <h3>Transitions</h3>
-      <p>Change a record's <em>status</em>, never its content. Nothing is deleted, ever.</p>
-      <div class="ex"><button class="chip" data-verb="incubate" data-agent="keeper">incubate</button><button class="chip" data-verb="retire" data-agent="keeper">retire</button><button class="chip" data-verb="relate" data-agent="cartographer">relate</button></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <p class="eyebrow">04 · immutable state</p>
-  <h2>Nothing is ever edited</h2>
-  <p class="sub">Every session copies the last snapshot forward and writes a new one.</p>
-
-  <p>This single rule buys four features that would otherwise each need building. <strong>Time travel</strong> is opening an older file. <strong>Branching</strong> is copying forward from an older snapshot — and the original is untouched, because nothing is ever touched. <strong>Reviving</strong> a retired idea is just branching. And <strong>old states become documentation</strong>: each one carries the decisions made, the tensions still live, and the gold nuggets worth keeping verbatim.</p>
-
-  <div class="states">
-    <div class="snap"><div class="n">state/0000</div><div class="v">capture</div><div class="t">Origin recorded verbatim. Never edited again.</div><div class="frozen" style="margin-top:.4rem">frozen</div></div>
-    <div class="snap"><div class="n">state/0001</div><div class="v">frame</div><div class="t">The problem named. Two competing framings logged as tensions.</div><div class="frozen" style="margin-top:.4rem">frozen</div></div>
-    <div class="snap"><div class="n">state/0002</div><div class="v">envision</div><div class="t">Horizon drawn. Classified <code>unfalsified</code> — honestly.</div><div class="frozen" style="margin-top:.4rem">frozen</div></div>
-    <div class="snap current"><div class="n">state/0003</div><div class="v">challenge</div><div class="t">The Advocate attacked. Horizon held, now <code>falsifiable</code>.</div><div class="frozen" style="margin-top:.4rem;color:var(--accent)">← head</div></div>
-  </div>
-
-  <p style="font-size:.93rem;color:var(--fg-3)">A branch from <code>state/0001</code> creates a new record whose <code>previous:</code> names that exact snapshot. Both records live on. The graph grows; nothing shrinks.</p>
-</section>
-
-<section>
-  <p class="eyebrow">05 · lineage</p>
-  <h2>Edges are derived, not drawn</h2>
-  <p class="sub">The graph is a view, not a database.</p>
-  <p>Every artifact records what it consumed (<code>inputs:</code>) and what it produced. So <code>parent</code>, <code>branch</code>, <code>merge</code> and <code>split</code> are <em>read backwards off the composition chain</em> — nobody maintains them. They're the trace of the function calls.</p>
-  <p><strong>One edge is hand-authored: <code>relates</code>.</strong> No verb produces it. It comes out of a head — “this idea reminds me of that one” — and it is the single most valuable output in the system, because it is the connection the machinery cannot make.</p>
-  <blockquote>The trade: a derived edge exists only if the agent faithfully wrote <code>inputs:</code>. Miss it once and that lineage is gone with no reconstruction path.</blockquote>
-</section>
-
-<section>
-  <p class="eyebrow">06 · types</p>
-  <h2>What a Seed must contain</h2>
-  <p class="sub">The terminal type. Five components, or it is a Brief instead.</p>
-  <ol class="contract">
-    <li><b>Horizon</b> — the elaborated six-month vision.</li>
-    <li><b>Trajectory</b> — the rough path toward it.</li>
-    <li><b>Next concrete move</b> — a specific thing the recipient can do. For a project, start Monday; for a conjecture, the case to test first; for a story, the scene to write first.</li>
-    <li><b>At least one refusal</b> — a named thing this will <em>not</em> become. A project refuses scope; an inquiry refuses a line of attack; a story refuses a genre.</li>
-    <li><b>Provenance stamp</b> — one line, <code>origin: idea-0142 @ state/0007</code>. The only thing that travels backward.</li>
-  </ol>
-
-  <h3 style="margin-top:2rem">Classification, not certification</h3>
-  <p style="margin-top:.4rem">Types check <em>presence</em>, never quality — so quality is recorded structurally and nothing is ever blocked. An unfalsified Seed exports freely; it just says so on the tin.</p>
-  <div class="scroll"><table class="tbl">
-    <tr><th>Classifier</th><th>Values</th><th>Asks</th></tr>
-    <tr><td><code>horizon</code></td><td><code>falsifiable</code> · <code>unfalsified</code></td><td>Does it name what would make it wrong?</td></tr>
-    <tr><td><code>challenged</code></td><td><code>true</code> · <code>false</code></td><td>Has it survived an attack?</td></tr>
-    <tr><td><code>trajectory</code></td><td><code>actionable</code> · <code>abstract</code></td><td>Does the path bottom out in a startable step?</td></tr>
+  <div class="tbl"><table>
+    <tr><th>Family</th><th>Signature</th><th>Verbs</th><th>Behavior</th></tr>
+    <tr><td class="mono">Refiner</td><td class="mono t">a → a</td><td class="mono">explore · distill · challenge</td><td>Same kind in, sharper out. Re-runnable, nestable, depth-free.</td></tr>
+    <tr><td class="mono">Transformer</td><td class="mono t">a → b</td><td class="mono">capture · frame · envision · chart · research · review · decide · seed</td><td>Change of kind — motion across the graph.</td></tr>
+    <tr><td class="mono">Decomposer</td><td class="mono t">a → [b]</td><td class="mono">phase</td><td>One into many. Where recursion lives.</td></tr>
+    <tr><td class="mono">Aggregator</td><td class="mono t">[a] → b</td><td class="mono">compare</td><td>Many into one judgment.</td></tr>
+    <tr><td class="mono">Reader</td><td class="mono t">[Idea] → r</td><td class="mono">survey</td><td>Reads every record, changes none.</td></tr>
+    <tr><td class="mono">Transition</td><td class="mono t">Idea → Idea</td><td class="mono">incubate · retire</td><td>Changes <em>status</em>, never content.</td></tr>
+    <tr><td class="mono">Edge author</td><td class="mono t">(Idea, Idea) → relates</td><td class="mono">relate</td><td>The one hand-authored edge. A family of exactly one.</td></tr>
   </table></div>
-  <blockquote>Grade, never gate. You cannot write a falsifier for a wish.</blockquote>
+
+  <p><code>Text</code> and <code>Question</code> are <b>boundary inputs</b> —
+  operator words crossing into the system, not artifacts in it.
+  <code>Tensions</code> live in the head state snapshot, and state paths are
+  legal <code>inputs:</code> targets — so a Decision's lineage chains like
+  everything else.</p>
+
+  <div class="types">
+    <div class="tcard"><span class="ty">Spark</span>
+      <p>The raw capture — the operator's own words, metaphors, energy. Fidelity beats polish.</p>
+      <span class="io"><b>from</b> capture &nbsp;·&nbsp; <b>feeds</b> frame</span></div>
+    <div class="tcard"><span class="ty">Framing</span>
+      <p>The problem underneath: who it's for, what's in and out, the tension that makes it interesting.</p>
+      <span class="io"><b>from</b> frame &nbsp;·&nbsp; <b>feeds</b> envision</span></div>
+    <div class="tcard"><span class="ty">Horizon</span>
+      <p>Six months out, working — told from inside the finished thing. Attempts its own falsifier.</p>
+      <span class="io"><b>from</b> envision &nbsp;·&nbsp; <b>feeds</b> chart, seed<br><b>classifiers</b> horizon · challenged</span></div>
+    <div class="tcard"><span class="ty">Trajectory</span>
+      <p>The rough path. Thin on implementation, but it must bottom out in something startable.</p>
+      <span class="io"><b>from</b> chart &nbsp;·&nbsp; <b>feeds</b> phase, seed<br><b>classifiers</b> trajectory · challenged</span></div>
+    <div class="tcard"><span class="ty">Phase</span>
+      <p>One sequenced step: its outcome, its dependencies, what done looks like. Recursive.</p>
+      <span class="io"><b>from</b> phase &nbsp;·&nbsp; <b>feeds</b> phase, seed</span></div>
+    <div class="tcard"><span class="ty">Findings</span>
+      <p>What was found, with sources — and what was looked for and <em>not</em> found. Bounded honestly.</p>
+      <span class="io"><b>from</b> research &nbsp;·&nbsp; <b>feeds</b> the operator &amp; the route</span></div>
+    <div class="tcard"><span class="ty">Appraisal</span>
+      <p>A judgment — of one thing on its own terms, or several against criteria stated <em>before</em> judging.</p>
+      <span class="io"><b>from</b> review, compare &nbsp;·&nbsp; <b>feeds</b> the operator &amp; the route</span></div>
+    <div class="tcard"><span class="ty">Decision</span>
+      <p>What was decided, what was rejected, why, and what would reopen it. Consumes the head snapshot's tensions.</p>
+      <span class="io"><b>from</b> decide &nbsp;·&nbsp; <b>feeds</b> the operator &amp; the route</span></div>
+    <div class="tcard terminal"><span class="ty">Brief</span>
+      <p>The early exit. A run stopped before Seed-shape, exported anyway — labeled, never blocked.</p>
+      <span class="io"><b>from</b> seed (components missing) &nbsp;·&nbsp; <b>leaves</b></span></div>
+    <div class="tcard terminal"><span class="ty">Seed</span>
+      <p>The terminal export. Five components or it is a Brief: Horizon, Trajectory, a next concrete move, at least one refusal, and the one-line provenance stamp — the only thing that travels backward.</p>
+      <span class="io"><b>from</b> seed &nbsp;·&nbsp; <b>leaves</b> — clean, no baggage</span></div>
+  </div>
+
+  <p style="margin-top:1.3rem"><b>Classification, not certification.</b> Types
+  check <em>presence</em>, never quality. Quality is recorded structurally —
+  <code>horizon: falsifiable|unfalsified</code>, <code>challenged: true|false</code>,
+  <code>trajectory: actionable|abstract</code> — and the label travels with the
+  export. Nothing is ever blocked. <em>Grade, never gate: you cannot write a
+  falsifier for a wish.</em></p>
+
+  <p><b>Artifacts are immutable.</b> A refiner writes a <em>new file</em> whose
+  <code>inputs:</code> names its predecessor; the current version is the tip of
+  that chain. <code>Findings</code>, <code>Appraisal</code>, and
+  <code>Decision</code> are not Seed components — the route reaches their verbs
+  through tensions and open questions, not Seed-distance.</p>
 </section>
 
+<!-- ===================== 04 · state ===================== -->
 <section>
-  <p class="eyebrow">07 · three dimensions</p>
+  <p class="eyebrow">04 · state over time</p>
+  <h2>Nothing is ever edited</h2>
+  <p class="sub">Every session copies the last snapshot forward and writes a new one. That single rule buys four features.</p>
+
+  <figure>
+    <div class="fig">
+    <svg viewBox="0 0 920 340" role="img"
+         aria-label="A record's state directory as a chain: 0000 through 0003, each copied forward, with idea.md's state-head pointing at the newest. A second record branches from snapshot 0001 via a cross-record previous: pointer; the parent edge is derived from it.">
+      <defs>
+        <marker id="sh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+        </marker>
+        <marker id="sh-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="accfill"/>
+        </marker>
+      </defs>
+
+      <!-- source record -->
+      <rect class="outer" x="20" y="26" width="880" height="180" rx="4"/>
+      <text class="lbl2" x="36" y="48">ideas/0007-ledger/</text>
+
+      <!-- idea.md -->
+      <rect class="box" x="40" y="66" width="150" height="104" rx="3"/>
+      <text class="lbl" x="115" y="90" text-anchor="middle" style="font-weight:600">idea.md</text>
+      <text class="lbl2" x="115" y="110" text-anchor="middle">status: active</text>
+      <text class="lbl2" x="115" y="125" text-anchor="middle">appetite: 2</text>
+      <text class="lbl2" x="115" y="140" text-anchor="middle">relates: [0004]</text>
+      <text class="lbl" x="115" y="160" text-anchor="middle" style="fill:var(--accent)">state-head ─→</text>
+
+      <!-- state-head arc to head -->
+      <path class="flow acc" d="M192,158 C420,60 640,58 762,108" marker-end="url(#sh-a)"/>
+
+      <!-- snapshots -->
+      <rect class="box sunk" x="240" y="112" width="110" height="60" rx="3"/>
+      <text class="lbl" x="295" y="136" text-anchor="middle">state/0000</text>
+      <text class="lbl2" x="295" y="154" text-anchor="middle">capture · frozen</text>
+
+      <rect class="box sunk" x="400" y="112" width="110" height="60" rx="3"/>
+      <text class="lbl" x="455" y="136" text-anchor="middle">state/0001</text>
+      <text class="lbl2" x="455" y="154" text-anchor="middle">frame · frozen</text>
+
+      <rect class="box sunk" x="560" y="112" width="110" height="60" rx="3"/>
+      <text class="lbl" x="615" y="136" text-anchor="middle">state/0002</text>
+      <text class="lbl2" x="615" y="154" text-anchor="middle">envision · frozen</text>
+
+      <rect class="box acc" x="720" y="112" width="110" height="60" rx="3"/>
+      <text class="lbl" x="775" y="136" text-anchor="middle" style="font-weight:600">state/0003</text>
+      <text class="lbl2" x="775" y="154" text-anchor="middle">challenge · head</text>
+
+      <line class="flow" x1="350" y1="142" x2="396" y2="142" marker-end="url(#sh)"/>
+      <line class="flow" x1="510" y1="142" x2="556" y2="142" marker-end="url(#sh)"/>
+      <line class="flow" x1="670" y1="142" x2="716" y2="142" marker-end="url(#sh)"/>
+      <text class="lbl2" x="533" y="190" text-anchor="middle">copied forward, every session — the previous file is never touched again</text>
+
+      <!-- branch -->
+      <path class="ghost acc" d="M455,174 C455,240 400,262 342,272" marker-end="url(#sh-a)"/>
+      <text class="lbl2" x="470" y="230" text-anchor="start">previous: idea-0007/state/0001.md</text>
+      <text class="lbl2" x="470" y="245" text-anchor="start">— the only cross-record pointer</text>
+
+      <rect class="outer" x="60" y="252" width="480" height="70" rx="4"/>
+      <text class="lbl2" x="76" y="274">ideas/0009-ledger-lite/ — branched</text>
+      <rect class="box" x="230" y="282" width="110" height="32" rx="3"/>
+      <text class="lbl" x="285" y="302" text-anchor="middle">state/0000</text>
+      <text class="lbl2" x="356" y="296" text-anchor="start">numbering restarts;</text>
+      <text class="lbl2" x="356" y="311" text-anchor="start">origin names the branch point</text>
+
+      <text class="lbl2" x="620" y="290" text-anchor="start">parent, branch, merge, split:</text>
+      <text class="lbl2" x="620" y="305" text-anchor="start">derived from the chains,</text>
+      <text class="lbl2" x="620" y="320" text-anchor="start">never drawn by hand</text>
+    </svg>
+    </div>
+    <figcaption>Old snapshots become documentation — each carries its
+    decisions, gold nuggets, tensions, and an honest current-state
+    declaration. The brass <code>state-head</code> pointer is bumped by the
+    Steward at every close; the survey diffs its <code>covers:</code> stamps
+    against it, so staleness is detectable instead of silent.</figcaption>
+  </figure>
+
+  <p>One rule, four features, no machinery:</p>
+  <div class="tbl"><table>
+    <tr><th>You want</th><th>You do</th></tr>
+    <tr><td><b>Time travel</b></td><td>Open an older file. It never changed.</td></tr>
+    <tr><td><b>Branching</b></td><td>Copy an old snapshot forward into a new record; its <code>previous:</code> names the exact origin (<code>ideas/README.md</code> has the four steps).</td></tr>
+    <tr><td><b>Revival</b></td><td>Branching, from any snapshot of a retired record.</td></tr>
+    <tr><td><b>Lineage</b></td><td>Read it off the <code>inputs:</code>/<code>previous:</code> chains. The graph is a view, not a database.</td></tr>
+  </table></div>
+
+  <p>The trade is real: a derived edge exists only if the writer faithfully
+  recorded <code>inputs:</code> — miss it once and that lineage is gone. One
+  edge is exempt because no machinery can make it: <b><code>relates</code></b>,
+  out of a head, the most valuable edge in the system. The Cartographer names
+  it and the why; the Steward writes it, because <b>record frontmatter is
+  state</b> and state has one writer.</p>
+</section>
+
+<!-- ===================== 05 · dimensions ===================== -->
+<section>
+  <p class="eyebrow">05 · three dimensions</p>
   <h2>Verb, lens, shape</h2>
   <p class="sub">Independent axes. Conflating them is how a system gets rigid.</p>
-  <div class="dims">
-    <div class="dim">
-      <h3>Verb — what work happens</h3>
-      <p>Bound to exactly one agent, as a hard dependency. Determines the artifact's <em>type</em>.</p>
-    </div>
-    <div class="dim">
-      <h3>Lens — from what angle</h3>
-      <p>Optional, additive, needs no agent — it modifies a verb rather than performing work. Passed in the handoff packet.</p>
-      <div class="pills"><span class="pill">technical</span><span class="pill">commercial</span><span class="pill">user</span><span class="pill">adversarial</span><span class="pill">long-term</span><span class="pill">ethical</span></div>
-    </div>
-    <div class="dim">
-      <h3>Shape — how it's rendered</h3>
-      <p>Chosen by you, never by the verb. This is what keeps <em>no output-type siloing</em> true under a typed system: a <code>Horizon</code> can render as a PRD.</p>
-      <div class="pills"><span class="pill">prose</span><span class="pill">prd</span><span class="pill">research-brief</span><span class="pill">decision-record</span><span class="pill">phases</span><span class="pill">harness-architecture</span><span class="pill">prototype-design</span><span class="pill">none</span></div>
-    </div>
-  </div>
+  <div class="tbl"><table>
+    <tr><th>Axis</th><th>Decides</th><th>Vocabulary</th></tr>
+    <tr><td><b>Verb</b></td><td>What cognitive work happens. Bound to exactly one agent; fixes the artifact's <em>type</em>.</td><td class="mono">17, registry.md</td></tr>
+    <tr><td><b>Lens</b></td><td>From what angle. Optional, additive, needs no agent.</td><td class="mono">technical · commercial · user · adversarial · long-term · ethical</td></tr>
+    <tr><td><b>Shape</b></td><td>How it renders, chosen by you — never by the verb. A Horizon can render as a PRD.</td><td class="mono">prose · prd · research-brief · decision-record · phases · none — open: name what the audience needs</td></tr>
+  </table></div>
 </section>
 
+<!-- ===================== 06 · household ===================== -->
 <section>
-  <p class="eyebrow">08 · the household</p>
+  <p class="eyebrow">06 · the household</p>
   <h2>Thirteen offices</h2>
-  <p class="sub">Every verb has exactly one agent. An agent may hold several. Tap a verb anywhere on this page to light up its office.</p>
-
-  <div class="roster" id="roster">
-    <div class="office" data-agent="steward">
-      <h3>The Steward <span class="slug">steward</span></h3>
-      <p class="duty">The front door. Greets, orients, derives routes, dispatches — and writes all state. Performs no bound verb itself.</p>
-      <div class="verbs"><span class="who">— the main session, by standing identity</span></div>
-    </div>
-    <div class="office" data-agent="gardener">
-      <h3>The Gardener <span class="slug">gardener</span></h3>
-      <p class="duty">Receives what arrives and gives it its first shape.</p>
-      <div class="verbs"><button class="chip" data-verb="capture" data-agent="gardener">capture</button><button class="chip" data-verb="frame" data-agent="gardener">frame</button></div>
-    </div>
-    <div class="office" data-agent="architect">
-      <h3>The Architect <span class="slug">architect</span></h3>
-      <p class="duty">Draws what an idea becomes when it is working.</p>
-      <div class="verbs"><button class="chip" data-verb="envision" data-agent="architect">envision</button></div>
-    </div>
-    <div class="office" data-agent="surveyor">
-      <h3>The Surveyor <span class="slug">surveyor</span></h3>
-      <p class="duty">Stakes out the route and sequences the ground.</p>
-      <div class="verbs"><button class="chip" data-verb="chart" data-agent="surveyor">chart</button><button class="chip" data-verb="phase" data-agent="surveyor">phase</button></div>
-    </div>
-    <div class="office" data-agent="forager">
-      <h3>The Forager <span class="slug">forager</span></h3>
-      <p class="duty">Wanders the idea and brings back what is out there. Forces no conclusion.</p>
-      <div class="verbs"><button class="chip" data-verb="explore" data-agent="forager">explore</button></div>
-    </div>
-    <div class="office" data-agent="distiller">
-      <h3>The Distiller <span class="slug">distiller</span></h3>
-      <p class="duty">Reduces to what is load-bearing. Cutting is never destruction — prior versions are immutable.</p>
-      <div class="verbs"><button class="chip" data-verb="distill" data-agent="distiller">distill</button></div>
-    </div>
-    <div class="office" data-agent="advocate">
-      <h3>The Advocate <span class="slug">advocate</span></h3>
-      <p class="duty">Attacks in good faith. Tests whether a horizon can name its own falsifier. Classifies, never gates.</p>
-      <div class="verbs"><button class="chip" data-verb="challenge" data-agent="advocate">challenge</button></div>
-      <span class="tool">read-only · cannot write</span>
-    </div>
-    <div class="office" data-agent="factor">
-      <h3>The Factor <span class="slug">factor</span></h3>
-      <p class="duty">Deals with the world outside the walls. Cites what it found, and bounds what it didn't.</p>
-      <div class="verbs"><button class="chip" data-verb="research" data-agent="factor">research</button></div>
-      <span class="tool">web search · web fetch</span>
-    </div>
-    <div class="office" data-agent="assayer">
-      <h3>The Assayer <span class="slug">assayer</span></h3>
-      <p class="duty">Weighs and values. States its criteria before judging — criteria invented afterward are a rationalization.</p>
-      <div class="verbs"><button class="chip" data-verb="compare" data-agent="assayer">compare</button><button class="chip" data-verb="review" data-agent="assayer">review</button></div>
-    </div>
-    <div class="office" data-agent="chancellor">
-      <h3>The Chancellor <span class="slug">chancellor</span></h3>
-      <p class="duty">Ratifies and records. A Decision names what was chosen, what was rejected, why, and what would reopen it.</p>
-      <div class="verbs"><button class="chip" data-verb="decide" data-agent="chancellor">decide</button></div>
-    </div>
-    <div class="office" data-agent="cartographer">
-      <h3>The Cartographer <span class="slug">cartographer</span></h3>
-      <p class="duty">Maps the estate and notices what connects. Holds the only hand-authored edge.</p>
-      <div class="verbs"><button class="chip" data-verb="relate" data-agent="cartographer">relate</button><button class="chip" data-verb="survey" data-agent="cartographer">survey</button></div>
-    </div>
-    <div class="office" data-agent="keeper">
-      <h3>The Keeper <span class="slug">keeper</span></h3>
-      <p class="duty">Tends what sleeps, closes what is finished. Never deletes. An incubated record without a wake condition is an abandoned one.</p>
-      <div class="verbs"><button class="chip" data-verb="incubate" data-agent="keeper">incubate</button><button class="chip" data-verb="retire" data-agent="keeper">retire</button></div>
-    </div>
-    <div class="office" data-agent="sower">
-      <h3>The Sower <span class="slug">sower</span></h3>
-      <p class="duty">Sends the idea beyond the walls. Sizes the Seed for its audience — a coding agent and a friend need different Seeds.</p>
-      <div class="verbs"><button class="chip" data-verb="seed" data-agent="sower">seed</button></div>
-    </div>
+  <p class="sub">Every verb has exactly one agent, as a hard dependency. An agent may hold several.</p>
+  <div class="roster">
+    <div class="office"><h3>The Steward</h3><p>The front door. Greets, orients, derives routes, dispatches — and writes all state.</p>
+      <div class="verbs"><span class="chip">— no bound verb</span></div>
+      <span class="tool">the main session, by standing identity</span></div>
+    <div class="office"><h3>The Gardener</h3><p>Receives what arrives and gives it its first shape — every record's first artifact is its Spark.</p>
+      <div class="verbs"><span class="chip">capture</span><span class="chip">frame</span></div></div>
+    <div class="office"><h3>The Architect</h3><p>Draws what an idea becomes when it is working.</p>
+      <div class="verbs"><span class="chip">envision</span></div></div>
+    <div class="office"><h3>The Surveyor</h3><p>Stakes out the route and sequences the ground.</p>
+      <div class="verbs"><span class="chip">chart</span><span class="chip">phase</span></div></div>
+    <div class="office"><h3>The Forager</h3><p>Wanders the idea, brings back what is out there. Forces no conclusion.</p>
+      <div class="verbs"><span class="chip">explore</span></div></div>
+    <div class="office"><h3>The Distiller</h3><p>Reduces to what is load-bearing. Cutting is never destruction.</p>
+      <div class="verbs"><span class="chip">distill</span></div></div>
+    <div class="office"><h3>The Advocate</h3><p>Attacks in good faith; tests falsifiability. Classifies, never gates — the attack lands in its own voice.</p>
+      <div class="verbs"><span class="chip">challenge</span></div></div>
+    <div class="office"><h3>The Factor</h3><p>Deals with the world outside the walls. Cites what it found, bounds what it didn't.</p>
+      <div class="verbs"><span class="chip">research</span></div>
+      <span class="tool">web search · web fetch — the only agent beyond the walls</span></div>
+    <div class="office"><h3>The Assayer</h3><p>Weighs and values. States criteria before judging.</p>
+      <div class="verbs"><span class="chip">compare</span><span class="chip">review</span></div></div>
+    <div class="office"><h3>The Chancellor</h3><p>Ratifies and records: chosen, rejected, why, and what would reopen it.</p>
+      <div class="verbs"><span class="chip">decide</span></div></div>
+    <div class="office"><h3>The Cartographer</h3><p>Maps the estate, notices what connects. Names the only hand-authored edge; the Steward writes it.</p>
+      <div class="verbs"><span class="chip">relate</span><span class="chip">survey</span></div></div>
+    <div class="office"><h3>The Keeper</h3><p>Tends what sleeps, closes what is finished. Never deletes; returns status and reason for the Steward to write.</p>
+      <div class="verbs"><span class="chip">incubate</span><span class="chip">retire</span></div></div>
+    <div class="office"><h3>The Sower</h3><p>Sends the idea beyond the walls, sized for its audience.</p>
+      <div class="verbs"><span class="chip">seed</span></div></div>
   </div>
 </section>
 
+<!-- ===================== 07 · portfolio ===================== -->
 <section>
-  <p class="eyebrow">09 · the portfolio</p>
+  <p class="eyebrow">07 · the portfolio</p>
   <h2>Which idea deserves your Saturday</h2>
   <p class="sub"><code>survey</code> computes the sitemap. Ranked by reachability × appetite — never by closest-to-done.</p>
-  <p>Ranking by proximity to finished would sort a creative life by tidiness and bury every raw idea forever. So the score asks a different question: <em>how much would one verb move this?</em> — which favours early, high-leverage records. <strong>Appetite</strong> is the hand-set input no metric can compute. <strong>Drift</strong> is displayed but never scored, because drift usually means the idea is working.</p>
-  <div class="scroll"><table class="tbl">
-    <tr><th></th><th>State flat</th><th>State advancing</th></tr>
-    <tr><td>Cited by others</td><td><strong>connective</strong> — a hub doing work that isn't Seed-work</td><td>active and central</td></tr>
-    <tr><td>Not cited</td><td>dormant — genuinely parked</td><td>active</td></tr>
-  </table></div>
-  <p style="font-size:.93rem;color:var(--fg-3);margin-top:.9rem">A <code>connective</code> record leaves the Seed-distance ranking entirely. The trigger is inbound use without forward motion — <em>never dormancy alone</em>, since “untouched for months” also describes the raw idea the scoring exists to rescue.</p>
+  <p>Ranking by proximity-to-finished would sort a creative life by tidiness
+  and bury every raw idea forever. So <b>reachability</b> asks instead: of the
+  typed steps still between this record and Seed-shape, what fraction does the
+  best next verb complete? A raw Spark five steps out scores 1/5 — never zero.
+  <b>Appetite</b> is the hand-set heat no metric can compute (default 1;
+  0 means <em>deliberately</em> cold). Drift is displayed but never scored,
+  because drift usually means the idea is working.</p>
+  <p>Surfaced <em>above</em> the ranking, because it is the highest-value
+  output: the convergent notices — two records that are secretly one idea, a
+  record one verb from a Seed sitting idle, a dead Spark that fits a live
+  record. A record whose <code>relates</code> degree grows while its own state
+  stays flat earns <b><code>connective</code></b> — a hub doing work that
+  isn't Seed-work — and leaves the ranking entirely. The trigger is inbound
+  use without forward motion, never dormancy alone.</p>
 </section>
 
+<!-- ===================== 08 · law ===================== -->
 <section>
-  <p class="eyebrow">10 · the law</p>
+  <p class="eyebrow">08 · the law</p>
   <h2>Three rules, one seam</h2>
-  <div class="law">
-    <ol>
-      <li><b>Agents are a specific person.</b> Named, self-aware, thematic to the estate.</li>
-      <li><b>Verbs are verbs.</b> Never personas.</li>
-      <li><b>Specific agents perform specific verbs</b> — a hard dependency. No fallback, no substitution. If a verb's agent is unavailable, the verb does not run and the Steward reports the gap.</li>
-    </ol>
-  </div>
-  <blockquote>Agents write artifacts. The Steward writes state.</blockquote>
-  <p style="margin-top:1.1rem">State is immutable copy-forward, so its sequence needs a single allocator — and the close protocol needs the whole-session view only the Steward has. Meanwhile the agent's own words land in the record unmediated, because a summarizing relay is where thinking goes to die.</p>
-  <blockquote>The binding is law obeyed, not law compiled.</blockquote>
-  <p style="margin-top:1.1rem;color:var(--fg-2)">Nothing in the harness enforces any of this. A skill is an instruction sheet loaded into the main session; it <em>names</em> its bound agent and the Steward chooses to comply. That is precisely why the Steward's identity is standing rather than optional — there is no window in which a plain assistant handles a request before the estate wakes up.</p>
+  <ol class="law">
+    <li><b>Agents are a specific person.</b> Named, self-aware, thematic to the estate.</li>
+    <li><b>Verbs are verbs.</b> Never personas.</li>
+    <li><b>Specific agents perform specific verbs</b> — a hard dependency. No fallback, no substitution. If a verb's agent is unavailable, the verb does not run and the Steward reports the gap.</li>
+  </ol>
+  <p style="margin-top:1.2rem"><b>Agents write artifacts. The Steward writes
+  state — and record frontmatter is state.</b> The agent's words land in the
+  record unmediated, because a summarizing relay is where thinking goes to
+  die; the state sequence gets a single allocator, because immutable
+  copy-forward needs one. And dialogue crosses the seam through the Steward:
+  a dispatched agent that needs the operator returns the question, never
+  assumes the conversation.</p>
+  <blockquote>"I'll have failed if within a month, I have no evidence of using
+  this outside this repo." — check date <b>2026-09-25</b>. The named failure
+  mode is that building think-tank is more interesting than using it.</blockquote>
+  <p>The law lives at <code>system/LAW.md</code> and every agent reads it
+  directly. This page states the shape; <code>system/</code> states the rules.</p>
 </section>
-
-<footer>
-  <p><strong>Falsifier, verbatim:</strong> “I'll have failed if within a month, I have no evidence of using this outside this repo.” Check date <strong>2026-09-25</strong>. The named failure mode is that building think-tank is more interesting than using it.</p>
-  <p style="margin-top:1rem;color:var(--fg-3)">The law lives at <code>system/LAW.md</code> and every agent reads it directly. This page states the shape; <code>system/</code> states the rules.</p>
-</footer>
 
 </div>
-
-<script>
-(function(){
-  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip[data-verb]'));
-  var offices = Array.prototype.slice.call(document.querySelectorAll('.office[data-agent]'));
-  var active = null;
-
-  function clear(){
-    chips.forEach(function(c){ c.setAttribute('aria-pressed','false'); });
-    offices.forEach(function(o){ o.classList.remove('dim','hit'); });
-    active = null;
-  }
-
-  function light(agent){
-    chips.forEach(function(c){
-      c.setAttribute('aria-pressed', c.dataset.agent === agent ? 'true' : 'false');
-    });
-    offices.forEach(function(o){
-      var hit = o.dataset.agent === agent;
-      o.classList.toggle('hit', hit);
-      o.classList.toggle('dim', !hit);
-    });
-    active = agent;
-  }
-
-  chips.forEach(function(chip){
-    chip.setAttribute('aria-pressed','false');
-    chip.setAttribute('title','Show the office that performs this verb');
-    chip.addEventListener('click', function(){
-      var agent = chip.dataset.agent;
-      if (active === agent){ clear(); return; }
-      light(agent);
-      var target = document.querySelector('.office[data-agent="'+agent+'"]');
-      if (target && !chip.closest('.office')){
-        target.scrollIntoView({behavior:'smooth', block:'center'});
-      }
-    });
-  });
-
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape' && active) clear();
-  });
-})();
-</script>

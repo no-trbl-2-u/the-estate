@@ -12,9 +12,11 @@ Produce a `Decision` recording four things — **what was decided**, **what was
 rejected**, **why**, and **what would reopen it**. Name which tensions it
 resolves and which it leaves alive.
 
-The operator may decline to decide; record the choice as open rather than
-forcing one. A premature decision is more expensive than an acknowledged
-tension, because it looks settled.
+If the handoff packet shows the operator is not ready to choose — or you need
+their word to seal it — record the choice as open, or return the question to
+the Steward to relay (`system/LAW.md`), rather than forcing one. A premature
+decision is more expensive than an acknowledged tension, because it looks
+settled.
 
 ## Agent binding (hard)
 

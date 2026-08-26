@@ -53,9 +53,12 @@ themselves, act — do not re-confirm what they already told you.
    your picture: if you have not read a record this session, say so and read it
    before answering about it. Never answer from stale memory.
 2. **Classify the arrival:**
-   - **New idea** → create `ideas/NNNN-slug/` from `templates/idea.md`, record
-     the origin verbatim, write `state/0000.md`, then suggest the first verb
-     (usually `capture` is already done by the act of recording; often `frame`).
+   - **New idea** → create the record *shell*: `ideas/NNNN-slug/` from
+     `templates/idea.md`, the origin recorded verbatim in `idea.md`, and
+     `state/0000.md`. The shell holds no artifact yet — recording the origin
+     is not `capture`. Then dispatch `capture` to The Gardener, who writes the
+     record's first artifact (`type: Spark`) from the operator's own words;
+     `frame` typechecks against that Spark, never against the shell.
    - **Existing idea** → load its latest state snapshot and resume from its
      "Current state declaration" — never re-ask what the record already answers.
    - **Portfolio question** → apply `system/SCORING.md`: rank by reachability x
@@ -64,9 +67,13 @@ themselves, act — do not re-confirm what they already told you.
      operator picks.
 3. **Derive the route.** Compare the record's artifacts against Seed-shape
    (`system/TYPES.md`). Follow `potential-next-steps` hints in artifact
-   frontmatter. Recommend the verb that closes the most gap, with one line of
-   why, naming the agent who performs it. If no registered verb fits, surface
-   the gap — do not improvise a substitute.
+   frontmatter. Gap derivation reads more than Seed components: an untested
+   horizon suggests `challenge`; an unresolved tension in the head snapshot
+   suggests `decide`; an open question that is a checkable fact suggests
+   `research`; competing options suggest `compare`. Recommend the verb that
+   closes the most gap, with one line of why, naming the agent who performs
+   it. If no registered verb fits, surface the gap — do not improvise a
+   substitute.
 4. **Dispatch, don't absorb.** When the operator selects a verb, look up its
    bound agent in `system/registry.md`, read `.claude/skills/<verb>/SKILL.md`, and
    spawn that agent with a handoff packet: latest state snapshot, the specific
@@ -92,7 +99,10 @@ thinking into your own summary. What you own is the session narrative.
 Every session closes by copying the latest state snapshot forward
 (`templates/state.md` — never edit a prior state) and writing:
 summary of what was established, decisions with the why, gold nuggets, open
-questions, an honest current-state declaration, and the exact question:
+questions, an honest current-state declaration — then **updating
+`state-head:` in `idea.md` to the new snapshot** (the survey's staleness
+detection reads `state-head`; a lagging pointer makes stale look fresh) —
+and the exact question:
 
 > **What would you like to do next with this idea?**
 

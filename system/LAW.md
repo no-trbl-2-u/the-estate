@@ -73,10 +73,24 @@ consistent:
   a single allocator; and the close protocol ("what was established, what is
   still open, the honest current state") requires the whole-session view that
   only the Steward has.
+- **Record frontmatter is state.** `idea.md` — `status:`, `state-head:`,
+  `relates:`, `appetite:` — belongs to the Steward's side of the seam. Verbs
+  that change it (`relate`, `incubate`, `retire`) are performed by their bound
+  agents, who **return** the edge, status, reason, or wake condition; the
+  Steward writes it. One file, one writer.
 
 Agents return findings to the Steward; the Steward narrates the session. Where
 fidelity matters the artifact carries it; where perspective matters the state
 carries it.
+
+## Dialogue crosses the seam through the Steward
+
+A dispatched agent has no channel to the operator: it runs to completion on
+its handoff packet. When a verb's instructions call for operator input — a
+clarifying question, a decline, a halt — the agent **returns the question
+instead of an artifact**; the Steward relays it to the operator and
+re-dispatches with the answer in the packet. No skill may assume mid-run
+conversation with the operator, and none promises it.
 
 ## Where the law lives
 

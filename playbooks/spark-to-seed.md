@@ -1,6 +1,9 @@
 # Playbook: spark-to-seed
 
-**Composition:** `capture ∘ frame ∘ envision ∘ challenge ∘ chart ∘ phase ∘ seed`
+**Composition:** `capture ▸ frame ▸ envision ▸ challenge ▸ chart ▸ phase ▸ seed`
+
+(`▸` is the left-to-right pipeline arrow — apply `capture` first. The
+mathematician's `∘` reads right-to-left and would put `seed` first.)
 
 The canonical full run, shown once so the shape is visible. Typechecks:
 

@@ -11,10 +11,30 @@ fixed sequence.
 | Family | Signature | Behavior | Examples |
 |---|---|---|---|
 | **Refiner** | `a → a` | Sharpens without changing kind. Safe to re-run, safe to nest, depth-free. | `distill`, `challenge`, `explore` |
-| **Transformer** | `a → b` | Moves the idea across the graph to a new kind. | `frame`, `envision`, `chart`, `seed` |
+| **Transformer** | `a → b` | Moves the idea across the graph to a new kind. | `frame`, `envision`, `chart`, `seed`, `research`, `review`, `decide` |
 | **Decomposer** | `a → [b]` | Breaks one thing into parts. Where recursion lives (`Phase → [Phase]`). | `phase` |
+| **Aggregator** | `[a] → b` | Draws many things into one judgment. | `compare` |
 | **Reader** | `[Idea] → r` | Reads across records without changing any. | `survey` |
 | **Transition** | `Idea → Idea` | Changes a record's *status*, not its content. | `incubate`, `retire` |
+| **Edge author** | `(Idea, Idea) → relates` | Draws the one hand-authored edge. A family of exactly one, and it will stay that way. | `relate` |
+
+### Boundary inputs and state inputs
+
+Two verb signatures name inputs that are not artifact types, deliberately:
+
+- **`Text`** (capture) and **`Question`** (research) are **boundary inputs** —
+  operator-supplied words crossing into the system, not artifacts already in
+  it. They exist only on the left edge of a signature.
+- **`Tensions`** (decide) names the tensions recorded in the record's head
+  state snapshot. **State snapshot paths are legal `inputs:` targets** — a
+  Decision's `inputs:` cites the snapshot that held its tensions, so its
+  lineage chains like everything else.
+
+`Findings`, `Appraisal`, and `Decision` feed the *operator and the route*, not
+a downstream verb: they are not Seed components, and the Steward's gap
+derivation reaches them through tensions and open questions (an unresolved
+tension suggests `decide`; a checkable unknown suggests `research`; competing
+options suggest `compare`) rather than through Seed-distance.
 
 ## Artifact types (provisional vocabulary)
 
@@ -28,11 +48,22 @@ fixed sequence.
 | `Findings` | Gathered information with its sources, honestly bounded by what was not found. | `research` |
 | `Appraisal` | A judgment of one thing, or of several against each other. | `review`, `compare` |
 | `Decision` | An explicit recorded choice: what was decided, what was rejected, and why. | `decide` |
-| `Brief` | An early-exit export. What you get when a run stops before Seed-shape. | any point in a run |
+| `Brief` | An early-exit export. What you get when a run stops before Seed-shape. | `seed` (when components are missing and the operator exports anyway) |
 | `Seed` | The terminal export type. See below. | `seed` |
 
 Refiners (`distill`, `challenge`, `explore`) operate on any of these — they return the
 same type, sharper.
+
+### Artifacts are immutable; refiners write versions
+
+Artifacts follow the same law as state: **never edited, only superseded**. A
+refiner writes a **new file** — the record's next artifact number, same slug
+(`artifacts/NNNN-slug.md`) — with `inputs:` naming its predecessor. That chain
+is the version history. The **current version** of an artifact is the tip of
+the chain: the one no other artifact of the same type names as its `inputs:`
+predecessor; gap derivation and handoff packets always mean the tip.
+`challenge` writes its revision as a new version and sets its classifiers
+there — it never revises in place, because nothing here is ever altered.
 
 ## The Seed (terminal type)
 
@@ -68,9 +99,13 @@ machine (composition, gap calculation); shape is for the audience.
 | `research-brief` | Findings written for someone who wasn't there |
 | `decision-record` | The choice, the rejected alternatives, the why |
 | `phases` | A sequenced work breakdown |
-| `harness-architecture` | An agent/tooling system design |
-| `prototype-design` | An experiment or trial to run |
 | `none` | No rendered artifact; the session log is the output |
+
+**Shapes are a vocabulary, not a closed enum.** When an audience needs a shape
+this table doesn't have — an experiment design, an agent-harness architecture,
+a pitch one-pager, a scene outline — name it in the artifact's `shape:`
+frontmatter and it exists. The table lists the domain-neutral recurring ones;
+domain-specific shapes belong to sessions, not to this file.
 
 Shape is requested by the operator per session and recorded in artifact
 frontmatter as `shape:`. **A `Horizon` can be rendered as a PRD; an `explore`

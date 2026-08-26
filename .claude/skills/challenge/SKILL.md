@@ -14,13 +14,17 @@ is falsifiability — demand it name what would make it wrong; a horizon that
 cannot is classified `unfalsified`, not rejected. You cannot write a falsifier
 for a wish, so vacuous horizons fail here on shape alone.
 
-Output the same type: the artifact revised where it bent, annotated where it
-held. Set `classifiers.challenged: true`, and for Horizons set
+Output the same type **as a new version** — never revise in place
+(`system/TYPES.md`: artifacts are immutable; a refiner writes a new file with
+`inputs:` naming its predecessor). The new version carries the artifact
+revised where it bent, annotated where it held. Set
+`classifiers.challenged: true` on it, and for Horizons set
 `classifiers.horizon: falsifiable | unfalsified` per the result.
 
-**Classification, not certification**: nothing is gated on the outcome, and
-the operator may stop the attack at any time — this skill exists so pushback
-is invocable, never mandatory. Close per protocol.
+**Classification, not certification**: nothing is gated on the outcome. This
+skill exists so pushback is invocable, never mandatory — the operator chooses
+when the attack runs and may decline it entirely at the Steward's suggestion.
+The session closes per the Steward's protocol.
 
 ## Agent binding (hard)
 
