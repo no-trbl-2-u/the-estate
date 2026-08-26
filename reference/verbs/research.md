@@ -30,3 +30,10 @@ Produce [Findings](../types/findings.md): what was found, with sources;
 what was looked for and **not** found; what could not be verified. Known
 and inferred stay visibly separate. Findings without their limits are
 worse than none, because they read as complete.
+
+The Findings artifact **speaks OKF** (ADR 0018): citations live in
+`sources:` frontmatter entries with credibility signals, claims footnote
+to a `sources[].id`, and `stale_after:` marks the facts' honest shelf
+life. It stays in the record's `artifacts/`; findings with cross-record
+value are promoted to `reference/` by operator selection, citing the
+artifact as source.

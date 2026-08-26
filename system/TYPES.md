@@ -73,6 +73,19 @@ predecessor; gap derivation and handoff packets always mean the tip.
 `challenge` writes its revision as a new version and sets its classifiers
 there — it never revises in place, because nothing here is ever altered.
 
+### Findings speak OKF
+
+The `Findings` artifact extends the record frontmatter with the OKF v0.2
+families (`reference/okf-spec.md`, ADR 0018): citations are `sources:`
+entries with credibility signals, claims footnote to a `sources[].id`,
+`generated:` follows the actor convention, and `stale_after:` marks the
+facts' honest shelf life. External knowledge rots on a schedule the other
+types don't have; OKF makes the rot a timestamp comparison. The artifact
+remains a record artifact in `artifacts/`; a finding with cross-record
+value is **promoted** — a `reference/` concept citing the artifact as its
+source — never relocated. Whether the remaining types follow is the open
+migration question in ADR 0017.
+
 ## The Seed (terminal type)
 
 A Seed is a **horizon plus a trajectory** — an elaborated vision and a rough path,

@@ -80,7 +80,7 @@ renders). The verb fixes an artifact's *type*; the operator picks its *shape*.
 9. `.claude/skills/*/SKILL.md` — all seventeen verbs
 10. `.claude/agents/*.md` — all twelve specialist offices
 11. `templates/` — idea, state, artifact, seed
-12. `docs/adr/` — seventeen ADRs; the index first, then any that matter
+12. `docs/adr/` — eighteen ADRs; the index first, then any that matter
 13. `docs/architecture.html` — the visual model of the whole flow
 
 `BRAINSTORM.md` and `BUILD-PROMPT.md` are **historical records**, preserved
