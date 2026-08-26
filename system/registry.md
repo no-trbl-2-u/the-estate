@@ -24,7 +24,7 @@ invocation is forbidden. Invoking a verb never bypasses its binding.
 | `survey` | reader | `[Idea] → Survey` | **The Cartographer** | active |
 | `seed` | transformer | `Horizon + Trajectory (+ [Phase]) → Seed` | **The Sower** | active |
 | `research` | transformer | `Question → Findings` | **The Factor** | active |
-| `compare` | transformer | `[a] → Appraisal` | **The Assayer** | active |
+| `compare` | aggregator | `[a] → Appraisal` | **The Assayer** | active |
 | `review` | transformer | `a → Appraisal` | **The Assayer** | active |
 | `decide` | transformer | `Tensions → Decision` | **The Chancellor** | active |
 | `incubate` | transition | `Idea → Idea` | **The Keeper** | active |
@@ -82,4 +82,4 @@ the *no output-type siloing* non-goal true under a typed system.
 
 | Playbook | Composition | Status |
 |---|---|---|
-| `spark-to-seed` | `capture ∘ frame ∘ envision ∘ challenge ∘ chart ∘ phase ∘ seed` | example only — routes are normally derived, not prescribed |
+| `spark-to-seed` | `capture ▸ frame ▸ envision ▸ challenge ▸ chart ▸ phase ▸ seed` | example only — routes are normally derived, not prescribed |

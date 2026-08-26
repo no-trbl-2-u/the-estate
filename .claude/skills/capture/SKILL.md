@@ -16,8 +16,11 @@ Produce one artifact from `templates/artifact.md` with `type: Spark`,
 `produced-by: capture`, a one-line `summary`, and honest
 `potential-next-steps` (usually `[frame, explore]`).
 
-Ask at most one clarifying question, and only if the thought is genuinely
-unintelligible as written. Then close per the Steward's close protocol.
+If the thought is genuinely unintelligible as written, return at most one
+clarifying question to the Steward *instead of* an artifact — a dispatched
+agent has no direct channel to the operator (`system/LAW.md`); the Steward
+relays and re-dispatches with the answer in the packet. The session then
+closes per the Steward's close protocol.
 
 ## Agent binding (hard)
 

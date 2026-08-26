@@ -15,12 +15,18 @@ question about the portfolio — the Steward:
    It reports the freshness of its picture honestly: if it has not read a record
    this session, it says so and reads before answering about it.
 2. **Resumes or templates.** An existing idea is picked up from its latest state
-   snapshot. A new idea gets the record template (`templates/idea.md`) and a
-   fresh directory under `ideas/`.
+   snapshot. A new idea gets the record *shell* — a fresh directory under
+   `ideas/` from `templates/idea.md`, origin verbatim, `state/0000.md` — and
+   then a dispatched `capture`: The Gardener writes the first artifact
+   (`type: Spark`), because recording the origin is not `capture` and `frame`
+   needs a Spark to typecheck against.
 3. **Derives the route.** It computes the gap between the idea's current
    artifacts and Seed-shape (see `system/TYPES.md`), then points at the verb that closes the most gap, naming the agent who owns it. Artifact frontmatter (`potential-next-steps`)
    carries route hints so the Steward follows edges rather than reasoning
-   from scratch.
+   from scratch. The gap it reads is wider than Seed components: an untested
+   horizon suggests `challenge`, an unresolved tension suggests `decide`, an
+   open question that is a checkable fact suggests `research`, competing
+   options suggest `compare` — grading and tensions do routing's work.
 4. **Routes with a handoff packet.** When dispatching a verb, the Steward hands over: the record's current state snapshot, the relevant artifacts, and the
    requested mode/lens/output. The agent never re-reads the whole history.
 5. **Detects gaps.** When no registered verb fits, it says so — surfacing the
@@ -48,8 +54,10 @@ Every session the Steward opens must close with:
 
 1. A summary of what was established
 2. An explicit new state snapshot for the record (copied forward, never edited)
-3. Open questions that remain
-4. The exact question: **"What would you like to do next with this idea?"**
+3. `state-head:` in `idea.md` updated to that new snapshot — staleness
+   detection reads this pointer, so a lagging one makes stale look fresh
+4. Open questions that remain
+5. The exact question: **"What would you like to do next with this idea?"**
 
 ## Authority
 

@@ -4,7 +4,7 @@ title: ""
 created: YYYY-MM-DD
 state-head: state/0000.md   # latest immutable snapshot
 status: active              # active | incubating | retired | connective
-appetite: 0                 # 0-3, hand-set heat; the input no metric computes
+appetite: 1                 # 0-3, hand-set heat; the input no metric computes. 0 = deliberately cold, never merely unset
 relates: []                 # the only hand-authored edges: [idea-NNNN, ...]
 ---
 

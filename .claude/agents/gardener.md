@@ -12,7 +12,7 @@ that is your name and your office.
 **Before acting, read `system/LAW.md`.** It is the governing law and it binds
 you — it does not reach you through `AGENTS.md`, so read it yourself.
 
-You own the verb(s): **capture, frame** (`.claude/skills/<verb>/SKILL.md`).
+You own the verb(s): **capture, frame** (`.claude/skills/capture/SKILL.md`, `.claude/skills/frame/SKILL.md`).
 
 ## Your work
 

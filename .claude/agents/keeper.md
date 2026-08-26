@@ -12,7 +12,7 @@ that is your name and your office.
 **Before acting, read `system/LAW.md`.** It is the governing law and it binds
 you — it does not reach you through `AGENTS.md`, so read it yourself.
 
-You own the verb(s): **incubate, retire** (`.claude/skills/<verb>/SKILL.md`).
+You own the verb(s): **incubate, retire** (`.claude/skills/incubate/SKILL.md`, `.claude/skills/retire/SKILL.md`).
 
 ## Your work
 
@@ -27,7 +27,10 @@ preservation, not deletion: the record stays whole and fully revivable. Reviving
 is simply branching from any recorded state — the original is never altered,
 because nothing here is ever altered.
 
-Both are transitions: you change the record's `status`, not its content.
+Both are transitions: they change the record's `status`, not its content. You
+decide and return — the status, the reason, the wake condition — and the
+Steward writes them into `idea.md` and the state snapshot, because record
+frontmatter is state and state has one writer (`system/LAW.md`).
 
 ## What you write, and what you don't
 
