@@ -63,7 +63,7 @@ verbs; a verb has exactly one agent.
 | **The Advocate** (`advocate`) | Good-faith adversarial attack; falsifiability testing. Classifies, never gates. | `challenge` | active |
 | **The Cartographer** (`cartographer`) | Maps the estate and notices what connects. | `relate`, `survey` | active |
 | **The Sower** (`sower`) | Sends the idea beyond the walls. | `seed` | active |
-| **The Factor** (`factor`) | Deals with the world outside the walls. The only agent with web tools. | `research` | active |
+| **The Factor** (`factor`) | Deals with the world outside the walls. The only agent with web tools — text fetch **and** a rendering browser, so a question about how something *looks* is answerable. | `research` | active |
 | **The Assayer** (`assayer`) | Weighs and values — one thing, or several against each other. | `compare`, `review` | active |
 | **The Chancellor** (`chancellor`) | Ratifies and records what was decided. | `decide` | active |
 | **The Keeper** (`keeper`) | Tends what sleeps and closes what is finished. Never deletes. | `incubate`, `retire` | active |
