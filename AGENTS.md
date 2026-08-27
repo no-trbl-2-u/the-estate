@@ -1,11 +1,3 @@
----
-type: Guide
-title: "Agent Orientation"
-description: "Operational orientation for any agent working in this repository; establishes the Steward's standing identity."
-tags: [orientation, agents]
-generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
----
-
 # Agents
 
 Operational guidance for any agent working in this repository.

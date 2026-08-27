@@ -9,7 +9,9 @@ into context at session start, so the orientation arrives as *loaded text*
 rather than as an instruction to go and read something. `AGENTS.md` remains the
 single source of truth; this file adds nothing to it.
 
-Do not duplicate the orientation here, and do not rename `AGENTS.md` — see
+Do not duplicate the orientation here, do not rename `AGENTS.md`, and do not
+add OKF frontmatter to either file: a memory file is injected, not catalogued,
+so the metadata costs tokens every session and buys nothing. See
 [ADR 0019](docs/adr/0019-claude-md-imports-agents-md.md).
 
 ## What this file does not reach

@@ -49,7 +49,26 @@ also bind the estate's orientation to one harness, against the self-containment
 principle: `AGENTS.md` is the cross-tool convention, and other harnesses that
 read it keep working unchanged.
 
-**4. The rename would not have reached the agents anyway.** Memory files load
+**4. Neither memory file carries OKF frontmatter; ADR 0017 is amended.**
+T removed it from `CLAUDE.md`, then from `AGENTS.md`, and pointed at the OKF
+announcement ([Google Cloud blog][okf-blog]) to settle the principle. OKF is a
+**bundle format for concepts** — directories of markdown documents whose file
+paths form each concept's identity, cross-linked into a graph, consumed by
+catalogs, search tools, and agents that browse the bundle. That is precisely
+what `reference/` is (ADR 0017 decision 2).
+
+A memory file is none of those things. It is not a concept, it has no place in
+a bundle, and nothing catalogues it: the harness reads it by *injecting it
+verbatim* into a context window at session start. So its `type:`, `tags:`, and
+`generated:` were never OKF conformance — they were OKF's shape applied outside
+the format's scope, and they cost tokens every session for metadata no reader
+consults. ADR 0017 decision 3 named `AGENTS` and `CLAUDE` among the documents
+carrying frontmatter; that is now amended, and both are excluded on the same
+grounds decision 4 already used for `.claude/skills/` and `.claude/agents/` —
+**operational configuration, not documentation**. Now that `CLAUDE.md` imports
+`AGENTS.md`, the pair is one memory file, and it belongs in that category.
+
+**5. The rename would not have reached the agents anyway.** Memory files load
 into the main session only; a spawned agent loads neither `AGENTS.md` nor
 `CLAUDE.md`. That population is served by `system/LAW.md`, which every agent
 definition reads directly. F-3 was always a main-session defect, and this fix is
@@ -67,15 +86,13 @@ scoped to it.
   hop; if it ever imports, the budget is worth remembering.
 - To mention an `@`-prefixed path in a memory file without importing it, wrap it
   in backticks. This now matters for `CLAUDE.md` and `AGENTS.md` specifically.
-- **`CLAUDE.md` carries no OKF frontmatter**, and is the one deliberate
-  exception to ADR 0017. Every other document in the estate is read by opening
-  it; this one is *injected verbatim* into a context window at session start,
-  so `type:`, `tags:`, and `generated:` would be tokens spent every session on
-  metadata no reader ever consults. The file is a harness artifact, not a
-  catalogued document. `AGENTS.md` keeps its frontmatter — it is a Guide in its
-  own right, read directly by humans and by other harnesses.
+- The estate's OKF footprint is now scoped the way the format intends: the
+  `reference/` bundle, plus frontmatter on documents that are read by being
+  opened. Nothing that exists to be injected carries it.
 - A symlink (`ln -s AGENTS.md CLAUDE.md`) was considered and set aside: it
   forbids Claude-Code-specific content and needs Administrator or Developer Mode
   on Windows, against self-containment.
 - No verb ran. This was a Steward structural session, as ADRs 0015, 0016, 0017,
   and 0018 were before it.
+
+[okf-blog]: https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing
