@@ -42,7 +42,7 @@ that loop can run reliably.
 **This snapshot describes the state of Hermes at the time of audit. It will age.
 Treat it as a starting point for discussion, not a current-state claim.**
 
-*Audited: 2026-08-27*
+*Audited: 2026-08-27T14:40:01Z — active profile: `default` — commands: `hermes status --all`, `hermes tools list`, `hermes profile list`, `hermes webhook list`, `hermes insights --days 30`, `hermes doctor`, `hermes kanban stats`*
 
 | Dimension | State |
 |---|---|
@@ -57,7 +57,8 @@ Treat it as a starting point for discussion, not a current-state claim.**
 | Kanban | Initialized, empty |
 | Context Engine | Disabled |
 | Messaging channel | Telegram (active) |
-| Anthropic API | Configured |
+| Anthropic API | Configured (credential health not certified by this roadmap) |
+| Runtime local filesystem authority | Broad (sudo disabled; assessed and constrained in item 13) |
 | OpenAI Codex OAuth | Configured |
 | Other LLM providers | Mostly absent |
 | Web search | Working |
@@ -67,6 +68,8 @@ Treat it as a starting point for discussion, not a current-state claim.**
 | `gh` CLI | Working |
 | GitHub MCP | Working |
 | `GITHUB_TOKEN` in Hermes env | Not present (Hermes reports absence) |
+
+Rolling 30-day numbers (sessions, tool calls, subagent sessions, cron sessions) begin drifting immediately from the snapshot date above.
 
 The gap between where Hermes is and where it needs to go is not a capability gap
 in the technology. It is a configuration, integration, and architecture gap. T
@@ -137,13 +140,17 @@ GitHub event → Hermes webhook receiver
 **Prerequisites.**
 - Item 13 (infrastructure hardening) — specifically webhook security and the
   `GITHUB_TOKEN` gap
-- Item 2 (durable Kanban queue) — events that become work need somewhere to land
 - GitHub App or webhook secret configured, verified, and approved by T
 - No public endpoint without T's explicit approval; if a public endpoint is
   required, T must review and approve the network path
+- A durable queue (item 2) is recommended for events that become work but is not
+  a blocking prerequisite for ingress itself — ingress can land and classify
+  events before the queue exists in full
 
 **Authority boundary.** The Judge may classify and report events without
-approval. It may create Kanban tasks without approval. It may **not** push code,
+approval. It may create visible company-level informational or triage Kanban
+entries without approval; it may not create an Estate task, session, or artifact
+without T's explicit selection and routing through the Steward. It may **not** push code,
 merge PRs, close issues, trigger deployments, or take any public or consequential
 action on an event without either an explicit pre-authorized policy or an
 in-session approval from T.
@@ -171,8 +178,7 @@ become Kanban tasks with a standard schema. A task carries: what it is (title,
 description), why it exists (provenance — which event or request created it),
 which repo and at which SHA, any constraints (budget, time, scope), who owns it,
 what acceptance evidence is required, how many retries are permitted, which tasks
-it depends on, and its current status. The queue is the permanent record; Hermes
-session memory is not.
+it depends on, and its current status. The queue is the durable coordination record; Hermes session memory is not. Completion evidence, decisions, and accepted task records must be committed to canonical repository files or GitHub issues; queue entries link to that durable repository proof. A queue entry is visible coordination — it is not itself the canonical artifact.
 
 **Why Hermes, not Claude Code alone.** Claude Code can read a queue when one is
 provided, but queue custody, retries, cross-session provenance, and coordination
@@ -195,13 +201,9 @@ A task in the queue is not permission to act. A task labeled `pending_review`
 sits until T explicitly approves it. A pre-authorization must be narrowly scoped
 and explicitly granted by T in advance.
 
-**Prerequisites.** Hermes Kanban must be confirmed working (it is initialized but
-currently empty). Item 1 (event ingress) for event-sourced tasks. Item 3 (Judge
-as control plane) for routing decisions.
+**Prerequisites.** Hermes Kanban must be confirmed working (it is initialized but currently empty). Item 2 works manually without item 1 (event ingress); automatic event sourcing requires item 1 but is not blocking. Item 3 (Judge routing contract) enables automatic routing decisions but is not required to start a manual queue.
 
-**Authority boundary.** The Judge may create, update, and close tasks without
-approval. It may not execute a task that requires dangerous, public, production,
-or costly work without explicit approval, regardless of queue status.
+**Authority boundary.** The Judge may create company-level informational and triage queue entries without approval. An Estate task, session, or artifact requires explicit T selection and routing through the Estate Steward — queue visibility is not authorization. The Judge may not execute a task that requires dangerous, public, production, or costly work without explicit approval, regardless of queue status.
 
 **Proof of success.** A manually created task progresses from `pending_review`
 to `approved` to `in_progress` to `done`, with provenance and acceptance evidence
@@ -243,10 +245,13 @@ Judge, which routes it to The Estate's Steward, which dispatches the `capture`
 verb to The Gardener. The Judge does not bypass The Estate's law; it integrates
 with it through its front door.
 
-**Why Hermes, not Claude Code alone.** Claude Code is repo-local. It opens in
-one repo, does its work, and closes. The control-plane role requires awareness
-across all SomberSoft repos, durable state between sessions, and routing logic
-that is not specific to any one project.
+**Process boundary.** The Judge remains outside The Estate repository context.
+Every request that would mutate The Estate—including implementation,
+integration, artifacts, or state—enters through the Steward. The Steward applies
+`system/LAW.md`, chooses the lawful route, dispatches bound verbs where
+applicable, and remains the sole writer of Estate state.
+
+**Why Hermes, not Claude Code alone.** A single Claude Code invocation is usually scoped to one repository but can inspect several when briefed to do so. It does not maintain durable cross-project state between sessions, and each invocation closes independently. The control-plane role requires persistent awareness across all SomberSoft repos, durable state between sessions, and routing logic that is not specific to any one project.
 
 **Proposed loop / behavior.**
 ```
@@ -261,9 +266,7 @@ Request or event arrives at Judge
   → report to T
 ```
 
-**Prerequisites.** Items 1 and 2 for structured input. A maintained
-cross-project state reference that the Judge can read (not just session memory).
-SomberSoft doctrine captured in a durable form the Judge can access.
+**Prerequisites.** Items 1 and 2 enable structured input but are not required to define the routing and classification contract — item 3's minimal contract can be specified before ingress or queue exist. A maintained cross-project state reference that the Judge can read (not just session memory). SomberSoft doctrine captured in a durable form the Judge can access.
 
 **Authority boundary.** The Judge may route and brief workers. It may not make
 SomberSoft strategic decisions, approve its own consequential actions, or act as
@@ -290,8 +293,7 @@ invoke, brief, monitor, and never blindly trust.
 
 **Description.** When a task requires deep repo work — implementing a feature,
 refactoring, writing tests, updating documentation — the Judge invokes Claude
-Code. It selects the appropriate model (Sonnet for routine work, Opus for complex
-reasoning or high-stakes judgment calls). It provides a structured brief: what to
+Code. It selects the appropriate model: Sonnet is the default. Opus requires explicit T approval or an established cost/risk policy — the Judge does not unilaterally declare work high-stakes to justify an Opus invocation. It provides a structured brief: what to
 do, what not to do, relevant doctrine, repo state, and any constraints. It
 monitors for hangs. It inspects the resulting diff rather than trusting the
 completion message. It never marks a task done based solely on Claude's
@@ -316,7 +318,7 @@ invoke, monitor, inspect, verify, integrate.
 **Proposed loop / behavior.**
 ```
 Task approved for execution
-  → Judge selects model (Sonnet default; Opus for complex/high-stakes)
+  → Judge selects model (Sonnet default; Opus only with T approval or cost/risk policy)
   → Judge creates isolated worktree if concurrent edit risk exists
   → Judge constructs brief: task spec, repo state, relevant doctrine, constraints
   → Judge invokes Claude Code with brief
@@ -328,9 +330,7 @@ Task approved for execution
   → on verification fail: report to T with diff and verifier findings
 ```
 
-**Prerequisites.** Items 2 and 3 for task input. Item 6 (verification court) for
-post-completion checking. A mechanism for Hermes to launch and monitor a Claude
-Code process.
+**Prerequisites.** Items 2 and 3 for task input. A minimal independent verification contract is needed; the full verification court (item 6) is built in Wave 3 but item 4 can proceed with a minimal review stub. A mechanism for Hermes to launch and monitor a Claude Code process.
 
 **Authority boundary.** The Judge may invoke Claude Code for approved tasks. It
 may not merge a diff into a main branch without verification. It may not approve
@@ -412,10 +412,7 @@ goal that appears bounded but is not.
 **Purpose.** Ensure that implementation and verification never share the same
 context, and that the Judge never treats self-reported completion as evidence.
 
-**Description.** Every significant piece of work requires independent
-verification. The implementation worker (Claude Code, Codex, or another) does
-the work in one context. A separate context — the Judge itself, a Codex audit,
-a domain-specific specialist, or a CI run — inspects the result. The Judge
+**Description.** Every significant piece of work requires independent verification. The implementation worker (Claude Code, Codex, or another) does the work in one context. A separate context — a fresh Claude context, a Codex audit, a domain-specific specialist, or a CI run — inspects the result. Independence is context separation, not product identity: the same Claude context is not an independent verifier; a fresh Claude context may be. The Judge
 reconciles the findings. A task is not done until the verifier agrees it is done
 at the exact same HEAD as the implementation.
 
@@ -433,17 +430,20 @@ Claude Code implements
   → Domain specialist tests (behavioral: does it work?)
   → CI runs on exact HEAD (proof: does it pass?)
   → Judge reconciles: all pass → verified; any fail or unknown → hold
-  → Verified: merge to canonical branch
+  → Verified: confirm worktree HEAD SHA, then merge to canonical branch
+  → Resolve resulting canonical branch SHA (fast-forward preserves SHA;
+    merge commit, squash, and rebase do not)
+  → Run required verifier and CI gates again on that canonical SHA
+  → Record exact-head post-integration evidence; only then declare completion
   → Hold: report to T with the specific failure and the unresolved question
 ```
 
-**Why Hermes, not Claude Code alone.** Claude Code cannot verify its own output
-in a meaningfully independent way. The control plane provides the outer loop and
-the separate verification context.
+**Why Hermes, not Claude Code alone.** The same worker context cannot provide
+meaningfully independent verification of its own output. A fresh Claude context
+may serve as one verifier; independence comes from context separation and
+evidence, not product identity. The control plane provides that outer loop.
 
-**Prerequisites.** Item 4 (Claude Code command layer) for the implementation
-worker. CI integration for the proof step. Item 3 (Judge as control plane) for
-reconciliation.
+**Prerequisites.** Item 3 (Judge as control plane) for reconciliation. CI integration for the proof step. Item 6 can be built and tested with fixture changes before item 4 (Claude Code command layer) is complete; item 4 is not a blocking prerequisite.
 
 **Authority boundary.** The Judge may merge verified work to non-main branches
 within a pre-authorized scope. Merging to main, publishing, or deploying always
@@ -468,11 +468,7 @@ with `correct` is the most common failure.
 **Purpose.** Connect Hermes inbound channels (Telegram and others) to The Estate
 idea pipeline without bypassing The Estate's law.
 
-**Description.** When T sends an idea via Telegram, or another inbound channel
-delivers a prompt or note, the Judge routes it into The Estate's Steward for
-proper processing. The Steward dispatches the appropriate bound verb (typically
-`capture` → The Gardener), the verb runs as the bound agent, state is written,
-and the session closes with "What would you like to do next with this idea?"
+**Description.** When T sends a message with explicit capture intent — a recognized command or syntax — the Judge routes it into The Estate's Steward for proper processing. A message that looks like an idea is not itself authorization to create a Spark. The Judge either requires explicit syntax or asks T one confirmation question before routing to the Steward and Gardener. Ambiguous Telegram messages are not auto-captured. The Steward dispatches the appropriate bound verb (typically `capture` → The Gardener), the verb runs as the bound agent, state is written, and the session closes with "What would you like to do next with this idea?"
 
 Where applicable — particularly for ideas with a clear opportunity or problem
 statement — the Judge may propose the 10-question vision interview. It does not
@@ -495,8 +491,10 @@ is the bridge between external capture and The Estate's structured pipeline.
 **Proposed loop / behavior.**
 ```
 Telegram message arrives
-  → Judge classifies: idea capture, task request, question, or other
-  → if idea capture: route to Estate Steward → Gardener performs `capture`
+  → Judge classifies: explicit capture, probable idea (ambiguous), task request, question, or other
+  → if explicit capture (recognized command or syntax): route to Estate Steward → Gardener performs `capture`
+  → if probable idea (ambiguous): ask T one confirmation question — do not auto-route
+  → if confirmed: route to Estate Steward → Gardener performs `capture`
   → state written, lineage recorded
   → Judge reports back to T: "Captured as [record ID]. What would you like to do next?"
   → no further action without explicit T instruction
@@ -586,8 +584,9 @@ not emit generic digests. It emits signals when a threshold is crossed or a
 change is detected: a new CVE affecting a dependency, a deploy health alert, a
 review trend shift. Signal thresholds are defined by T and reviewed periodically.
 
-All access is read-only initially. No integration that writes to an external
-system is introduced here.
+All access is read-only initially. No integration that writes to an external system is introduced here.
+
+**Company monitoring vs Estate research.** The Judge may monitor external signals on behalf of SomberSoft. When monitoring surfaces information that warrants formal research — producing Estate Findings or changing an Idea Record — that work routes through the Estate Steward to The Factor, The Estate's bound research agent. Company monitoring signals and Estate Findings are distinct artifacts on separate tracks; the Judge does not directly produce Estate Findings.
 
 **Why Hermes, not Claude Code alone.** Claude Code can analyze monitoring data
 when invoked, but persistent watchers, threshold state, deduplication, and
@@ -764,7 +763,7 @@ capability token is tied to a specific loop, not to a general purpose.
 **Explicit rejections.** The following are not on the ladder at any height,
 without a new explicit T-approved policy:
 - Blanket production keys (any environment)
-- Unrestricted sudo or root access
+- New blanket elevation, unrestricted remote access, or broad production authority (the runtime's existing local filesystem authority is assessed and constrained in item 13, not granted here)
 - Autonomous spending authority
 - Public publishing without per-artifact or per-policy approval
 - Access to any system not tied to a specific approved loop
@@ -823,6 +822,7 @@ has known gaps. Hardening closes them before new capability is added.
   path must be designed and approved.
 - **Backup and rollback verification:** Confirm that a Hermes config backup exists,
   that it can be restored, and that the rollback path is documented.
+- **Runtime privilege assessment:** The runtime currently has broad local filesystem authority despite sudo being disabled. Assess the actual privilege surface, document it, and constrain it where practical without breaking approved integrations.
 - **Toolchain advisories:** Review any pending Hermes advisories or update notices.
 - **Periodic doctor check:** Establish a lightweight monthly (or configurable)
   self-check: schema version, toolset health, cron status, backup age, API key
@@ -841,10 +841,7 @@ before any migration.
 **Authority boundary.** The Judge proposes each hardening step. T approves each
 one individually. No migration or integration change proceeds without approval.
 
-**Proof of success.** After hardening: config is on v33, the extraction backend
-returns clean results, falsely enabled toolsets are either working or explicitly
-disabled, cron jobs are reviewed and intentional, and a doctor check can be run
-and returns no surprises.
+**Proof of success.** After hardening: config is on the latest reviewed/supported schema at execution time (v33 is the dated baseline comparison), the extraction backend returns clean results, falsely enabled toolsets are either working or explicitly disabled, cron jobs are reviewed and intentional, and a doctor check can be run and returns no surprises.
 
 **Risks.** A v29 → v33 migration with breaking changes disrupts existing cron
 jobs or integrations. Enabling a toolset with unmet runtime requirements silently
@@ -859,34 +856,32 @@ produces failures that are harder to diagnose later.
 approved. It is structured so that each phase produces something useful
 independently, and failure in any phase does not compromise completed phases.
 
-### Recommended Pilot
-
-Before any wave: run a single, private, end-to-end pilot around think-tank.
-
-```
-GitHub push to think-tank
-  → Judge classifies event
-  → creates Kanban task (pending_review)
-  → T approves via Telegram
-  → Judge invokes Claude Code with brief
-  → Separate context verifies diff
-  → Judge reports result and any open questions to T via Telegram
-```
-
-This pilot exercises items 1, 2, 4, 6, and part of 3 in a single narrow loop.
-It produces a verified, observable result before any cross-project or external
-capability is added.
-
 ### Implementation Waves
 
 | Wave | Focus | Items | Output |
 |---|---|---|---|
 | **Wave 0** | Audit and hardening | 13 | Stable, known-good Hermes baseline |
-| **Wave 1** | Private inbound event + queue | 1, 2 | Events land in a durable queue; T can approve or reject via Telegram |
-| **Wave 2** | Routing and Claude Code | 3, 4 | Judge routes approved tasks to Claude Code; briefs are structured; diffs are inspected |
+| **Wave 1** | Routing contract + manual queue | 3, 2 | Judge has a classification contract; work can be queued and reviewed manually without automated ingress |
+| **Wave 2** | Authenticated ingress + Claude Code | 1, 4 | External events land in the durable queue; Claude Code is briefed, monitored, and diff-inspected |
 | **Wave 3** | Verification | 6 | Implementation and verification are separate; verdicts are honest |
-| **Wave 4** | Think Tank + cross-project | 7, 5, 8, 11 | Telegram ideas enter The Estate; standing goals are possible; cross-project consequences are surfaced |
+| **Wave 4** | Think Tank + cross-project | 7, 5, 8, 11 | Telegram ideas enter The Estate via explicit intent; standing goals are possible; cross-project consequences are surfaced |
 | **Wave 5** | External intelligence + public artifacts | 9, 10, 12 | Monitored external signals; approved public communication; permission ladder ascended deliberately |
+
+### Incremental Pilot Target
+
+The pilot is the target built incrementally across Waves 1–3, not a prerequisite to run before Wave 0. After Wave 3 is stable, a single, private, end-to-end loop around think-tank validates the full stack:
+
+```
+GitHub push to think-tank
+  → Judge classifies event (Wave 2: item 1)
+  → creates Kanban task (pending_review) (Wave 1: item 2)
+  → T approves via Telegram
+  → Judge invokes Claude Code with brief (Wave 2: item 4)
+  → Separate context verifies diff (Wave 3: item 6)
+  → Judge reports result and any open questions to T via Telegram
+```
+
+If the push triggers work inside The Estate, that work routes through the Estate Steward before Claude Code is briefed; the Judge does not mutate Estate state directly.
 
 No wave begins until the previous wave is stable and T has explicitly authorized
 the next one.
@@ -936,9 +931,7 @@ These apply to every item in this roadmap, without exception:
    Kanban state supplement the repository but do not replace it. Committed files
    in the relevant repo are the source of truth for any information that must
    survive a session reset.
-8. **Exact-head verification.** A task is verified only at the exact commit SHA
-   at which CI ran and the verifier inspected. A diff merged after verification
-   invalidates the verification.
+8. **Exact-head verification.** Confirm the worktree HEAD SHA before integration begins. After integration, resolve the resulting canonical branch SHA. Fast-forward merge may preserve SHA; merge commit, squash, and rebase do not. Run the required verifier and CI gates on that canonical SHA and record their exact-head evidence. A diff introduced after verification invalidates the verdict. The SHA alone is identity, not proof; completion requires post-integration evidence bound to it.
 9. **Honest unknown.** If the Judge cannot determine whether something is correct,
    safe, or within its authority, the answer is `unknown`. Unknown is escalated
    to T, never resolved by assumption.
@@ -954,9 +947,7 @@ These apply to every item in this roadmap, without exception:
 14. **No alert spam.** External intelligence and observability systems emit alerts
     only when a defined threshold is crossed. Generic digests and low-signal
     summaries are not emitted.
-15. **The Estate's law is preserved.** The Judge integrates with The Estate through
-    its Steward. It does not bypass The Estate's agent-verb bindings, write idea
-    state directly, or perform bound verbs itself.
+15. **The Estate's law is preserved.** The Judge integrates with The Estate through its Steward. It does not bypass The Estate's agent-verb bindings, write idea state directly, or perform bound verbs itself. Every request that would mutate The Estate — including implementation or integration work, not only idea capture — enters through the Estate Steward. The Steward applies system/LAW.md, dispatches bound verbs to their agents, and remains sole writer of Estate state.
 
 ---
 
@@ -989,8 +980,9 @@ The Hermes/Judge operating control plane is complete when:
 
 ## Discussion Protocol
 
-T and the Judge will discuss the numbered items one at a time, in order, unless T
-chooses a different order.
+**Two status axes.** Item headings carry proposal maturity: `proposed` (initial proposal, not yet in active discussion) or `discussion` (actively being shaped with T). The decision ledger carries T's discussion disposition: items begin `undiscussed` and move to `adopt`, `revise`, `defer`, or `reject` only after T explicitly states a disposition. These axes are independent — a `discussion`-status item remains `undiscussed` in the ledger until T states a disposition.
+
+T and the Judge will discuss the numbered items one at a time, in order, unless T chooses a different order.
 
 **Each discussion follows this structure:**
 
@@ -1009,21 +1001,21 @@ ends without an explicit disposition remains `undiscussed` until T returns to it
 
 ## Decision Ledger
 
-| # | Item | Status |
-|---|---|---|
-| 1 | Event-Driven Ingress | `undiscussed` |
-| 2 | Durable Kanban Work Queue | `undiscussed` |
-| 3 | The Judge as SomberSoft Control Plane | `undiscussed` |
-| 4 | Claude Code Command Layer | `undiscussed` |
-| 5 | Standing Goals and Outcome Custody | `undiscussed` |
-| 6 | Independent Verification Court | `undiscussed` |
-| 7 | Think Tank Idea Refinery | `undiscussed` |
-| 8 | Cross-Project Consequence Detection | `undiscussed` |
-| 9 | External Intelligence and Observability | `undiscussed` |
-| 10 | Public Artifact and Release Communication Loop | `undiscussed` |
-| 11 | Continuous Learning and Skill Extraction | `undiscussed` |
-| 12 | Scoped Permission and Integration Expansion | `undiscussed` |
-| 13 | Hermes Infrastructure Hardening | `undiscussed` |
+| # | Item | Disposition | Decision date | Conditions / rationale | Follow-up reference |
+|---|---|---|---|---|---|
+| 1 | Event-Driven Ingress | `undiscussed` | — | — | — |
+| 2 | Durable Kanban Work Queue | `undiscussed` | — | — | — |
+| 3 | The Judge as SomberSoft Control Plane | `undiscussed` | — | — | — |
+| 4 | Claude Code Command Layer | `undiscussed` | — | — | — |
+| 5 | Standing Goals and Outcome Custody | `undiscussed` | — | — | — |
+| 6 | Independent Verification Court | `undiscussed` | — | — | — |
+| 7 | Think Tank Idea Refinery | `undiscussed` | — | — | — |
+| 8 | Cross-Project Consequence Detection | `undiscussed` | — | — | — |
+| 9 | External Intelligence and Observability | `undiscussed` | — | — | — |
+| 10 | Public Artifact and Release Communication Loop | `undiscussed` | — | — | — |
+| 11 | Continuous Learning and Skill Extraction | `undiscussed` | — | — | — |
+| 12 | Scoped Permission and Integration Expansion | `undiscussed` | — | — | — |
+| 13 | Hermes Infrastructure Hardening | `undiscussed` | — | — | — |
 
 *Dispositions are recorded here after T explicitly states them in discussion.
 `undiscussed` is the correct status until then — not assumed from silence.*
