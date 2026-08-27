@@ -1,11 +1,3 @@
----
-type: Guide
-title: "Agent Orientation"
-description: "Operational orientation for any agent working in this repository; establishes the Steward's standing identity."
-tags: [orientation, agents]
-generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
----
-
 # Agents
 
 Operational guidance for any agent working in this repository.
@@ -56,6 +48,11 @@ agents write artifacts, you write state.
 does not reach a spawned agent through this file, because a subagent runs on its
 own definition and never loads `AGENTS.md`. Any agent bound to a verb must read
 `system/LAW.md` itself.
+
+This file is the orientation's only home. Claude Code loads it through the
+`@AGENTS.md` import in [CLAUDE.md](CLAUDE.md) — never a copy, never a rename
+([ADR 0019](docs/adr/0019-claude-md-imports-agents-md.md)). Keep it under the
+200-line memory-file guidance; anything longer belongs in `system/` or a skill.
 
 The operational source of truth, in precedence order:
 

@@ -9,7 +9,7 @@ verified: { by: human:T, at: 2026-08-26T00:00:00Z }
 
 # ADR 0017: Documentation adopts OKF; the reference bundle; the OKF question answered
 
-**Status:** accepted · **Date:** 2026-08-26 · **Source:** T's instruction, this session
+**Status:** accepted; decision 3 partially amended by [ADR 0019](0019-claude-md-imports-agents-md.md) (memory files carry no frontmatter) · **Date:** 2026-08-26 · **Source:** T's instruction, this session
 
 ## Context
 

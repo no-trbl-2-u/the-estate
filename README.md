@@ -98,4 +98,4 @@ Two rules follow: **agents write artifacts, the Steward writes state**; and
 | [BRAINSTORM.md](BRAINSTORM.md) | Historical design log |
 | [BUILD-PROMPT.md](BUILD-PROMPT.md) | Historical build brief |
 | [AGENTS.md](AGENTS.md) | Orientation for agents in this repo |
-| [CLAUDE.md](CLAUDE.md) | Delivers the standing identity to harnesses that load it |
+| [CLAUDE.md](CLAUDE.md) | Imports `AGENTS.md` so Claude Code loads the orientation at session start |

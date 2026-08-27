@@ -6,6 +6,7 @@ okf_version: "0.2"
 
 * [The Estate](the-estate.md) - what this repository is, its map, and its clock
 * [Open Knowledge Format v0.2](okf-spec.md) - the vendored spec this bundle conforms to
+* [Why OKF Exists, and Where It Stops](okf-rationale.md) - the format's purpose, its consumers, and the scope boundary
 
 # The law and the model
 
