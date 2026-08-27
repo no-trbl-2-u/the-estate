@@ -2,7 +2,7 @@
 id: idea-0001
 title: "The Estate"
 created: 2026-08-25
-state-head: state/0005.md
+state-head: state/0006.md
 status: active
 appetite: 3
 relates: []

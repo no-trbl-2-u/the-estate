@@ -1,5 +1,14 @@
 # Reference Update Log
 
+## 2026-08-27
+
+* **Addition**: [Why OKF Exists, and Where It Stops](/okf-rationale.md) —
+  the format's stated purpose, intended concepts, and intended consumers,
+  summarized from Google Cloud's announcement, plus the scope boundary
+  ADR 0019 derives from it. Companion to the vendored
+  [spec](/okf-spec.md): the spec says what OKF is, this says what it is
+  for and where it stops.
+
 ## 2026-08-26
 
 * **Update**: [Findings](/types/findings.md) and [research](/verbs/research.md)

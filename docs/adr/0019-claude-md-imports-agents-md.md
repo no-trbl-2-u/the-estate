@@ -86,6 +86,11 @@ scoped to it.
   hop; if it ever imports, the budget is worth remembering.
 - To mention an `@`-prefixed path in a memory file without importing it, wrap it
   in backticks. This now matters for `CLAUDE.md` and `AGENTS.md` specifically.
+- The announcement's content is recorded in the bundle as
+  [`reference/okf-rationale.md`](../../reference/okf-rationale.md) — purpose,
+  intended concepts, intended consumers, and the scope table this decision
+  turns on — so the reasoning survives without a live link. It is summarized,
+  not vendored: `okf-spec.md` remains the only verbatim mirror.
 - The estate's OKF footprint is now scoped the way the format intends: the
   `reference/` bundle, plus frontmatter on documents that are read by being
   opened. Nothing that exists to be injected carries it.
