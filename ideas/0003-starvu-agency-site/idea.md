@@ -2,7 +2,7 @@
 id: idea-0003
 title: "The Starvu agency site"
 created: 2026-08-27
-state-head: state/0005.md
+state-head: state/0006.md
 status: active
 appetite: 1                 # placeholder — hand-set heat is T's, never the Steward's to assume
 relates: []                 # no edges drawn; `relate` is The Cartographer's, and it has not run
