@@ -1,11 +1,3 @@
----
-type: Guide
-title: "Harness Bridge"
-description: "Imports AGENTS.md so Claude Code loads the standing identity at session start."
-tags: [orientation]
-generated: { by: claude-code/2026-08-26, at: 2026-08-26T00:00:00Z }
----
-
 # CLAUDE.md
 
 @AGENTS.md

@@ -67,6 +67,13 @@ scoped to it.
   hop; if it ever imports, the budget is worth remembering.
 - To mention an `@`-prefixed path in a memory file without importing it, wrap it
   in backticks. This now matters for `CLAUDE.md` and `AGENTS.md` specifically.
+- **`CLAUDE.md` carries no OKF frontmatter**, and is the one deliberate
+  exception to ADR 0017. Every other document in the estate is read by opening
+  it; this one is *injected verbatim* into a context window at session start,
+  so `type:`, `tags:`, and `generated:` would be tokens spent every session on
+  metadata no reader ever consults. The file is a harness artifact, not a
+  catalogued document. `AGENTS.md` keeps its frontmatter — it is a Guide in its
+  own right, read directly by humans and by other harnesses.
 - A symlink (`ln -s AGENTS.md CLAUDE.md`) was considered and set aside: it
   forbids Claude-Code-specific content and needs Administrator or Developer Mode
   on Windows, against self-containment.
