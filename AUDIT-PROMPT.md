@@ -155,39 +155,6 @@ that world and in the form "The ⟨Something⟩".
 
 ---
 
-## Standing question: The Dreamer
-
-The operator is considering an office — provisionally **The Dreamer** — that
-would **extrapolate one idea into multiple potential sub-ideas**. Evaluate it
-seriously and specifically:
-
-- **Is it already covered?** The Forager (`explore`) develops one artifact
-  open-endedly and returns the same type. The Surveyor (`phase`) decomposes
-  `Trajectory → [Phase]`. Is fanning one idea into several *sibling ideas*
-  genuinely a third thing, or a rename of one of these?
-- **What is the signature?** Plausibly `a → [Idea]` — a decomposer that emits
-  new *records* rather than artifacts within one record. If so, note that this
-  would be the **first verb that creates records other than the one it was
-  invoked on**, and say what that implies for lineage: each child needs a
-  `parent` derivation and a snapshot origin.
-- **Does it fight the vision?** The operator locked **"notice more, not finish
-  more"** — but also named their own failure mode as loving to *start* things. A
-  verb that manufactures new ideas from existing ones could be exactly the
-  amplifier they do not need. `system/SCORING.md` argues the noticing worth
-  supporting is *convergent* (two records are secretly one idea), and The Dreamer
-  is purely *divergent*. Take a position on whether that is a fatal objection, a
-  manageable one, or wrong.
-- **What guards would it need?** Consider: a cap on children per invocation;
-  children born `incubating` rather than `active`; requiring the parent to have
-  a Framing first, so it fans a *defined* space rather than a vague one.
-- **Where does it belong?** If it survives, propose its office and verb name, or
-  argue it should be a lens or a shape rather than a verb.
-
-Give a clear verdict — build it, build it with guards, or don't — and say what
-would change your mind.
-
----
-
 ## How to report
 
 Write a single markdown report. Order findings **most severe first**, and for
