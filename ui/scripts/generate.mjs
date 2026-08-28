@@ -370,3 +370,102 @@ writeFileSync(OUT, JSON.stringify(data, null, 2))
 const nArt = records.reduce((s, r) => s + r.artifacts.length, 0)
 const nSt = records.reduce((s, r) => s + r.states.length, 0)
 console.log(`estate.json: ${records.length} records, ${nArt} artifacts (incl. seeds), ${nSt} states -> ${OUT}`)
+
+// ---------- the plain-text editions: llms.txt, llms-full.txt, sitemap.xml ----------
+// The estate's text derivation was always the spine ("proven as plain text");
+// serving it at /llms.txt makes the site legible to AI agents by construction.
+
+const SITE = 'https://idea-estate.com'
+const PUB = join(UI_DIR, 'public')
+mkdirSync(PUB, { recursive: true })
+
+const seededCount = records.filter((r) => r.seed).length
+const pad4 = (n) => (n === 'S' ? 'seed' : String(n).padStart(4, '0'))
+
+const llms = `# Estate View
+
+> A read-only visual browser for an "estate" of idea records. Each record
+> accumulates typed artifacts (Spark, Framing, Horizon, Trajectory, Phase,
+> Findings, Appraisal, Decision, Brief, Seed) written by named agents
+> performing verbs, plus immutable state snapshots written by a single
+> narrator called the Steward. Lineage is derived from each artifact's
+> inputs; the Seed is the terminal export that leaves the walls.
+
+This snapshot was generated ${data.generatedAt} and covers ${records.length} records
+(${nArt} artifacts including seeds, ${nSt} state snapshots, ${seededCount} exported).
+
+## Records
+
+${records
+  .map(
+    (r) =>
+      `- idea-${r.id}: ${r.title} — status ${r.status}, appetite ${r.appetite}${r.placeholder ? ' (placeholder)' : ''}, ` +
+      `${r.artifacts.filter((a) => !a.terminal).length} artifacts, ${r.states.length} states, ` +
+      `${r.seed ? `seeded (${r.seed})` : 'no export'}`,
+  )
+  .join('\n')}
+
+## Full text
+
+- ${SITE}/llms-full.txt: every record, artifact summary, and state narration in this snapshot, as plain text.
+
+## Notes for agents
+
+- The interactive app at ${SITE}/ renders the same data; there is no
+  content behind interaction that is missing from /llms-full.txt.
+- This tool is read-only by construction: nothing here writes to the estate.
+`
+writeFileSync(join(PUB, 'llms.txt'), llms)
+
+const fullParts = [
+  `# Estate View — the full estate as text`,
+  ``,
+  `Generated ${data.generatedAt}. ${records.length} records, ${nArt} artifacts (incl. seeds), ${nSt} state snapshots.`,
+  ``,
+]
+for (const r of records) {
+  fullParts.push(`\n${'='.repeat(72)}\n# idea-${r.id}: ${r.title}\n${'='.repeat(72)}\n`)
+  fullParts.push(
+    `status: ${r.status} · appetite: ${r.appetite}${r.placeholder ? ' (placeholder)' : ''} · created: ${r.created} · state-head: ${r.stateHead}${r.seed ? ` · seed: ${r.seed}` : ''}`,
+  )
+  if (r.relatesNote) fullParts.push(`relates (note, not an edge): ${r.relatesNote}`)
+  fullParts.push(`\n## Artifacts — the agents' track\n`)
+  if (!r.artifacts.length) fullParts.push(`(none — capture has not run on this record)`)
+  for (const a of r.artifacts) {
+    fullParts.push(`### ${pad4(a.n)} · ${a.type} · "${a.title}"`)
+    fullParts.push(
+      `${a.verb} · ${a.agent} · ${a.date} · inputs: [${a.inputs.map(pad4).join(', ')}]` +
+        `${Object.entries(a.classifiers)
+          .map(([k, v]) => ` · ${k}: ${v}`)
+          .join('')}${a.stale ? ` · stale_after: ${a.stale}` : ''}`,
+    )
+    fullParts.push(a.summary ?? a.excerpt)
+    fullParts.push('')
+  }
+  fullParts.push(`## States — the Steward's track (immutable, copied forward)\n`)
+  for (const s of r.states) {
+    fullParts.push(
+      `### state/${pad4(s.n)} · ${s.date} · session-verb: ${s.verb || s.skill || 'none'}` +
+        `${s.out.length ? ` · recorded: ${s.out.map(pad4).join(', ')}` : ''}` +
+        `${s.steer ? ` · wrote outside the record: ${s.steer.join(', ')}` : ''}`,
+    )
+    if (s.est) fullParts.push(s.est)
+    fullParts.push('')
+  }
+}
+writeFileSync(join(PUB, 'llms-full.txt'), fullParts.join('\n'))
+
+const today = data.generatedAt.slice(0, 10)
+writeFileSync(
+  join(PUB, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${SITE}/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>
+`,
+)
+console.log(`text editions: public/llms.txt (${llms.length} B), public/llms-full.txt (${fullParts.join('\n').length} B), public/sitemap.xml`)

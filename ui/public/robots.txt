@@ -1,0 +1,8 @@
+# Estate View — https://idea-estate.com
+# All crawlers welcome, AI crawlers included. A plain-text edition of the
+# entire site is served at /llms.txt and /llms-full.txt.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://idea-estate.com/sitemap.xml
