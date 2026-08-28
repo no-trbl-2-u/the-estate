@@ -1,0 +1,11 @@
+// Cloudflare Workers static-assets deployment for Estate View.
+// v1 is assets-only (read-only viewer). v2 adds a `main` Worker (Hono API),
+// D1 for databased artifacts, and AI Gateway for the chat — same config file.
+{
+  "name": "estate-view",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
