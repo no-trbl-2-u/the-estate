@@ -2,9 +2,9 @@
 id: idea-0004
 title: "A UI for the estate"
 created: 2026-08-28
-state-head: state/0000.md
+state-head: state/0004.md
 status: active
-appetite: 1                 # placeholder — hand-set heat is T's, never the Gardener's to assume
+appetite: 3                 # hand-set by T, 2026-08-28
 relates: []                 # idea-0001 is the natural candidate; `relate` is The Cartographer's, and it has not run
 ---
 
