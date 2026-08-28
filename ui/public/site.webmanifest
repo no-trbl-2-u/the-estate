@@ -1,0 +1,10 @@
+{
+  "name": "Estate View",
+  "short_name": "Estate View",
+  "description": "A read-only visual browser for an estate of idea records.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#DFE0D8",
+  "theme_color": "#DFE0D8",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

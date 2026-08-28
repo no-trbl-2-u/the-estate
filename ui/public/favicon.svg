@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E0CE9A"/>
+      <stop offset=".45" stop-color="#C9A94E"/>
+      <stop offset="1" stop-color="#A8873A"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="6" fill="url(#brass)" stroke="#8A6A1F" stroke-width="2"/>
+  <circle cx="32" cy="32" r="14" fill="none" stroke="#3E3010" stroke-width="6"/>
+</svg>
