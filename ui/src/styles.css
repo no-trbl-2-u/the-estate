@@ -1,0 +1,66 @@
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  background: #dfe0d8;
+  font-family: Newsreader, Georgia, serif;
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  color: #8a6a1f;
+}
+a:hover {
+  color: #16211f;
+}
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c4b9;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #eaebe4;
+}
+
+/* hover states from the design's style-hover attributes */
+.hov-border:hover {
+  border-color: #8a6a1f !important;
+}
+.hov-bg:hover {
+  background: #e1e2d9 !important;
+}
+.hov-ink:hover {
+  color: #16211f !important;
+}
+.hov-op:hover {
+  opacity: 0.75 !important;
+}
+
+button {
+  font: inherit;
+  border: none;
+  background: none;
+  padding: 0;
+  text-align: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.mobile-sheet {
+  animation: sheet-up 0.22s ease-out;
+}
+@keyframes sheet-up {
+  from {
+    transform: translateY(24px);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
