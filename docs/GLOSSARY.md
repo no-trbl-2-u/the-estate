@@ -55,3 +55,68 @@ is a feature request, not a synonym.
 This file describes; it never governs. New terms enter the canon through
 `system/` (with T's approval, per `AGENTS.md`), and this glossary follows them
 — never the other way around.
+
+## Second tranche — verified by T, 2026-08-28
+
+### People & dialogue
+
+| Term | What it is | Governed by |
+|---|---|---|
+| **Operator** | T. Final authority over everything in the estate; agents propose, the operator decides. | `AGENTS.md` |
+| **Dispatch** | The Steward handing a verb to its bound agent with a handoff packet. | `system/LAW.md`, `system/STEWARD.md` |
+| **Dialogue relay** | A dispatched agent has no channel to the operator — it returns a *question* instead of an artifact; the Steward relays and re-dispatches with the answer. | `system/LAW.md` |
+| **Writer seam** | The one-writer rule: agents write artifacts, the Steward writes state and record frontmatter. One file, one writer. | `system/LAW.md` |
+| **Steering layer** | Everything that aims the verbs — handoff packets, route derivations, nugget selection. Produces no artifacts; named *unaddressable* by idea-0001's Framing. | `ideas/0001-the-estate/artifacts/0003-framing.md` |
+
+### Machinery
+
+| Term | What it is | Governed by |
+|---|---|---|
+| **Verb family** | The seven signatures: Refiner `a→a`, Transformer `a→b`, Decomposer `a→[b]`, Aggregator `[a]→b`, Reader, Transition, Edge author. | `system/TYPES.md` |
+| **Boundary input** | `Text` (capture) and `Question` (research) — operator words crossing into the system, not artifacts already in it. | `system/TYPES.md` |
+| **Route / gap derivation** | The Steward derives what runs next from what a record *has* versus what it still *needs* — never a fixed sequence. | `system/STEWARD.md`, `system/TYPES.md` |
+| **Playbook** | A worked example composition (`spark-to-seed`, `merge`, `split`). Example only — routes are derived, not prescribed. | `playbooks/` |
+| **Session close** | The Steward's end-of-session duty: what was established, what remains open, the honest current state — sealed as a state snapshot. | `system/LAW.md`, `system/STEWARD.md` |
+
+### The ten artifact types
+
+Each produced by its verb, per `system/TYPES.md` — collected here row-by-row
+because a UI reader will be clicking on them constantly.
+
+| Type | One line |
+|---|---|
+| **Spark** | A raw capture: minimal processing, maximal fidelity to the original thought. |
+| **Framing** | The problem, question, or opportunity space, stated. |
+| **Horizon** | The elaborated six-month vision — what the idea looks like working. |
+| **Trajectory** | The rough path from here to the Horizon; must terminate in something actionable. |
+| **Phase** | One sequenced step of a Trajectory. Recursive — a Phase may decompose into Phases. |
+| **Findings** | Gathered information with sources, honestly bounded by what was not found. Speaks OKF. |
+| **Appraisal** | A judgment of one thing, or of several against each other. |
+| **Decision** | An explicit recorded choice: what was decided, what was rejected, and why. |
+| **Brief** | An early-exit export — what leaves when a run stops before Seed-shape. |
+| **Seed** | The terminal export: Horizon + Trajectory + next move + refusal + provenance stamp. |
+
+### Portfolio & scoring
+
+| Term | What it is | Governed by |
+|---|---|---|
+| **Survey** | The Cartographer's walk of the whole estate: ranked shortlist plus convergent notices, written to `ideas/SURVEY.md`. | `system/SCORING.md` |
+| **Reachability** | The primary rank: what fraction of a record's remaining chain the single best next verb completes. Favors raw ideas over nearly-done ones. | `system/SCORING.md` |
+| **Convergent notice** | The survey's highest-value output: candidate `relates` edges, duplicate suspicions, dead-Spark-fits-live-record matches. Surfaced above the ranking. | `system/SCORING.md` |
+| **Connective record** | An idea whose value is the edges it draws rather than the Seed it becomes. Earned over months — inbound citations while its own state stays flat — never inferred from dormancy alone. | `system/SCORING.md` |
+| **Drift** | Distance between current framing and the original Spark. Display only, never scored — drift usually means the idea is working. | `system/SCORING.md` |
+
+### Governance & quality
+
+| Term | What it is | Governed by |
+|---|---|---|
+| **Falsifier** | A named observation that would prove the thing wrong. Required of Horizons for the `falsifiable` classifier; the estate carries its own. | `system/FALSIFIERS.md`, `system/TYPES.md` |
+| **Check date** | **2026-09-25** — the estate's own falsifier clock: failed if no evidence of use outside this repo by then. | `system/FALSIFIERS.md` |
+| **Named failure mode** | *"Building it is more fun than using it."* Machinery elaboration while `ideas/` holds nothing live must be said out loud. | `system/FALSIFIERS.md` |
+| **Tension vs. open question** | A tension awaits a **choice** between competing framings and may never resolve; an open question awaits an **answer**. Different sections, different fates. | `templates/idea.md` |
+| **Gold nuggets** | The state section preserving a session's best-phrased findings — carried with the standing warning that quotability is not evidence (residue item 6, held under challenge). | `templates/state.md`, `ideas/0001-the-estate/artifacts/0002-residue-challenged.md` |
+| **Residue** | Session observations about *the estate itself*, filed to idea-0001 rather than to the idea being worked. Operator's coinage, 2026-08-27. | `ideas/0001-the-estate/artifacts/0001-first-full-arc-residue.md` |
+| **ADR** | Architecture Decision Record, `docs/adr/` — every major decision with its reasoning, indexed. | `docs/adr/` |
+| **OKF** | The Open Knowledge Format — how Findings cite sources, mark credibility, and carry `stale_after:` shelf lives. External knowledge rots on a schedule the other types don't have. | `reference/okf-spec.md`, ADR 0018 |
+| **Promotion** | A finding with cross-record value becomes a `reference/` concept citing the artifact as its source — never relocated out of the record. | `system/TYPES.md` |
+| **Wake condition** | What `incubate` requires: a parked record names what wakes it, so sleep is deliberate rather than drift. | the keeper's skills |
