@@ -1,13 +1,13 @@
 # Estate View — the full estate as text
 
-Generated 2026-08-28 22:28. 4 records, 37 artifacts (incl. seeds), 32 state snapshots.
+Generated 2026-08-28 22:32. 4 records, 38 artifacts (incl. seeds), 33 state snapshots.
 
 
 ========================================================================
 # idea-0004: A UI for the estate
 ========================================================================
 
-status: active · appetite: 3 · created: 2026-08-28 · state-head: state/0006.md · seed: exports/0004-estate-ui-seed.md
+status: active · appetite: 3 · created: 2026-08-28 · state-head: state/0007.md · seed: exports/0004-estate-ui-seed.md
 relates (note, not an edge): idea-0001 is the natural candidate; `relate` is The Cartographer's, and it has not run
 
 ## Artifacts — the agents' track
@@ -60,6 +60,10 @@ The definitive v1 inventory and remaining-phase breakdown for the shipped Estate
 capture · The Gardener · 2026-08-28 · inputs: [] · challenged: false
 Six residue items from the v1 build session: a v2 vision (login, AI chat, databased artifacts) that steered the v1 stack decision while recorded nowhere in the estate, Cloudflare chosen as its platform on capabilities the session did not yet actually hold, T's verbatim-adjacent claim that the flow should create artifacts at any step rather than only the idea-to-seed rail, the refiner-verb supersession rule discovered under load in derive.ts, the design-import mechanics learned the hard way, and the honestly-named gaps — the deviation from the sealed Seed still owed a Decision from a Chancellor who has never run, and a build session whose central work has no verb the estate knows.
 
+### 0013 · Spark · "Deploy session — residue"
+capture · The Gardener · 2026-08-28 · inputs: [] · challenged: false
+Five residue items from the deploy-and-publish stretch that answered state 0006's open deploy walk: Estate View live at idea-estate.com on Cloudflare Workers with DNS and TLS provisioned automatically and ~5-second deploys, the wrangler OAuth failure mode (Chrome auto-retrying a dead localhost error tab delivers stale state — park the tab on a neutral URL first), the discovery that the build law's plain-text derivation proof is exactly what AI-readiness means in 2026 (llms.txt, llms-full.txt, sitemap, crawler-welcoming robots.txt, a real screenshot OG card), the undecided tension that the whole estate — including idea-0003's friend's-business details — is now public and machine-ingestable with Cloudflare Access as the zero-code gate, and the honest note that client rendering leaves the HTML source empty of map content, SSR being an unasked-for v2 decision.
+
 ### seed · Seed · "Seed: The estate viewer"
 seed · The Sower · 2026-08-28 · inputs: [0003, 0004, 0005, 0006, 0007, 0008, 0009] · horizon: falsifiable · trajectory: actionable · challenged: false
 Audience: T — a working software engineer building this personally, likely handing sections to a coding agent. Sections 2, 3, 4 and 7 are written to be pasted into a fresh coding-agent context with no memory of this record. There is no other reader.
@@ -98,6 +102,11 @@ The seam
 
 ### state/0006 · 2026-08-28 · session-verb: phase + capture · recorded: 0011, 0012 · wrote outside the record: ui/, .claude/launch.json
 T fast-tracked the build. The approved claude.ai/design prototype was imported, and Estate View v1 now exists in ui/ — a Vite + React + TypeScript SPA over a zero-dependency generator (ui/scripts/generate.mjs) that walks the real records and emits the data contract the renderer draws. Live data, both surfaces (desktop and the ninety-degree mobile map), all seven estate views, pan/zoom navigation, drawer toggle, drill-in panels, Cloudflare wrangler scaffolding. The build work itself is steering — "build" is not a verb the registry knows — so it lives in this snapshot's outputs as paths, not …
+
+### state/0007 · 2026-08-28 · session-verb: capture · recorded: 0013 · wrote outside the record: ui/wrangler.jsonc, ui/index.html, ui/public/, ui/scripts/generate.mjs
+The deploy walk — state 0006's open question — landed the same day it was asked. Estate View is live at https://idea-estate.com (and www), on Cloudflare Workers static assets, behind T's own domain, with DNS and certificates provisioned automatically by the custom-domain routes in ui/wrangler.jsonc. Deploys take seconds. The workers.dev address is retired; the domain is canonical.
+
+The site was then made search- and machine-legible: full metadata, an OG card that is a real screenshot of this record's travel map, and — the loop worth recording — the generator now publishes the estate as plain …
 
 
 ========================================================================
