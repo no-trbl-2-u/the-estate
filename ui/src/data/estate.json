@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28 22:28",
+  "generatedAt": "2026-08-28 22:32",
   "estateRoot": "~/the-estate",
   "agents": [
     {
@@ -110,7 +110,7 @@
       "appetite": 3,
       "placeholder": false,
       "appetiteNote": "hand-set by T, 2026-08-28",
-      "stateHead": "state/0006.md",
+      "stateHead": "state/0007.md",
       "headDate": "2026-08-28",
       "seed": "exports/0004-estate-ui-seed.md",
       "seedOrigin": "idea-0004 @ state/0003",
@@ -452,6 +452,31 @@
           "terminal": false
         },
         {
+          "n": 13,
+          "type": "Spark",
+          "verb": "capture",
+          "agent": "The Gardener",
+          "mono": "Gd",
+          "title": "Deploy session — residue",
+          "file": "0013-deploy-session-residue.md",
+          "date": "2026-08-28",
+          "inputs": [],
+          "classifiers": {
+            "challenged": false
+          },
+          "lenses": [],
+          "shape": "prose",
+          "nextSteps": [
+            "decide",
+            "frame"
+          ],
+          "summary": "Five residue items from the deploy-and-publish stretch that answered state 0006's open deploy walk: Estate View live at idea-estate.com on Cloudflare Workers with DNS and TLS provisioned automatically and ~5-second deploys, the wrangler OAuth failure mode (Chrome auto-retrying a dead localhost error tab delivers stale state — park the tab on a neutral URL first), the discovery that the build law's plain-text derivation proof is exactly what AI-readiness means in 2026 (llms.txt, llms-full.txt, sitemap, crawler-welcoming robots.txt, a real screenshot OG card), the undecided tension that the whole estate — including idea-0003's friend's-business details — is now public and machine-ingestable with Cloudflare Access as the zero-code gate, and the honest note that client rendering leaves the HTML source empty of map content, SSR being an unasked-for v2 decision.",
+          "excerpt": "Deploy session — residue\n\nProvenance: captured verbatim-faithful from the deploy-and-publish stretch of 2026-08-28, T operating — the same day as, and continuing from, 0012-build-session-residue.md. State 0006 closed with the deploy walk named as an open question; this stretch answered it. Filed at T's direct instruction. I have not tidied, merged, or re-ranked the items, and I do not repeat 0012's.",
+          "stale": null,
+          "generatedBy": null,
+          "terminal": false
+        },
+        {
           "n": "S",
           "type": "Seed",
           "verb": "seed",
@@ -571,6 +596,22 @@
             ".claude/launch.json"
           ],
           "est": "T fast-tracked the build. The approved claude.ai/design prototype was imported, and Estate View v1 now exists in ui/ — a Vite + React + TypeScript SPA over a zero-dependency generator (ui/scripts/generate.mjs) that walks the real records and emits the data contract the renderer draws. Live data, both surfaces (desktop and the ninety-degree mobile map), all seven estate views, pan/zoom navigation, drawer toggle, drill-in panels, Cloudflare wrangler scaffolding. The build work itself is steering — \"build\" is not a verb the registry knows — so it lives in this snapshot's outputs as paths, not …"
+        },
+        {
+          "n": 7,
+          "date": "2026-08-28",
+          "verb": "capture",
+          "skill": null,
+          "out": [
+            13
+          ],
+          "steer": [
+            "ui/wrangler.jsonc",
+            "ui/index.html",
+            "ui/public/",
+            "ui/scripts/generate.mjs"
+          ],
+          "est": "The deploy walk — state 0006's open question — landed the same day it was asked. Estate View is live at https://idea-estate.com (and www), on Cloudflare Workers static assets, behind T's own domain, with DNS and certificates provisioned automatically by the custom-domain routes in ui/wrangler.jsonc. Deploys take seconds. The workers.dev address is retired; the domain is canonical.\n\nThe site was then made search- and machine-legible: full metadata, an OG card that is a real screenshot of this record's travel map, and — the loop worth recording — the generator now publishes the estate as plain …"
         }
       ]
     },
