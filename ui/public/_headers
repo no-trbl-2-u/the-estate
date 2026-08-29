@@ -1,0 +1,12 @@
+# Cloudflare Workers static-assets header rules.
+#
+# The asset server infers Content-Type from the file extension and omits the
+# charset. Link-preview fetchers that trust the HTTP header over the document's
+# own <meta charset> can then mis-decode the non-ASCII characters in the title
+# and description (both carry an em-dash). State the encoding where the parser
+# looks for it first.
+/
+  Content-Type: text/html; charset=utf-8
+
+/index.html
+  Content-Type: text/html; charset=utf-8
