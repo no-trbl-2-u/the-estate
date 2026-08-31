@@ -7,12 +7,12 @@
 > narrator called the Steward. Lineage is derived from each artifact's
 > inputs; the Seed is the terminal export that leaves the walls.
 
-This snapshot was generated 2026-08-28 22:32 and covers 4 records
-(38 artifacts including seeds, 33 state snapshots, 2 exported).
+This snapshot was generated 2026-08-31 16:56 and covers 4 records
+(39 artifacts including seeds, 34 state snapshots, 2 exported).
 
 ## Records
 
-- idea-0004: A UI for the estate — status active, appetite 3, 13 artifacts, 8 states, seeded (exports/0004-estate-ui-seed.md)
+- idea-0004: A UI for the estate — status active, appetite 3, 14 artifacts, 9 states, seeded (exports/0004-estate-ui-seed.md)
 - idea-0001: The Estate — status active, appetite 3, 4 artifacts, 11 states, no export
 - idea-0003: The Starvu agency site — status active, appetite 1 (placeholder), 19 artifacts, 13 states, seeded (exports/0003-starvu-agency-site-seed.md)
 - idea-0002: The operator-supplied material seam — status active, appetite 1 (placeholder), 0 artifacts, 1 states, no export

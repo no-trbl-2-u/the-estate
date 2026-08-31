@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28 22:32",
+  "generatedAt": "2026-08-31 16:56",
   "estateRoot": "~/the-estate",
   "agents": [
     {
@@ -110,7 +110,7 @@
       "appetite": 3,
       "placeholder": false,
       "appetiteNote": "hand-set by T, 2026-08-28",
-      "stateHead": "state/0007.md",
+      "stateHead": "state/0008.md",
       "headDate": "2026-08-28",
       "seed": "exports/0004-estate-ui-seed.md",
       "seedOrigin": "idea-0004 @ state/0003",
@@ -477,6 +477,37 @@
           "terminal": false
         },
         {
+          "n": 14,
+          "type": "Trajectory",
+          "verb": "chart",
+          "agent": "The Surveyor",
+          "mono": "Sv",
+          "title": "The road in two versions",
+          "file": "0014-v1-v2-roadmap.md",
+          "date": "2026-08-28",
+          "inputs": [
+            10,
+            11,
+            4
+          ],
+          "classifiers": {
+            "challenged": false,
+            "trajectory": "actionable"
+          },
+          "lenses": [],
+          "shape": "prose",
+          "nextSteps": [
+            "phase",
+            "decide",
+            "challenge"
+          ],
+          "summary": "The two-version roadmap charted at T's instruction from the two-horizon Horizon: v1 finishes the site for one operator on local data — the estate stays files-on-disk as source of truth, the site its published derivation — ordered by fuse length with the Cloudflare Access gate first because the estate is public today and the gate waits only on the owed decide, then the record-keeping catch-up (two Chancellor decisions, the 0004↔0001 relate, a first challenge), full-content reading in the panel and llms-full.txt, one-command regenerate-build-deploy so the estate self-publishes, a bounded polish pass, and the sealed Seed's Phase 5 watch folded in rather than abandoned; v2 is the platform charted from 0010's far horizon — a Hono Worker API beside the same static assets, a D1 schema mirroring the existing types with insert-only tables so immutability is compiled rather than obeyed, the generator repurposed as importer and derive.ts moved server-side untouched, the auth ladder climbing from v1's Access gate to real multi-user auth with per-estate visibility, the loader swapped to the API with components untouched, verb dispatches recorded as rows so the steering layer becomes addressable by construction, the chat-as-Steward with F7 armed, and Durable Objects only when something real demands them. V1 refuses every stub the seam law forbids (the Access gate passes because it is zero code and right for v1 alone); v2 waits on a decided and used v1, which is F6's reading. First actionable step: next session, dispatch the two owed decides — the exposure decision unblocks the gate the same day.",
+          "excerpt": "The road in two versions\n\nI am The Surveyor. This is my third pass over this record and the first from a live site: Estate View runs at https://idea-estate.com, public, AI-ingestable, serving the real records off a real snapshot stamp. My sealed Trajectory (0004-trajectory.md) charted five legs to a local viewer; the build overtook legs 1–4 in a fast-track my Phase survey (0011-ui-v1-phases.md) inventoried honestly, and leg 5 — the watch — was never run. This roadmap subsumes that remainder into v1 rather than superseding the old route silently: what the sealed legs still owe (the watch, the falsifier readings) appears below by name, folded into the new sequence, so no reader has to diff …",
+          "stale": null,
+          "generatedBy": null,
+          "terminal": false
+        },
+        {
           "n": "S",
           "type": "Seed",
           "verb": "seed",
@@ -612,6 +643,17 @@
             "ui/scripts/generate.mjs"
           ],
           "est": "The deploy walk — state 0006's open question — landed the same day it was asked. Estate View is live at https://idea-estate.com (and www), on Cloudflare Workers static assets, behind T's own domain, with DNS and certificates provisioned automatically by the custom-domain routes in ui/wrangler.jsonc. Deploys take seconds. The workers.dev address is retired; the domain is canonical.\n\nThe site was then made search- and machine-legible: full metadata, an OG card that is a real screenshot of this record's travel map, and — the loop worth recording — the generator now publishes the estate as plain …"
+        },
+        {
+          "n": 8,
+          "date": "2026-08-28",
+          "verb": "chart",
+          "skill": null,
+          "out": [
+            14
+          ],
+          "steer": null,
+          "est": "T asked for the route stated whole: v1 as the full site for one operator over local data, v2 as the platform — login, users, databased artifacts. The Surveyor charted it from the explored Horizon's two halves: 0014-v1-v2-roadmap.md, a second Trajectory standing beside the sealed one, subsuming its unfinished remainder into v1 rather than superseding it silently.\n\nThe chart's shape: v1 is six legs ordered by fuse length — the Access gate first (zero code, waits only on the owed exposure decide, and deliberately the v2 login's first rung), the record-keeping catch-up, full- content reading with …"
         }
       ]
     },

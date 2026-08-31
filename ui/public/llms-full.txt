@@ -1,13 +1,13 @@
 # Estate View — the full estate as text
 
-Generated 2026-08-28 22:32. 4 records, 38 artifacts (incl. seeds), 33 state snapshots.
+Generated 2026-08-31 16:56. 4 records, 39 artifacts (incl. seeds), 34 state snapshots.
 
 
 ========================================================================
 # idea-0004: A UI for the estate
 ========================================================================
 
-status: active · appetite: 3 · created: 2026-08-28 · state-head: state/0007.md · seed: exports/0004-estate-ui-seed.md
+status: active · appetite: 3 · created: 2026-08-28 · state-head: state/0008.md · seed: exports/0004-estate-ui-seed.md
 relates (note, not an edge): idea-0001 is the natural candidate; `relate` is The Cartographer's, and it has not run
 
 ## Artifacts — the agents' track
@@ -64,6 +64,10 @@ Six residue items from the v1 build session: a v2 vision (login, AI chat, databa
 capture · The Gardener · 2026-08-28 · inputs: [] · challenged: false
 Five residue items from the deploy-and-publish stretch that answered state 0006's open deploy walk: Estate View live at idea-estate.com on Cloudflare Workers with DNS and TLS provisioned automatically and ~5-second deploys, the wrangler OAuth failure mode (Chrome auto-retrying a dead localhost error tab delivers stale state — park the tab on a neutral URL first), the discovery that the build law's plain-text derivation proof is exactly what AI-readiness means in 2026 (llms.txt, llms-full.txt, sitemap, crawler-welcoming robots.txt, a real screenshot OG card), the undecided tension that the whole estate — including idea-0003's friend's-business details — is now public and machine-ingestable with Cloudflare Access as the zero-code gate, and the honest note that client rendering leaves the HTML source empty of map content, SSR being an unasked-for v2 decision.
 
+### 0014 · Trajectory · "The road in two versions"
+chart · The Surveyor · 2026-08-28 · inputs: [0010, 0011, 0004] · challenged: false · trajectory: actionable
+The two-version roadmap charted at T's instruction from the two-horizon Horizon: v1 finishes the site for one operator on local data — the estate stays files-on-disk as source of truth, the site its published derivation — ordered by fuse length with the Cloudflare Access gate first because the estate is public today and the gate waits only on the owed decide, then the record-keeping catch-up (two Chancellor decisions, the 0004↔0001 relate, a first challenge), full-content reading in the panel and llms-full.txt, one-command regenerate-build-deploy so the estate self-publishes, a bounded polish pass, and the sealed Seed's Phase 5 watch folded in rather than abandoned; v2 is the platform charted from 0010's far horizon — a Hono Worker API beside the same static assets, a D1 schema mirroring the existing types with insert-only tables so immutability is compiled rather than obeyed, the generator repurposed as importer and derive.ts moved server-side untouched, the auth ladder climbing from v1's Access gate to real multi-user auth with per-estate visibility, the loader swapped to the API with components untouched, verb dispatches recorded as rows so the steering layer becomes addressable by construction, the chat-as-Steward with F7 armed, and Durable Objects only when something real demands them. V1 refuses every stub the seam law forbids (the Access gate passes because it is zero code and right for v1 alone); v2 waits on a decided and used v1, which is F6's reading. First actionable step: next session, dispatch the two owed decides — the exposure decision unblocks the gate the same day.
+
 ### seed · Seed · "Seed: The estate viewer"
 seed · The Sower · 2026-08-28 · inputs: [0003, 0004, 0005, 0006, 0007, 0008, 0009] · horizon: falsifiable · trajectory: actionable · challenged: false
 Audience: T — a working software engineer building this personally, likely handing sections to a coding agent. Sections 2, 3, 4 and 7 are written to be pasted into a fresh coding-agent context with no memory of this record. There is no other reader.
@@ -107,6 +111,11 @@ T fast-tracked the build. The approved claude.ai/design prototype was imported, 
 The deploy walk — state 0006's open question — landed the same day it was asked. Estate View is live at https://idea-estate.com (and www), on Cloudflare Workers static assets, behind T's own domain, with DNS and certificates provisioned automatically by the custom-domain routes in ui/wrangler.jsonc. Deploys take seconds. The workers.dev address is retired; the domain is canonical.
 
 The site was then made search- and machine-legible: full metadata, an OG card that is a real screenshot of this record's travel map, and — the loop worth recording — the generator now publishes the estate as plain …
+
+### state/0008 · 2026-08-28 · session-verb: chart · recorded: 0014
+T asked for the route stated whole: v1 as the full site for one operator over local data, v2 as the platform — login, users, databased artifacts. The Surveyor charted it from the explored Horizon's two halves: 0014-v1-v2-roadmap.md, a second Trajectory standing beside the sealed one, subsuming its unfinished remainder into v1 rather than superseding it silently.
+
+The chart's shape: v1 is six legs ordered by fuse length — the Access gate first (zero code, waits only on the owed exposure decide, and deliberately the v2 login's first rung), the record-keeping catch-up, full- content reading with …
 
 
 ========================================================================
