@@ -4,6 +4,7 @@ description: Structured information gathering from outside the estate. Transform
 verb: research
 signature: "Question → Findings"
 agent: factor
+mode: batch
 ---
 
 # research — `Question → Findings`

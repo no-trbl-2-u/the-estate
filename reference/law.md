@@ -1,7 +1,7 @@
 ---
 type: Policy
 title: "The Three-Part Law"
-description: "Agents are persons, verbs are verbs, bindings are hard - plus the writer seam and the dialogue relay."
+description: "Agents are persons, verbs are verbs, bindings are hard - plus the writer seam and the audience provision."
 resource: ../system/LAW.md
 tags: [law, governance]
 generated: { by: claude-code/2026-08-26, at: 2026-08-26T00:00:00Z }
@@ -37,12 +37,31 @@ verbs; a verb has exactly one office.
   [retire](./verbs/retire.md)) **return** their edge, status, or reason;
   the Steward writes it.
 
-# The dialogue relay
+# Verb mode: batch or audience
 
-A dispatched agent has no channel to the operator: it runs to completion
-on its handoff packet. An agent that needs operator input returns the
-question *instead of* an artifact; the Steward relays and re-dispatches
-with the answer in the packet.
+Every verb carries a **mode** ([the registry](../system/registry.md)).
+
+* **`batch`** — the agent runs to completion on its handoff packet. If it
+  needs operator input it asks through the Steward and **stays alive** for
+  the answer; it is not re-dispatched.
+* **`audience`** — the Steward dispatches, introduces the operator, and
+  steps out. The operator converses with the agent directly, in the
+  agent's voice. The four audiences are [frame](./verbs/frame.md),
+  [challenge](./verbs/challenge.md), [decide](./verbs/decide.md), and
+  [explore](./verbs/explore.md).
+
+Both standing rules hold during an audience: the binding (the agent
+performs its own verb) and the writer seam (the agent writes the
+artifact, the Steward writes state).
+
+# The handback packet
+
+An audience ends with the agent writing its artifact — folding the
+conversation's substance into it, in its own voice — and returning to the
+Steward exactly five things: `artifact-path`, classifier verdicts, gold
+nuggets, open questions, tensions. **The transcript is never duplicated
+into the record.** State cites the artifact and carries the packet; it
+never paraphrases the conversation.
 
 # Law obeyed, not law compiled
 

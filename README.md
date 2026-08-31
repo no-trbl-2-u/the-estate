@@ -21,8 +21,9 @@ carries out to a real project. Every session advances the idea and leaves an
 explicit, queryable trail.
 
 State is **immutable**: each session copies the last snapshot forward. Time
-travel is opening an older file; branching is copying forward from one, and the
-original is never altered because nothing is ever altered.
+travel is opening an older file; branching is the `graft` verb — a new record
+started from any prior snapshot, inheriting what that record held **at that
+moment** — and the source is never altered, because nothing is ever altered.
 
 ## What it is not
 
@@ -41,9 +42,16 @@ invocation is forbidden.
 
 ```
 /steward          the front door — start here
+/jot              catch a stray thought; the ceremony waits
 /survey           what deserves attention next
 /challenge        have The Advocate find the holes
+/graft            branch a new idea off an older snapshot
 ```
+
+Four verbs run as an **audience** — `frame`, `challenge`, `decide`, `explore`.
+The Steward dispatches, introduces you to the agent, and steps out; you talk to
+them directly, and the Steward returns to write state from what they hand back.
+Everything else runs `batch`.
 
 ## The law
 
@@ -62,8 +70,8 @@ Two rules follow: **agents write artifacts, the Steward writes state**; and
 
 | Agent | Verbs |
 |---|---|
-| The Steward | — (front door; writes all state) |
-| The Gardener | `capture`, `frame` |
+| The Steward | — (front door; writes all state; clerical `jot`) |
+| The Gardener | `capture`, `frame`, `graft` |
 | The Architect | `envision` |
 | The Surveyor | `chart`, `phase` |
 | The Forager | `explore` |
@@ -89,8 +97,9 @@ Two rules follow: **agents write artifacts, the Steward writes state**; and
 | [system/registry.md](system/registry.md) | Routing registry: verbs, agents, bindings |
 | [system/FALSIFIERS.md](system/FALSIFIERS.md) | What would prove this wrong, and by when |
 | [reference/](reference/) | The OKF reference bundle: the spec plus one concept per verb, office, and type |
+| [inbox/](inbox/) | The front step: jotted slips awaiting processing |
 | [ideas/](ideas/) | The records. `ideas/SURVEY.md` is the sitemap |
-| [exports/](exports/) | The departure lounge for Seeds |
+| [exports/](exports/) | The departure lounge for Seeds and their payload directories |
 | [docs/architecture.html](docs/architecture.html) | Visual model of the whole flow: idea → state → artifacts |
 | [docs/adr/](docs/adr/) | Every major decision, in order |
 | [AUDIT-PROMPT.md](AUDIT-PROMPT.md) | Standalone brief for an outside agent auditing this implementation |

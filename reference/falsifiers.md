@@ -25,8 +25,15 @@ document reads as stale, the clock has run out.
 
 # Seed falsifiers
 
-A Seed has failed its purpose when it lacks actionable items, or its
-acceptance criteria remain abstract.
+A Seed has failed its purpose when it lacks actionable items, when its
+acceptance criteria remain abstract, or when its
+[payload](./types/seed.md) cannot actually be dropped in — it does not
+run, or it references assets that are not there.
+
+Note the asymmetry: an **absent** payload is not a falsifier
+(`payload: absent` is an honest classifier and the Seed says so on the
+tin). A **broken** one is, because it spends the recipient's trust before
+they discover it.
 
 # The named failure mode
 

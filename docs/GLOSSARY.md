@@ -64,7 +64,9 @@ This file describes; it never governs. New terms enter the canon through
 |---|---|---|
 | **Operator** | T. Final authority over everything in the estate; agents propose, the operator decides. | `AGENTS.md` |
 | **Dispatch** | The Steward handing a verb to its bound agent with a handoff packet. | `system/LAW.md`, `system/STEWARD.md` |
-| **Dialogue relay** | A dispatched agent has no channel to the operator — it returns a *question* instead of an artifact; the Steward relays and re-dispatches with the answer. | `system/LAW.md` |
+| **Mode** | Whether a verb runs `batch` (dispatch, run to completion, return) or `audience` (dispatch, then the Steward introduces the operator and steps out). Says how a verb is run, never who runs it. | `system/LAW.md`, `system/registry.md` |
+| **Audience** | A verb run as direct conversation between the operator and the bound agent. The four are `frame`, `challenge`, `decide`, `explore`. The binding and the writer seam both hold throughout. | `system/LAW.md` |
+| **Handback packet** | What an agent returns to the Steward when an audience ends: `artifact-path`, classifier verdicts, gold nuggets, open questions, tensions — and nothing else. The transcript is never duplicated into the record. | `system/LAW.md` |
 | **Writer seam** | The one-writer rule: agents write artifacts, the Steward writes state and record frontmatter. One file, one writer. | `system/LAW.md` |
 | **Steering layer** | Everything that aims the verbs — handoff packets, route derivations, nugget selection. Produces no artifacts; named *unaddressable* by idea-0001's Framing. | `ideas/0001-the-estate/artifacts/0003-framing.md` |
 
@@ -73,7 +75,13 @@ This file describes; it never governs. New terms enter the canon through
 | Term | What it is | Governed by |
 |---|---|---|
 | **Verb family** | The seven signatures: Refiner `a→a`, Transformer `a→b`, Decomposer `a→[b]`, Aggregator `[a]→b`, Reader, Transition, Edge author. | `system/TYPES.md` |
-| **Boundary input** | `Text` (capture) and `Question` (research) — operator words crossing into the system, not artifacts already in it. | `system/TYPES.md` |
+| **Boundary input** | `Text` (capture), `Question` (research), `Direction` (graft), and `Slip` — operator words crossing into the system, not artifacts already in it. | `system/TYPES.md` |
+| **Slip** | A jotted thought in `inbox/`: the one *durable* boundary input. Pre-record and pre-artifact — no lineage, no classifiers, no producing agent's voice. Stamped when processed, never deleted. | `system/TYPES.md`, `inbox/README.md` |
+| **Direction** | The operator's words for *why this branch exists*, required by `graft` and recorded verbatim in the new record's Origin. A graft without one is a copy. | `system/TYPES.md` |
+| **Graft edge** | The `relates` pair a `graft` writes. Machine-produced and derivable, unlike an authored edge; denormalized so the source can name its descendants without a scan. Only **authored** edges count toward `connective`. | `system/TYPES.md`, `system/SCORING.md` |
+| **Tip (as of a snapshot)** | What `graft` inherits: for each artifact type, the version no successor supersedes *as of the source snapshot* — never the source's current tips. | `system/TYPES.md` |
+| **Seed contract** | `standard` (the five components) by default; a record may name a domain contract. Invariant under any contract: a next move, a refusal, the provenance stamp. | `system/TYPES.md` |
+| **Payload** | The droppable result a Seed may carry — `exports/NNNN-slug-payload/`, sibling to the document. Optional; `payload: present \| absent` is a classifier, never a gate. A *broken* payload is a falsifier; an absent one is not. | `system/TYPES.md`, `exports/README.md` |
 | **Route / gap derivation** | The Steward derives what runs next from what a record *has* versus what it still *needs* — never a fixed sequence. | `system/STEWARD.md`, `system/TYPES.md` |
 | **Playbook** | A worked example composition (`spark-to-seed`, `merge`, `split`). Example only — routes are derived, not prescribed. | `playbooks/` |
 | **Session close** | The Steward's end-of-session duty: what was established, what remains open, the honest current state — sealed as a state snapshot. | `system/LAW.md`, `system/STEWARD.md` |

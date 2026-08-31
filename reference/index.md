@@ -10,7 +10,7 @@ okf_version: "0.2"
 
 # The law and the model
 
-* [The Three-Part Law](law.md) - persons, verbs, hard bindings, the writer seam, the dialogue relay
+* [The Three-Part Law](law.md) - persons, verbs, hard bindings, the writer seam, the audience provision
 * [The Record Model](record-model.md) - immutable state, artifact versioning, branching, derived lineage
 * [Portfolio Scoring](scoring.md) - reachability x appetite; notice more, not finish more
 * [Lenses](lenses.md) - six optional angles
@@ -20,6 +20,6 @@ okf_version: "0.2"
 
 # The vocabulary
 
-* [Verbs](verbs/) - the seventeen typed functions
+* [Verbs](verbs/) - the eighteen typed functions, plus clerical `jot`
 * [Offices](offices/) - the thirteen-person household
-* [Artifact Types](types/) - the ten typed values and the seven families
+* [Artifact Types](types/) - the eleven typed values and the seven families

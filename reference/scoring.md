@@ -25,13 +25,17 @@ more**.
 | **Threshold staleness** — days sat within one verb of Seed-shape. | Call-out, not a rank |
 | **Convergent notices** — candidate relates edges, duplicate-idea suspicions, dead Sparks that fit live records. | Surfaced above the ranking |
 | **Drift** — distance between current framing and the original Spark. | **Displayed, never scored** — drift usually means the idea is working |
+| **Descendants** — records [grafted](./verbs/graft.md) from this one, and the snapshot each forked at. | **Displayed, never scored** — branches mean fertile, not finished |
 
 # Connective records
 
 A record whose value is the edges it draws earns `connective` — and leaves
 the Seed-distance ranking entirely. The trigger is **inbound use without
-forward motion, never dormancy alone**: its `relates` degree and inbound
-references grow while its own state sequence stays flat. Computed by
+forward motion, never dormancy alone**: its **authored** `relates` degree
+and inbound references grow while its own state sequence stays flat. Count
+authored edges only — [graft](./verbs/graft.md) edges also live in
+`relates`, and a record branched from repeatedly must not drift toward
+`connective` for having been *used as a starting point*. Computed by
 [The Cartographer](./offices/cartographer.md) during
 [survey](./verbs/survey.md); proposed, never assigned.
 

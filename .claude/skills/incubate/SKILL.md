@@ -4,6 +4,7 @@ description: Park a record deliberately, with a reason and a wake condition. Tra
 verb: incubate
 signature: "Idea → Idea"
 agent: keeper
+mode: batch
 ---
 
 # incubate — `Idea → Idea`

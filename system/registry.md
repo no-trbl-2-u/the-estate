@@ -18,29 +18,47 @@ Verbs live in `.claude/skills/`, each carrying its binding in frontmatter. They
 are directly invocable — the goal is that no one must *memorize* them, not that
 invocation is forbidden. Invoking a verb never bypasses its binding.
 
-| Verb | Family | Signature | Performed by | Status |
-|---|---|---|---|---|
-| `capture` | transformer | `Text → Spark` | **The Gardener** | active |
-| `frame` | transformer | `Spark → Framing` | **The Gardener** | active |
-| `envision` | transformer | `Framing → Horizon` | **The Architect** | active |
-| `chart` | transformer | `Horizon → Trajectory` | **The Surveyor** | active |
-| `phase` | decomposer | `Trajectory → [Phase]`, `Phase → [Phase]` | **The Surveyor** | active |
-| `explore` | refiner | `a → a` | **The Forager** | active |
-| `distill` | refiner | `a → a` | **The Distiller** | active |
-| `challenge` | refiner | `a → a` | **The Advocate** | active |
-| `relate` | edge author | `(Idea, Idea) → relates` | **The Cartographer** | active |
-| `survey` | reader | `[Idea] → Survey` | **The Cartographer** | active |
-| `seed` | transformer | `Horizon + Trajectory (+ [Phase]) → Seed` | **The Sower** | active |
-| `research` | transformer | `Question → Findings` | **The Factor** | active |
-| `compare` | aggregator | `[a] → Appraisal` | **The Assayer** | active |
-| `review` | transformer | `a → Appraisal` | **The Assayer** | active |
-| `decide` | transformer | `Tensions → Decision` | **The Chancellor** | active |
-| `incubate` | transition | `Idea → Idea` | **The Keeper** | active |
-| `retire` | transition | `Idea → Idea` | **The Keeper** | active |
+| Verb | Family | Signature | Performed by | Mode | Status |
+|---|---|---|---|---|---|
+| `capture` | transformer | `Text → Spark` | **The Gardener** | batch | active |
+| `frame` | transformer | `Spark → Framing` | **The Gardener** | **audience** | active |
+| `envision` | transformer | `Framing → Horizon` | **The Architect** | batch | active |
+| `chart` | transformer | `Horizon → Trajectory` | **The Surveyor** | batch | active |
+| `phase` | decomposer | `Trajectory → [Phase]`, `Phase → [Phase]` | **The Surveyor** | batch | active |
+| `explore` | refiner | `a → a` | **The Forager** | **audience** | active |
+| `distill` | refiner | `a → a` | **The Distiller** | batch | active |
+| `challenge` | refiner | `a → a` | **The Advocate** | **audience** | active |
+| `relate` | edge author | `(Idea, Idea) → relates` | **The Cartographer** | batch | active |
+| `survey` | reader | `[Idea] → Survey` | **The Cartographer** | batch | active |
+| `seed` | transformer | `Horizon + Trajectory (+ [Phase]) → Seed` | **The Sower** | batch | active |
+| `research` | transformer | `Question → Findings` | **The Factor** | batch | active |
+| `compare` | aggregator | `[a] → Appraisal` | **The Assayer** | batch | active |
+| `review` | transformer | `a → Appraisal` | **The Assayer** | batch | active |
+| `decide` | transformer | `Tensions → Decision` | **The Chancellor** | **audience** | active |
+| `incubate` | transition | `Idea → Idea` | **The Keeper** | batch | active |
+| `retire` | transition | `Idea → Idea` | **The Keeper** | batch | active |
+| `graft` | transformer | `(Idea @ state-N, Direction) → Idea` | **The Gardener** | batch | active |
+
+**Mode** (`system/LAW.md`) says how the verb is run, never who runs it. A
+`batch` verb runs to completion on its handoff packet. An **audience** verb is
+dispatched, then the Steward introduces the operator and steps out: the
+operator converses with the agent directly, and the agent ends by writing its
+artifact and returning the handback packet. The four audiences are the four
+verbs whose quality depends on the operator's live words rather than on what
+the record already holds — `frame` needs the operator's sense of the problem,
+`challenge` needs them to defend it, `decide` needs their word to seal it, and
+`explore` is a conversation by nature.
 
 Every verb has an owner. A verb whose agent is unavailable does not run: per
 the hard-binding law the Steward reports the gap rather than performing it or
 substituting another agent.
+
+**`jot` is deliberately absent from this table.** It is a Steward **clerical
+duty**, not a bound verb: it produces a `Slip` — a boundary input on the front
+step — and no artifact, so the hard-binding law does not reach it (ADR 0023,
+`system/TYPES.md`). It is invocable as `/jot` and appears in the agents table
+on the Steward's row. Every verb below the line that *does* produce an artifact
+is bound, without exception.
 
 ## Agents
 
@@ -54,8 +72,8 @@ verbs; a verb has exactly one agent.
 
 | Agent | Office | Owns verbs | Status |
 |---|---|---|---|
-| **The Steward** (`steward` skill) | The front door. Greets, orients, derives routes, dispatches, **writes all state**. Performs no bound verb. | — | active |
-| **The Gardener** (`gardener`) | Receives what arrives and gives it its first shape. | `capture`, `frame` | active |
+| **The Steward** (`steward` skill) | The front door. Greets, orients, derives routes, dispatches, **writes all state**. Performs no bound verb. Holds one **clerical duty**: `jot` (`Text → Slip`, ADR 0023) — not a bound verb, because a slip is a boundary input and no artifact is produced. | — (clerical: `jot`) | active |
+| **The Gardener** (`gardener`) | Receives what arrives and gives it its first shape — including an arrival whose origin is internal. | `capture`, `frame`, `graft` | active |
 | **The Architect** (`architect`) | Draws what an idea becomes when it is working. | `envision` | active |
 | **The Surveyor** (`surveyor`) | Stakes out the route and sequences the ground. | `chart`, `phase` | active |
 | **The Forager** (`forager`) | Wanders the idea and brings back what is out there. | `explore` | active |

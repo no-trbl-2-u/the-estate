@@ -4,6 +4,7 @@ description: Break a Trajectory or Phase into concrete sequenced parts. Decompos
 verb: phase
 signature: "Trajectory → [Phase]"
 agent: surveyor
+mode: batch
 ---
 
 # phase — `Trajectory → [Phase]`, `Phase → [Phase]` (decomposer)

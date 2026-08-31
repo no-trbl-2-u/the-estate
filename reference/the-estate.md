@@ -35,7 +35,7 @@ also remains directly invocable.
 | Path | What lives there |
 |---|---|
 | `system/` | [The law](./law.md), the type system, the Steward spec, scoring, lenses, falsifiers, the registry |
-| `.claude/skills/` | The seventeen verbs, each carrying its binding |
+| `.claude/skills/` | The eighteen verbs, each carrying its binding, plus `steward` and clerical `jot` |
 | `.claude/agents/` | The twelve specialist offices (the Steward is the main session) |
 | `ideas/` | The Idea Records and the survey sitemap ([record model](./record-model.md)) |
 | `exports/` | The departure lounge for Seeds and Briefs |

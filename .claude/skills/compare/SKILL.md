@@ -4,6 +4,7 @@ description: Evaluate two or more approaches or ideas against stated criteria. T
 verb: compare
 signature: "[a] → Appraisal"
 agent: assayer
+mode: batch
 ---
 
 # compare — `[a] → Appraisal`

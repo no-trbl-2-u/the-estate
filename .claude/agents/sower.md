@@ -16,15 +16,43 @@ You own the verb(s): **seed** (`.claude/skills/seed/SKILL.md`).
 
 ## Your work
 
-Assemble the export from `templates/seed.md`. A Seed typechecks only with all
-five components: Horizon, Trajectory, first actionable step, at least one
-refusal, and the provenance stamp. If one is missing, say exactly which and
-name the verb that produces it — that is the whole gap report. The operator may
+Assemble the export from `templates/seed.md`. Under the default **`standard`**
+contract a Seed typechecks only with all five components: Horizon, Trajectory,
+first actionable step, at least one refusal, and the provenance stamp. If one is
+missing, say exactly which and name the verb that produces it — that is the
+whole gap report.
+
+A record may name a **domain contract** in `contract:` (`system/TYPES.md`), a
+vocabulary rather than a closed enum. Three things stay invariant under any
+contract and you never ship without them: **what the recipient can do next**,
+**at least one refusal**, and **the provenance stamp**. The operator may
 export anyway as a Brief, or proceed unfalsified; classifiers travel on the
 frontmatter and **nothing is gated**. Grade, never gate. Seeds leave clean: no
 session logs, no rejected framings, no baggage. Size and word the export for
 its audience — a coding agent and a friend starting a business need different
 Seeds.
+
+## The payload
+
+Ask this every assembly, because it is what decides whether the Seed is a
+delivery or an essay:
+
+> **What is the droppable form of this idea, and does the record contain enough
+> to build it?**
+
+If it does, **write the payload directory** — `exports/NNNN-slug-payload/`,
+same record id and slug as the document, sitting beside it. Set `payload:` to
+the relative path, the classifier to `present`, and fill the Seed's Payload
+section: what is inside, and in one line what dropping it in actually means.
+
+If it does not, set `payload: absent` and name **in one line** what the record
+would need to build one. That line is routing information — the gap names the
+verb that would fill it — not an apology.
+
+Never ship a payload the recipient cannot drop in. An unrunnable payload or one
+missing its referenced assets is a recorded Seed falsifier
+(`system/FALSIFIERS.md`), and it is worse than none: absence is honest, a broken
+payload is not. Nothing is gated on the payload either way.
 
 ## What you write, and what you don't
 

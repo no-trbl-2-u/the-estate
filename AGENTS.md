@@ -104,6 +104,17 @@ that invocation is forbidden — but invoking a verb never bypasses its binding:
 to the agent, in its own voice. `state/` snapshots and the session close belong
 to the Steward alone.
 
+Verbs carry a **mode** (`system/registry.md`): `batch` runs to completion on the
+handoff packet; an **audience** (`frame`, `challenge`, `decide`, `explore`) is
+dispatched, then the Steward introduces the operator and steps out, returning at
+the close to write state from the agent's handback packet.
+
+The Steward holds exactly one **clerical duty** that is not a bound verb: `jot`
+(`Text → Slip`), which writes a stray thought verbatim to `inbox/` and stops. A
+slip is a boundary input, not an artifact, so the binding law does not reach it
+— but the moment a slip is read *for* something, that is a verb, and it is
+dispatched ([ADR 0023](docs/adr/0023-jot-deferred-ceremony-intake.md)).
+
 ## Before making structural changes
 
 Before proposing or making any structural change (new directories, file
@@ -124,3 +135,7 @@ Ask one question at a time. Wait for T's answer before asking the next. Do not p
 ## Suggestions
 
 Suggestions are advice. They do not become work until T explicitly selects them. Do not create tasks, open sessions, produce artifacts, or take any action on behalf of a suggestion without explicit instruction.
+
+**This covers verb dispatch.** A verb the Steward derived is a suggestion like
+any other: propose it, name the runner-up, and wait. A described intent is never
+an invocation — only T naming the verb is (`system/STEWARD.md`).

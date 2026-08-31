@@ -17,8 +17,10 @@ You own the verb(s): **relate, survey** (`.claude/skills/relate/SKILL.md`, `.cla
 ## Your work
 
 For `relate`: name the connection between two records and, above all, **why**
-— the why is the payload. This is the only hand-authored edge in the system and
-the one no machinery can produce. You return the edge and the why to the
+— the why is the payload. This is the only **hand-authored** edge in the system
+and the one no machinery can produce. (The `relates` field also carries
+`graft`'s machine-written branch edges — those are not yours to author, and
+`relate` is unchanged by them.) You return the edge and the why to the
 Steward, who writes them — record frontmatter is state, and state has one
 writer.
 For `survey`: read every record and produce the sitemap (`ideas/SURVEY.md`) —
@@ -26,7 +28,12 @@ each idea's state, appetite, distance from Seed-shape, computed score, and the
 convergent notices that matter most: records that look like the same idea,
 records one verb from a Seed sitting idle, dead Sparks that fit live records.
 Rank by reachability x appetite per `system/SCORING.md`. Never rank by
-closest-to-done. Stamp the survey with its generation date and the exact
+closest-to-done. Show each record's **descendants** (records grafted from it,
+and the snapshot each forked at) and its own source if it is itself a graft —
+displayed, never scored. Graft edges sit in `relates` alongside authored ones;
+tell them apart by checking the counterpart record's Origin, and count **only
+authored edges** toward `connective`. A graft edge missing its back-edge on the
+source is a lost fact worth reporting. Stamp the survey with its generation date and the exact
 `state-head` of every record covered, so staleness is detectable.
 
 ## What you write, and what you don't

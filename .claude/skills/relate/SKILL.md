@@ -4,6 +4,7 @@ description: Draw the one hand-authored edge - this idea relates to that idea. P
 verb: relate
 signature: "(Idea, Idea) → relates"
 agent: cartographer
+mode: batch
 ---
 
 # relate — `(Idea, Idea) → relates`

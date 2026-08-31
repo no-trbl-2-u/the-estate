@@ -48,19 +48,38 @@ its predecessor; the current version is the tip of the chain.
 [challenge](./verbs/challenge.md) revises as a new version and sets its
 classifiers there.
 
-# Branching, exactly
+# Branching, exactly — the `graft` verb
 
-1. The Steward allocates the next global id and creates the new directory.
-2. Origin is copied verbatim, plus one line naming the branch point.
-3. The new `state/0000.md` carries the sole cross-record pointer form:
-   `previous: idea-NNNN/state/000K.md`. Numbering restarts at 0000.
-4. Nothing in the source record changes: `parent` is **derived** from any
-   cross-record `previous:`.
+Performed by [graft](./verbs/graft.md) (The Gardener), not by hand.
+
+1. The **Direction** — the operator's words for why the branch exists — is
+   required. Without one a graft is a copy.
+2. The next global id is allocated and the new directory created.
+3. Origin is copied verbatim, plus the graft stamp: source id, source
+   snapshot, and the Direction verbatim.
+4. The tips **as of the source snapshot** are copied in, renumbered from
+   0001, each `inputs:` citing the source's original artifact path.
+   Artifacts written on the source *after* that snapshot must not leak
+   backward.
+5. The new `state/0000.md` carries the sole cross-record pointer form,
+   `previous: idea-NNNN/state/000K.md`, and cites the same snapshot in
+   `inputs:`. Numbering restarts at 0000.
+6. **Both `relates` edges** are written — the graft's, and the source's.
+7. The source is **advanced, never edited**: its head state is copied
+   forward noting the graft was taken.
+
+The Gardener writes the shell, the Origin, and the artifacts; steps 5–7
+are state, so it returns them and the Steward writes them.
 
 # Lineage is derived
 
 `parent`, `branch`, `merge`, and `split` are read off the
 `inputs:`/`previous:` chains — the graph is a view, not a database. The
 trade is real: a derived edge exists only if the writer faithfully
-recorded `inputs:`. One edge is exempt because no machinery can make it:
-[relates](./verbs/relate.md), the hand-authored one.
+recorded `inputs:`.
+
+[relates](./verbs/relate.md) holds the exceptions, of two kinds. The
+**authored** edge is exempt because no machinery can make it. The
+**graft** edge is derivable but stored anyway, so that the *source* can
+name its descendants without a scan of every record. Only authored edges
+count toward `connective` ([scoring](./scoring.md)).

@@ -4,6 +4,7 @@ description: Chart the rough path from here to a Horizon. Transformer, Horizon �
 verb: chart
 signature: "Horizon → Trajectory"
 agent: surveyor
+mode: batch
 ---
 
 # chart — `Horizon → Trajectory`

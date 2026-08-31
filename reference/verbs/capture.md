@@ -32,9 +32,9 @@ Every record's first artifact comes from this verb. The
 the origin is not capturing it, and [frame](./frame.md) typechecks against
 the Gardener's Spark, never against the shell.
 
-If the thought is genuinely unintelligible, the Gardener returns **one
-clarifying question** to the Steward instead of an artifact — a dispatched
-agent has no direct channel to the operator
-([the dialogue relay](../law.md)).
+`capture` runs in **`batch`** mode ([the law](../law.md)). If the thought
+is genuinely unintelligible, the Gardener asks **one clarifying question**
+through the Steward and stays alive for the answer — it is not
+re-dispatched, and its context survives the question.
 
 Route hints: usually `[frame, explore]`.

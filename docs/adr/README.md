@@ -35,3 +35,9 @@ conducted per Requirement A of `BUILD-PROMPT.md`.
 | [0018](0018-findings-speak-okf.md) | Findings artifacts speak OKF; promotion to reference/, never relocation |
 | [0019](0019-claude-md-imports-agents-md.md) | `CLAUDE.md` imports `AGENTS.md`; the orientation is neither duplicated nor renamed |
 | [0020](0020-human-attention-tag.md) | Roadmap steps carry a human-attention tag for work no agent can perform; approval is not the criterion |
+| [0021](0021-audience-mode-and-the-handback-packet.md) | Verbs carry a mode; `frame`/`challenge`/`decide`/`explore` run as audiences; the handback packet replaces the dialogue relay *(supersedes 0015 in part)* |
+| [0022](0022-proposal-only-dispatch.md) | The Steward proposes the verb and waits; inference never triggers dispatch, and naming the verb is the one exception |
+| [0023](0023-jot-deferred-ceremony-intake.md) | `jot` writes a slip to `inbox/` in one step; a slip is a boundary input, not an artifact, so `jot` is a Steward clerical duty |
+| [0024](0024-graft-the-branch-verb.md) | `graft` branches a new record off any prior snapshot, inheriting as-of-snapshot tips, with a required Direction and lineage in both directions |
+| [0025](0025-seed-payload-and-nameable-contracts.md) | A Seed may carry a payload directory that *is* the droppable result; the five components become the default `standard` contract, and domain contracts are nameable |
+| [0026](0026-session-residue-as-a-type.md) | `SessionResidue` is a `capture`-produced type for what a session reveals about the estate's own functioning; the handback packet does not replace it |
