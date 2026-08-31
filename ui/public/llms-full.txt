@@ -1,13 +1,13 @@
 # Estate View — the full estate as text
 
-Generated 2026-08-31 16:56. 4 records, 39 artifacts (incl. seeds), 34 state snapshots.
+Generated 2026-08-31 18:05. 4 records, 40 artifacts (incl. seeds), 36 state snapshots.
 
 
 ========================================================================
 # idea-0004: A UI for the estate
 ========================================================================
 
-status: active · appetite: 3 · created: 2026-08-28 · state-head: state/0008.md · seed: exports/0004-estate-ui-seed.md
+status: active · appetite: 3 · created: 2026-08-28 · state-head: state/0009.md · seed: exports/0004-estate-ui-seed.md
 relates (note, not an edge): idea-0001 is the natural candidate; `relate` is The Cartographer's, and it has not run
 
 ## Artifacts — the agents' track
@@ -66,7 +66,7 @@ Five residue items from the deploy-and-publish stretch that answered state 0006'
 
 ### 0014 · Trajectory · "The road in two versions"
 chart · The Surveyor · 2026-08-28 · inputs: [0010, 0011, 0004] · challenged: false · trajectory: actionable
-The two-version roadmap charted at T's instruction from the two-horizon Horizon: v1 finishes the site for one operator on local data — the estate stays files-on-disk as source of truth, the site its published derivation — ordered by fuse length with the Cloudflare Access gate first because the estate is public today and the gate waits only on the owed decide, then the record-keeping catch-up (two Chancellor decisions, the 0004↔0001 relate, a first challenge), full-content reading in the panel and llms-full.txt, one-command regenerate-build-deploy so the estate self-publishes, a bounded polish pass, and the sealed Seed's Phase 5 watch folded in rather than abandoned; v2 is the platform charted from 0010's far horizon — a Hono Worker API beside the same static assets, a D1 schema mirroring the existing types with insert-only tables so immutability is compiled rather than obeyed, the generator repurposed as importer and derive.ts moved server-side untouched, the auth ladder climbing from v1's Access gate to real multi-user auth with per-estate visibility, the loader swapped to the API with components untouched, verb dispatches recorded as rows so the steering layer becomes addressable by construction, the chat-as-Steward with F7 armed, and Durable Objects only when something real demands them. V1 refuses every stub the seam law forbids (the Access gate passes because it is zero code and right for v1 alone); v2 waits on a decided and used v1, which is F6's reading. First actionable step: next session, dispatch the two owed decides — the exposure decision unblocks the gate the same day.
+The two-version roadmap charted at T's instruction from the two-horizon Horizon: v1 finishes the site for one operator on local data — the estate stays files-on-disk as source of truth, the site its published derivation — ordered by fuse length with the Cloudflare Access gate first because the estate is public today and the gate waits only on the owed decide, then the record-keeping catch-up (two Chancellor decisions, the 0004↔0001 relate, a first challenge), full-content reading in the panel and llms-full.txt, one-command regenerate-build-deploy so the estate self-publishes, a bounded polish pass, and the sealed Seed's Phase 5 watch folded in rather than abandoned; v2 is the platform charted from 0010's far horizon — a Hono Worker API beside the same static assets, a D1 schema mirroring the existing types with insert-only tables so immutability is compiled rather than obeyed, the generator repurposed as importer and derive.ts moved server-side untouched, the auth ladder climbing from v1's Access gate to real multi-user auth with per-estate visibility, the loader swapped to the API with components untouched, verb dispatches recorded as rows so the steering layer becomes addressable by construction, the chat-as-Steward with F7 armed, and Durable Objects only when something real demands them. V1 refuses every stub the seam law forbids (the Access gate passes because it is zero code and right for v1 alone); v2 waits on a decided and used v1, which is F6's reading. First actionable step: next session, dispatch the two owed decides — the exposure decision unblocks the gate the same day. Steps carry human-attention tags per T's standing convention of 2026-08-28: every leg is evaluated for whether an agent can perform the work itself, and **[HUMAN ATTENTION]** marks the six of twelve (v1.1, v1.2, v1.6; v2.2, v2.5, v2.6) where it cannot — account consent, purchases, the content of T's own judgment, and lived use — while the silent remainder asserts the work is AI-performable. Needing T's approval is not needing T's hands; the tag marks only the latter.
 
 ### seed · Seed · "Seed: The estate viewer"
 seed · The Sower · 2026-08-28 · inputs: [0003, 0004, 0005, 0006, 0007, 0008, 0009] · horizon: falsifiable · trajectory: actionable · challenged: false
@@ -117,12 +117,17 @@ T asked for the route stated whole: v1 as the full site for one operator over lo
 
 The chart's shape: v1 is six legs ordered by fuse length — the Access gate first (zero code, waits only on the owed exposure decide, and deliberately the v2 login's first rung), the record-keeping catch-up, full- content reading with …
 
+### state/0009 · 2026-08-28 · session-verb: chart · recorded: 0014
+T reviewed the roadmap and added a standing convention for all roadmaps — the human-attention tag — which was dispatched to The Chancellor and sealed on idea-0001 (0005-human-attention-tag.md, and see idea-0001/state/0011). This record's roadmap was the first artifact bound by it.
+
+The Surveyor amended 0014-v1-v2-roadmap.md in place, before merge. The artifact was written earlier in the same session, is committed to an unmerged branch, and had not landed on main or been published; the amendment is review-response, not the rewriting of a sealed artifact. The artifact says so in its own body …
+
 
 ========================================================================
 # idea-0001: The Estate
 ========================================================================
 
-status: active · appetite: 3 · created: 2026-08-25 · state-head: state/0010.md
+status: active · appetite: 3 · created: 2026-08-25 · state-head: state/0011.md
 
 ## Artifacts — the agents' track
 
@@ -141,6 +146,10 @@ The ground is that the estate's provenance machinery — typing, lineage, classi
 ### 0004 · Spark · "Second day — residue"
 capture · The Gardener · 2026-08-28 · inputs: [] · challenged: false
 Eight residue items from the estate's second working day: fast-track improvised without a home in law, a two-verb dispatch with one snapshot, the unguarded door guarded by habit, operator confusion entering the record as falsifier data, a fixture going stale inside a single session, Steward-authored documentation outside the writer seam, a sealed Seed held against an exciting pivot, and a reversed assumption leaving the sealed export stale.
+
+### 0005 · Decision · "The human-attention tag"
+decide · The Chancellor · 2026-08-28 · inputs: [] · challenged: false
+T decided, and this Decision seals, that every step in every roadmap artifact — Trajectory legs and Phase steps alike — is evaluated for whether a human must perform it, that steps an AI agent definitely cannot perform carry the inline marker **[HUMAN ATTENTION]**, and that absence of the marker is itself an assertion that the work is AI-performable. The load-bearing distinction, and the reason the tag carries information at all, is that needing T's approval is not the same as needing T's hands: this estate already requires T's approval for everything, so a tag keyed to approval would mark every step and discriminate nothing — the tag marks work an agent cannot do no matter how freely approval is granted, which is purchases and payments, identity and credentials and consent, physical acts and acts in T's own relationships, taste and appetite T has reserved, choices whose content is T's judgment, and anything requiring a human to be answerable. Rejected: tagging by 'needs approval' (marks everything), a frontmatter classifier (the unit classified is the step, and a classifier cannot address a step), a graded scale (invites argument where the useful question is binary), and marking the AI-doable inverse (the estate marks the exception, and the exception is the smaller set). Grey band rule: tag the step if any part of it is human-only and say in the step what the agent does up to that line — a tag is a boundary marker, not an abdication. Binds chart and phase outputs from 2026-08-28 forward, does not rewrite sealed roadmaps, does bind the unmerged idea-0004 roadmap; reopens if agent capability swallows a tagged category, if the tag stops discriminating by appearing nearly everywhere or nowhere, or if a tagged step is ever completed without T's hands. It governs the form of roadmaps and not their content, and it does not touch idea-0004's two still-owed decisions, which remain open.
 
 ## States — the Steward's track (immutable, copied forward)
 
@@ -192,6 +201,11 @@ The ground
 The second day's residue is filed. Eight items from 2026-08-28: the arc that challenged and framed day one's residue, wrote the glossary, ran idea-0004 Spark → Seed in a day, took the estate's first hand-set appetite, survived a platform pivot without record damage, and reversed a stated assumption (docs/estate-view/ → ui/) exactly as the assumption mechanism intended — while exposing that sealed exports go stale against their own record's motion, and nothing marks them so.
 
 The Gardener's read, worth carrying
+
+### state/0011 · 2026-08-28 · session-verb: decide · recorded: 0005 · wrote outside the record: .claude/skills/chart/SKILL.md, .claude/skills/phase/SKILL.md, docs/adr/0020-human-attention-tag.md, docs/adr/README.md
+The Chancellor's office was called for the first time in this estate's history. Every snapshot on every record until now has recorded that it never had; idea-0003 exported a Seed carrying four open decisions past a silent Chancellor. T stated a standing convention for all roadmaps, and because that is a decision rather than a preference, the verb was dispatched rather than absorbed into a Steward structural session.
+
+The Decision (0005-human-attention-tag.md): every step in every roadmap — Trajectory legs and Phase steps alike — is evaluated for whether a human must perform it. Steps an agent …
 
 
 ========================================================================
