@@ -41,7 +41,7 @@ one child and frees the rest.
 Do not tag on "needs T's approval" — everything here does, so that criterion
 would mark every step and discriminate nothing. Tag on hands, not sign-off.
 
-T's standing decision, 2026-08-28 — sealed as `idea-0001/artifacts/0005-human-attention-tag.md`.
+T's standing decision, 2026-08-28 — sealed as `idea-0001/artifacts/0008-human-attention-tag.md`.
 
 ## Agent binding (hard)
 

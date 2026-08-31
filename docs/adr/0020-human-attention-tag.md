@@ -14,7 +14,7 @@ verified: { by: human:T, at: 2026-08-28T00:00:00Z }
 ## Context
 
 The Surveyor charted idea-0004's two-version roadmap
-(`0014-v1-v2-roadmap.md`) and T, reviewing it, added a standing requirement
+(`0015-v1-v2-roadmap.md`) and T, reviewing it, added a standing requirement
 for **all** roadmaps from that point forward: each step is marked when it
 "no matter what" needs human attention — tagged if an AI is *definitely
 unable* to do it, untagged if an AI can.
@@ -80,11 +80,11 @@ decompose a tagged step rather than accept it whole.
   Seed carrying four open decisions. T's instruction was a decision, so the
   verb was dispatched rather than absorbed into a structural session, and the
   ratified Decision is
-  [`idea-0001/artifacts/0005-human-attention-tag.md`](../../ideas/0001-the-estate/artifacts/0005-human-attention-tag.md).
+  [`idea-0001/artifacts/0008-human-attention-tag.md`](../../ideas/0001-the-estate/artifacts/0008-human-attention-tag.md).
   Unlike ADRs 0015–0019, this structural session was not verb-free.
 - The Decision sits on **idea-0001**, the record whose subject is the estate
   itself — the correct home for a convention that governs every record.
-- `0014-v1-v2-roadmap.md` was amended before merge to comply, and says so
+- `0015-v1-v2-roadmap.md` was amended before merge to comply, and says so
   in-body rather than leaving a reader to infer it from a diff. Roadmaps
   already sealed are not rewritten.
 - The tag is a claim about agent capability, and capability moves. If a tagged

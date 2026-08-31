@@ -1,5 +1,5 @@
 ---
-id: idea-0001/artifacts/0005-human-attention-tag.md
+id: idea-0001/artifacts/0008-human-attention-tag.md
 type: Decision
 shape: prose
 lenses: []
@@ -75,7 +75,7 @@ same motion. That is state 0010's open question — whether shadow-law is a
 defect or simply how law is grown — receiving one data point in favor of the
 second reading. It does not settle it.
 
-`ideas/0004-estate-ui/artifacts/0014-v1-v2-roadmap.md` is the **occasion** of
+`ideas/0004-estate-ui/artifacts/0015-v1-v2-roadmap.md` is the **occasion** of
 this Decision, not its source: the roadmap whose leg structure exposed the
 missing distinction and the first artifact that must comply. I deliberately do
 not cite it in `inputs:`. Doing so would draw a lineage edge from idea-0004
@@ -183,7 +183,7 @@ It does not rewrite roadmaps already sealed — artifacts are immutable and are
 superseded, never edited (`system/TYPES.md`), and a rule dated today does not
 reach backward through the record to indict work done before it existed. It
 **does** bind the unmerged roadmap that occasioned it,
-`ideas/0004-estate-ui/artifacts/0014-v1-v2-roadmap.md`, which is being revised
+`ideas/0004-estate-ui/artifacts/0015-v1-v2-roadmap.md`, which is being revised
 to comply in this same session. A rule whose first candidate artifact is
 exempted is a rule nobody has yet tried to follow.
 
