@@ -21,22 +21,23 @@ Produce one `type: Trajectory` artifact, `potential-next-steps` usually
 
 ## The human-attention tag (required)
 
-Every leg you chart is evaluated for whether a human must perform it. A step an
-agent **definitely cannot perform** carries `**[HUMAN ATTENTION]**`. A step an
-agent can perform carries nothing — and that absence is a claim, not a default:
-it asserts the work is agent-performable.
+Ask of every leg you chart: **can an agent do this?** If yes, no tag. If it is a
+"no matter what, AI can't do this," it carries `**[HUMAN ATTENTION]**`.
 
-**Needing T's approval is not needing T's hands.** Everything here needs T's
-approval; if that earned the tag, every step would carry it and it would carry
-no information. The tag marks work an agent cannot do however much approval is
-granted: choices whose *content* is T's judgment, purchases and billing,
-identity/credentials/consent, physical-world acts, acts inside T's own
-relationships, taste calls T has reserved, anything a human must be answerable
-for.
+An untagged step is not a default — it is a claim that the work is
+agent-performable.
+
+Work an agent cannot do: choices whose *content* is T's judgment; purchases,
+payments, billing; identity, credentials, consent, account ownership;
+physical-world acts; acts inside T's own relationships; taste calls T has
+reserved; anything a human must be personally or legally answerable for.
 
 **Grey band:** where an agent can prepare, draft, or drive right up to the line
 of consent, tag the step *and say what the agent does up to that line*. A tag
 is a boundary marker, not an abdication.
+
+Do not tag on "needs T's approval" — everything here does, so that criterion
+would mark every step and discriminate nothing. Tag on hands, not sign-off.
 
 T's standing decision, 2026-08-28 — sealed as `idea-0001/artifacts/0005-human-attention-tag.md`.
 

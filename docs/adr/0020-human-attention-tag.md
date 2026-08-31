@@ -29,27 +29,28 @@ against them.
 
 ## Decisions
 
-**1. Roadmap steps carry `**[HUMAN ATTENTION]**` when no agent can perform
-them.** This binds the outputs of `chart` (Trajectory legs) and `phase`
-(Phase steps), from 2026-08-28 forward. Steps an agent can perform carry
-nothing.
+**1. The rule, as T stated it: can an agent do this step?** If yes, no tag.
+If it is a "no matter what, AI can't do this," it carries
+`**[HUMAN ATTENTION]**`. This binds the outputs of `chart` (Trajectory legs)
+and `phase` (Phase steps), from 2026-08-28 forward.
+
+Work an agent cannot do: choices whose *content* is T's judgment; purchases,
+payments, billing, plan upgrades; identity, credentials, consent, account
+ownership; physical-world acts; acts inside T's own relationships; taste calls
+T has reserved (`appetite` is hand-set heat, "T's, never the Steward's to
+assume"); anything a human must be personally or legally answerable for.
 
 **2. Absence of the tag is an assertion, not a default.** An untagged step
 claims the work is agent-performable. That is what makes the tag worth
 reading in either direction, and what makes it falsifiable: a tagged step an
 agent later completes without T's hands refutes that tag directly.
 
-**3. Approval is explicitly rejected as the criterion.** This is the
-load-bearing part. `AGENTS.md` already reserves all authority to T — nothing
-is implemented, created, committed, or changed without T's approval. Had
-"requires T's approval" earned the tag, every step in every roadmap would
-carry it and the tag would carry no information at all. The tag marks work an
-agent cannot do **however much approval is granted**: choices whose *content*
-is T's judgment; purchases, payments, billing, plan upgrades; identity,
-credentials, consent, account ownership; physical-world acts; acts inside T's
-own relationships; taste calls T has reserved (`appetite` is hand-set heat,
-"T's, never the Steward's to assume"); anything a human must be personally or
-legally answerable for.
+**3. Rejected alternatives.** Tagging on *"needs T's approval"* — everything
+here needs T's approval, so it would mark every step and discriminate nothing;
+the criterion is hands, not sign-off. A graded or numeric scale — invites
+argument at every step, where the useful question is binary. Marking the
+inverse (tagging AI-doable steps) — the estate marks the exception, and the
+exception is the smaller set.
 
 **4. Partly-human steps are tagged, with the agent's reach stated.** Where an
 agent can prepare, draft, stage, or drive right up to the line of consent, the
@@ -59,8 +60,7 @@ whole step to T when nine-tenths of it is dispatchable.
 
 **5. An inline step marker, not a frontmatter classifier.** The unit being
 classified is the step; a classifier addresses the artifact and cannot reach
-inside it. A graded or numeric scale was also rejected: it invites argument at
-every step, where the useful question is binary.
+inside it.
 
 **6. The convention lives in the skills, not only in the record.** Both
 `.claude/skills/chart/SKILL.md` and `.claude/skills/phase/SKILL.md` carry it,
@@ -91,5 +91,15 @@ decompose a tagged step rather than accept it whole.
   category becomes performable, or if the tag starts landing on nearly every
   step or nearly none, the rule has stopped discriminating and this ADR should
   be revisited.
+- **T corrected the framing before merge, and the correction is instructive.**
+  The first draft of this ADR and of the sealed Decision led with the
+  approval rejection, calling it the load-bearing part. T read that and
+  pushed back — not on the rule, which was already exactly right, but on an
+  emphasis that made a *rejected alternative* look like part of the
+  criterion. The guard had grown larger than the thing it guarded. Both were
+  amended to lead with the plain question and demote approval to a rejected
+  alternative. Worth keeping: a decision whose framing obscures its own rule
+  is a defect the Chancellor's office should watch for, and it was caught by
+  the operator rather than by the office.
 - Nothing in the harness enforces this, as with every binding here. It is law
   obeyed, not law compiled.

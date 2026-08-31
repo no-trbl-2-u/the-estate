@@ -9,7 +9,7 @@ date: 2026-08-28
 classifiers:
   challenged: false
 potential-next-steps: [challenge, phase]
-summary: "T decided, and this Decision seals, that every step in every roadmap artifact — Trajectory legs and Phase steps alike — is evaluated for whether a human must perform it, that steps an AI agent definitely cannot perform carry the inline marker **[HUMAN ATTENTION]**, and that absence of the marker is itself an assertion that the work is AI-performable. The load-bearing distinction, and the reason the tag carries information at all, is that needing T's approval is not the same as needing T's hands: this estate already requires T's approval for everything, so a tag keyed to approval would mark every step and discriminate nothing — the tag marks work an agent cannot do no matter how freely approval is granted, which is purchases and payments, identity and credentials and consent, physical acts and acts in T's own relationships, taste and appetite T has reserved, choices whose content is T's judgment, and anything requiring a human to be answerable. Rejected: tagging by 'needs approval' (marks everything), a frontmatter classifier (the unit classified is the step, and a classifier cannot address a step), a graded scale (invites argument where the useful question is binary), and marking the AI-doable inverse (the estate marks the exception, and the exception is the smaller set). Grey band rule: tag the step if any part of it is human-only and say in the step what the agent does up to that line — a tag is a boundary marker, not an abdication. Binds chart and phase outputs from 2026-08-28 forward, does not rewrite sealed roadmaps, does bind the unmerged idea-0004 roadmap; reopens if agent capability swallows a tagged category, if the tag stops discriminating by appearing nearly everywhere or nowhere, or if a tagged step is ever completed without T's hands. It governs the form of roadmaps and not their content, and it does not touch idea-0004's two still-owed decisions, which remain open."
+summary: "T decided, and this Decision seals, that every step in every roadmap artifact — Trajectory legs and Phase steps alike — is evaluated by one question: can an AI agent perform this step? If it can, the step carries nothing. If it is work an agent cannot do no matter what, the step carries the inline marker **[HUMAN ATTENTION]**, and absence of the marker is itself an assertion that the work is AI-performable. The work that qualifies is purchases and payments, identity and credentials and consent, physical acts and acts in T's own relationships, taste and appetite T has reserved, choices whose content is T's judgment, and anything requiring a human to be answerable. Rejected: tagging by 'needs approval' — this estate approves everything by law, so such a tag would mark every step and discriminate nothing; it is kept only as a guard against drift and is no part of the criterion — plus a frontmatter classifier (the unit classified is the step, and a classifier cannot address a step), a graded scale (invites argument where the useful question is binary), and marking the AI-doable inverse (the estate marks the exception, and the exception is the smaller set). Grey band rule: tag the step if any part of it is human-only and say in the step what the agent does up to that line — a tag is a boundary marker, not an abdication. Binds chart and phase outputs from 2026-08-28 forward, does not rewrite sealed roadmaps, does bind the unmerged idea-0004 roadmap; reopens if agent capability swallows a tagged category, if the tag stops discriminating by appearing nearly everywhere or nowhere, or if a tagged step is ever completed without T's hands. It governs the form of roadmaps and not their content, and it does not touch idea-0004's two still-owed decisions, which remain open. Amended in review on 2026-08-31 at T's instruction to lead with the plain capability question and demote the approval contrast to a rejected alternative; the rule itself is unchanged."
 ---
 
 # The human-attention tag
@@ -27,6 +27,27 @@ future Surveyor applies it identically, recording what it displaces and why,
 and naming the observations that should bring T back to it. Where I write
 "rejected," I am recording the alternatives that were available and why the
 chosen form beats them — not staging a debate that was already had.
+
+## Amended before merge
+
+T read the sealed Decision and pushed back — not on the rule, but on how I had
+framed it. My first draft led with the contrast between needing T's *approval*
+and needing T's *hands*, and led with it so heavily that a careful reader could
+take approval to be part of the criterion. It is not, and never was: it is a
+rejected alternative and a guard against one specific drift. On T's instruction
+I have promoted the plain question to the front — **can an agent do this step?**
+— and demoted the approval contrast to a single line among the rejections.
+
+**The rule itself did not change.** What changed is which sentence a reader
+meets first. I amend in place rather than supersede because this artifact is
+still unmerged and under T's review; nothing downstream has read it, so there is
+no sealed version for a successor to correct.
+
+I record one observation from the correction, because it is my office's to
+watch for. A Decision whose framing obscures its own rule has failed at the job
+a Decision exists to do — the defence of a rule can be argued so loudly that it
+is mistaken for the rule. Precision is not only in the statement; it is in what
+is placed nearest the front.
 
 ## A note on this Decision's inputs
 
@@ -66,10 +87,18 @@ not get to draw it sideways through an `inputs:` field.
 
 ## What was decided
 
-**Every step in every roadmap artifact is evaluated for whether a human must
-perform it.** This applies to `chart` output and `phase` output alike — a
-Trajectory's legs and a Phase's steps are both "steps" for this purpose, and
-the rule does not care which verb produced them.
+**The question is whether an AI agent can perform the step.**
+
+> Can an agent do this? If yes, no tag. If this is a step where, no matter
+> what, an AI cannot do it — it gets the tag.
+
+That is the whole criterion, and it is stated first because everything below is
+either its mechanics or its defence, and neither is the rule.
+
+**Every step in every roadmap artifact is evaluated against that question.**
+This applies to `chart` output and `phase` output alike — a Trajectory's legs
+and a Phase's steps are both "steps" for this purpose, and the rule does not
+care which verb produced them.
 
 **Steps that an AI agent definitely cannot perform carry the marker
 `**[HUMAN ATTENTION]**`.** The marker is inline, on the step itself: in the
@@ -84,37 +113,25 @@ and the property most easily lost — a roadmap where the tag is applied
 sometimes, by mood, communicates less than one with no tag at all, because it
 teaches its reader that absence means nothing.
 
-### The distinction the whole rule rests on
+### The test, stated as a procedure
 
-**Needing T's approval is not the same as needing T's hands.**
+Procedures survive translation better than principles do, so:
 
-This estate already requires T's approval for everything. Nothing is
-implemented, created, committed, or changed without explicit approval from T
-(`AGENTS.md`, *Authority*); agents propose and T decides. If "requires T's
-approval" earned the tag, **every step in every roadmap would carry it**, and a
-mark that appears on everything distinguishes nothing. It would be decoration
-that costs a line per step.
+> Take the step as written. Can an agent, with the tools it has, carry it to
+> done? If yes, the step carries nothing. If no — if some part of the work must
+> pass through T's hands, T's identity, T's judgment, or T's body — the step
+> carries the tag.
 
-The tag marks something else entirely: steps where **the work itself cannot be
-done by an agent**, no matter how freely approval is granted. Approval is a
-gate the agent passes through; this is a wall the agent cannot pass at all.
-
-The test a Surveyor applies, and I want it stated as a procedure because
-procedures survive translation better than principles do:
-
-> Grant, for the sake of the test, that T has already approved this step and
-> will approve every part of it. Now: can an agent, with the tools it has,
-> carry the step to done? If yes, the step carries nothing. If no — if some
-> part of the work must pass through T's hands, T's identity, T's judgment, or
-> T's body — the step carries the tag.
+The test asks about the *work*, not about permission. It is a wall the agent
+cannot pass, not a gate the agent waits at.
 
 ### What qualifies
 
 The principle first: **a step is tagged when completing it requires a human's
 own act, identity, judgment, or answerability** — something an agent cannot
-supply on T's behalf even with full permission. The following are the
-recurring instances, illustrative and not exhaustive; a Surveyor meeting a case
-not on this list applies the principle, not the list.
+supply on T's behalf. The following are the recurring instances, illustrative
+and not exhaustive; a Surveyor meeting a case not on this list applies the
+principle, not the list.
 
 - **Choices reserved to T's authority**, where the *content* of the choice is
   T's judgment and no agent can supply it: which option, what appetite, what
@@ -174,12 +191,11 @@ exempted is a rule nobody has yet tried to follow.
 
 ## What was rejected
 
-**Tagging by "needs approval."** Rejected because it marks everything. In an
-estate where T approves every action by law, a marker keyed to approval is
-carried by every step of every roadmap and therefore separates no step from
-any other. It would also do active harm: a reader who learns that the tag means
-"T must approve" learns nothing new, and then discounts the tag when it appears
-on the step that genuinely needs T's hands.
+**Tagging by "needs approval."** Rejected because it marks everything — T
+approves every action in this estate by law, so a tag keyed to approval would
+ride on every step of every roadmap and separate no step from any other. It
+stays on the record only as a drift guard, named again in reopening condition
+2; it is no part of the criterion.
 
 **A frontmatter classifier instead of an inline step marker.** Rejected on
 arity. `system/TYPES.md`'s classifiers — `horizon`, `challenged`, `trajectory`
@@ -232,12 +248,11 @@ also falsifiable, which is why the reopening conditions below are stated in
 terms of untagged steps that turn out to need hands.
 
 **3. It draws a boundary the estate has always had but never written down.**
-The estate is built on agents doing work under T's authority. The line between
-*work an agent does and T approves* and *work only T can do* has governed every
-session in this repository and has never appeared in any artifact. Writing it
-into the roadmap format puts it where it is needed — at the moment of planning,
-per step — rather than discovering it at the moment of execution, when the
-agent is already halfway through and stops.
+The line between work an agent can carry to done and work only T can perform
+has governed every session in this repository and has never appeared in any
+artifact. Writing it into the roadmap format puts it where it is needed — at
+the moment of planning, per step — rather than discovering it at the moment of
+execution, when the agent is already halfway through and stops.
 
 **4. Binary, inline, and marking the exception are each the cheap choice, and
 cheapness is a real argument here.** `VISION.md`'s governing falsifier says T's
@@ -305,9 +320,9 @@ none of those fields carries the performer. Two kinds of blocked work —
 "waiting for an agent to be dispatched" and "waiting for T's own hands" — were
 rendered identically as "waits on." They are now distinguishable at a glance.
 
-**"Approval" was doing two jobs at once.** The estate's blanket approval
-requirement had absorbed and hidden the narrower category of work that is
-T's to perform. Separating them lets both stay strict: approval remains
+**The narrower category had nowhere to live.** The estate's blanket approval
+requirement had absorbed and hidden the smaller set of work that is T's own to
+perform. Naming that set directly lets both stay strict: approval remains
 universal, and the tag stays rare enough to mean something.
 
 **Sequencing was quietly wrong.** A roadmap ordered by fuse length — which is

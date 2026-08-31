@@ -1,6 +1,6 @@
 # Estate View — the full estate as text
 
-Generated 2026-08-31 18:05. 4 records, 40 artifacts (incl. seeds), 36 state snapshots.
+Generated 2026-08-31 18:39. 4 records, 40 artifacts (incl. seeds), 37 state snapshots.
 
 
 ========================================================================
@@ -127,7 +127,7 @@ The Surveyor amended 0014-v1-v2-roadmap.md in place, before merge. The artifact 
 # idea-0001: The Estate
 ========================================================================
 
-status: active · appetite: 3 · created: 2026-08-25 · state-head: state/0011.md
+status: active · appetite: 3 · created: 2026-08-25 · state-head: state/0012.md
 
 ## Artifacts — the agents' track
 
@@ -149,7 +149,7 @@ Eight residue items from the estate's second working day: fast-track improvised 
 
 ### 0005 · Decision · "The human-attention tag"
 decide · The Chancellor · 2026-08-28 · inputs: [] · challenged: false
-T decided, and this Decision seals, that every step in every roadmap artifact — Trajectory legs and Phase steps alike — is evaluated for whether a human must perform it, that steps an AI agent definitely cannot perform carry the inline marker **[HUMAN ATTENTION]**, and that absence of the marker is itself an assertion that the work is AI-performable. The load-bearing distinction, and the reason the tag carries information at all, is that needing T's approval is not the same as needing T's hands: this estate already requires T's approval for everything, so a tag keyed to approval would mark every step and discriminate nothing — the tag marks work an agent cannot do no matter how freely approval is granted, which is purchases and payments, identity and credentials and consent, physical acts and acts in T's own relationships, taste and appetite T has reserved, choices whose content is T's judgment, and anything requiring a human to be answerable. Rejected: tagging by 'needs approval' (marks everything), a frontmatter classifier (the unit classified is the step, and a classifier cannot address a step), a graded scale (invites argument where the useful question is binary), and marking the AI-doable inverse (the estate marks the exception, and the exception is the smaller set). Grey band rule: tag the step if any part of it is human-only and say in the step what the agent does up to that line — a tag is a boundary marker, not an abdication. Binds chart and phase outputs from 2026-08-28 forward, does not rewrite sealed roadmaps, does bind the unmerged idea-0004 roadmap; reopens if agent capability swallows a tagged category, if the tag stops discriminating by appearing nearly everywhere or nowhere, or if a tagged step is ever completed without T's hands. It governs the form of roadmaps and not their content, and it does not touch idea-0004's two still-owed decisions, which remain open.
+T decided, and this Decision seals, that every step in every roadmap artifact — Trajectory legs and Phase steps alike — is evaluated by one question: can an AI agent perform this step? If it can, the step carries nothing. If it is work an agent cannot do no matter what, the step carries the inline marker **[HUMAN ATTENTION]**, and absence of the marker is itself an assertion that the work is AI-performable. The work that qualifies is purchases and payments, identity and credentials and consent, physical acts and acts in T's own relationships, taste and appetite T has reserved, choices whose content is T's judgment, and anything requiring a human to be answerable. Rejected: tagging by 'needs approval' — this estate approves everything by law, so such a tag would mark every step and discriminate nothing; it is kept only as a guard against drift and is no part of the criterion — plus a frontmatter classifier (the unit classified is the step, and a classifier cannot address a step), a graded scale (invites argument where the useful question is binary), and marking the AI-doable inverse (the estate marks the exception, and the exception is the smaller set). Grey band rule: tag the step if any part of it is human-only and say in the step what the agent does up to that line — a tag is a boundary marker, not an abdication. Binds chart and phase outputs from 2026-08-28 forward, does not rewrite sealed roadmaps, does bind the unmerged idea-0004 roadmap; reopens if agent capability swallows a tagged category, if the tag stops discriminating by appearing nearly everywhere or nowhere, or if a tagged step is ever completed without T's hands. It governs the form of roadmaps and not their content, and it does not touch idea-0004's two still-owed decisions, which remain open. Amended in review on 2026-08-31 at T's instruction to lead with the plain capability question and demote the approval contrast to a rejected alternative; the rule itself is unchanged.
 
 ## States — the Steward's track (immutable, copied forward)
 
@@ -206,6 +206,11 @@ The Gardener's read, worth carrying
 The Chancellor's office was called for the first time in this estate's history. Every snapshot on every record until now has recorded that it never had; idea-0003 exported a Seed carrying four open decisions past a silent Chancellor. T stated a standing convention for all roadmaps, and because that is a decision rather than a preference, the verb was dispatched rather than absorbed into a Steward structural session.
 
 The Decision (0005-human-attention-tag.md): every step in every roadmap — Trajectory legs and Phase steps alike — is evaluated for whether a human must perform it. Steps an agent …
+
+### state/0012 · 2026-08-28 · session-verb: decide · recorded: 0005 · wrote outside the record: .claude/skills/chart/SKILL.md, .claude/skills/phase/SKILL.md, docs/adr/0020-human-attention-tag.md
+T reviewed the estate's first Decision and corrected its emphasis, not its rule. The Chancellor amended 0005-human-attention-tag.md in place before merge; the skills and ADR 0020 were re-cut to match.
+
+What changed: the criterion now leads alone, in T's own words — can an agent do this step? If yes, no tag; if it is a "no matter what, AI can't do this," it gets the tag. What did not change: the rule itself, the qualifying categories, the grey-band rule, the reopening conditions, and every tag already applied to idea-0004's roadmap.
 
 
 ========================================================================
