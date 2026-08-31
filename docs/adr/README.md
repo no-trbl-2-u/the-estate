@@ -34,3 +34,4 @@ conducted per Requirement A of `BUILD-PROMPT.md`.
 | [0017](0017-okf-documentation.md) | *(decision 3 amended by 0019)* Documentation adopts OKF (Google Cloud Open Knowledge Format); the reference bundle; ADR 0008's open question answered |
 | [0018](0018-findings-speak-okf.md) | Findings artifacts speak OKF; promotion to reference/, never relocation |
 | [0019](0019-claude-md-imports-agents-md.md) | `CLAUDE.md` imports `AGENTS.md`; the orientation is neither duplicated nor renamed |
+| [0020](0020-human-attention-tag.md) | Roadmap steps carry a human-attention tag for work no agent can perform; approval is not the criterion |
