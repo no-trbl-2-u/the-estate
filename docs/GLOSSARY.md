@@ -24,10 +24,10 @@ is a feature request, not a synonym.
 | **Idea Record** | One idea and everything that has happened to it: `ideas/NNNN-slug/` holding `idea.md`, `artifacts/`, `state/`, and optionally `assets/`. The unit the portfolio counts. | `templates/idea.md` |
 | **Artifact** | One typed document produced by one verb invocation, immutable once written. Lives in a record's `artifacts/`, numbered sequentially. | `system/TYPES.md` |
 | **Type** | What an artifact *is* — `Spark`, `Framing`, `Horizon`, `Trajectory`, `Phase`, `Findings`, `Appraisal`, `Decision`, `Brief`, `Seed`. Set by the verb that produced it, used by composition. | `system/TYPES.md` |
-| **Verb** | An action performed on an idea — `capture`, `frame`, `challenge`, `seed`, … Implemented as a **skill** in `.claude/skills/`, each bound in frontmatter to exactly one agent. Verbs are verbs, never personas. | `system/LAW.md`, `system/registry.md` |
-| **Agent** | A specific person with a name, an office, and a voice — "The ⟨Something⟩". Performs the verbs bound to it and no others. Agents write artifacts. | `system/LAW.md`, `system/registry.md` |
-| **The Steward** | The main session's standing identity: front door, router, dispatcher, and the **only writer of state**. Performs no bound verb itself. | `AGENTS.md`, `system/STEWARD.md` |
-| **State snapshot** | The Steward's record of a session on an Idea Record: what was established, decided, left open. Immutable — copied forward, never edited. `state/NNNN.md`, with `idea.md`'s `state-head:` pointing at the tip. | `system/LAW.md` (writer seam), `templates/state.md` |
+| **Verb** | An action performed on an idea — `capture`, `frame`, `challenge`, `seed`, … Implemented as a **skill** in `.claude/skills/`, each declaring its voice and its run mode in frontmatter — the single home of a verb's facts (ADR 0028). Verbs are verbs, never personas. | `system/LAW.md`, `system/registry.md` |
+| **Voice** | The household made prompt: "You are The ⟨Something⟩…" opening each verb's skill — a name, an office, a manner of working. Several verbs may share a voice. Replaced the spawned agent layer (ADR 0027). | `system/LAW.md` |
+| **The Steward** | The main session's standing identity: front door, writer of state, and the performing voice of every inline verb. Dispatches only the fresh-eyes and quarantine exceptions. | `AGENTS.md`, `system/STEWARD.md` |
+| **State snapshot** | The Steward's record of a session on an Idea Record: the session's **delta** plus the live tensions/questions and current-state declaration (ADR 0028). Immutable — never edited, never a full copy of the prior one. `state/NNNN.md`, with `idea.md`'s `state-head:` pointing at the tip. | `system/LAW.md`, `templates/state.md` |
 | **Lineage** | The history graph of a record, **derived** from artifacts' `inputs:`/`outputs:` chains — never hand-drawn. The graph is a view, not a database. | `system/TYPES.md` |
 | **Version chain** | A refiner (`challenge`, `distill`, `explore`) never edits — it writes a new artifact naming its predecessor in `inputs:`. The **tip** of that chain is the current version; handoffs always mean the tip. | `system/TYPES.md` |
 | **`relates`** | The one hand-authored edge: "this idea reminds me of that idea." Drawn only by `relate` (The Cartographer), recorded in `idea.md`. Everything else about the graph is derived. | `system/TYPES.md` |
@@ -63,11 +63,12 @@ This file describes; it never governs. New terms enter the canon through
 | Term | What it is | Governed by |
 |---|---|---|
 | **Operator** | T. Final authority over everything in the estate; agents propose, the operator decides. | `AGENTS.md` |
-| **Dispatch** | The Steward handing a verb to its bound agent with a handoff packet. | `system/LAW.md`, `system/STEWARD.md` |
-| **Mode** | Whether a verb runs `batch` (dispatch, run to completion, return) or `audience` (dispatch, then the Steward introduces the operator and steps out). Says how a verb is run, never who runs it. | `system/LAW.md`, `system/registry.md` |
-| **Audience** | A verb run as direct conversation between the operator and the bound agent. The four are `frame`, `challenge`, `decide`, `explore`. The binding and the writer seam both hold throughout. | `system/LAW.md` |
-| **Handback packet** | What an agent returns to the Steward when an audience ends: `artifact-path`, classifier verdicts, gold nuggets, open questions, tensions — and nothing else. The transcript is never duplicated into the record. | `system/LAW.md` |
-| **Writer seam** | The one-writer rule: agents write artifacts, the Steward writes state and record frontmatter. One file, one writer. | `system/LAW.md` |
+| **Dispatch** | The Steward spawning a `fresh-eyes` or `quarantine` verb in its own context, with a handoff packet. A boundary — waits for T's word. Inline verbs are performed, not dispatched (ADR 0027). | `system/LAW.md`, `system/STEWARD.md` |
+| **Run** | How a verb executes, declared in its skill's `run:` frontmatter: `inline` (the session performs it in the verb's voice), `fresh-eyes` (dispatched — the session's context is a liability), `quarantine` (dispatched — the inputs stay out of the window). Replaced **Mode** (batch/audience, ADR 0021 → ADR 0027). | `system/LAW.md` |
+| **Fresh eyes** | The dispatch reason for `challenge` (always) and `review`/`compare` (when the session shaped what is appraised): self-review bias lives in context, and a clean context is the instrument. | `system/LAW.md` |
+| **Quarantine** | The dispatch reason for `research` (web bulk, untrusted content) and `survey` (the whole-portfolio read): the inputs must not enter the main window. | `system/LAW.md` |
+| **Handback packet** | What a dispatched verb returns: `artifact-path`, classifier verdicts, gold nuggets, open questions, tensions — and nothing else. The transcript is never duplicated into the record. | `system/LAW.md` |
+| **Writer's discipline** | Artifacts carry the work in the performing voice, verbatim where it matters; state carries the session as a delta; record frontmatter is written at the close. For dispatched verbs this is a literal two-writer seam. | `system/LAW.md` |
 | **Steering layer** | Everything that aims the verbs — handoff packets, route derivations, nugget selection. Produces no artifacts; named *unaddressable* by idea-0001's Framing. | `ideas/0001-the-estate/artifacts/0003-framing.md` |
 
 ### Machinery

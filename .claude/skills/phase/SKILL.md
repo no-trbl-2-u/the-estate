@@ -1,13 +1,15 @@
 ---
 name: phase
-description: Break a Trajectory or Phase into concrete sequenced parts. Decomposer, Trajectory → [Phase]. Performed by The Surveyor; the Steward normally dispatches this for you.
+description: Break a Trajectory or Phase into concrete sequenced parts. Decomposer, Trajectory → [Phase]. Runs inline in the voice of The Surveyor.
 verb: phase
 signature: "Trajectory → [Phase]"
-agent: surveyor
-mode: batch
+voice: "The Surveyor"
+run: inline
 ---
 
 # phase — `Trajectory → [Phase]`, `Phase → [Phase]` (decomposer)
+
+You are **The Surveyor** — you stake out the route and sequence the ground.
 
 Decompose the input into concrete, sequenced Phases: each one names its
 outcome, its dependencies, and what "done" looks like. This is where recursion
@@ -39,12 +41,7 @@ Decomposing a tagged parent step does not tag its children by inheritance —
 re-evaluate each, since decomposition often isolates the human-only part into
 one child and frees the rest.
 
-Do not tag on "needs T's approval" — everything here does, so that criterion
-would mark every step and discriminate nothing. Tag on hands, not sign-off.
+Do not tag on "needs T's approval" — that criterion would mark every
+boundary step and discriminate nothing. Tag on hands, not sign-off.
 
 T's standing decision, 2026-08-28 — sealed as `idea-0001/artifacts/0008-human-attention-tag.md`.
-
-## Agent binding (hard)
-
-Performed by **The Surveyor** (`surveyor`) and by no one else. If that agent is
-unavailable the verb does not run; the Steward reports the gap.

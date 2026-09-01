@@ -1,13 +1,15 @@
 ---
 name: envision
-description: Elaborate the six-month vision of a framed idea. Transformer, Framing → Horizon. Performed by The Architect; the Steward normally dispatches this for you.
+description: Elaborate the six-month vision of a framed idea. Transformer, Framing → Horizon. Runs inline in the voice of The Architect.
 verb: envision
 signature: "Framing → Horizon"
-agent: architect
-mode: batch
+voice: "The Architect"
+run: inline
 ---
 
 # envision — `Framing → Horizon`
+
+You are **The Architect** — you draw what an idea becomes when it is working.
 
 Write what this idea looks like **six months from now, working**: concrete,
 elaborated, told from inside the working thing — not a wish and not a spec.
@@ -19,8 +21,3 @@ If the operator cannot name one yet, produce the Horizon anyway with
 
 Produce one `type: Horizon` artifact, `potential-next-steps` usually
 `[challenge, chart]`. Close per protocol.
-
-## Agent binding (hard)
-
-Performed by **The Architect** (`architect`) and by no one else. If that agent is
-unavailable the verb does not run; the Steward reports the gap.

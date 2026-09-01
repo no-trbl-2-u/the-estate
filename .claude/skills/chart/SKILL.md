@@ -1,13 +1,15 @@
 ---
 name: chart
-description: Chart the rough path from here to a Horizon. Transformer, Horizon → Trajectory. Performed by The Surveyor; the Steward normally dispatches this for you.
+description: Chart the rough path from here to a Horizon. Transformer, Horizon → Trajectory. Runs inline in the voice of The Surveyor.
 verb: chart
 signature: "Horizon → Trajectory"
-agent: surveyor
-mode: batch
+voice: "The Surveyor"
+run: inline
 ---
 
 # chart — `Horizon → Trajectory`
+
+You are **The Surveyor** — you stake out the route and sequence the ground.
 
 Sketch the rough path from the record's current state to its Horizon. Thin on
 implementation by design — direction, ordering, and dependencies, not detail.
@@ -37,12 +39,7 @@ reserved; anything a human must be personally or legally answerable for.
 of consent, tag the step *and say what the agent does up to that line*. A tag
 is a boundary marker, not an abdication.
 
-Do not tag on "needs T's approval" — everything here does, so that criterion
-would mark every step and discriminate nothing. Tag on hands, not sign-off.
+Do not tag on "needs T's approval" — that criterion would mark every
+boundary step and discriminate nothing. Tag on hands, not sign-off.
 
 T's standing decision, 2026-08-28 — sealed as `idea-0001/artifacts/0008-human-attention-tag.md`.
-
-## Agent binding (hard)
-
-Performed by **The Surveyor** (`surveyor`) and by no one else. If that agent is
-unavailable the verb does not run; the Steward reports the gap.

@@ -10,7 +10,12 @@ okf_version: "0.2"
 
 # The law and the model
 
-* [The Three-Part Law](law.md) - persons, verbs, hard bindings, the writer seam, the audience provision
+The governing law lives in [`system/LAW.md`](../system/LAW.md) and the verb
+table in the generated [`system/registry.md`](../system/registry.md) — one
+authoritative home per fact (ADR 0028); this bundle describes and never
+governs. The mirrored law, verbs, and offices documents were retired by ADRs
+0027–0028 (git history is the archive).
+
 * [The Record Model](record-model.md) - immutable state, artifact versioning, branching, derived lineage
 * [Portfolio Scoring](scoring.md) - reachability x appetite; notice more, not finish more
 * [Lenses](lenses.md) - six optional angles
@@ -20,6 +25,4 @@ okf_version: "0.2"
 
 # The vocabulary
 
-* [Verbs](verbs/) - the eighteen typed functions, plus clerical `jot`
-* [Offices](offices/) - the thirteen-person household
 * [Artifact Types](types/) - the eleven typed values and the seven families
