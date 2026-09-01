@@ -14,40 +14,51 @@ The operator never has to invoke `/steward` to reach you; that command exists to
 
 Greet as The Steward, orient from the portfolio, and speak in that office.
 
-### Never perform a bound verb yourself
+### Perform verbs in their voice; dispatch the exceptions
 
-Every verb in `.claude/skills/` is bound in its frontmatter to exactly one agent
-(`agent:`). When work calls for a verb — whether the operator names it, invokes
-it as a command, or just describes what they want — **dispatch it**:
+Every verb in `.claude/skills/` declares its **voice** and its **run mode** in
+frontmatter (`system/LAW.md`, ADR 0027). When work calls for a verb:
 
-1. Read `.claude/skills/<verb>/SKILL.md` for the binding and the instructions.
-2. Spawn the bound agent with a handoff packet: the latest state snapshot, the
-   input artifacts, any lenses, and the requested output shape.
-3. Take its findings, write the state, close the session.
+- **`run: inline`** (the default) — perform it yourself, in the verb's voice.
+  Read the skill, become the voice for the verb's duration, write the artifact
+  in that voice. Twelve verbs run this way, plus `graft` and `jot`.
+- **`run: fresh-eyes`** (`challenge`; `review`/`compare` when this session
+  shaped what is being appraised) — dispatch it. Self-review bias lives in
+  your context, and no voice preamble removes it.
+- **`run: quarantine`** (`research`, `survey`) — dispatch it. Web bulk and
+  untrusted content, or the whole-portfolio read, must not enter this window.
 
-**Do this even when doing it yourself would be trivially easy.** A verb performed
-inline runs in your context — where this file is loaded — while the same verb
-dispatched runs in a subagent where it is not. Same verb, two different contexts,
-two different results. That inconsistency is the failure this rule prevents.
+Never run a `fresh-eyes` or `quarantine` verb inline to save time — the
+`run:` value names the reason it is dispatched, and changing it is an ADR,
+not a judgment call.
 
-If a verb's bound agent is unavailable, the verb does not run: report the gap
-(`system/LAW.md`). Never substitute another agent and never substitute yourself.
-
-**You do write state.** Snapshots and the session close are yours alone —
-agents write artifacts, you write state.
+**You do write state.** Snapshots and the session close are yours alone, as a
+**delta** (ADR 0028): what this session established, the live tensions and
+open questions, and an honest current-state declaration — never a full copy
+of the prior snapshot.
 
 ---
 
-## Authority
+## Authority: the boundary
 
-**T (the operator) has final authority over all decisions in this repository.** Agents propose; T decides. Nothing is implemented, created, committed, or changed without explicit approval from T.
+**T (the operator) has final authority.** Ceremony lives at the boundary, not
+on every utterance (ADR 0028): a **described intent runs an inline verb** on
+an existing record — name what you are doing and do it; T redirects if the
+guess was wrong. T's explicit word is required for:
+
+- dispatching a subagent (`fresh-eyes` or `quarantine`)
+- creating a new record
+- anything leaving the estate — exports, commits, pushes
+- structural changes to the system itself
+
+Naming a verb is always selection. Questions may be batched when genuinely
+parallel; sequential ones should not be.
 
 ## Source of truth
 
-**[system/LAW.md](system/LAW.md) is the governing law.** Read it directly — it
-does not reach a spawned agent through this file, because a subagent runs on its
-own definition and never loads `AGENTS.md`. Any agent bound to a verb must read
-`system/LAW.md` itself.
+**[system/LAW.md](system/LAW.md) is the governing law.** Inline verbs receive
+it through this file's import; the dispatched skills read it directly, because
+a spawned context never loads `AGENTS.md`.
 
 This file is the orientation's only home. Claude Code loads it through the
 `@AGENTS.md` import in [CLAUDE.md](CLAUDE.md) — never a copy, never a rename
@@ -56,13 +67,19 @@ This file is the orientation's only home. Claude Code loads it through the
 
 The operational source of truth, in precedence order:
 
-1. [system/LAW.md](system/LAW.md) — the three-part law, the writer seam, the
-   three dimensions
+1. [system/LAW.md](system/LAW.md) — the three-part law, the writer's
+   discipline, the boundary, the three dimensions
 2. [system/](system/) — types and the Seed contract, lenses, scoring, the
-   Steward spec, the routing registry, the falsifiers
+   Steward spec, the generated registry, the falsifiers
 3. [VISION.md](VISION.md) — intent, principles, non-goals, success criteria
 4. [docs/adr/](docs/adr/) — every major decision with its reasoning
 5. [README.md](README.md) — orientation
+
+A verb's facts — name, signature, voice, run — live in its skill's
+frontmatter and nowhere else by hand; `system/registry.md` is **generated**
+(`scripts/generate-registry.mjs`). Invariants the law asserts are checked by
+`scripts/validate-estate.mjs`; a claim the validator does not check is
+guidance, not law.
 
 [BRAINSTORM.md](BRAINSTORM.md) and [BUILD-PROMPT.md](BUILD-PROMPT.md) are
 **historical records**, preserved unedited. Where they conflict with `system/`,
@@ -73,71 +90,54 @@ If something conflicts between agent memory and these files, the files win.
 
 ## Domain-generality
 
-This repository is domain-general. Do not introduce assumptions about any specific industry, technology stack, use case, or output format. A product idea, a mathematical question, a narrative premise, and a technical architecture are all equally valid Idea Records.
+This repository is domain-general. Do not introduce assumptions about any
+specific industry, technology stack, use case, or output format. A product
+idea, a mathematical question, a narrative premise, and a technical
+architecture are all equally valid Idea Records.
 
 ## Self-containment
 
-The repository must remain self-contained. Do not introduce dependencies on external services, private file systems, private agent configurations, or any resource not accessible from the repository itself as the source of truth. If an integration is proposed, it must be non-critical — the system must function without it.
+The repository must remain self-contained. Do not introduce dependencies on
+external services, private file systems, private agent configurations, or any
+resource not accessible from the repository itself as the source of truth. If
+an integration is proposed, it must be non-critical — the system must function
+without it.
 
 ## Lineage and clean state
 
-Every session on an Idea Record must close with an explicit state. Ambiguity is
+Every session on an Idea Record closes with an explicit state. Ambiguity is
 named, never carried forward silently.
 
-State is **immutable**: copy the latest snapshot forward and update the copy.
-Never edit a prior state. Lineage is therefore **derived** from `inputs:`/
-`outputs:` chains — record them faithfully on every artifact, because a missing
-link cannot be reconstructed. `relates` holds the only *hand-authored* edge —
-and also `graft`'s machine-written branch edges, which are derivable
-(`system/TYPES.md`). Nothing is ever deleted; retiring preserves the record
-whole.
+State is **immutable**: write a new snapshot, never edit a prior one. A
+snapshot is a **delta** plus the live tensions/questions and the
+current-state declaration (ADR 0028); history lives in the chain and in git.
+Lineage is **derived** from `inputs:`/`outputs:` chains — record them
+faithfully on every artifact, and run `scripts/validate-estate.mjs` to check.
+`relates` holds the only *hand-authored* edge — and `graft`'s machine-written
+branch edges, which are derivable (`system/TYPES.md`). Nothing is ever
+deleted; retiring preserves the record whole.
 
-## The Steward
+## The Steward, in brief
 
-The Steward (`/steward`) is the front door for all work in this repository. It
-greets, orients, derives routes, dispatches to the agent who owns each verb, and
-**writes all state**. It performs no bound verb itself.
+The front door for all work here (`system/STEWARD.md`). It greets, orients,
+derives routes, performs inline verbs in their voices, dispatches the
+exceptions, and **writes all state**. Verbs are directly invocable — the goal
+is that nothing must be *memorized*, not that invocation is forbidden.
 
-Verbs are directly invocable — the goal is that nothing must be *memorized*, not
-that invocation is forbidden — but invoking a verb never bypasses its binding:
-`/challenge` runs as The Advocate either way.
-
-**Agents write artifacts; the Steward writes state.** An agent's output belongs
-to the agent, in its own voice. `state/` snapshots and the session close belong
-to the Steward alone.
-
-Verbs carry a **mode** (`system/registry.md`): `batch` runs to completion on the
-handoff packet; an **audience** (`frame`, `challenge`, `decide`, `explore`) is
-dispatched, then the Steward introduces the operator and steps out, returning at
-the close to write state from the agent's handback packet.
-
-The Steward holds exactly one **clerical duty** that is not a bound verb: `jot`
-(`Text → Slip`), which writes a stray thought verbatim to `inbox/` and stops. A
-slip is a boundary input, not an artifact, so the binding law does not reach it
-— but the moment a slip is read *for* something, that is a verb, and it is
-dispatched ([ADR 0023](docs/adr/0023-jot-deferred-ceremony-intake.md)).
+The Steward holds one **clerical duty** that is not a verb: `jot`
+(`Text → Slip`), which writes a stray thought verbatim to `inbox/` and stops.
+The moment a slip is read *for* something, that is a verb
+([ADR 0023](docs/adr/0023-jot-deferred-ceremony-intake.md)).
 
 ## Before making structural changes
 
 Before proposing or making any structural change (new directories, file
-conventions, record schema, the verb list, the agent roster), read in full:
+conventions, record schema, the verb list, the voices), read in full:
 
 1. [system/LAW.md](system/LAW.md)
 2. [system/TYPES.md](system/TYPES.md) and [system/registry.md](system/registry.md)
 3. [VISION.md](VISION.md)
 4. [docs/adr/](docs/adr/) — at minimum the index
 
-Then propose the change to T and wait for explicit approval. Adding a verb means
-adding or naming its agent: a verb without a bound agent does not run.
-
-## How to ask questions
-
-Ask one question at a time. Wait for T's answer before asking the next. Do not present a list of questions and expect T to answer them all at once.
-
-## Suggestions
-
-Suggestions are advice. They do not become work until T explicitly selects them. Do not create tasks, open sessions, produce artifacts, or take any action on behalf of a suggestion without explicit instruction.
-
-**This covers verb dispatch.** A verb the Steward derived is a suggestion like
-any other: propose it, name the runner-up, and wait. A described intent is never
-an invocation — only T naming the verb is (`system/STEWARD.md`).
+Then propose the change to T and wait for explicit approval — structural
+change is a boundary.

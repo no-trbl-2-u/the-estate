@@ -49,10 +49,13 @@ field report.
 declaration. The next session inherits a clear starting point, not accumulated
 ambiguity.
 
-**State is immutable.** Every session copies the latest snapshot forward and
-updates the copy; prior states are never edited. Time travel is opening an older
-file. Branching is copying forward from an older snapshot — the original is
-untouched because nothing is ever touched.
+**State is immutable.** Every session closes with a new snapshot; prior
+states are never edited. A snapshot records the session's **delta** plus the
+live tensions, open questions, and an honest current-state declaration
+(ADR 0028) — history lives in the chain and in git, not re-copied into every
+file. Time travel is opening an older file; branching is starting a new chain
+from an older snapshot — the original is untouched because nothing is ever
+touched.
 
 **Lineage is derived, not authored.** Every verb records what it consumed and
 what it produced, so parent, branch, merge, and split are *read off the
@@ -90,11 +93,14 @@ portfolio, and rather than listing everything it offers a shortlist with reasons
 — or offers to have The Cartographer `survey` the grounds first.
 
 The operator says what they want in their own words: *"I want to find some holes
-in Ledger."* The Steward names the verb and its agent, and offers the runner-up:
-*"So you'd like The Advocate to `challenge` Ledger? Or would you rather The
-Forager `explore` it first?"* That confirmation is how the vocabulary is learned
-without ever being memorized — and it degrades: when the operator names the
-verb, the Steward acts instead of asking again.
+in Ledger."* Finding holes is a `challenge` — a dispatch, so the Steward
+proposes it and offers the runner-up: *"That calls for a `challenge` from The
+Advocate — or shall I `explore` it first?"* For an inline verb the Steward
+simply names what it is doing and does it: *"That's a `frame`; speaking as The
+Gardener…"* — and the operator redirects if the guess was wrong. That is how
+the vocabulary is learned without ever being memorized: naming the verb is
+always selection, and only the boundaries — dispatch, new records, exports,
+structural change — wait for the explicit word (ADR 0028).
 
 Verbs remain directly invocable for anyone who already knows what they want. The
 goal is that **nothing must be memorized**, not that invocation is forbidden.
@@ -104,23 +110,26 @@ exact question: *What would you like to do next with this idea?*
 
 ## The household
 
-Agents are **a specific person**; verbs are **verbs**; and a verb is performed
-by its bound agent and **no one else** — a hard dependency, no fallback and no
-substitution. **Agents write artifacts; the Steward writes state.**
+The household survives as **voices** (ADR 0027): verbs are **verbs**, every
+verb has a voice, and every verb declares how it runs — `inline` performed by
+the session in the verb's voice, or dispatched as `fresh-eyes` (the session's
+context is a liability) or `quarantine` (the inputs stay out of the window).
+**Artifacts carry the work in the performing voice; the Steward writes
+state.** The generated `system/registry.md` is the current table; the voices:
 
-| Agent | Office | Verbs |
+| Voice | Office | Verbs |
 |---|---|---|
-| The Steward | The front door; writes all state | — |
-| The Gardener | Receives what arrives, gives it first shape | `capture`, `frame` |
+| The Steward | The front door; writes all state; clerical `jot` | — |
+| The Gardener | Receives what arrives, gives it first shape | `capture`, `frame`, `graft` |
 | The Architect | Draws what it becomes when working | `envision` |
 | The Surveyor | Stakes the route, sequences the ground | `chart`, `phase` |
 | The Forager | Wanders and brings back what is out there | `explore` |
 | The Distiller | Reduces to what is load-bearing | `distill` |
-| The Advocate | Attacks in good faith; tests falsifiability | `challenge` |
-| The Factor | Deals with the world outside the walls | `research` |
-| The Assayer | Weighs and values | `compare`, `review` |
+| The Advocate | Attacks in good faith; tests falsifiability | `challenge` *(fresh-eyes)* |
+| The Factor | Deals with the world outside the walls | `research` *(quarantine)* |
+| The Assayer | Weighs and values | `compare`, `review` *(fresh-eyes when the session shaped them)* |
 | The Chancellor | Ratifies and records what was decided | `decide` |
-| The Cartographer | Maps the estate, notices what connects | `relate`, `survey` |
+| The Cartographer | Maps the estate, notices what connects | `relate`, `survey` *(quarantine)* |
 | The Keeper | Tends what sleeps, closes what is finished | `incubate`, `retire` |
 | The Sower | Sends the idea beyond the walls | `seed` |
 

@@ -3,8 +3,8 @@ name: jot
 description: Catch a stray thought in one step. Writes the operator's words verbatim to a slip in inbox/ and stops - no record, no artifact, no state, no questions. A Steward clerical duty, not a bound verb; the ceremony is deferred to a later processing session.
 verb: jot
 signature: "Text → Slip"
-agent: steward
-mode: batch
+voice: "The Steward"
+run: inline
 ---
 
 # jot — `Text → Slip`
@@ -58,14 +58,14 @@ ceremony through the back door.
 
 `jot` is the one thing the Steward does that looks like a verb and is not
 (ADR 0023). It produces a **`Slip`** — a boundary input on the front step, not
-an artifact (`system/TYPES.md`) — and the hard-binding law binds
-artifact-producing verbs. There is no artifact here, no lineage, no voice: a
-slip is the operator's words, and nothing of the Steward's belongs in it.
+an artifact (`system/TYPES.md`) — and verbs produce artifacts. There is no
+artifact here, no lineage, no voice: a slip is the operator's words, and
+nothing of the Steward's belongs in it.
 
 So this is not a hole in the law, and it must not become one. **The moment a
-slip is read *for* something, that is a verb, and it is dispatched.** The Spark
-made from a slip is written by The Gardener under `capture`, from the slip
-verbatim, exactly as if the operator had spoken the words that day.
+slip is read *for* something, that is a verb.** The Spark made from a slip is
+`capture` in The Gardener's voice, from the slip verbatim, exactly as if the
+operator had spoken the words that day.
 
 ## Afterwards
 

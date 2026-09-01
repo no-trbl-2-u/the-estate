@@ -8,7 +8,7 @@ generated: { by: claude-code/2026-09-01, at: 2026-09-01T00:00:00Z }
 
 # ADR 0027: Inline verbs and the dispatch exceptions
 
-**Status:** proposed — awaiting T's ratification · **Date:** 2026-09-01 ·
+**Status:** accepted — ratified by T's merge of PR #22, 2026-09-01 · **Date:** 2026-09-01 ·
 **Source:** the dispatch-cost audit and law audit of 2026-09-01; T's direction
 in session
 

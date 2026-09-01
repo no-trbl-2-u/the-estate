@@ -12,7 +12,7 @@ The estate's front step. A thought lands here in under a minute, and the
 ceremony that turns it into a record happens later, in its own session.
 
 This exists because the ceremony is real and the ceremony is the problem. A new
-idea normally costs a record shell, a dispatched `capture`, a state snapshot,
+idea normally costs a record shell, a `capture`, a state snapshot,
 and a close — correct, and far too much to spend on a thought that arrived
 between two other things. The alternative to a slip is not a tidier record; it
 is **the thought never entering the estate at all**. Deferred ceremony, not
@@ -69,11 +69,11 @@ log, not a queue that must be drained to zero.
 Not a verb — a normal Steward session over the shelf of pending slips. The
 Steward surfaces the count and ages at greeting; per slip it proposes one of:
 
-- **A new record** — shell plus a dispatched `capture`, with the Spark written
-  **from the slip verbatim**. The slip's own words are the boundary input, which
-  is what makes the deferral lossless.
+- **A new record** — shell plus an inline `capture` in The Gardener's voice,
+  with the Spark written **from the slip verbatim**. The slip's own words are
+  the boundary input, which is what makes the deferral lossless.
 - **A merge** into an existing record.
 - **A discard, with a reason.**
 
-Proposal-only, per ADR 0022: the Steward proposes per slip and waits. A batch
-of slips is a batch of proposals, never a batch of dispatches.
+New records are a boundary (ADR 0028): the Steward proposes per slip and
+waits. A batch of slips is a batch of proposals.
