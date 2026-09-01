@@ -3,9 +3,16 @@ import { C, MONO_FONT } from '../lib/theme'
 
 const MIN = 0.35
 const MAX = 3
+/** Movement (px, Manhattan) before a press becomes a drag rather than a click. */
+const DRAG = 4
 
 /** Pan/zoom surface for the travel maps: click-drag + wheel on desktop,
- *  one-finger pan + pinch zoom on touch. Clicks still land unless dragged. */
+ *  one-finger pan + pinch zoom on touch. Clicks still land unless dragged.
+ *
+ *  Pointer capture is taken only once a gesture exceeds DRAG, never on
+ *  pointerdown: capturing early retargets pointerup/mouseup to this container,
+ *  which makes the browser fire `click` on the container instead of the node
+ *  under the cursor. */
 export function PanZoom({
   children,
   contentWidth = 'max-content',
@@ -20,6 +27,7 @@ export function PanZoom({
   const [t, setT] = useState(initial)
   const ref = useRef<HTMLDivElement>(null)
   const pointers = useRef(new Map<number, { x: number; y: number }>())
+  const origins = useRef(new Map<number, { x: number; y: number }>())
   const pinchBase = useRef<{ dist: number; s: number } | null>(null)
   const dragged = useRef(false)
 
@@ -43,11 +51,28 @@ export function PanZoom({
     return () => el.removeEventListener('wheel', onWheel)
   }, [])
 
+  const capture = (id: number) => {
+    try {
+      ref.current?.setPointerCapture(id)
+    } catch {
+      /* pointer already released */
+    }
+  }
+
   const onPointerDown = (e: React.PointerEvent) => {
-    ref.current?.setPointerCapture(e.pointerId)
+    // NO setPointerCapture here, deliberately. Capturing on pointerdown
+    // retargets pointerup (and the compatibility mouseup) to this container, so
+    // the browser dispatches `click` at the container rather than the node the
+    // user pressed - and every node's onClick silently stops firing. Capture is
+    // taken in onPointerMove, once the gesture has proved itself a drag.
     pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
+    origins.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
     dragged.current = false
     if (pointers.current.size === 2) {
+      // A second finger is never a click, so capture immediately - a pinch must
+      // keep tracking even when a finger leaves the element.
+      dragged.current = true
+      for (const id of pointers.current.keys()) capture(id)
       const [a, b] = [...pointers.current.values()]
       pinchBase.current = { dist: Math.hypot(a.x - b.x, a.y - b.y), s: t.s }
     }
@@ -57,14 +82,20 @@ export function PanZoom({
     const prev = pointers.current.get(e.pointerId)
     if (!prev) return
     const cur = { x: e.clientX, y: e.clientY }
+    const dx = cur.x - prev.x
+    const dy = cur.y - prev.y
     pointers.current.set(e.pointerId, cur)
     if (pointers.current.size === 1) {
-      const dx = cur.x - prev.x
-      const dy = cur.y - prev.y
-      if (Math.abs(dx) + Math.abs(dy) > 0) {
-        if (Math.abs(dx) + Math.abs(dy) > 3) dragged.current = true
-        setT((c) => ({ ...c, x: c.x + dx, y: c.y + dy }))
+      if (!dragged.current) {
+        // Below the threshold this is still a click in progress: do not pan and
+        // do not capture, so the click lands on whatever the user pressed.
+        const start = origins.current.get(e.pointerId)
+        if (!start) return
+        if (Math.abs(cur.x - start.x) + Math.abs(cur.y - start.y) <= DRAG) return
+        dragged.current = true
+        capture(e.pointerId)
       }
+      if (dx || dy) setT((c) => ({ ...c, x: c.x + dx, y: c.y + dy }))
     } else if (pointers.current.size === 2 && pinchBase.current && ref.current) {
       dragged.current = true
       const [a, b] = [...pointers.current.values()]
@@ -82,6 +113,12 @@ export function PanZoom({
 
   const onPointerUp = (e: React.PointerEvent) => {
     pointers.current.delete(e.pointerId)
+    origins.current.delete(e.pointerId)
+    try {
+      if (ref.current?.hasPointerCapture(e.pointerId)) ref.current.releasePointerCapture(e.pointerId)
+    } catch {
+      /* nothing captured */
+    }
     if (pointers.current.size < 2) pinchBase.current = null
   }
 
