@@ -41,3 +41,4 @@ conducted per Requirement A of `BUILD-PROMPT.md`.
 | [0024](0024-graft-the-branch-verb.md) | `graft` branches a new record off any prior snapshot, inheriting as-of-snapshot tips, with a required Direction and lineage in both directions |
 | [0025](0025-seed-payload-and-nameable-contracts.md) | A Seed may carry a payload directory that *is* the droppable result; the five components become the default `standard` contract, and domain contracts are nameable |
 | [0026](0026-session-residue-as-a-type.md) | `SessionResidue` is a `capture`-produced type for what a session reveals about the estate's own functioning; the handback packet does not replace it |
+| [0027](0027-inline-verbs-and-the-dispatch-exceptions.md) | *(proposed)* Verbs run inline in their own voice; the agent layer retires; dispatch survives only as `fresh-eyes` (`challenge`; conditional `review`/`compare`) and `quarantine` (`research`, `survey`) *(supersedes 0012, 0013, 0021 in part)* |
