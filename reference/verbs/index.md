@@ -1,8 +1,13 @@
 # Verbs
 
-Seventeen verbs, each a typed function performed by exactly one office.
+Eighteen verbs, each a typed function performed by exactly one office.
 The signature algebra lives in [the type system](../types/index.md);
 the bindings live in the [routing registry](../../system/registry.md).
+
+Each verb has a **mode** ([the law](../law.md)): `batch`, or **audience**
+for the four whose quality depends on the operator's live words —
+[frame](./frame.md), [challenge](./challenge.md), [decide](./decide.md),
+[explore](./explore.md).
 
 * [capture](./capture.md) - Record a raw idea verbatim-faithful; produces the record's first Spark.
 * [frame](./frame.md) - Name the problem, audience, scope, and tension underneath a Spark.
@@ -21,3 +26,10 @@ the bindings live in the [routing registry](../../system/registry.md).
 * [seed](./seed.md) - Assemble the five-component terminal export, or a Brief when it falls short.
 * [incubate](./incubate.md) - Park a record with a reason and a wake condition.
 * [retire](./retire.md) - Close a record with a terminal state and a reason; preservation, never deletion.
+* [graft](./graft.md) - Branch a new record off any prior snapshot, inheriting that snapshot's tips.
+
+`jot` is listed here for findability but is **not** one of the eighteen:
+it produces a `Slip`, not an artifact, so it is a Steward clerical duty
+rather than a bound verb.
+
+* [jot](./jot.md) - Catch a stray thought as a slip in `inbox/`; deferred ceremony.

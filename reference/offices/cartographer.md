@@ -28,6 +28,13 @@ Maps the estate and notices what connects. Holds the only hand-authored
 edge ([relate](../verbs/relate.md)) — naming it and the why, which the
 Steward then writes — and walks the whole estate for
 [survey](../verbs/survey.md), computing the score and the convergent
-notices that are the highest-value output of a portfolio pass.
+notices that are the highest-value output of a portfolio pass — including
+each record's **descendants** and fork points
+([graft](../verbs/graft.md)), displayed but never scored.
+
+The `relates` field also holds machine-written graft edges; `relate`
+remains the only *hand-authored* one. The Cartographer tells them apart by
+the counterpart record's Origin, and counts **only authored edges** toward
+`connective` ([scoring](../scoring.md)).
 
 Like every office, it works under the [writer seam](../law.md): agents write artifacts in their own voice; the Steward writes state.

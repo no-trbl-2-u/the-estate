@@ -4,6 +4,7 @@ description: Walk the whole estate and report what deserves attention next - ran
 verb: survey
 signature: "[Idea] → Survey"
 agent: cartographer
+mode: batch
 ---
 
 # survey — `[Idea] → Survey`
@@ -20,6 +21,21 @@ verb move this — never by closest-to-done. Surface above the ranking:
 - dead or dormant Sparks that fit a live record
 
 Drift is **displayed, never scored**.
+
+## Show the branches
+
+Report each record's **descendants** — records grafted from it — and the
+snapshot each forked at, plus each record's own source if it is itself a graft.
+Read them off `relates` and **confirm against the counterpart's Origin**: that
+is what tells a graft edge from an authored one, and only authored edges count
+toward `connective` (`system/SCORING.md`). Descendants are displayed, never
+scored — a record with three branches is fertile, not finished, and the fork
+points are the map of where the thinking actually divided.
+
+An edge in `relates` that no Origin accounts for and no operator authored is
+worth reporting as a notice. So is a graft whose source's `relates` never got
+the back-edge: lineage is meant to read in both directions, and a one-way
+graft edge is a lost fact, not a tidy one.
 
 ## Staleness is mandatory metadata
 

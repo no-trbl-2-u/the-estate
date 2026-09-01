@@ -19,7 +19,7 @@ fixed sequence.
 | Family | Signature | Behavior | Examples |
 |---|---|---|---|
 | **Refiner** | `a → a` | Sharpens without changing kind. Safe to re-run, safe to nest, depth-free. | `distill`, `challenge`, `explore` |
-| **Transformer** | `a → b` | Moves the idea across the graph to a new kind. | `frame`, `envision`, `chart`, `seed`, `research`, `review`, `decide` |
+| **Transformer** | `a → b` | Moves the idea across the graph to a new kind. | `frame`, `envision`, `chart`, `seed`, `research`, `review`, `decide`, `graft` |
 | **Decomposer** | `a → [b]` | Breaks one thing into parts. Where recursion lives (`Phase → [Phase]`). | `phase` |
 | **Aggregator** | `[a] → b` | Draws many things into one judgment. | `compare` |
 | **Reader** | `[Idea] → r` | Reads across records without changing any. | `survey` |
@@ -30,13 +30,36 @@ fixed sequence.
 
 Two verb signatures name inputs that are not artifact types, deliberately:
 
-- **`Text`** (capture) and **`Question`** (research) are **boundary inputs** —
-  operator-supplied words crossing into the system, not artifacts already in
-  it. They exist only on the left edge of a signature.
+- **`Text`** (capture), **`Question`** (research), and **`Direction`** (graft)
+  are **boundary inputs** — operator-supplied words crossing into the system,
+  not artifacts already in it. They exist only on the left edge of a signature.
+  `Direction` is the operator's words for *why this branch exists*, and it is
+  **required**: a graft without a direction is a copy.
 - **`Tensions`** (decide) names the tensions recorded in the record's head
   state snapshot. **State snapshot paths are legal `inputs:` targets** — a
   Decision's `inputs:` cites the snapshot that held its tensions, so its
   lineage chains like everything else.
+
+### `Slip` — the one durable boundary input
+
+`jot` has the signature **`Text → Slip`**, and a `Slip` is the exception that
+proves the boundary-input rule rather than breaking it.
+
+A Slip is **pre-record and pre-artifact**: operator words made durable on the
+front step (`inbox/`) while they wait for a verb to consume them. It has no
+record, no lineage, no classifiers, no `inputs:` chain, and no producing verb
+in the artifact sense — it is `Text` that has been written down, not `Text`
+that has been transformed. It appears on the **left** edge of a later signature
+(the `capture` that eventually reads it) exactly as raw `Text` would.
+
+That is precisely why `jot` is clerical rather than bound (ADR 0023): the
+hard-binding law binds **artifact-producing** verbs to agents, and `jot`
+produces no artifact. Binding it would have bought nothing and cost the
+instantaneity that is the entire point.
+
+`Slip` is consumed, never refined. No refiner operates on it; there is no
+version chain; the only transitions it has are `pending → processed` and the
+`became:` stamp, both of which are the Steward's to write.
 
 `Findings`, `Appraisal`, and `Decision` feed the *operator and the route*, not
 a downstream verb: they are not Seed components, and the Steward's gap
@@ -56,11 +79,43 @@ options suggest `compare`) rather than through Seed-distance.
 | `Findings` | Gathered information with its sources, honestly bounded by what was not found. | `research` |
 | `Appraisal` | A judgment of one thing, or of several against each other. | `review`, `compare` |
 | `Decision` | An explicit recorded choice: what was decided, what was rejected, and why. | `decide` |
+| `SessionResidue` | What a session left behind about **the estate's own functioning** — observed while doing something else. Multi-item, honestly self-critical, filed on the record the *observations* belong to (normally idea 0001), never the record that happened to be open. | `capture` |
 | `Brief` | An early-exit export. What you get when a run stops before Seed-shape. | `seed` (when components are missing and the operator exports anyway) |
 | `Seed` | The terminal export type. See below. | `seed` |
 
 Refiners (`distill`, `challenge`, `explore`) operate on any of these — they return the
 same type, sharper.
+
+### `SessionResidue` — when the session itself was the work
+
+Some sessions produce their most valuable output as a **side effect**. A build
+stretch, a deploy, a first full arc through the verbs: the record advances, and
+separately the session reveals something about how the estate is actually
+behaving — a rule improvised because none existed, a verb that has never run, a
+seam carrying load nobody assigned it.
+
+That observation is real output and it has nowhere else to go. It does not
+belong to the record that happened to be open (it is not about that idea), and
+it is not a `Findings` (nothing outside the walls was consulted). Before this
+type it was filed as a `Spark`, which strained the definition past usefulness:
+a Spark is a *raw thought, minimally processed*, and a residue is a structured
+inventory of eight things that went sideways.
+
+- **Produced by `capture`**, and by The Gardener — the office that receives what
+  arrives. Fidelity is the requirement, as always: record what happened, not a
+  flattering reading of it.
+- **Filed where the observations belong**, which is normally idea 0001 (the
+  estate's own record), *not* the record the session was nominally about.
+- **Self-criticism is the payload.** A residue that reports only what worked has
+  failed; the value is concentrated in what was improvised, what was skipped,
+  and what has never run at all. `challenge` on a residue is the natural next
+  step and has already happened once.
+
+**Why the handback packet does not replace this.** A packet reports on the
+verb's own work, from inside a dispatch. A residue reports on the machinery,
+from outside any one verb — and the sessions that generate the richest residue
+are exactly the ones where **no verb ran**. The two coexist because they observe
+different things.
 
 ### Artifacts are immutable; refiners write versions
 
@@ -86,11 +141,80 @@ value is **promoted** — a `reference/` concept citing the artifact as its
 source — never relocated. Whether the remaining types follow is the open
 migration question in ADR 0017.
 
+## `graft` — branching, made real
+
+**Signature:** `(Idea @ state-N, Direction) → Idea` — transformer, performed by
+**The Gardener** (ADR 0024).
+
+`README.md` has always said branching is *"copying forward from one snapshot,
+and the original is never altered because nothing is ever altered."* `graft` is
+that sentence given a mechanism. A new record starts from **any prior snapshot
+of any record**, inherits what that record had **at that moment**, and carries a
+Direction saying why the branch exists.
+
+### Tip semantics — as of the snapshot, never current
+
+The **tip** of an artifact chain is already defined above: the version no other
+artifact of the same type names as its `inputs:` predecessor. A graft inherits
+tips, and the qualification is the load-bearing part:
+
+> For each artifact type present at the source snapshot, the graft inherits the
+> version that **no successor of the same type supersedes *as of that
+> snapshot***.
+
+Not the record's current tips. **Artifacts written on the source record after
+state-N must not leak backward into the graft.** A graft taken from state 4 of a
+record now at state 13 inherits what state 4 could see and nothing else —
+otherwise the graft's own origin stamp is a lie, its `inputs:` chains cite work
+that did not exist when it was taken, and the one thing branching is for
+(exploring the road not taken *from where it forked*) is quietly destroyed.
+
+The snapshot's `outputs:` chain is the evidence. Read forward from `state/0000`
+to `state/N`, collect what was produced, and take the last of each type. Do not
+read the record's current artifact directory and filter by date.
+
+A graft may be taken from the head snapshot, which is the ordinary case and
+needs no special handling: the as-of tips and the current tips coincide.
+
+### Mechanics
+
+1. **A new record shell** — `ideas/NNNN-slug/` from `templates/idea.md`. Its
+   **Origin** section records the graft: the source id, the source snapshot, and
+   the **Direction verbatim**.
+2. **Tip artifacts copied in** as the graft's starting artifacts, **renumbered
+   from 0001** in the new record's own sequence. Each carries `inputs:` citing
+   the **source record's original artifact path** — cross-record lineage,
+   honestly recorded. The chain leaves the record, and that is the point: a
+   graft whose artifacts cite nothing is indistinguishable from a fresh idea.
+3. **`state/0000.md`** carries the sole cross-record pointer form —
+   `previous: idea-NNNN/state/000K.md` — and cites the same snapshot in
+   `inputs:`. They name the same file by design: `previous:` is what `parent`
+   derivation reads (`ideas/README.md`), `inputs:` is what the session consumed.
+   Numbering restarts at `0000` in every record.
+4. **Both `relates` edges.** The graft's `idea.md` gets `relates: [<source-id>]`;
+   the **source's** `idea.md` gets `relates: [<graft-id>]` appended. Lineage is
+   derivable in both directions or it is not derivable at all — a source record
+   that cannot tell you a branch was taken from it has lost the fact.
+
+**Both `relates` writes are the Steward's.** Record frontmatter is state
+(`system/LAW.md`); the performing agent **returns** the edges. This is the same
+rule `relate` already follows, so The Cartographer's ownership of `relate` is
+untouched: `graft` does not author an edge as its purpose, it produces a record
+whose existence implies one.
+
+The close writes **two** states: the graft's `0000`, and a state copied forward
+on the **source** noting that the graft was taken. The source is not edited —
+it is advanced, which is how this repository records anything.
+
 ## The Seed (terminal type)
 
 A Seed is a **horizon plus a trajectory** — an elaborated vision and a rough path,
-deliberately thin on implementation. It typechecks as a Seed only when all of these
-are present:
+deliberately thin on implementation.
+
+### The `standard` contract (the default)
+
+The five components below are the **default contract**, named `standard`. A Seed
+typechecks against it only when all five are present:
 
 1. **Horizon** — the six-month vision, elaborated.
 2. **Trajectory** — the rough path toward it.
@@ -106,6 +230,55 @@ are present:
 The wording is deliberately domain-neutral. A Seed must serve a business, a
 mathematical conjecture, and a narrative premise equally — `VISION.md`'s
 domain-generality promise is load-bearing, not decorative.
+
+### Nameable contracts
+
+**Contracts are a vocabulary, not a closed enum** — the same move already made
+for shapes. A record may name a domain contract in the Seed's `contract:`
+frontmatter, and it exists.
+
+This is the honest response to a real limit. `standard` is domain-neutral in
+*wording*, but it is not domain-neutral in *structure*: it assumes the recipient
+wants a vision and a path. Some do not. A dataset handoff, a proof obligation, a
+character bible, a design system — each has a shape its recipient expects, and
+forcing it through five components it does not have is how the export becomes a
+ritual instead of a delivery.
+
+**Three things are contract-invariant.** Whatever a named contract's components
+are, it must still state:
+
+1. **What the recipient can *do* next** — the specific move, not a direction.
+2. **At least one refusal** — a named thing this will not become.
+3. **The provenance stamp** — `origin: <idea-id> @ <state-n>`.
+
+These three survive because they are what makes a Seed a Seed rather than a
+document: an actionable next move is the difference between an export and an
+essay; a refusal is the only thing that gives the export edges; and the stamp is
+the sole return path. A named contract that drops any of them has not named a
+contract — it has left the type.
+
+A Seed states its contract; a Seed with no `contract:` is `standard`.
+
+### The payload — the droppable form
+
+A Seed has always been a *description* of a thing to build. It may now **carry
+the thing**.
+
+The `payload:` frontmatter field holds a relative path to a **payload
+directory** — the droppable result: the files pasted into a repo, the prompt
+handed to an agent, the deck given to a partner. It sits beside the Seed
+document as a sibling (`exports/README.md`):
+
+```
+exports/NNNN-slug-seed.md        the document
+exports/NNNN-slug-payload/       the droppable result
+```
+
+The payload is **optional**, and its absence is a **classifier, not a gate** —
+the estate grades, it never gates. A Seed with no payload exports perfectly well
+and says so on the tin. Where a payload is absent, the Seed names in one line
+what the record would need to build one — which is routing information: the gap
+suggests the verb that would fill it.
 
 ## Output shape — the third dimension
 
@@ -143,6 +316,7 @@ Classifiers are recorded in artifact frontmatter and the label travels with the 
 | `horizon` | `falsifiable` \| `unfalsified` | Does the Horizon name what would make it wrong? |
 | `challenged` | `true` \| `false` | Has this artifact survived a `challenge` pass? |
 | `trajectory` | `actionable` \| `abstract` | Does the path bottom out in a startable step? |
+| `payload` | `present` \| `absent` | Does the Seed carry the droppable result, or only describe it? |
 
 An unfalsified, unchallenged Seed may absolutely be exported. It just says so on the tin.
 
@@ -156,3 +330,22 @@ not a database.
 **One exception: `relates`.** "This idea reminds me of that idea" is produced by no
 verb — it comes out of the operator's (or Steward's) head. It is the only hand-authored
 edge, and the most valuable one, because it's the connection the machinery cannot make.
+
+**Graft edges live in `relates`, and they are not hand-authored.** The pair of
+edges a `graft` writes (`system/TYPES.md`, above) is fully derivable — from the
+graft's Origin, its `state/0000` `inputs:`, and its artifacts' cross-record
+`inputs:` chains. They are recorded in `relates` as a **convenience
+denormalization**, so that a reader of either `idea.md` sees the branch without
+walking the graph, and so the *source* can say a branch left from it without
+scanning every other record.
+
+This does not weaken the rule; it qualifies it precisely. `relates` holds two
+kinds of edge:
+
+| | Origin | Derivable? |
+|---|---|---|
+| **Authored edge** | The operator's or Steward's head | No — this is the whole point |
+| **Graft edge** | A `graft` invocation | Yes — the record's own Origin states it |
+
+A graft edge that contradicts the record's Origin is a defect in the edge, not
+in the Origin. An authored edge answers to nothing but the operator.

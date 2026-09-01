@@ -4,6 +4,7 @@ description: Elaborate the six-month vision of a framed idea. Transformer, Frami
 verb: envision
 signature: "Framing → Horizon"
 agent: architect
+mode: batch
 ---
 
 # envision — `Framing → Horizon`

@@ -4,6 +4,7 @@ description: Evaluate an existing artifact or decision on its own terms. Transfo
 verb: review
 signature: "a → Appraisal"
 agent: assayer
+mode: batch
 ---
 
 # review — `a → Appraisal`

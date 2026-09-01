@@ -58,7 +58,10 @@ untouched because nothing is ever touched.
 what it produced, so parent, branch, merge, and split are *read off the
 composition chain* rather than maintained by hand. The graph is a view, not a
 database. **`relates` is the sole hand-authored edge** — no verb produces it, it
-comes out of a head, and it is the connection the machinery cannot make.
+comes out of a head, and it is the connection the machinery cannot make. (The
+`relates` *field* also stores the machine-written edges of a `graft`, which are
+derivable and denormalized for readability; the hand-authored edge remains the
+only one no machinery could have made — `system/TYPES.md` keeps them distinct.)
 
 **Three dimensions, never conflated.** A verb decides what cognitive work
 happens; a **lens** decides from what angle; a **shape** decides how the result
@@ -139,8 +142,10 @@ substitution. **Agents write artifacts; the Steward writes state.**
 ### Lineage
 
 `parent`, `branch`, `merge`, `split` are **derived** from `inputs:`/`outputs:`
-chains. `relates` is authored by hand. Reviving a retired record is branching
-from any recorded state, under the same law: the original is never altered.
+chains. `relates` is authored by hand, and also carries `graft`'s derivable
+branch edges. Branching is performed by `graft`; reviving a retired record is
+branching from any recorded state, under the same law: the original is never
+altered — a source is *advanced* by a new snapshot, never edited.
 
 ## The portfolio
 

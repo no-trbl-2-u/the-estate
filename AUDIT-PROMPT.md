@@ -55,9 +55,11 @@ unavailable, the verb does not run.
 **The writer seam.** Agents write artifacts; the Steward writes state.
 
 **Immutable state.** Every session copies the last snapshot forward. Time travel
-is opening an older file; branching is copying forward from one; the original is
-never altered because nothing is ever altered. Lineage is therefore **derived**
-from `inputs:`/`outputs:` chains — `relates` is the only hand-authored edge.
+is opening an older file; branching is the `graft` verb — a new record from any
+prior snapshot — and the source is never altered because nothing is ever
+altered. Lineage is therefore **derived** from `inputs:`/`outputs:` chains.
+`relates` holds the only *hand-authored* edge, plus `graft`'s derivable branch
+edges (`system/TYPES.md`).
 
 **Classification, not certification.** Quality is recorded structurally in
 frontmatter classifiers and **never gated**. Grade, never gate.

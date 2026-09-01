@@ -28,6 +28,13 @@ A Seed has failed its purpose when:
 
 - It lacks actionable items.
 - Its acceptance criteria remain abstract, with no action items.
+- **Its payload cannot actually be dropped in** — it does not run, or it
+  references assets that are not in the directory. Same spirit as the abstract
+  trajectory: the export claims to hand over something usable and does not.
+  Note the asymmetry — an **absent** payload is not a falsifier at all
+  (`payload: absent` is an honest classifier, and the Seed says so on the tin).
+  A **broken** one is, because it spends the recipient's trust before they
+  discover it.
 
 ## Named failure mode
 

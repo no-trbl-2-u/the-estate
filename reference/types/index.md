@@ -15,13 +15,19 @@ operator words crossing into the system, not artifacts in it - and
 * [Findings](./findings.md) - Gathered information with its sources, honestly bounded by what was not found.
 * [Appraisal](./appraisal.md) - A judgment of one thing, or of several against each other.
 * [Decision](./decision.md) - An explicit recorded choice: decided, rejected, why, and what would reopen it.
+* [SessionResidue](./session-residue.md) - What a session revealed about the estate's own functioning, observed while doing something else.
 * [Brief](./brief.md) - The early-exit export: a run stopped before Seed-shape, exported anyway.
 * [Seed](./seed.md) - The terminal export: horizon plus trajectory, thin on implementation, clean.
+
+Boundary inputs are not artifact types: `Text` (capture), `Question`
+(research), `Direction` (graft), and `Slip` — the one that is durable,
+written to `inbox/` by clerical [jot](../verbs/jot.md) and consumed later
+by `capture`.
 
 # Verb families
 
 * Refiner `a → a` - explore, distill, challenge
-* Transformer `a → b` - capture, frame, envision, chart, research, review, decide, seed
+* Transformer `a → b` - capture, frame, envision, chart, research, review, decide, seed, graft
 * Decomposer `a → [b]` - phase
 * Aggregator `[a] → b` - compare
 * Reader `[Idea] → r` - survey

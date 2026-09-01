@@ -27,6 +27,7 @@ operator cannot do alone — holding the whole estate in mind at once.
 | **Staleness at the threshold** | Days a record has sat within one verb of Seed-shape. | Surfaced as a call-out, not a rank: "this has been one session from a Seed for four months." |
 | **Convergent notices** | Candidate `relates` edges, duplicate-idea suspicions, dead-Spark-fits-live-record matches. | Surfaced above the ranking. The highest-value output of a portfolio pass. |
 | **Drift** | Distance between current framing and the original Spark. | **Display only, never scored.** Drift usually means the idea is working; a record that never moved from capture is more often the dead one. |
+| **Descendants** | Records grafted from this one, and the snapshot each forked at. Read off `relates` and confirmed against each graft's Origin. | **Display only, never scored.** A record with three branches is a fertile record, not a finished one — and the fork points are the map of where the thinking actually divided. |
 
 ## Connective records
 
@@ -46,8 +47,18 @@ instead.
 
 Dormancy alone must never trigger it: "untouched for months" also describes the
 raw, promising, outranked idea this scoring exists to rescue. A record earns
-`connective` only when its `relates` degree and inbound `inputs:` references
-grow while its own state sequence stays flat.
+`connective` only when its **authored** `relates` degree and inbound `inputs:`
+references grow while its own state sequence stays flat.
+
+**Count authored edges only.** Graft edges are also `relates` entries
+(`system/TYPES.md`), and they must not feed this signal: a record branched from
+repeatedly would otherwise drift toward `connective` for having been *used as a
+starting point*, which is close to the opposite of a hub whose value is the
+connections it draws. In practice a graft also advances the source's state, so
+the flatness test already excludes it — but the count is stated explicitly
+rather than left to that coincidence, because the coincidence is not a rule.
+Distinguish the two by checking the counterpart record's Origin: a graft edge
+is the one its own record's Origin declares.
 
 The Cartographer computes this during `survey`. The Steward **proposes** it as a
 convergent notice and never assigns it; the operator may also declare it at the

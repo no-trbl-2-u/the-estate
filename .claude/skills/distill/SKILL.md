@@ -4,6 +4,7 @@ description: Condense accumulated thinking into a sharper form. Refiner, a → a
 verb: distill
 signature: "a → a"
 agent: distiller
+mode: batch
 ---
 
 # distill — `a → a` (refiner)

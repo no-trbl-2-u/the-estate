@@ -4,6 +4,7 @@ description: Close a record with a terminal state and a reason. Transition; pres
 verb: retire
 signature: "Idea → Idea"
 agent: keeper
+mode: batch
 ---
 
 # retire — `Idea → Idea`

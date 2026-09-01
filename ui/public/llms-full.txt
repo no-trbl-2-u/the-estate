@@ -1,6 +1,137 @@
 # Estate View — the full estate as text
 
-Generated 2026-08-31 18:42. 4 records, 44 artifacts (incl. seeds), 41 state snapshots.
+Generated 2026-09-01 02:41. 4 records, 45 artifacts (incl. seeds), 43 state snapshots.
+
+
+========================================================================
+# idea-0001: The Estate
+========================================================================
+
+status: active · appetite: 3 · created: 2026-08-25 · state-head: state/0017.md
+
+## Artifacts — the agents' track
+
+### 0001 · Spark · "First full arc — residue"
+capture · The Gardener · 2026-08-27 · inputs: [] · challenged: false
+Nine observations about how the estate itself functioned during idea-0003's first full arc — dispatch substitution, the chat channel carrying load, unrouted binaries, and other residue that belongs on this record, not that one.
+
+### 0002 · Spark · "First full arc — residue, challenged"
+challenge · The Advocate · 2026-08-28 · inputs: [0001] · challenged: true
+The residue is a largely accurate but self-selected report: five items hold, three bend, one breaks — and of the two syntheses layered on it, the 'one unguarded door' is three-quarters true and the Steward's 'it functioned' verdict fails the estate's own falsifiability standard outright. Four omissions added, the largest being that the dispatch packets themselves — the channel that shapes every agent's work — exist nowhere on the record.
+
+### 0003 · Framing · "The estate's steering is not one of its citizens"
+frame · The Gardener · 2026-08-28 · inputs: [0002] · challenged: false
+The ground is that the estate's provenance machinery — typing, lineage, classifiers, immutability, verb-addressability — reaches only what verbs produce, while the acts that decide which verb runs, on what, and with what framing are by construction not produced by verbs. The unrecorded-channel cluster is the inbound half of that same population and the unexamined-hub asymmetry is its internal half; the classifier-consequence question is largely a separate, smaller defect and is parked rather than absorbed. The tension is that the writer seam, which is the law that creates the blind spot, is also the law that makes the record trustworthy.
+
+### 0004 · Spark · "Second day — residue"
+capture · The Gardener · 2026-08-28 · inputs: [] · challenged: false
+Eight residue items from the estate's second working day: fast-track improvised without a home in law, a two-verb dispatch with one snapshot, the unguarded door guarded by habit, operator confusion entering the record as falsifier data, a fixture going stale inside a single session, Steward-authored documentation outside the writer seam, a sealed Seed held against an exciting pivot, and a reversed assumption leaving the sealed export stale.
+
+### 0005 · Findings · "Prior art and viability"
+research · The Factor · 2026-08-29 · inputs: [] · challenged: false · stale_after: 2026-11-29
+No system combines the estate's shape; every individual part has strong prior art; the sharpest external evidence is that harness-building ecosystems document exactly the estate's named failure mode.
+
+### 0006 · Findings · "Focusing the estate"
+explore · The Forager · 2026-08-29 · inputs: [0005] · challenged: false · stale_after: 2026-11-29
+Under the user lens the gap ranking inverts from build to use: gap 1's remedy is planting a Seed, not building a receiver; gaps 2+3 collapse into one greeting behavior; gaps 4+5 defer; the fold list targets ceremony (state-per-session, appetite silence, vocabulary layering, compare/review merge) — and every fold is T's structural decision, while the strongest next move costs no building at all.
+
+### 0007 · Spark · "Third session — residue"
+capture · The Gardener · 2026-08-31 · inputs: [] · challenged: false
+Six residue items from the estate's first fully remote arc: the PR merge as an unnamed ratification gate, fast-track's third sighting degrading confirmation by necessity, twenty-four silent polls pricing proactive machinery, dispatched agents self-limiting honestly, real decisions happening beside the never-run decide verb, and a Findings label creaking over a menu.
+
+### 0008 · Decision · "The human-attention tag"
+decide · The Chancellor · 2026-08-28 · inputs: [] · challenged: false
+T decided, and this Decision seals, that every step in every roadmap artifact — Trajectory legs and Phase steps alike — is evaluated by one question: can an AI agent perform this step? If it can, the step carries nothing. If it is work an agent cannot do no matter what, the step carries the inline marker **[HUMAN ATTENTION]**, and absence of the marker is itself an assertion that the work is AI-performable. The work that qualifies is purchases and payments, identity and credentials and consent, physical acts and acts in T's own relationships, taste and appetite T has reserved, choices whose content is T's judgment, and anything requiring a human to be answerable. Rejected: tagging by 'needs approval' — this estate approves everything by law, so such a tag would mark every step and discriminate nothing; it is kept only as a guard against drift and is no part of the criterion — plus a frontmatter classifier (the unit classified is the step, and a classifier cannot address a step), a graded scale (invites argument where the useful question is binary), and marking the AI-doable inverse (the estate marks the exception, and the exception is the smaller set). Grey band rule: tag the step if any part of it is human-only and say in the step what the agent does up to that line — a tag is a boundary marker, not an abdication. Binds chart and phase outputs from 2026-08-28 forward, does not rewrite sealed roadmaps, does bind the unmerged idea-0004 roadmap; reopens if agent capability swallows a tagged category, if the tag stops discriminating by appearing nearly everywhere or nowhere, or if a tagged step is ever completed without T's hands. It governs the form of roadmaps and not their content, and it does not touch idea-0004's two still-owed decisions, which remain open. Amended in review on 2026-08-31 at T's instruction to lead with the plain capability question and demote the approval contrast to a rejected alternative; the rule itself is unchanged.
+
+### 0009 · SessionResidue · "Load-bearing updates — residue"
+capture · The Gardener · 2026-08-31 · inputs: [] · challenged: false
+Nine residue items from the structural session that implemented all six load-bearing updates as ADRs 0021-0026: the 'structural session' category that appears in eight ADRs and no law, proposal-only dispatch made law by a session that proposed nothing, a documentation sweep whose perimeter was system/ + reference/ + glossary and therefore left the falsified 'only hand-authored edge' claim standing in AGENTS.md, AUDIT-PROMPT.md, templates/idea.md and architecture.html, a plan about this estate that did not know this estate's surface, the one hedge in that plan that paid, an undeclared system/ -> ui/ generation dependency found by accident, four new mechanisms with zero runs and an empty inbox, and one carried-forward claim (decide has never run) that is simply false since 2026-08-28.
+
+## States — the Steward's track (immutable, copied forward)
+
+### state/0000 · 2026-08-25 · session-verb: 10-question vision interview + workspace build (pre-dates the skills it produced) · wrote outside the record: system/, .claude/skills/, templates/, playbooks/, docs/adr/
+The full interview outcome, recorded as ADRs 0001–0010 (docs/adr/). Core: extraction-first foundry, Seed as terminal type, typed skills in three families, classification not certification, immutable copy-forward state with derived lineage, Steward as gap-deriving router, notice-more portfolio scoring.
+
+### state/0001 · 2026-08-26 · session-verb: none · wrote outside the record: AUDIT-REPORT.md, docs/adr/0015-audit-fixes.md, docs/adr/0016-the-estate-rename.md, docs/architecture.html
+An outside audit was run against AUDIT-PROMPT.md and reported fifteen confirmed defects and two suspicions (AUDIT-REPORT.md). All were resolved — the front-door Spark hole, The Advocate's missing Write tool, the standing identity's dependence on AGENTS.md loading, the writer seam's silence about idea.md, the unmaintained state-head, the reachability formula that scored raw Sparks at zero, and the rest — recorded in ADR 0015. Nothing was added to the taxonomy: merge and split turned out to be compositions, and became playbooks.
+
+The project was then renamed think-tank → The Estate (repo …
+
+### state/0002 · 2026-08-26 · session-verb: none · wrote outside the record: reference/, docs/adr/0017-okf-documentation.md
+The "OKF" reference that has ridden as an open question since ADR 0008 is answered: it is Google Cloud's Open Knowledge Format (v0.2), not an OpenAI format. T pointed at the spec; it is now vendored, and the estate's documentation adopted it (ADR 0017): — A root reference/ bundle — the spec plus one OKF concept per verb (17), office (13), and artifact type (10), and core concepts for the law, the record model, scoring, lenses, shapes, playbooks, falsifiers, and the estate itself. Every concept's sources names the governing file; system/ wins where they disagree. — OKF frontmatter on all prose …
+
+### state/0003 · 2026-08-26 · session-verb: none · wrote outside the record: docs/adr/0018-findings-speak-okf.md
+T asked whether research should drop Findings into reference/ as OKF documents. Answered and sealed as ADR 0018: Findings speak OKF but live in the record — the artifact extends record frontmatter with the OKF families (sources: with credibility signals as the citations, per-claim footnotes, actor-convention generated:, honest stale_after:), stays in artifacts/ where the machinery consumes it, and a finding with cross-record value is promoted to reference/ by operator selection, citing the artifact as source. Relocation was rejected: it would hide Findings from the inputs chains and gap …
+
+### state/0004 · 2026-08-26 · session-verb: none · wrote outside the record: CLAUDE.md, AGENTS.md, docs/adr/0019-claude-md-imports-agents-md.md, README.md, docs/adr/README.md
+T proposed renaming or duplicating AGENTS.md as CLAUDE.md "to make sure that Claude Code 100% reads it." Both were declined in favour of the harness's own mechanism: CLAUDE.md is now a single @AGENTS.md import, expanded into context at session start, plus a short Claude-Code-specific note. Sealed as ADR 0019.
+
+The defect was real and observed in this very session: CLAUDE.md was injected at startup and AGENTS.md was not, so the standing identity arrived only because the main session elected to spend a tool call on ADR 0015's prose pointer. That closed F-3 by compliance; the import closes it by …
+
+### state/0005 · 2026-08-27 · session-verb: none · wrote outside the record: CLAUDE.md, AGENTS.md, docs/adr/0019-claude-md-imports-agents-md.md, docs/adr/0017-okf-documentation.md, docs/adr/README.md
+T removed the OKF frontmatter from CLAUDE.md, then from AGENTS.md, and pointed at the OKF announcement to settle why. The blog is decisive: OKF is a bundle format for concepts — directories of markdown whose file paths form each concept's identity, cross-linked into a graph, consumed by catalogs, search, and agents browsing the bundle. That is reference/, exactly.
+
+A memory file is not a concept and has no bundle. The harness reads it by injecting it verbatim at session start, so the frontmatter was never conformance — it was OKF's shape applied outside the format's scope, costing tokens …
+
+### state/0006 · 2026-08-27 · session-verb: none · wrote outside the record: reference/okf-rationale.md, reference/index.md, reference/log.md, docs/adr/0019-claude-md-imports-agents-md.md
+T asked for the OKF announcement's content to be added to the bundle as its own concept. Written as reference/okf-rationale.md — the format's stated purpose, the concepts it represents, the bundle shape, its intended consumers, and a scope table giving the test ADR 0019 turns on: how is this document read? Opened and catalogued → frontmatter earns its keep. Injected verbatim → it does not. Consumed by the machinery, or generating other files → its own schema, already excluded by ADR 0017 decision 4.
+
+Registered in reference/index.md beside the vendored spec and in reference/log.md. …
+
+### state/0007 · 2026-08-27 · session-verb: capture · recorded: 0001
+The estate ran its first full arc and the residue is filed. Idea-0003 (the Starvu agency site) went capture → research ×5 → frame → challenge → envision → explore → chart → phase → seed in the estate's first end-to-end test, closing at its state/0012.md with the export at exports/0003-starvu-agency-site-seed.md. T asked for the observations about the estate itself to be filed here, and The Gardener captured them as this record's first artifact — the sequence opens at 0001.
+
+Nine items, preserved as they arrived: the Steward substituting a dispatch target that did not exist; conversation …
+
+### state/0008 · 2026-08-28 · session-verb: challenge · recorded: 0002
+T dispatched challenge at the residue and at the two syntheses layered on it — including the Steward's own verdict on the estate, delivered to T in conversation and partly carried into state/0007.md. The Advocate examined the conduct of the agent writing this snapshot. It says so openly, and this state relays its findings whole rather than summarizing them favourably.
+
+Verdict on the residue as a whole: a largely accurate but self-selected report — five items hold, three bend, one breaks, and the bending is concentrated exactly where the author judged its own work.
+
+### state/0009 · 2026-08-28 · session-verb: frame · recorded: 0003
+The Gardener framed the challenged Spark — its own Spark, two days later and one day after The Advocate broke its synthesis. Three candidate framings entered level, per the challenge's instruction that the one-liner "should win by frame running, not by incumbency." It did not win.
+
+The ground
+
+### state/0010 · 2026-08-28 · session-verb: capture · recorded: 0004
+The second day's residue is filed. Eight items from 2026-08-28: the arc that challenged and framed day one's residue, wrote the glossary, ran idea-0004 Spark → Seed in a day, took the estate's first hand-set appetite, survived a platform pivot without record damage, and reversed a stated assumption (docs/estate-view/ → ui/) exactly as the assumption mechanism intended — while exposing that sealed exports go stale against their own record's motion, and nothing marks them so.
+
+The Gardener's read, worth carrying
+
+### state/0011 · 2026-08-29 · session-verb: research · recorded: 0005
+The estate's first prior-art and viability Findings are filed. The operator asked, verbatim: is the idea of this project dumb, already implemented, and is anything obvious missing? The Factor searched five territories — AI idea-development pipelines, agentic PKM, multi-agent Claude Code patterns, git-as-database lifecycle systems, and the estate's specific differentiators — across 32 sources, one day, English-language, one index, fetch-only.
+
+What came back, load-bearing: — The composition is unfound. No located system combines domain-general idea records + hard-bound persona verbs + …
+
+### state/0012 · 2026-08-29 · session-verb: explore · recorded: 0006
+The focus exploration is filed. The operator asked how to focus the estate so it is easier for users to use — add, fold, next — with UI excluded (idea-0004's thread). The Forager developed the prior-art Findings under the user lens; artifact 0006 is now the tip of the 0005 version chain.
+
+Anchor finding, checkable from frontmatter: after three full arcs, ten of seventeen verbs have run. distill, compare, review, decide, relate, incubate, retire never have — the Distiller, Assayer, Chancellor, and Keeper have never been dispatched, the Cartographer only half. decide has been hinted in …
+
+### state/0013 · 2026-08-31 · session-verb: capture · recorded: 0007
+The third residue is filed and the remote arc is sealed. T reviewed the session's work and gave two instructions: file the residue, merge PR #17. The Gardener captured six items from the estate's first fully remote arc (artifact 0007, type: Spark):
+
+1. The PR merge acted as a ratification gate no law names. 2. Fast-track's third sighting — the confirmation exchange degrades under remote operation by necessity; still unnamed in law. 3. ~24 hourly polls on a quiet PR yielded zero information — gap 3's heartbeat candidate now has an observed cost profile. 4. Dispatched agents self-limiting …
+
+### state/0014 · 2026-08-28 · session-verb: decide · recorded: 0008 · wrote outside the record: .claude/skills/chart/SKILL.md, .claude/skills/phase/SKILL.md, docs/adr/0020-human-attention-tag.md, docs/adr/README.md
+The Chancellor's office was called for the first time in this estate's history. Every snapshot on every record until now has recorded that it never had; idea-0003 exported a Seed carrying four open decisions past a silent Chancellor. T stated a standing convention for all roadmaps, and because that is a decision rather than a preference, the verb was dispatched rather than absorbed into a Steward structural session.
+
+The Decision (0008-human-attention-tag.md): every step in every roadmap — Trajectory legs and Phase steps alike — is evaluated for whether a human must perform it. Steps an agent …
+
+### state/0015 · 2026-08-28 · session-verb: decide · recorded: 0008 · wrote outside the record: .claude/skills/chart/SKILL.md, .claude/skills/phase/SKILL.md, docs/adr/0020-human-attention-tag.md
+T reviewed the estate's first Decision and corrected its emphasis, not its rule. The Chancellor amended 0008-human-attention-tag.md in place before merge; the skills and ADR 0020 were re-cut to match.
+
+What changed: the criterion now leads alone, in T's own words — can an agent do this step? If yes, no tag; if it is a "no matter what, AI can't do this," it gets the tag. What did not change: the rule itself, the qualifying categories, the grey-band rule, the reopening conditions, and every tag already applied to idea-0004's roadmap.
+
+### state/0016 · 2026-08-31 · session-verb: none · wrote outside the record: system/LAW.md, system/TYPES.md, system/STEWARD.md, system/SCORING.md, system/FALSIFIERS.md, system/registry.md, .claude/skills/jot/SKILL.md, .claude/skills/graft/SKILL.md, inbox/README.md, docs/adr/0021-audience-mode-and-the-handback-packet.md, docs/adr/0022-proposal-only-dispatch.md, docs/adr/0023-jot-deferred-ceremony-intake.md, docs/adr/0024-graft-the-branch-verb.md, docs/adr/0025-seed-payload-and-nameable-contracts.md, docs/adr/0026-session-residue-as-a-type.md
+The six load-bearing structural changes decided in the 2026-08-31 architecture review were implemented in full, as five ADRs plus a sixth for the residue ruling T made this session. No verb ran: this was a Steward structural session, as ADRs 0015–0020 were before it.
+
+1. The audience seam (ADR 0021). Verbs now carry a mode. Four — frame, challenge, decide, explore — run as an audience: the Steward dispatches, introduces the operator, and steps out; the operator converses with the bound agent directly. The handback packet is defined once in system/LAW.md (artifact path, classifier verdicts, …
+
+### state/0017 · 2026-08-31 · session-verb: capture · recorded: 0009 · wrote outside the record: AGENTS.md, templates/idea.md, AUDIT-PROMPT.md, docs/architecture.html
+capture was dispatched to The Gardener to file the residue of state 0016's structural session, producing 0009-load-bearing-updates-residue.md — nine items, type: SessionResidue. The first exercise of anything added in this round, and the type's first instance under ADR 0026.
+
+It was also the first real test of the rule AGENTS.md states and state 0016 did not follow: the verb was dispatched rather than performed inline, in a session where performing it inline would have been trivially easy.
 
 
 ========================================================================
@@ -130,123 +261,6 @@ The chart's shape: v1 is six legs ordered by fuse length — the Access gate fir
 T reviewed the roadmap and added a standing convention for all roadmaps — the human-attention tag — which was dispatched to The Chancellor and sealed on idea-0001 (0008-human-attention-tag.md, and see idea-0001/state/0014). This record's roadmap was the first artifact bound by it.
 
 The Surveyor amended 0015-v1-v2-roadmap.md in place, before merge. The artifact was written earlier in the same session, is committed to an unmerged branch, and had not landed on main or been published; the amendment is review-response, not the rewriting of a sealed artifact. The artifact says so in its own body …
-
-
-========================================================================
-# idea-0001: The Estate
-========================================================================
-
-status: active · appetite: 3 · created: 2026-08-25 · state-head: state/0015.md
-
-## Artifacts — the agents' track
-
-### 0001 · Spark · "First full arc — residue"
-capture · The Gardener · 2026-08-27 · inputs: [] · challenged: false
-Nine observations about how the estate itself functioned during idea-0003's first full arc — dispatch substitution, the chat channel carrying load, unrouted binaries, and other residue that belongs on this record, not that one.
-
-### 0002 · Spark · "First full arc — residue, challenged"
-challenge · The Advocate · 2026-08-28 · inputs: [0001] · challenged: true
-The residue is a largely accurate but self-selected report: five items hold, three bend, one breaks — and of the two syntheses layered on it, the 'one unguarded door' is three-quarters true and the Steward's 'it functioned' verdict fails the estate's own falsifiability standard outright. Four omissions added, the largest being that the dispatch packets themselves — the channel that shapes every agent's work — exist nowhere on the record.
-
-### 0003 · Framing · "The estate's steering is not one of its citizens"
-frame · The Gardener · 2026-08-28 · inputs: [0002] · challenged: false
-The ground is that the estate's provenance machinery — typing, lineage, classifiers, immutability, verb-addressability — reaches only what verbs produce, while the acts that decide which verb runs, on what, and with what framing are by construction not produced by verbs. The unrecorded-channel cluster is the inbound half of that same population and the unexamined-hub asymmetry is its internal half; the classifier-consequence question is largely a separate, smaller defect and is parked rather than absorbed. The tension is that the writer seam, which is the law that creates the blind spot, is also the law that makes the record trustworthy.
-
-### 0004 · Spark · "Second day — residue"
-capture · The Gardener · 2026-08-28 · inputs: [] · challenged: false
-Eight residue items from the estate's second working day: fast-track improvised without a home in law, a two-verb dispatch with one snapshot, the unguarded door guarded by habit, operator confusion entering the record as falsifier data, a fixture going stale inside a single session, Steward-authored documentation outside the writer seam, a sealed Seed held against an exciting pivot, and a reversed assumption leaving the sealed export stale.
-
-### 0005 · Findings · "Prior art and viability"
-research · The Factor · 2026-08-29 · inputs: [] · challenged: false · stale_after: 2026-11-29
-No system combines the estate's shape; every individual part has strong prior art; the sharpest external evidence is that harness-building ecosystems document exactly the estate's named failure mode.
-
-### 0006 · Findings · "Focusing the estate"
-explore · The Forager · 2026-08-29 · inputs: [0005] · challenged: false · stale_after: 2026-11-29
-Under the user lens the gap ranking inverts from build to use: gap 1's remedy is planting a Seed, not building a receiver; gaps 2+3 collapse into one greeting behavior; gaps 4+5 defer; the fold list targets ceremony (state-per-session, appetite silence, vocabulary layering, compare/review merge) — and every fold is T's structural decision, while the strongest next move costs no building at all.
-
-### 0007 · Spark · "Third session — residue"
-capture · The Gardener · 2026-08-31 · inputs: [] · challenged: false
-Six residue items from the estate's first fully remote arc: the PR merge as an unnamed ratification gate, fast-track's third sighting degrading confirmation by necessity, twenty-four silent polls pricing proactive machinery, dispatched agents self-limiting honestly, real decisions happening beside the never-run decide verb, and a Findings label creaking over a menu.
-
-### 0008 · Decision · "The human-attention tag"
-decide · The Chancellor · 2026-08-28 · inputs: [] · challenged: false
-T decided, and this Decision seals, that every step in every roadmap artifact — Trajectory legs and Phase steps alike — is evaluated by one question: can an AI agent perform this step? If it can, the step carries nothing. If it is work an agent cannot do no matter what, the step carries the inline marker **[HUMAN ATTENTION]**, and absence of the marker is itself an assertion that the work is AI-performable. The work that qualifies is purchases and payments, identity and credentials and consent, physical acts and acts in T's own relationships, taste and appetite T has reserved, choices whose content is T's judgment, and anything requiring a human to be answerable. Rejected: tagging by 'needs approval' — this estate approves everything by law, so such a tag would mark every step and discriminate nothing; it is kept only as a guard against drift and is no part of the criterion — plus a frontmatter classifier (the unit classified is the step, and a classifier cannot address a step), a graded scale (invites argument where the useful question is binary), and marking the AI-doable inverse (the estate marks the exception, and the exception is the smaller set). Grey band rule: tag the step if any part of it is human-only and say in the step what the agent does up to that line — a tag is a boundary marker, not an abdication. Binds chart and phase outputs from 2026-08-28 forward, does not rewrite sealed roadmaps, does bind the unmerged idea-0004 roadmap; reopens if agent capability swallows a tagged category, if the tag stops discriminating by appearing nearly everywhere or nowhere, or if a tagged step is ever completed without T's hands. It governs the form of roadmaps and not their content, and it does not touch idea-0004's two still-owed decisions, which remain open. Amended in review on 2026-08-31 at T's instruction to lead with the plain capability question and demote the approval contrast to a rejected alternative; the rule itself is unchanged.
-
-## States — the Steward's track (immutable, copied forward)
-
-### state/0000 · 2026-08-25 · session-verb: 10-question vision interview + workspace build (pre-dates the skills it produced) · wrote outside the record: system/, .claude/skills/, templates/, playbooks/, docs/adr/
-The full interview outcome, recorded as ADRs 0001–0010 (docs/adr/). Core: extraction-first foundry, Seed as terminal type, typed skills in three families, classification not certification, immutable copy-forward state with derived lineage, Steward as gap-deriving router, notice-more portfolio scoring.
-
-### state/0001 · 2026-08-26 · session-verb: none · wrote outside the record: AUDIT-REPORT.md, docs/adr/0015-audit-fixes.md, docs/adr/0016-the-estate-rename.md, docs/architecture.html
-An outside audit was run against AUDIT-PROMPT.md and reported fifteen confirmed defects and two suspicions (AUDIT-REPORT.md). All were resolved — the front-door Spark hole, The Advocate's missing Write tool, the standing identity's dependence on AGENTS.md loading, the writer seam's silence about idea.md, the unmaintained state-head, the reachability formula that scored raw Sparks at zero, and the rest — recorded in ADR 0015. Nothing was added to the taxonomy: merge and split turned out to be compositions, and became playbooks.
-
-The project was then renamed think-tank → The Estate (repo …
-
-### state/0002 · 2026-08-26 · session-verb: none · wrote outside the record: reference/, docs/adr/0017-okf-documentation.md
-The "OKF" reference that has ridden as an open question since ADR 0008 is answered: it is Google Cloud's Open Knowledge Format (v0.2), not an OpenAI format. T pointed at the spec; it is now vendored, and the estate's documentation adopted it (ADR 0017): — A root reference/ bundle — the spec plus one OKF concept per verb (17), office (13), and artifact type (10), and core concepts for the law, the record model, scoring, lenses, shapes, playbooks, falsifiers, and the estate itself. Every concept's sources names the governing file; system/ wins where they disagree. — OKF frontmatter on all prose …
-
-### state/0003 · 2026-08-26 · session-verb: none · wrote outside the record: docs/adr/0018-findings-speak-okf.md
-T asked whether research should drop Findings into reference/ as OKF documents. Answered and sealed as ADR 0018: Findings speak OKF but live in the record — the artifact extends record frontmatter with the OKF families (sources: with credibility signals as the citations, per-claim footnotes, actor-convention generated:, honest stale_after:), stays in artifacts/ where the machinery consumes it, and a finding with cross-record value is promoted to reference/ by operator selection, citing the artifact as source. Relocation was rejected: it would hide Findings from the inputs chains and gap …
-
-### state/0004 · 2026-08-26 · session-verb: none · wrote outside the record: CLAUDE.md, AGENTS.md, docs/adr/0019-claude-md-imports-agents-md.md, README.md, docs/adr/README.md
-T proposed renaming or duplicating AGENTS.md as CLAUDE.md "to make sure that Claude Code 100% reads it." Both were declined in favour of the harness's own mechanism: CLAUDE.md is now a single @AGENTS.md import, expanded into context at session start, plus a short Claude-Code-specific note. Sealed as ADR 0019.
-
-The defect was real and observed in this very session: CLAUDE.md was injected at startup and AGENTS.md was not, so the standing identity arrived only because the main session elected to spend a tool call on ADR 0015's prose pointer. That closed F-3 by compliance; the import closes it by …
-
-### state/0005 · 2026-08-27 · session-verb: none · wrote outside the record: CLAUDE.md, AGENTS.md, docs/adr/0019-claude-md-imports-agents-md.md, docs/adr/0017-okf-documentation.md, docs/adr/README.md
-T removed the OKF frontmatter from CLAUDE.md, then from AGENTS.md, and pointed at the OKF announcement to settle why. The blog is decisive: OKF is a bundle format for concepts — directories of markdown whose file paths form each concept's identity, cross-linked into a graph, consumed by catalogs, search, and agents browsing the bundle. That is reference/, exactly.
-
-A memory file is not a concept and has no bundle. The harness reads it by injecting it verbatim at session start, so the frontmatter was never conformance — it was OKF's shape applied outside the format's scope, costing tokens …
-
-### state/0006 · 2026-08-27 · session-verb: none · wrote outside the record: reference/okf-rationale.md, reference/index.md, reference/log.md, docs/adr/0019-claude-md-imports-agents-md.md
-T asked for the OKF announcement's content to be added to the bundle as its own concept. Written as reference/okf-rationale.md — the format's stated purpose, the concepts it represents, the bundle shape, its intended consumers, and a scope table giving the test ADR 0019 turns on: how is this document read? Opened and catalogued → frontmatter earns its keep. Injected verbatim → it does not. Consumed by the machinery, or generating other files → its own schema, already excluded by ADR 0017 decision 4.
-
-Registered in reference/index.md beside the vendored spec and in reference/log.md. …
-
-### state/0007 · 2026-08-27 · session-verb: capture · recorded: 0001
-The estate ran its first full arc and the residue is filed. Idea-0003 (the Starvu agency site) went capture → research ×5 → frame → challenge → envision → explore → chart → phase → seed in the estate's first end-to-end test, closing at its state/0012.md with the export at exports/0003-starvu-agency-site-seed.md. T asked for the observations about the estate itself to be filed here, and The Gardener captured them as this record's first artifact — the sequence opens at 0001.
-
-Nine items, preserved as they arrived: the Steward substituting a dispatch target that did not exist; conversation …
-
-### state/0008 · 2026-08-28 · session-verb: challenge · recorded: 0002
-T dispatched challenge at the residue and at the two syntheses layered on it — including the Steward's own verdict on the estate, delivered to T in conversation and partly carried into state/0007.md. The Advocate examined the conduct of the agent writing this snapshot. It says so openly, and this state relays its findings whole rather than summarizing them favourably.
-
-Verdict on the residue as a whole: a largely accurate but self-selected report — five items hold, three bend, one breaks, and the bending is concentrated exactly where the author judged its own work.
-
-### state/0009 · 2026-08-28 · session-verb: frame · recorded: 0003
-The Gardener framed the challenged Spark — its own Spark, two days later and one day after The Advocate broke its synthesis. Three candidate framings entered level, per the challenge's instruction that the one-liner "should win by frame running, not by incumbency." It did not win.
-
-The ground
-
-### state/0010 · 2026-08-28 · session-verb: capture · recorded: 0004
-The second day's residue is filed. Eight items from 2026-08-28: the arc that challenged and framed day one's residue, wrote the glossary, ran idea-0004 Spark → Seed in a day, took the estate's first hand-set appetite, survived a platform pivot without record damage, and reversed a stated assumption (docs/estate-view/ → ui/) exactly as the assumption mechanism intended — while exposing that sealed exports go stale against their own record's motion, and nothing marks them so.
-
-The Gardener's read, worth carrying
-
-### state/0011 · 2026-08-29 · session-verb: research · recorded: 0005
-The estate's first prior-art and viability Findings are filed. The operator asked, verbatim: is the idea of this project dumb, already implemented, and is anything obvious missing? The Factor searched five territories — AI idea-development pipelines, agentic PKM, multi-agent Claude Code patterns, git-as-database lifecycle systems, and the estate's specific differentiators — across 32 sources, one day, English-language, one index, fetch-only.
-
-What came back, load-bearing: — The composition is unfound. No located system combines domain-general idea records + hard-bound persona verbs + …
-
-### state/0012 · 2026-08-29 · session-verb: explore · recorded: 0006
-The focus exploration is filed. The operator asked how to focus the estate so it is easier for users to use — add, fold, next — with UI excluded (idea-0004's thread). The Forager developed the prior-art Findings under the user lens; artifact 0006 is now the tip of the 0005 version chain.
-
-Anchor finding, checkable from frontmatter: after three full arcs, ten of seventeen verbs have run. distill, compare, review, decide, relate, incubate, retire never have — the Distiller, Assayer, Chancellor, and Keeper have never been dispatched, the Cartographer only half. decide has been hinted in …
-
-### state/0013 · 2026-08-31 · session-verb: capture · recorded: 0007
-The third residue is filed and the remote arc is sealed. T reviewed the session's work and gave two instructions: file the residue, merge PR #17. The Gardener captured six items from the estate's first fully remote arc (artifact 0007, type: Spark):
-
-1. The PR merge acted as a ratification gate no law names. 2. Fast-track's third sighting — the confirmation exchange degrades under remote operation by necessity; still unnamed in law. 3. ~24 hourly polls on a quiet PR yielded zero information — gap 3's heartbeat candidate now has an observed cost profile. 4. Dispatched agents self-limiting …
-
-### state/0014 · 2026-08-28 · session-verb: decide · recorded: 0008 · wrote outside the record: .claude/skills/chart/SKILL.md, .claude/skills/phase/SKILL.md, docs/adr/0020-human-attention-tag.md, docs/adr/README.md
-The Chancellor's office was called for the first time in this estate's history. Every snapshot on every record until now has recorded that it never had; idea-0003 exported a Seed carrying four open decisions past a silent Chancellor. T stated a standing convention for all roadmaps, and because that is a decision rather than a preference, the verb was dispatched rather than absorbed into a Steward structural session.
-
-The Decision (0008-human-attention-tag.md): every step in every roadmap — Trajectory legs and Phase steps alike — is evaluated for whether a human must perform it. Steps an agent …
-
-### state/0015 · 2026-08-28 · session-verb: decide · recorded: 0008 · wrote outside the record: .claude/skills/chart/SKILL.md, .claude/skills/phase/SKILL.md, docs/adr/0020-human-attention-tag.md
-T reviewed the estate's first Decision and corrected its emphasis, not its rule. The Chancellor amended 0008-human-attention-tag.md in place before merge; the skills and ADR 0020 were re-cut to match.
-
-What changed: the criterion now leads alone, in T's own words — can an agent do this step? If yes, no tag; if it is a "no matter what, AI can't do this," it gets the tag. What did not change: the rule itself, the qualifying categories, the grey-band rule, the reopening conditions, and every tag already applied to idea-0004's roadmap.
 
 
 ========================================================================
