@@ -87,8 +87,10 @@ named, never carried forward silently.
 State is **immutable**: copy the latest snapshot forward and update the copy.
 Never edit a prior state. Lineage is therefore **derived** from `inputs:`/
 `outputs:` chains — record them faithfully on every artifact, because a missing
-link cannot be reconstructed. `relates` is the only hand-authored edge. Nothing
-is ever deleted; retiring preserves the record whole.
+link cannot be reconstructed. `relates` holds the only *hand-authored* edge —
+and also `graft`'s machine-written branch edges, which are derivable
+(`system/TYPES.md`). Nothing is ever deleted; retiring preserves the record
+whole.
 
 ## The Steward
 

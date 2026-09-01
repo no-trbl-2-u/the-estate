@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31 20:10",
+  "generatedAt": "2026-09-01 02:41",
   "estateRoot": "~/the-estate",
   "agents": [
     {
@@ -110,7 +110,7 @@
       "appetite": 3,
       "placeholder": false,
       "appetiteNote": null,
-      "stateHead": "state/0016.md",
+      "stateHead": "state/0017.md",
       "headDate": "2026-08-31",
       "seed": null,
       "seedOrigin": null,
@@ -325,6 +325,31 @@
           ],
           "summary": "T decided, and this Decision seals, that every step in every roadmap artifact — Trajectory legs and Phase steps alike — is evaluated by one question: can an AI agent perform this step? If it can, the step carries nothing. If it is work an agent cannot do no matter what, the step carries the inline marker **[HUMAN ATTENTION]**, and absence of the marker is itself an assertion that the work is AI-performable. The work that qualifies is purchases and payments, identity and credentials and consent, physical acts and acts in T's own relationships, taste and appetite T has reserved, choices whose content is T's judgment, and anything requiring a human to be answerable. Rejected: tagging by 'needs approval' — this estate approves everything by law, so such a tag would mark every step and discriminate nothing; it is kept only as a guard against drift and is no part of the criterion — plus a frontmatter classifier (the unit classified is the step, and a classifier cannot address a step), a graded scale (invites argument where the useful question is binary), and marking the AI-doable inverse (the estate marks the exception, and the exception is the smaller set). Grey band rule: tag the step if any part of it is human-only and say in the step what the agent does up to that line — a tag is a boundary marker, not an abdication. Binds chart and phase outputs from 2026-08-28 forward, does not rewrite sealed roadmaps, does bind the unmerged idea-0004 roadmap; reopens if agent capability swallows a tagged category, if the tag stops discriminating by appearing nearly everywhere or nowhere, or if a tagged step is ever completed without T's hands. It governs the form of roadmaps and not their content, and it does not touch idea-0004's two still-owed decisions, which remain open. Amended in review on 2026-08-31 at T's instruction to lead with the plain capability question and demote the approval contrast to a rejected alternative; the rule itself is unchanged.",
           "excerpt": "The human-attention tag\n\nI am The Chancellor. This is the first sitting of my office in this estate's history — every state snapshot to date has recorded that decide had never been dispatched — and I want the nature of this sitting on the record before its substance, because the two are easy to confuse.",
+          "stale": null,
+          "generatedBy": null,
+          "terminal": false
+        },
+        {
+          "n": 9,
+          "type": "SessionResidue",
+          "verb": "capture",
+          "agent": "The Gardener",
+          "mono": "Gd",
+          "title": "Load-bearing updates — residue",
+          "file": "0009-load-bearing-updates-residue.md",
+          "date": "2026-08-31",
+          "inputs": [],
+          "classifiers": {
+            "challenged": false
+          },
+          "lenses": [],
+          "shape": "prose",
+          "nextSteps": [
+            "challenge",
+            "decide"
+          ],
+          "summary": "Nine residue items from the structural session that implemented all six load-bearing updates as ADRs 0021-0026: the 'structural session' category that appears in eight ADRs and no law, proposal-only dispatch made law by a session that proposed nothing, a documentation sweep whose perimeter was system/ + reference/ + glossary and therefore left the falsified 'only hand-authored edge' claim standing in AGENTS.md, AUDIT-PROMPT.md, templates/idea.md and architecture.html, a plan about this estate that did not know this estate's surface, the one hedge in that plan that paid, an undeclared system/ -> ui/ generation dependency found by accident, four new mechanisms with zero runs and an empty inbox, and one carried-forward claim (decide has never run) that is simply false since 2026-08-28.",
+          "excerpt": "Load-bearing updates — residue\n\nProvenance: captured from the Steward's structural session of 2026-08-31, which implemented all six phases of load-bearing-updates-plan.md as ADRs 0021–0026 across sixty-seven files in two commits. State 0016 records what was decided; this records what the session revealed about how the estate actually functions. The raw observations arrived from the Steward as an account of its own behaviour, and I have treated them as self-selected testimony and checked each one. Two did not survive; they are item 9, because what happened to them is itself the residue.",
           "stale": null,
           "generatedBy": null,
           "terminal": false
@@ -559,6 +584,22 @@
             "docs/adr/0026-session-residue-as-a-type.md"
           ],
           "est": "The six load-bearing structural changes decided in the 2026-08-31 architecture review were implemented in full, as five ADRs plus a sixth for the residue ruling T made this session. No verb ran: this was a Steward structural session, as ADRs 0015–0020 were before it.\n\n1. The audience seam (ADR 0021). Verbs now carry a mode. Four — frame, challenge, decide, explore — run as an audience: the Steward dispatches, introduces the operator, and steps out; the operator converses with the bound agent directly. The handback packet is defined once in system/LAW.md (artifact path, classifier verdicts, …"
+        },
+        {
+          "n": 17,
+          "date": "2026-08-31",
+          "verb": "capture",
+          "skill": null,
+          "out": [
+            9
+          ],
+          "steer": [
+            "AGENTS.md",
+            "templates/idea.md",
+            "AUDIT-PROMPT.md",
+            "docs/architecture.html"
+          ],
+          "est": "capture was dispatched to The Gardener to file the residue of state 0016's structural session, producing 0009-load-bearing-updates-residue.md — nine items, type: SessionResidue. The first exercise of anything added in this round, and the type's first instance under ADR 0026.\n\nIt was also the first real test of the rule AGENTS.md states and state 0016 did not follow: the verb was dispatched rather than performed inline, in a session where performing it inline would have been trivially easy."
         }
       ]
     },
