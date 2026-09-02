@@ -45,3 +45,27 @@ Do not tag on "needs T's approval" — that criterion would mark every
 boundary step and discriminate nothing. Tag on hands, not sign-off.
 
 T's standing decision, 2026-08-28 — sealed as `idea-0001/artifacts/0008-human-attention-tag.md`.
+
+## Phase 0 — the garden (when the Seed will be `build-plan`)
+
+If the record's Seed is headed for an implementation loop (ADR 0029), your
+first Phase is **Phase 0**, and its done-condition is not yours to choose:
+**the loop completes one tick on nothing** — a trivial slice shipped,
+verified, deployed, reported. Phase 0 is where the operator spends the first
+weekend so that every later Phase can just go.
+
+Its contents, for `target: nexus`, each a step with its own tag decision:
+
+- **Stack** — decided in the estate (`decide`) where decidable now; what is
+  not decidable yet is a `[HUMAN ATTENTION]` step, not a guess.
+- **Environment** — a manifest of every variable: name, purpose, who supplies
+  it. Values are always human; the step that obtains them is tagged.
+- **Verify gate** — typecheck, unit, build, e2e wired and green on an empty
+  project. This is the loop's precondition stated as work.
+- **Deploy target** — reachable and pollable before a feature exists.
+- **Seed-specific skills** — the payload's `seed-check` and `re-seed`, plus
+  whatever this Horizon implies (a fixture-assertion skill, a claims-ledger
+  skill). Name them; the Sower writes them.
+
+A Phase 0 that lists features is not a garden. Stop it at the first green
+tick.

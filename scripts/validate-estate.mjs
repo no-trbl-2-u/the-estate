@@ -117,6 +117,59 @@ if (existsSync(inboxDir)) {
   }
 }
 
+// --- Exports: a Seed behind its record; build-plan payload shape (ADR 0029) --
+const exportsDir = join(root, 'exports');
+const BUILD_PLAN_FILES = [
+  'README.md', 'spec.md', 'plan/steps/01_build_plan.md',
+  'skills/seed-check.md', 'skills/re-seed.md',
+];
+const stateNum = (s) => Number((s || '').match(/(\d{4})/)?.[1] ?? NaN);
+const base = (p) => (p || '').replace(/^"|"$/g, '').split('/').pop();
+
+if (existsSync(exportsDir)) {
+  const seedFiles = readdirSync(exportsDir).filter((x) => x.endsWith('-seed.md'));
+  const exportFms = seedFiles.map((s) => [s, frontmatter(join(exportsDir, s))]);
+
+  // Anything that names a stale export as reconciled: a later export's
+  // `supersedes:`, or a record artifact's `reconciles:`.
+  const reconciled = new Set();
+  for (const [, fm] of exportFms) if (fm?.supersedes) reconciled.add(base(fm.supersedes));
+  for (const record of records) {
+    const artifactsDir = join(ideasDir, record, 'artifacts');
+    if (!existsSync(artifactsDir)) continue;
+    for (const a of readdirSync(artifactsDir).filter((x) => x.endsWith('.md'))) {
+      const fm = frontmatter(join(artifactsDir, a));
+      if (fm?.reconciles) reconciled.add(base(fm.reconciles));
+    }
+  }
+
+  for (const [s, fm] of exportFms) {
+    const f = join(exportsDir, s);
+    if (!fm) { errors.push(`${rel(f)}: no frontmatter`); continue; }
+    const origin = (fm.origin || '').match(/idea-(\d{4})\s*@\s*state\/(\d{4})/);
+    if (!origin) { errors.push(`${rel(f)}: \`origin:\` is not "idea-NNNN @ state/NNNN"`); continue; }
+
+    const record = records.find((r) => r.startsWith(`${origin[1]}-`));
+    if (!record) { errors.push(`${rel(f)}: origin idea-${origin[1]} has no record`); continue; }
+    const head = stateNum(frontmatter(join(ideasDir, record, 'idea.md'))?.['state-head']);
+    if (head > Number(origin[2]) && !reconciled.has(s)) {
+      warnings.push(`${rel(f)}: origin state/${origin[2]} is behind ${record} head state/${String(head).padStart(4, '0')} — reconciliation owed (re-seed | graft | decide-abandon)`);
+    }
+
+    if (fm.contract === 'build-plan') {
+      if (!fm.target) errors.push(`${rel(f)}: build-plan Seed missing \`target:\``);
+      if (!fm.payload || fm.payload === '""') {
+        errors.push(`${rel(f)}: build-plan Seed missing \`payload:\` (the payload is the deliverable)`);
+      } else {
+        const payload = fm.payload.replace(/\/+$/, '');
+        for (const p of BUILD_PLAN_FILES) {
+          if (!existsSync(join(exportsDir, payload, p))) errors.push(`${rel(f)}: build-plan payload missing ${payload}/${p}`);
+        }
+      }
+    }
+  }
+}
+
 // --- Report -----------------------------------------------------------------
 for (const w of warnings) console.log(`warn  ${w}`);
 for (const e of errors) console.log(`ERROR ${e}`);

@@ -104,14 +104,35 @@ Every verb remains directly invocable, and naming a verb is always selection.
 Questions to the operator may be batched when genuinely parallel; sequential
 ones should not be.
 
+## The return path
+
+A Seed's provenance stamp is a road in both directions (ADR 0029). Outward,
+a Seed may leave under a **named contract** whose payload is the droppable
+form for a specific recipient — `build-plan` renders Horizon, refusals and
+Phases for an implementation loop, with a **garden** Phase 0 in front whose
+done-condition is that the loop completes one tick on nothing
+(`system/TYPES.md`). Inward, a Seed whose `origin:` state is behind its
+record's head is **stale**, and the record owes a reconciliation: re-seed
+(`supersedes:`), graft, or decide-abandon (`reconciles:`). Exports are never
+edited; the pointer runs forward. A field report from outside enters as
+`capture` on the record the stamp names.
+
+The loop itself never lives here. A target is forked under T's control,
+pinned by tag, and cloned beside the payload — the estate stays
+domain-general, and the integration stays non-critical.
+
 ## Checked, not declared
 
 An invariant worth a law is worth a check (`scripts/validate-estate.mjs`):
 skill frontmatter completeness and valid `run:` values; artifact `type:`,
 `produced-by:`, and `inputs:`; `state-head:` pointers that resolve; state
-snapshot chain fields; slip stamps. **A stated invariant the validator does
-not check is guidance, not law** — no provision may claim a property is
-"checkable" without naming what checks it.
+snapshot chain fields; slip stamps; a Seed's `origin:` against its record's
+head (warn when stale and unreconciled); a `build-plan` payload's declared
+files (error when missing). **A stated invariant the validator does not
+check is guidance, not law** — no provision may claim a property is
+"checkable" without naming what checks it. The garden's "one tick on
+nothing" is checked by running the loop, not by the validator, and is
+guidance until a target exposes a check.
 
 ## Intake precedes the record
 
