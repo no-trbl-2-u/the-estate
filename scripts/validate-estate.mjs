@@ -119,9 +119,9 @@ if (existsSync(inboxDir)) {
 
 // --- Exports: a Seed behind its record; build-plan payload shape (ADR 0029) --
 const exportsDir = join(root, 'exports');
-const BUILD_PLAN_FILES = [
-  'README.md', 'spec.md', 'plan/steps/01_build_plan.md',
-  'skills/seed-check.md', 'skills/re-seed.md',
+const BUILD_PLAN_FILES = [ // the nexus-native shape (ADR 0030)
+  'README.md', 'spec.md', 'nexus.adopt.json', 'plan/bearings.md',
+  'plan/steps/01_build_plan.md', 'plan/phases/phase_1_bootstrap.md',
 ];
 const stateNum = (s) => Number((s || '').match(/(\d{4})/)?.[1] ?? NaN);
 const base = (p) => (p || '').replace(/^"|"$/g, '').split('/').pop();

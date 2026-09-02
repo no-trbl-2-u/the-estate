@@ -19,7 +19,9 @@ origin: idea-NNNN @ state/NNNN
 ## Refusals
 
 <!-- Each refusal with its argument. These are walls, not preferences: the
-     loop's `seed-check` skill reads this section before any pivot. -->
+     kit's `/seed-check` skill reads this section (and Horizon) before any
+     pivot, and `/re-seed` writes back through `origin:` when one must fall.
+     Keep the heading text exactly "Refusals" and "Horizon". -->
 
 - **{Refusal}.** {Why — one or two sentences.}
 

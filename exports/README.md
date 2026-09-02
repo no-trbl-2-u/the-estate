@@ -49,11 +49,14 @@ because absence is honest.
 
 Under `contract: build-plan` (ADR 0029) the payload is not optional — it is
 the deliverable. Its shape is fixed by `system/TYPES.md` and checked by the
-validator: `README.md`, `spec.md`, `plan/steps/01_build_plan.md`,
-`skills/seed-check.md`, `skills/re-seed.md`. The skeleton is
-`templates/payload-build-plan/`; the Sower fills it by hand. The target loop
-(`target: nexus`) is cloned beside the payload at a pinned tag from
-`no-trbl-2-u/idea-Nexus` — it never lives in this repository.
+validator: `README.md`, `spec.md`, `nexus.adopt.json`, `plan/bearings.md`,
+`plan/steps/01_build_plan.md`, `plan/phases/phase_1_bootstrap.md`. The
+skeleton is `templates/payload-build-plan/`; the Sower fills it by hand.
+Whether the loop is included is the Seed's `target:` (`nexus | none`),
+asked of T. For `nexus`, the payload's README names a kit tag of
+`no-trbl-2-u/idea-Nexus` and one `npx … adopt` command fetches it around
+the payload (ADR 0030) — the kit never lives in this repository, and none
+of its source is left in the recipient's.
 
 ## A Seed behind its record
 
@@ -72,6 +75,6 @@ a new export whose `supersedes:` names the old one, a `graft`, or a
 are **not edited** — nothing in this repository is ever altered. They carry no
 `contract:`, no `payload:`, and no payload classifier; read them as
 `contract: standard, payload: absent`, which is what they are. The convention
-applies **from the next export forward**. Both are stale as of 2026-09-01
-(the validator names them) and each owes a reconciliation; estate-ui's is the
-first `build-plan` export.
+applies **from the next export forward**. As of 2026-09-02 estate-ui's is
+stale (the validator names it) and owes a reconciliation; starvu's is
+sealed at its record's head.

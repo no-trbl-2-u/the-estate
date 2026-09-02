@@ -270,9 +270,11 @@ unattended. Its components:
    `inputs:` name the Phase artifacts.
 3. **A payload of the declared shape** (below) — `payload: present` is
    required, not graded, because the payload *is* the deliverable.
-4. **`target:`** — the loop the payload is rendered for. The only target
-   today is `nexus`. The contract is the one place the estate knows a
-   target's file conventions.
+4. **`target:`** — the loop the payload is rendered for: `nexus`, or
+   `none` for a plain build plan with no loop attached. This is the switch
+   for *"include the Nexus worker loop?"*, asked of T once when the idea is
+   buildable software (ADR 0030). The contract is the one place the estate
+   knows a target's file conventions.
 
 **Phase 0 — the garden.** Under this contract `phase` emits a Phase 0 ahead
 of the route, with a done-condition fixed by the contract: **the loop
@@ -280,24 +282,32 @@ completes one tick on nothing.** For `nexus`: the stack is decided (by
 `decide` where decidable; otherwise a `[HUMAN ATTENTION]` item); an
 environment manifest names every variable and who supplies it, values being
 always human; the verify gate is wired and green on an empty project; the
-deploy target answers; the payload's skills are installed. Human-attention
-tags travel into the plan unchanged — the loop parks them for its operator,
-and the estate's duty is to make that pile accurate.
+deploy target answers; the kit's `seed-check`/`re-seed` are present and any
+Seed-specific skill is written. Human-attention tags travel into the plan
+in the target's vocabulary (`[needs-user-call]` for `nexus`) — the loop
+parks them for its operator, and the estate's duty is to make that pile
+accurate. The estate numbers the garden Phase 0; the payload renders it as
+the target's Phase 1, the slot the loop reads first.
 
 **The payload shape** (`templates/payload-build-plan/`):
 
 ```
-README.md                      how to drop it in; clones the target as a sibling at a pinned tag
-spec.md                        the target's anchor — Horizon, refusals, acceptance, provenance
-plan/steps/01_build_plan.md    Phase 0 + Phases 1..n, status column, tags preserved
-skills/seed-check.md           does this change break a refusal, or move toward the Horizon?
-skills/re-seed.md              the plan has drifted — report back through `origin:`
+README.md                        how to drop it in: one adopt command, pinned to a kit tag
+spec.md                          the target's anchor — Horizon, refusals, acceptance, provenance
+nexus.adopt.json                 the adopt manifest: project identity keyed by the kit's tokens
+plan/bearings.md                 standing context: stack locked, refusals as standing decisions, gates
+plan/steps/01_build_plan.md      the kit's Status block — garden first, then the Seed's Phases
+plan/phases/phase_1_bootstrap.md the garden as a brief the loop can ship
+skills/                          optional: Seed-specific skills; adopt generates their pointers
 ```
 
 The target is **forked and pinned, never vendored**: a software-only toolkit
-does not live inside a domain-general repository. The Seed document and the
-plan are complete without the target; the target is what runs them, which is
-what keeps the integration non-critical (`AGENTS.md`, self-containment).
+does not live inside a domain-general repository. The payload names the kit
+tag it was rendered for; the adopt command fetches the kit at that tag,
+overlays it around the payload without overwriting, and leaves no kit source
+in the repository (ADR 0030). The Seed document and the plan are complete
+without the target; the target is what runs them, which is what keeps the
+integration non-critical (`AGENTS.md`, self-containment).
 
 ### A Seed behind its record (ADR 0029)
 
