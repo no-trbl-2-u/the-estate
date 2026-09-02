@@ -1,49 +1,80 @@
-# Build plan — {Project}
+# 01 — Build plan
 
 origin: idea-NNNN @ state/NNNN
 
-<!-- One section per Phase, rendered from the estate's Phase artifacts.
-     Keep the outcome, the done-condition, the dependencies, the cost, and
-     every [HUMAN ATTENTION] tag verbatim. Drop the prose argument — it
-     lives in the record. Status is the loop's to update. -->
+> Style guardrails for every phase below. Always ship unit tests
+> alongside code — never "add tests later". Small focused files in
+> folders. Run `/seed-check` before any step a phase brief did not name.
 
-## Phase 0 — The garden
+## Status (at-a-glance)
 
-**Status:** pending
-**Done when:** the loop completes one tick on nothing — a trivial slice is
-shipped, verified, deployed, and reported.
-**Waits on:** nothing.
+`/march`, `/ship-a-phase`, and (transitively) `/loop` read this block to
+find the next phase. Status vocabulary: `[ ]` pending → `[x]` shipped
+(with commit hash); `[skipped]` (set only via `/oversight`);
+`[blocked: <reason> <date>]` (set by `ship-a-phase` on a phase-shaped
+failure — `/march` skips it, `/oversight` unblocks it); `[-]`
+partial-with-carry-overs. Tick in this file in the same commit that ships
+the phase.
 
-<!-- The garden makes the loop able to run. Nothing here is a feature. -->
+<!-- Rendered from the estate's Phase artifacts. Keep each Phase's outcome,
+     done-condition, dependencies and cost; drop the prose argument — it
+     lives in the record. The garden is always Phase 1. The estate's
+     [HUMAN ATTENTION] tag is rendered as [needs-user-call]. -->
 
-- [ ] **Stack.** {Decided in the estate: …} — or —
-      **[HUMAN ATTENTION]** choose {the undecided part}; the agent prepares
-      the comparison up to the choice.
-- [ ] **Environment manifest.** `ENV.md` naming every variable, its purpose,
-      and who supplies it. **[HUMAN ATTENTION]** supply the values.
-- [ ] **Verify gate.** typecheck → unit → build → e2e wired and green on an
-      empty project.
-- [ ] **Deploy target.** {Provider} project exists and answers; deploy-check
-      can poll it. **[HUMAN ATTENTION]** account, billing, domain.
-- [ ] **Seed skills.** `skills/seed-check.md` and `skills/re-seed.md`
-      registered; {any Horizon-specific skill} written.
-- [ ] **One tick.** `/ship-a-phase` on a trivial slice goes green end to end.
+**The garden (phase 1):**
+- [ ] Phase 1 — The garden (stack, env manifest, verify gate, deploy
+      target, seed skills; done = one tick on nothing)
 
-## Phase 1 — {Name}
+**{Group name, from the Seed's Trajectory} (phases 2–{N}):**
+- [ ] Phase 2 — {Name}
+- [ ] Phase 3 — {Name}
 
-**Status:** pending
+**{Next group} (phases {N+1}–{M}):**
+- [ ] Phase {N+1} — {Name}
+
+> **After phase {M}:** the loop transitions to `/iterate` — gaps, audits,
+> link rot. `/march` makes that transition automatic.
+
+---
+
+## Per-phase scope
+
+Each row above corresponds to one phase. The detailed brief lives at
+`plan/phases/phase_<N>_<topic>.md`. Only the garden's brief ships with
+the payload; if a later brief is missing when the loop reaches its phase,
+`/plan-a-phase` generates one from the scope below and `spec.md`.
+
+### Phase 1 — The garden
+
+Makes the loop able to run. Nothing here is a feature. Detailed brief:
+`phase_1_bootstrap.md`. Done when `/ship-a-phase` on a trivial slice goes
+green end to end: verified, deployed, reported.
+
+### Phase 2 — {Name}
+
 **Done when:** {the Phase's "done looks like", verbatim}
-**Waits on:** Phase 0{, …}
+**Waits on:** Phase 1{, …}
 **Cost:** {as the Phase states it}
 
-- [ ] {Step}
-- [ ] **[HUMAN ATTENTION]** {Step no agent can do; what the agent does up to the line}
+{Two to five lines of scope. Mark any step no agent can do
+`[needs-user-call]` and say what the agent does up to the line.}
 
-## Phase 2 — {Name}
+### Phase 3 — {Name}
 
-**Status:** pending
 **Done when:**
 **Waits on:**
 **Cost:**
 
-- [ ] …
+{…}
+
+---
+
+## Carry-overs / known gaps (update as phases ship)
+
+(Empty until phases ship. Add `[-]` rows for partial-but-shipped phases
+with linked notes here.)
+
+## Phase log (commit hashes)
+
+(Empty until phase 1 ships. One line per shipped phase:
+`phase <N> — <commit hash> — <one-line summary>`.)

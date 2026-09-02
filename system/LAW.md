@@ -118,8 +118,10 @@ or decide-abandon (`reconciles:`). Exports are never edited; the pointer runs
 forward. A field report from outside enters as
 `capture` on the record the stamp names.
 
-The loop itself never lives here. A target is forked under T's control,
-pinned by tag, and cloned beside the payload — the estate stays
+The loop itself never lives here. A target is forked under T's control
+and pinned by tag; the payload names the tag, and one adopt command fetches
+the kit around it, leaving no kit source behind (ADR 0030). Whether a loop
+is included at all is the Seed's `target:`, asked of T — the estate stays
 domain-general, and the integration stays non-critical.
 
 ## Checked, not declared

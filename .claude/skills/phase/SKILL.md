@@ -63,9 +63,13 @@ Its contents, for `target: nexus`, each a step with its own tag decision:
 - **Verify gate** — typecheck, unit, build, e2e wired and green on an empty
   project. This is the loop's precondition stated as work.
 - **Deploy target** — reachable and pollable before a feature exists.
-- **Seed-specific skills** — the payload's `seed-check` and `re-seed`, plus
-  whatever this Horizon implies (a fixture-assertion skill, a claims-ledger
-  skill). Name them; the Sower writes them.
+- **Seed-specific skills** — whatever this Horizon implies (a
+  fixture-assertion skill, a claims-ledger skill). Name them; the Sower
+  writes them. `seed-check` and `re-seed` are not yours to name: the kit
+  ships them to every adopted repo (ADR 0030).
+
+The estate numbers the garden Phase 0; the payload renders it as the
+target's Phase 1, because that is the slot the loop reads first.
 
 A Phase 0 that lists features is not a garden. Stop it at the first green
 tick.

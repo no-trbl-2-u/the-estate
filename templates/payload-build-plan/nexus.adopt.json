@@ -1,0 +1,15 @@
+{
+  "_help": "Adopt manifest for `npx --yes github:no-trbl-2-u/idea-Nexus#v0.2-estate adopt`. Keys are the kit's literal placeholder tokens. Empty and missing both mean unresolved: the token stays in the copied files and becomes a [needs-user-call] row in plan/AUDIT.md. The script stamps `adopted` after a run.",
+  "placeholders": {
+    "<PROJECT>": "{Project}",
+    "<PROJECT_LOWER>": "{project}",
+    "<PROJECT_TAGLINE>": "{one line, from the Seed's Horizon}",
+    "<HOSTING_URL>": "",
+    "<HOSTING_PROVIDER>": "{from Routine calls, or empty}",
+    "<REPO_SLUG>": "",
+    "<DEFAULT_BRANCH>": "main",
+    "<PROJECT_PKG_PREFIX>": ""
+  },
+  "cloudLoop": false,
+  "data": false
+}

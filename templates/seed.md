@@ -8,7 +8,8 @@ origin: "idea-NNNN @ state/NNNN"   # provenance stamp — the ONLY thing that tr
 contract: standard          # vocabulary, not a closed enum. A named contract must still
                             # state a next move, a refusal, and the provenance stamp.
                             # `build-plan` (ADR 0029) requires Phases, a payload, and target:
-target: ""                  # build-plan only: the loop the payload is rendered for (nexus)
+target: ""                  # build-plan only: nexus | none. The switch for "include the Nexus
+                            # worker loop?" — asked of T when the idea is buildable software (ADR 0030)
 supersedes: ""              # path of the earlier export this one replaces, if the record
                             # moved past it (ADR 0029). Forward pointer; the old Seed is never edited
 payload: ""                 # relative path to the droppable result, e.g. NNNN-slug-payload/

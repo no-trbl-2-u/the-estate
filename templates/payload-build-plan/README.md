@@ -2,9 +2,12 @@
 
 Exported from The Estate under `contract: build-plan`, `target: nexus`.
 Provenance: `origin: idea-NNNN @ state/NNNN` (also in `spec.md`).
+Rendered for kit tag `v0.2-estate` of
+[`no-trbl-2-u/idea-Nexus`](https://github.com/no-trbl-2-u/idea-Nexus).
 
-This directory is the **droppable form** of the Seed. It contains what the
-loop reads and nothing else. The loop itself is not here.
+This directory is the **droppable form** of the Seed: the files the loop
+reads, already decided, and nothing else. The loop itself is fetched by one
+command and leaves no source behind.
 
 ## Drop it in
 
@@ -12,35 +15,43 @@ loop reads and nothing else. The loop itself is not here.
    ```
    mkdir {project} && cd {project} && git init
    ```
-2. Copy this directory's contents to the repository root. You should now have
-   `spec.md`, `plan/steps/01_build_plan.md`, and `skills/`.
-3. Clone the target **as a sibling**, at the pinned tag (`v0.1-estate` as of
-   ADR 0029; a payload may pin a later tag and says so here):
+2. Copy this directory's contents to the repository root.
+3. Adopt the loop around them (Node 18+ and git are the only prerequisites):
    ```
-   git clone --branch v0.1-estate https://github.com/no-trbl-2-u/idea-Nexus ../nexus
+   npx --yes github:no-trbl-2-u/idea-Nexus#v0.2-estate adopt --commit
    ```
-4. Open Claude Code in the repository and paste `../nexus/prompts/adopt.md`.
-   Adoption overlays `plan/`, `skills/`, `.claude/`, and `scripts/` around
-   what is already here; it does not touch `spec.md` or the plan. If the
-   adopt step does not register the two skills in `skills/`, copy each to
-   `.claude/skills/<name>/SKILL.md`.
-5. Run `/ship-a-phase`. The plan's first phase is **Phase 0 — the garden**;
-   its done-condition is *one tick on nothing*. Do not skip it, and do not
-   let a feature into it.
+   The script copies the kit's skills, commands, scripts and plan files
+   **around** what is already here — it never overwrites, and it reports
+   each file it kept. Placeholders it cannot resolve from `nexus.adopt.json`
+   (usually the hosting URL and repo slug, when those do not exist yet)
+   land as `[needs-user-call]` rows in `plan/AUDIT.md`.
+4. Open your agent at the repository root and paste the one-paragraph
+   prompt from the kit's README, *"TL;DR — I have a Seed payload"*. It
+   clears the audit rows, prunes what `plan/bearings.md` rules out, and
+   stops.
+5. Run `/ship-a-phase`. Phase 1 is **the garden**; its done-condition is
+   *one loop tick on nothing*. Do not skip it, and do not let a feature
+   into it.
 
 ## What is here
 
 | File | What it is |
 |---|---|
-| `spec.md` | The Seed's Horizon, refusals, acceptance criteria, and provenance — the loop's anchor |
-| `plan/steps/01_build_plan.md` | Phase 0 and the route, with status and `[HUMAN ATTENTION]` tags |
-| `skills/seed-check.md` | Ask before a pivot: does this break a refusal, or move toward the Horizon? |
-| `skills/re-seed.md` | When the plan has drifted from the Seed: how to report back |
+| `spec.md` | The Seed's Horizon, refusals, acceptance criteria, provenance — the loop's anchor; `/seed-check` reads it before any pivot |
+| `nexus.adopt.json` | The adopt manifest: project identity keyed by the kit's placeholder tokens |
+| `plan/bearings.md` | Standing context for every loop tick: stack locked, refusals as standing decisions, the verify and deploy gates |
+| `plan/steps/01_build_plan.md` | The Status block the loop reads, garden first, then the Seed's Phases |
+| `plan/phases/phase_1_bootstrap.md` | The garden, as a brief the loop can ship |
+| `skills/` *(optional)* | Seed-specific skills; adopt generates their command pointers |
+
+`seed-check` and `re-seed` are not here: they ship with the kit
+(`templates/skills/`), so every adopted repo has them.
 
 ## Human attention
 
-Steps tagged `[HUMAN ATTENTION]` are work no agent can do — credentials,
-payments, consent, judgment calls reserved for the operator. The loop parks
-them; clear them in `/oversight`. The tag is a claim that the rest of the
-step *is* agent-performable — an untagged step that stalls is a bug in the
-plan, worth a `re-seed` report.
+Steps the estate tagged `[HUMAN ATTENTION]` are rendered here as nexus's
+`[needs-user-call]` — the vocabulary the loop already parks on and
+`/oversight` already drains. Credentials, payments, consent, judgment calls
+reserved for the operator. The tag is a claim that the rest of the step *is*
+agent-performable; an untagged step that stalls is a bug in the plan, worth
+a `/re-seed` report.

@@ -63,22 +63,33 @@ payload, or one referencing assets that are not there, is a **recorded Seed
 falsifier** (`system/FALSIFIERS.md`) and is worse than no payload at all,
 because absence is honest and a broken payload is not.
 
-## The `build-plan` contract (ADR 0029)
+## The `build-plan` contract (ADR 0029, ADR 0030)
 
 When the recipient is an **implementation loop**, the record names
-`contract: build-plan` and `target:` (today: `nexus`). The contract asks
-three things more of you:
+`contract: build-plan` and `target:`. The target is the switch that says
+whether the Nexus worker loop is included:
 
+- **Decide `target:` before assembling.** If the idea is buildable software
+  and the record has not already said, ask T once, plainly: *"Include the
+  Nexus worker loop?"* — `target: nexus` renders the payload for the kit;
+  `target: none` exports the build plan as a plain document with no adopt
+  step, for a recipient that has its own loop or none. If the idea is not
+  software at all, `build-plan` is the wrong contract; say so and stop.
 - **Phases must exist.** If the record has not run `phase`, that is the gap
   report — name the verb and stop. Under this contract the Phases are the
-  plan, and a Phase 0 (the garden) must be among them.
+  plan, and the garden (Phase 0 in the estate, Phase 1 in the payload) must
+  be among them.
 - **The payload is required.** Copy `templates/payload-build-plan/` to
-  `exports/NNNN-slug-payload/` and fill every file by hand: `spec.md` from
-  the Horizon, refusals and acceptance criteria; `plan/steps/01_build_plan.md`
-  from the Phases, one section each, status `pending`, every
-  `[HUMAN ATTENTION]` tag carried verbatim; the two `skills/` from the Seed's
-  own refusals and Horizon; `README.md` with the pinned clone of the target.
-  Render — do not paraphrase into something the record never said.
+  `exports/NNNN-slug-payload/` and fill every file by hand — `spec.md` from
+  the Horizon, refusals and acceptance criteria; `nexus.adopt.json` from the
+  routine calls; `plan/bearings.md` with the refusals as standing decisions
+  and the stack locked; `plan/steps/01_build_plan.md` in the kit's Status
+  format, garden first; `plan/phases/phase_1_bootstrap.md` as the garden's
+  brief. Every `[HUMAN ATTENTION]` tag becomes `[needs-user-call]`, the
+  target's word for the same thing. Render — do not paraphrase into
+  something the record never said. The payload's `README.md` names the kit
+  tag it was rendered for; the adopt command fetches the kit, nothing is
+  cloned beside the repo, and `seed-check`/`re-seed` come with the kit.
 - **Nothing target-specific escapes the payload.** The Seed document above it
   stays domain-general.
 
