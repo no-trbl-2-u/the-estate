@@ -53,7 +53,7 @@ validator: `README.md`, `spec.md`, `plan/steps/01_build_plan.md`,
 `skills/seed-check.md`, `skills/re-seed.md`. The skeleton is
 `templates/payload-build-plan/`; the Sower fills it by hand. The target loop
 (`target: nexus`) is cloned beside the payload at a pinned tag from
-`no-trbl-2-u/nexus` — it never lives in this repository.
+`no-trbl-2-u/idea-Nexus` — it never lives in this repository.
 
 ## A Seed behind its record
 
