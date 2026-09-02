@@ -301,8 +301,9 @@ what keeps the integration non-critical (`AGENTS.md`, self-containment).
 
 ### A Seed behind its record (ADR 0029)
 
-A Seed's `origin:` names the state it left from. When the record's
-`state-head:` has moved past it, the Seed is **stale** and the record owes a
+A Seed is **sealed** by the state whose `outputs:` names it — the close of the
+session that exported it. When the record's `state-head:` has moved past the
+**sealing** state, the Seed is **stale** and the record owes a
 **reconciliation** — one of:
 
 | Move | Verb | Recorded as |
@@ -316,6 +317,13 @@ edited. `scripts/validate-estate.mjs` warns on a stale Seed until a
 `supersedes:` or `reconciles:` names it. The provenance stamp is the return
 path in both directions: a field report from outside arrives as `capture`
 (`Text → Spark`) on the record it names.
+
+**Why the seal and not `origin:`.** The stamp names the state the Sower
+*read*; the close then writes the state that *records* the export. Origin is
+therefore one behind by construction on every healthy Seed, and anchoring
+staleness to it would flag every export the moment it was made. The seal is
+derived from `outputs:` — the same lineage frontmatter everything else is
+derived from — and it marks the last moment the record and the Seed agreed.
 
 ### The payload — the droppable form
 

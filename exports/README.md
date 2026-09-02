@@ -57,8 +57,11 @@ validator: `README.md`, `spec.md`, `plan/steps/01_build_plan.md`,
 
 ## A Seed behind its record
 
-An export names the state it left from. When the record moves past it, the
-Seed is **stale** and the validator says so until the record reconciles:
+An export is **sealed** by the state whose `outputs:` names it — the close of
+the session that exported it. (Not `origin:`, which names the state the Sower
+*read*, and is one behind by construction.) When the record moves past the
+seal, the Seed is **stale** and the validator says so until the record
+reconciles:
 a new export whose `supersedes:` names the old one, a `graft`, or a
 `Decision` whose `reconciles:` names it. The old file is never touched.
 
