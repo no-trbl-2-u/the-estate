@@ -83,7 +83,7 @@ than using it, and a payload renderer is exactly the kind of thing that is
 more fun to build.
 
 **4. The target is forked and pinned, never vendored.** Nexus is forked to
-`no-trbl-2-u/idea-Nexus` (forked 2026-09-01) so the estate depends on a copy T controls, and the
+`no-trbl-2-u/idea-Nexus` (forked and tagged `v0.1-estate` 2026-09-01) so the estate depends on a copy T controls, and the
 payload's `README.md` clones it **as a sibling at a pinned tag**. It is not
 copied into this repository: a software-only toolkit inside a
 domain-general repo would have to ship with every payload, and every

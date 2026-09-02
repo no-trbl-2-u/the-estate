@@ -14,9 +14,10 @@ loop reads and nothing else. The loop itself is not here.
    ```
 2. Copy this directory's contents to the repository root. You should now have
    `spec.md`, `plan/steps/01_build_plan.md`, and `skills/`.
-3. Clone the target **as a sibling**, at the pinned tag:
+3. Clone the target **as a sibling**, at the pinned tag (`v0.1-estate` as of
+   ADR 0029; a payload may pin a later tag and says so here):
    ```
-   git clone --branch {tag} https://github.com/no-trbl-2-u/idea-Nexus ../nexus
+   git clone --branch v0.1-estate https://github.com/no-trbl-2-u/idea-Nexus ../nexus
    ```
 4. Open Claude Code in the repository and paste `../nexus/prompts/adopt.md`.
    Adoption overlays `plan/`, `skills/`, `.claude/`, and `scripts/` around
