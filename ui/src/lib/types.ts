@@ -93,6 +93,7 @@ export type ViewKey =
   | 'survey'
   | 'relates'
   | 'exports'
+  | 'how'
   | 'settings'
   | 'shelf' // mobile root
   | 'estate' // mobile "the estate itself" menu

@@ -15,6 +15,7 @@ export function MobileEstate({ data, openView, back }: { data: EstateData; openV
     { k: 'survey', name: 'Survey', tag: data.survey && data.survey.covers.length ? 'on file' : 'none on file', tagColor: C.red, dashed: true },
     { k: 'relates', name: 'Relates', tag: `${nEdges} edges`, tagColor: C.inkFaint, dashed: true },
     { k: 'exports', name: 'Exports', tag: String(nExports), tagColor: C.gold },
+    { k: 'how', name: 'How it works', tag: 'walkthrough', tagColor: C.gold },
     { k: 'settings', name: 'Settings', tag: '', tagColor: C.inkFaint },
   ]
   return (

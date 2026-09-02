@@ -105,6 +105,13 @@ export function headerFor(data: EstateData, view: ViewKey, rec: IdeaRecord | und
         sub: `${numWord(nExports)} Seed${nExports === 1 ? ' has' : 's have'} left the walls`,
         isMap: false,
       }
+    case 'how':
+      return {
+        plate: 'HOW IT WORKS',
+        title: 'How it works',
+        sub: 'spark → seed → adopt → loop · a worked walkthrough · authored, not derived from records',
+        isMap: false,
+      }
     case 'settings':
       return { plate: 'SETTINGS', title: 'Settings', sub: 'nothing here writes to the estate', isMap: false }
     default:
