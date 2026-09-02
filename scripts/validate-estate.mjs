@@ -152,8 +152,23 @@ if (existsSync(exportsDir)) {
     const record = records.find((r) => r.startsWith(`${origin[1]}-`));
     if (!record) { errors.push(`${rel(f)}: origin idea-${origin[1]} has no record`); continue; }
     const head = stateNum(frontmatter(join(ideasDir, record, 'idea.md'))?.['state-head']);
-    if (head > Number(origin[2]) && !reconciled.has(s)) {
-      warnings.push(`${rel(f)}: origin state/${origin[2]} is behind ${record} head state/${String(head).padStart(4, '0')} — reconciliation owed (re-seed | graft | decide-abandon)`);
+
+    // The anchor is the *sealing* state — the one whose `outputs:` names this
+    // export — not `origin:`. A Seed reads the record at state N and the close
+    // then writes state N+1 recording the export, so origin is one behind by
+    // construction on every healthy Seed. Staleness is work done *after* the
+    // seal. Falls back to origin when no state claims the export.
+    const stateDir = join(ideasDir, record, 'state');
+    let seal = Number(origin[2]);
+    if (existsSync(stateDir)) {
+      for (const st of readdirSync(stateDir).filter((x) => x.endsWith('.md'))) {
+        const outputs = frontmatter(join(stateDir, st))?.outputs || '';
+        if (outputs.includes(`exports/${s}`)) seal = Math.max(seal, stateNum(st));
+      }
+    }
+    if (head > seal && !reconciled.has(s)) {
+      const pad = (n) => String(n).padStart(4, '0');
+      warnings.push(`${rel(f)}: sealed at state/${pad(seal)}, ${record} head is state/${pad(head)} — reconciliation owed (re-seed | graft | decide-abandon)`);
     }
 
     if (fm.contract === 'build-plan') {
