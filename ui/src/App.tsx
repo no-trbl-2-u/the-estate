@@ -13,6 +13,7 @@ import { TypesView } from './components/TypesView'
 import { SurveyView } from './components/SurveyView'
 import { RelatesView } from './components/RelatesView'
 import { ExportsView } from './components/ExportsView'
+import { HowItWorksView } from './components/how/HowItWorksView'
 import { SettingsView } from './components/SettingsView'
 import { MobileShelf } from './components/MobileShelf'
 import { MobileMap } from './components/MobileMap'
@@ -117,6 +118,8 @@ export default function App() {
         return <RelatesView data={data} />
       case 'exports':
         return <ExportsView data={data} onSelect={(id) => setEstateSel({ kind: 'export', id })} />
+      case 'how':
+        return <HowItWorksView />
       case 'settings':
         return <SettingsView data={data} showRungs={showRungs} setShowRungs={setShowRungs} />
       default:

@@ -18,6 +18,11 @@ The durable seam is the **data contract** (`src/lib/types.ts`):
 - `src/components/` — the thin render layer: desktop (sidebar / travel map /
   reading panel) and mobile (shelf / map turned ninety degrees / bottom sheet).
 
+One deliberate exception to "every pixel is derived": `src/components/how/`
+(the **How it works** tab) is authored walkthrough content — an animated tour
+of the pipeline on a worked example that is not a record. It reads nothing
+from `estate.json` and says so in its header.
+
 In v2 the same contract shapes are served from a database API; the generator
 becomes an importer and nothing above the seam changes.
 

@@ -61,6 +61,7 @@ export const VIEW_GLYPHS: Record<string, Omit<Glyph, 'accent'>> = {
   survey: { gfill: 'transparent', gborder: '1.4px dashed #87938C', gradius: '1px', gclip: 'none' },
   relates: { gfill: 'transparent', gborder: '1.4px dashed #87938C', gradius: '50%', gclip: 'none' },
   exports: { gfill: 'transparent', gborder: '3px solid #8A6A1F', gradius: '50%', gclip: 'none' },
+  how: { gfill: '#5E6E69', gborder: 'none', gradius: '0', gclip: 'polygon(12% 0,100% 50%,12% 100%)' },
   settings: { gfill: 'transparent', gborder: '1.4px solid #5E6E69', gradius: '50%', gclip: 'none' },
 }
 

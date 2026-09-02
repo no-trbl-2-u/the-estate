@@ -64,3 +64,94 @@ button {
     opacity: 1;
   }
 }
+
+/* ---- How it works walkthrough (authored view) ---- */
+.hiw-rv {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.hiw-in .hiw-rv {
+  opacity: 1;
+  transform: none;
+}
+.hiw-in .hiw-d1 { transition-delay: 0.1s; }
+.hiw-in .hiw-d2 { transition-delay: 0.22s; }
+.hiw-in .hiw-d3 { transition-delay: 0.36s; }
+.hiw-in .hiw-d4 { transition-delay: 0.5s; }
+.hiw-in .hiw-d5 { transition-delay: 0.66s; }
+.hiw-in .hiw-d6 { transition-delay: 0.82s; }
+.hiw-caret {
+  display: inline-block;
+  width: 8px;
+  height: 1.05em;
+  vertical-align: text-bottom;
+  background: #8a6a1f;
+  animation: hiw-blink 1s steps(1) infinite;
+}
+@keyframes hiw-blink {
+  50% { opacity: 0; }
+}
+.hiw-pop {
+  animation: hiw-pop-in 0.4s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+@keyframes hiw-pop-in {
+  from { opacity: 0; transform: scale(0.92) translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.hiw-fade {
+  animation: hiw-fade-in 0.4s ease both;
+}
+@keyframes hiw-fade-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: none; }
+}
+.hiw-beam {
+  animation: hiw-sweep 7s linear infinite;
+}
+@keyframes hiw-sweep {
+  to { transform: rotate(360deg); }
+}
+.hiw-quake {
+  animation: hiw-quake-once 0.45s ease 1;
+}
+@keyframes hiw-quake-once {
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(-2px, 1px); }
+  60% { transform: translate(1px, 2px); }
+  80% { transform: translate(-1px, -1px); }
+}
+.hiw-crab {
+  animation: hiw-scuttle 2.1s ease-in-out infinite;
+}
+@keyframes hiw-scuttle {
+  50% { transform: translateX(5px); }
+}
+.hiw-pulse {
+  animation: hiw-pulse-mk 1.2s ease-in-out infinite;
+}
+@keyframes hiw-pulse-mk {
+  50% { opacity: 0.35; }
+}
+.hiw-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+}
+.hiw-in .hiw-draw {
+  stroke-dashoffset: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hiw-rv, .hiw-draw {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+  .hiw-caret, .hiw-beam, .hiw-crab, .hiw-pulse, .hiw-pop, .hiw-fade, .hiw-quake {
+    animation: none !important;
+  }
+  .hiw-pop, .hiw-fade {
+    opacity: 1;
+  }
+}
