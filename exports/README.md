@@ -45,6 +45,23 @@ payload the recipient cannot actually drop in is a recorded Seed falsifier
 (`system/FALSIFIERS.md`) — an unrunnable payload is worse than an absent one,
 because absence is honest.
 
+## The `build-plan` payload
+
+Under `contract: build-plan` (ADR 0029) the payload is not optional — it is
+the deliverable. Its shape is fixed by `system/TYPES.md` and checked by the
+validator: `README.md`, `spec.md`, `plan/steps/01_build_plan.md`,
+`skills/seed-check.md`, `skills/re-seed.md`. The skeleton is
+`templates/payload-build-plan/`; the Sower fills it by hand. The target loop
+(`target: nexus`) is cloned beside the payload at a pinned tag from
+`no-trbl-2-u/nexus` — it never lives in this repository.
+
+## A Seed behind its record
+
+An export names the state it left from. When the record moves past it, the
+Seed is **stale** and the validator says so until the record reconciles:
+a new export whose `supersedes:` names the old one, a `graft`, or a
+`Decision` whose `reconciles:` names it. The old file is never touched.
+
 ## The two existing exports are immutable
 
 [`0003-starvu-agency-site-seed.md`](0003-starvu-agency-site-seed.md) and
@@ -52,4 +69,6 @@ because absence is honest.
 are **not edited** — nothing in this repository is ever altered. They carry no
 `contract:`, no `payload:`, and no payload classifier; read them as
 `contract: standard, payload: absent`, which is what they are. The convention
-applies **from the next export forward**.
+applies **from the next export forward**. Both are stale as of 2026-09-01
+(the validator names them) and each owes a reconciliation; estate-ui's is the
+first `build-plan` export.

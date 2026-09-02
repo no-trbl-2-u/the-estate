@@ -3,7 +3,7 @@ type: Registry
 title: "Routing Registry"
 description: "Every verb, its signature, its voice, and how it runs — generated from skill frontmatter."
 tags: [registry, routing, generated]
-generated: { by: "scripts/generate-registry.mjs", at: 2026-09-01 }
+generated: { by: "scripts/generate-registry.mjs", at: 2026-09-02 }
 ---
 
 <!-- GENERATED FILE — do not edit by hand.

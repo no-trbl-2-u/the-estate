@@ -35,6 +35,12 @@ A Seed has failed its purpose when:
   (`payload: absent` is an honest classifier, and the Seed says so on the tin).
   A **broken** one is, because it spends the recipient's trust before they
   discover it.
+- **Its garden does not grow** — under `build-plan` (ADR 0029), the loop
+  cannot complete one tick after Phase 0 is marked done. The payload claimed
+  the ground was ready and it was not.
+- **It goes stale silently** — the record moves past the Seed's origin and
+  nothing reconciles it. This one the validator now catches; a warning left
+  standing for a month is the falsifier firing in slow motion.
 
 ## Named failure mode
 

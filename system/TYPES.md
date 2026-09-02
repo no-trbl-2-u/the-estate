@@ -259,6 +259,64 @@ contract — it has left the type.
 
 A Seed states its contract; a Seed with no `contract:` is `standard`.
 
+### The `build-plan` contract (ADR 0029)
+
+The first named contract, for a Seed whose recipient is an **implementation
+loop** — a harness that takes a spec and a phased plan and ships slices
+unattended. Its components:
+
+1. The `standard` five, unchanged.
+2. **`[Phase]` — mandatory.** The record has run `phase`; the Seed's
+   `inputs:` name the Phase artifacts.
+3. **A payload of the declared shape** (below) — `payload: present` is
+   required, not graded, because the payload *is* the deliverable.
+4. **`target:`** — the loop the payload is rendered for. The only target
+   today is `nexus`. The contract is the one place the estate knows a
+   target's file conventions.
+
+**Phase 0 — the garden.** Under this contract `phase` emits a Phase 0 ahead
+of the route, with a done-condition fixed by the contract: **the loop
+completes one tick on nothing.** For `nexus`: the stack is decided (by
+`decide` where decidable; otherwise a `[HUMAN ATTENTION]` item); an
+environment manifest names every variable and who supplies it, values being
+always human; the verify gate is wired and green on an empty project; the
+deploy target answers; the payload's skills are installed. Human-attention
+tags travel into the plan unchanged — the loop parks them for its operator,
+and the estate's duty is to make that pile accurate.
+
+**The payload shape** (`templates/payload-build-plan/`):
+
+```
+README.md                      how to drop it in; clones the target as a sibling at a pinned tag
+spec.md                        the target's anchor — Horizon, refusals, acceptance, provenance
+plan/steps/01_build_plan.md    Phase 0 + Phases 1..n, status column, tags preserved
+skills/seed-check.md           does this change break a refusal, or move toward the Horizon?
+skills/re-seed.md              the plan has drifted — report back through `origin:`
+```
+
+The target is **forked and pinned, never vendored**: a software-only toolkit
+does not live inside a domain-general repository. The Seed document and the
+plan are complete without the target; the target is what runs them, which is
+what keeps the integration non-critical (`AGENTS.md`, self-containment).
+
+### A Seed behind its record (ADR 0029)
+
+A Seed's `origin:` names the state it left from. When the record's
+`state-head:` has moved past it, the Seed is **stale** and the record owes a
+**reconciliation** — one of:
+
+| Move | Verb | Recorded as |
+|---|---|---|
+| **re-seed** | `seed` | a new export whose `supersedes:` names the old one |
+| **graft** | `graft` | the deviation is a new idea; a branch (ADR 0024) |
+| **decide-abandon** | `decide` | a `Decision` artifact whose `reconciles:` names the Seed and says why the road was left |
+
+Exports are immutable, so the pointer runs **forward**: the old Seed is never
+edited. `scripts/validate-estate.mjs` warns on a stale Seed until a
+`supersedes:` or `reconciles:` names it. The provenance stamp is the return
+path in both directions: a field report from outside arrives as `capture`
+(`Text → Spark`) on the record it names.
+
 ### The payload — the droppable form
 
 A Seed has always been a *description* of a thing to build. It may now **carry
@@ -319,6 +377,8 @@ Classifiers are recorded in artifact frontmatter and the label travels with the 
 | `payload` | `present` \| `absent` | Does the Seed carry the droppable result, or only describe it? |
 
 An unfalsified, unchallenged Seed may absolutely be exported. It just says so on the tin.
+Staleness (a Seed behind its record) is not a classifier on the Seed — the Seed
+cannot know — but a validator warning on the record (ADR 0029).
 
 ## Lineage: derived, not authored
 

@@ -62,3 +62,33 @@ Do not ship a payload the recipient cannot actually drop in. An unrunnable
 payload, or one referencing assets that are not there, is a **recorded Seed
 falsifier** (`system/FALSIFIERS.md`) and is worse than no payload at all,
 because absence is honest and a broken payload is not.
+
+## The `build-plan` contract (ADR 0029)
+
+When the recipient is an **implementation loop**, the record names
+`contract: build-plan` and `target:` (today: `nexus`). The contract asks
+three things more of you:
+
+- **Phases must exist.** If the record has not run `phase`, that is the gap
+  report — name the verb and stop. Under this contract the Phases are the
+  plan, and a Phase 0 (the garden) must be among them.
+- **The payload is required.** Copy `templates/payload-build-plan/` to
+  `exports/NNNN-slug-payload/` and fill every file by hand: `spec.md` from
+  the Horizon, refusals and acceptance criteria; `plan/steps/01_build_plan.md`
+  from the Phases, one section each, status `pending`, every
+  `[HUMAN ATTENTION]` tag carried verbatim; the two `skills/` from the Seed's
+  own refusals and Horizon; `README.md` with the pinned clone of the target.
+  Render — do not paraphrase into something the record never said.
+- **Nothing target-specific escapes the payload.** The Seed document above it
+  stays domain-general.
+
+Do not write a generator for this. Twice by hand first.
+
+## A Seed behind its record (ADR 0029)
+
+Before assembling, read the record's earlier exports. If one exists whose
+`origin:` state is behind the head, this export **supersedes** it: set
+`supersedes:` to its path, and say in one line in §0 what changed since —
+that line is the only place the old road is mentioned. The old Seed is never
+edited. If T instead wants the deviation grafted or abandoned, that is
+`graft` or `decide`; say so and stop.
