@@ -1,0 +1,76 @@
+name: Deploy Estate View
+
+# Deploys the read-only viewer (ui/) to Cloudflare Workers static assets,
+# serving idea-estate.com.
+#
+# Deliberately NOT on push to main: main moves for reasons that are not
+# releases — an ADR, a state snapshot, a record — and the site should move
+# when T says it does. The triggers are a version tag, a published release,
+# and the manual button.
+
+on:
+  push:
+    tags:
+      - 'v*'
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Why this manual deploy (recorded in the run summary)'
+        required: false
+        default: 'manual deploy'
+
+permissions:
+  contents: read
+
+# Never interrupt an upload in flight — queue rather than cancel. Tagging and
+# then publishing a release from that same tag fires this twice; the second
+# deploy is idempotent, so serialising is enough.
+concurrency:
+  group: deploy-estate-view
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: validate · build · deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: ui/package-lock.json
+
+      - name: Install
+        working-directory: ui
+        run: npm ci
+
+      # The law-checker gates the deploy: errors stop it, warnings do not.
+      - name: Validate the estate
+        run: node scripts/validate-estate.mjs
+
+      # generate (walks ideas/, exports/, system/registry.md) + tsc -b + vite build
+      - name: Build
+        working-directory: ui
+        run: npm run build
+
+      # Uses the wrangler pinned in ui/package-lock.json, not a floating one.
+      - name: Deploy to Cloudflare
+        working-directory: ui
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy
+
+      - name: Summary
+        run: |
+          {
+            echo "### Estate View deployed"
+            echo ""
+            echo "- ref: \`${{ github.ref_name }}\` (${{ github.event_name }})"
+            echo "- commit: \`${{ github.sha }}\`"
+            echo "- live: https://idea-estate.com"
+          } >> "$GITHUB_STEP_SUMMARY"
