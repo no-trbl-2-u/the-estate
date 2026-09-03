@@ -43,7 +43,7 @@ for (const d of readdirSync(skillsDir)) {
   if (!existsSync(f)) continue;
   const fm = frontmatter(f);
   if (!fm) { errors.push(`${rel(f)}: no frontmatter`); continue; }
-  if (fm.name === 'steward') continue; // the session itself, not a verb
+  if (fm.name === 'start') continue; // the entrypoint itself, not a verb
   for (const key of ['name', 'verb', 'signature', 'voice', 'run']) {
     if (!fm[key]) errors.push(`${rel(f)}: missing \`${key}:\``);
   }

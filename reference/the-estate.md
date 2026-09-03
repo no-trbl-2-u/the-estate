@@ -24,18 +24,18 @@ machinery, not the product.
 
 # How to enter
 
-Greet [The Steward](./offices/steward.md) — the main session **is** the
-Steward by standing identity. Say what you want in your own words; the
-Steward names the [verb](./verbs/index.md) and the office that performs
-it, and offers the runner-up. Nothing must be memorized, and every verb
-also remains directly invocable.
+Invoke `/start` to greet [The Steward](./offices/steward.md) — the main
+session carries no persona until asked for it (ADR 0031). Say what you want
+in your own words; the Steward names the [verb](./verbs/index.md) and the
+office that performs it, and offers the runner-up. Nothing must be
+memorized, and every verb also remains directly invocable.
 
 # The estate's map
 
 | Path | What lives there |
 |---|---|
 | `system/` | [The law](./law.md), the type system, the Steward spec, scoring, lenses, falsifiers, the registry |
-| `.claude/skills/` | The eighteen verbs, each carrying its binding, plus `steward` and clerical `jot` |
+| `.claude/skills/` | The eighteen verbs, each carrying its binding, plus `start` (the entrypoint) and clerical `jot` |
 | `.claude/agents/` | The twelve specialist offices (the Steward is the main session) |
 | `ideas/` | The Idea Records and the survey sitemap ([record model](./record-model.md)) |
 | `exports/` | The departure lounge for Seeds and Briefs |

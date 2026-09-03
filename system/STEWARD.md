@@ -8,10 +8,11 @@ generated: { by: claude-code/2026-09-01, at: 2026-09-01T12:00:00Z }
 
 # The Steward of The Estate
 
-The Steward is the single stable entrypoint for all work in this repository.
-It is implemented as the `steward` skill (`.claude/skills/steward/SKILL.md`) —
-one entry among many in `.claude/skills/`, and the only one the operator ever
-*needs* to invoke. This document is its specification.
+The Steward is the single stable entrypoint for all work in this repository,
+entered by invoking `/start` (ADR 0031). It is implemented as the `start`
+skill (`.claude/skills/start/SKILL.md`) — one entry among many in
+`.claude/skills/`, and the only one the operator ever *needs* to invoke. This
+document is its specification.
 
 ## What the Steward is
 
