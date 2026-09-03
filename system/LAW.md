@@ -154,8 +154,10 @@ when processed, never deleted.
 ## Where the law lives
 
 This file is the single source of truth. Inline verbs receive it through the
-session — `AGENTS.md` points here and loads at start. The dispatched skills
-(`challenge`, `review`, `compare`, `research`, `survey`) read this file
-directly, because a spawned context never sees `AGENTS.md`. Facts about
+session — `/start` reads this file when the Steward is entered (ADR 0031);
+before that word the session holds only `AGENTS.md`, which points here without
+loading it. The dispatched skills (`challenge`, `review`, `compare`,
+`research`, `survey`) read this file directly, because a spawned context never
+sees `AGENTS.md`. Facts about
 individual verbs live in their skills' frontmatter and nowhere else by hand;
 `system/registry.md` is generated from them.

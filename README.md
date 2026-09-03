@@ -36,15 +36,17 @@ moment** — and the source is never altered, because nothing is ever altered.
 
 ## How you use it
 
-Greet **The Steward** — the front door. It knows the portfolio, offers a
-shortlist rather than a wall of records, and acts on what you say: an inline
-verb runs in its voice the moment you describe it, while a dispatch, a new
-record, an export, or a structural change waits for your explicit word
-(the **boundary**, ADR 0028). Verbs are also directly invocable: the goal is
-that nothing must be *memorized*, not that invocation is forbidden.
+Invoke `/start` to enter as **The Steward** — the front door (ADR 0031; the
+main session carries no persona until asked for it). It knows the portfolio,
+offers a shortlist rather than a wall of records, and acts on what you say:
+an inline verb runs in its voice the moment you describe it, while a
+dispatch, a new record, an export, or a structural change waits for your
+explicit word (the **boundary**, ADR 0028). Verbs are also directly
+invocable: the goal is that nothing must be *memorized*, not that invocation
+is forbidden.
 
 ```
-/steward          the front door — start here
+/start            the front door — start here
 /jot              catch a stray thought; the ceremony waits
 /survey           what deserves attention next
 /challenge        have The Advocate find the holes
