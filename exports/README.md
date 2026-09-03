@@ -68,13 +68,12 @@ reconciles:
 a new export whose `supersedes:` names the old one, a `graft`, or a
 `Decision` whose `reconciles:` names it. The old file is never touched.
 
-## The two existing exports are immutable
+## The departure lounge is empty
 
-[`0003-starvu-agency-site-seed.md`](0003-starvu-agency-site-seed.md) and
-[`0004-estate-ui-seed.md`](0004-estate-ui-seed.md) predate this convention and
-are **not edited** — nothing in this repository is ever altered. They carry no
-`contract:`, no `payload:`, and no payload classifier; read them as
-`contract: standard, payload: absent`, which is what they are. The convention
-applies **from the next export forward**. As of 2026-09-02 estate-ui's is
-stale (the validator names it) and owes a reconciliation; starvu's is
-sealed at its record's head.
+The two exports that predated the payload convention —
+`0003-starvu-agency-site-seed.md` and `0004-estate-ui-seed.md` — left with the
+clean slate of 2026-09-03 (ADR 0032), along with every record. Both are
+preserved whole at tag `ideas-archive-2026-09-03`; neither was ever edited.
+
+The conventions above apply to every export from here forward, with no
+grandfathered exceptions left in the lounge.

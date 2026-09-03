@@ -79,8 +79,8 @@ decompose a tagged step rather than accept it whole.
   snapshot in this estate had recorded that it never had; idea-0003 exported a
   Seed carrying four open decisions. T's instruction was a decision, so the
   verb was dispatched rather than absorbed into a structural session, and the
-  ratified Decision is
-  [`idea-0001/artifacts/0008-human-attention-tag.md`](../../ideas/0001-the-estate/artifacts/0008-human-attention-tag.md).
+  ratified Decision is `idea-0001/artifacts/0008-human-attention-tag.md`
+  (wiped by ADR 0032; preserved at tag `ideas-archive-2026-09-03`).
   Unlike ADRs 0015–0019, this structural session was not verb-free.
 - The Decision sits on **idea-0001**, the record whose subject is the estate
   itself — the correct home for a convention that governs every record.
