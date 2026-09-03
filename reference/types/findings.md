@@ -29,6 +29,6 @@ cross-record value is **promoted** — a concept in `reference/` citing the
 artifact as its source — never relocated: the record keeps its original,
 and the reference stays a derived, curated view.
 
-* Produced by [research](../verbs/research.md)
+* Produced by `research`
 * Consumed by the operator and the Steward's route derivation
 * Promotable to `reference/`, by operator selection

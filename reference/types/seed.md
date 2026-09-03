@@ -57,7 +57,7 @@ what the record would need to build one — which is routing information.
 A **broken** payload is a recorded [falsifier](../falsifiers.md); an
 absent one is not, because absence is honest.
 
-* Produced by [seed](../verbs/seed.md)
+* Produced by `seed`
 * Leaves the estate via `exports/`; template at `templates/seed.md`
 * Classifiers travel with the export: `horizon` · `trajectory` ·
   `challenged` · `payload`

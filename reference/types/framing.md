@@ -17,5 +17,5 @@ in and out of scope, and the tension that makes it interesting. Good
 enough that a stranger could work on the idea without meeting the
 operator.
 
-* Produced by [frame](../verbs/frame.md)
-* Consumed by [envision](../verbs/envision.md)
+* Produced by `frame`
+* Consumed by `envision`

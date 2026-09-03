@@ -32,5 +32,5 @@ shape the table doesn't have, name it in the artifact's `shape:`
 frontmatter and it exists. The table lists the domain-neutral recurring
 ones; domain-specific shapes belong to sessions.
 
-The three dimensions — [verb](./verbs/index.md),
+The three dimensions — [verb](../system/registry.md),
 [lens](./lenses.md), shape — are independent axes, never conflated.

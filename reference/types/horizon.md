@@ -15,8 +15,8 @@ sources:
 Six months out, working, told from inside the finished thing — concrete
 and elaborated, neither wish nor spec. The easiest place in the system to
 fool oneself with fluent prose, which is why it carries the falsifiability
-classifier and is [challenge](../verbs/challenge.md)'s central target.
+classifier and is `challenge`'s central target.
 
-* Produced by [envision](../verbs/envision.md)
-* Consumed by [chart](../verbs/chart.md) and [seed](../verbs/seed.md)
+* Produced by `envision`
+* Consumed by `chart` and `seed`
 * Classifiers: `horizon: falsifiable | unfalsified` · `challenged`

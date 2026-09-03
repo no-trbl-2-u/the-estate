@@ -21,7 +21,7 @@ operator words crossing into the system, not artifacts in it - and
 
 Boundary inputs are not artifact types: `Text` (capture), `Question`
 (research), `Direction` (graft), and `Slip` — the one that is durable,
-written to `inbox/` by clerical [jot](../verbs/jot.md) and consumed later
+written to `inbox/` by clerical `jot` and consumed later
 by `capture`.
 
 # Verb families
