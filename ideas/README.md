@@ -8,6 +8,11 @@ generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
 
 # Ideas
 
+This root directory holds **unscoped** records. A record scoped to a project
+lives in that project's own `ideas/` — `projects/NNNN-slug/ideas/` — with the
+identical layout below; nothing about a record changes by being scoped, and
+ids are global across every tree (ADR 0033, `projects/README.md`).
+
 One directory per Idea Record:
 
 ```

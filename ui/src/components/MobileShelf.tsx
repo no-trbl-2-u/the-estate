@@ -1,5 +1,5 @@
 import type { EstateData, IdeaRecord, ViewKey } from '../lib/types'
-import { ago, nonTerminalCount, pad } from '../lib/derive'
+import { ago, nonTerminalCount, pad, recordGroups } from '../lib/derive'
 import { C, DISPLAY, MONO_FONT, SERIF } from '../lib/theme'
 import { Plate } from './bits'
 
@@ -56,11 +56,30 @@ export function MobileShelf({
             {data.generatedAt}
           </span>
         </div>
-        <div style={{ font: `400 9.5px/1 ${MONO_FONT}`, color: C.inkSoft, marginTop: 11 }}>covers {data.records.length} records · read-only</div>
+        <div style={{ font: `400 9.5px/1 ${MONO_FONT}`, color: C.inkSoft, marginTop: 11 }}>
+          covers {data.records.length} records{data.projects.length > 0 ? ` · ${data.projects.length} project${data.projects.length === 1 ? '' : 's'}` : ''} · read-only
+        </div>
       </div>
 
       <div style={{ flex: 1, overflowY: 'auto', padding: '14px 14px 10px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {data.records.map((r) => {
+        {recordGroups(data).map((g) => (
+          <div key={g.key} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {g.project !== undefined && (
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 10, padding: '4px 2px 0' }}>
+                <span style={{ font: `400 13px/1.2 ${SERIF}`, fontStyle: 'italic', color: g.project ? C.inkMid : C.inkSoft }}>
+                  {g.project ? g.project.title : 'Unscoped'}
+                </span>
+                <span style={{ font: `400 8px/1 ${MONO_FONT}`, color: g.project?.target === 'nexus' ? C.gold : C.inkFaint }}>
+                  {g.project ? `project-${g.project.id}${g.project.target === 'nexus' ? ' · nexus' : ''}` : 'root'}
+                </span>
+              </div>
+            )}
+            {g.recs.length === 0 && (
+              <div style={{ font: `400 11.5px/1.5 ${SERIF}`, fontStyle: 'italic', color: C.inkFaint, padding: '0 2px' }}>
+                no records yet — a project waiting for its first capture
+              </div>
+            )}
+            {g.recs.map((r) => {
           const head = r.states.length ? r.states[r.states.length - 1].n : 0
           const na = nonTerminalCount(r)
           return (
@@ -142,7 +161,9 @@ export function MobileShelf({
               </div>
             </button>
           )
-        })}
+            })}
+          </div>
+        ))}
       </div>
 
       <div

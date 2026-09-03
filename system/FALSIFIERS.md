@@ -46,8 +46,9 @@ A Seed has failed its purpose when:
 
 The Estate is a fascinating design problem, and **building it is more fun than
 using it**. The trap is six months of type-algebra refinement and an empty estate.
-If work in this repo is elaborating the machinery while `ideas/` holds nothing
-live, that is this failure mode in progress — say so out loud.
+If work in this repo is elaborating the machinery while the idea trees —
+root `ideas/` and every `projects/*/ideas/` — hold nothing live, that is
+this failure mode in progress — say so out loud.
 
 ## Near-term beneficiaries
 

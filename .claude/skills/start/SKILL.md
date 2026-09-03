@@ -60,13 +60,16 @@ be.
 
 ## On invocation
 
-1. **Orient honestly.** Read `system/LAW.md`. Scan `ideas/*/idea.md`
-   frontmatter (and head snapshots as needed). State the freshness of your
+1. **Orient honestly.** Read `system/LAW.md`. Scan `ideas/*/idea.md` and
+   `projects/*/ideas/*/idea.md` frontmatter (and head snapshots as needed) —
+   records live in both trees (ADR 0033). State the freshness of your
    picture: if you have not read a record this session, say so and read it
    before answering about it.
 2. **Classify the arrival:**
    - **New idea** → a boundary: propose the record shell and wait. On the
-     word: `ideas/NNNN-slug/` from `templates/idea.md`, origin verbatim,
+     word: `NNNN-slug/` from `templates/idea.md` — in root `ideas/` or a
+     project's `ideas/`; scope is location and the id is global either way
+     (ADR 0033) — origin verbatim,
      `state/0000.md`, then `capture` performed inline in The Gardener's
      voice — the first artifact (`type: Spark`) from the operator's own
      words. Recording the origin is not `capture`; `frame` typechecks

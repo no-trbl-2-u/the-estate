@@ -1,13 +1,66 @@
-import type { EstateData } from '../lib/types'
+import type { EstateData, IdeaRecord, ProjectInfo } from '../lib/types'
+import { recordGroups } from '../lib/derive'
 import { BANDC, C, DISPLAY, MONO_FONT, SERIF } from '../lib/theme'
 import { TYPE_ORDER } from '../lib/theme'
+
+// The band above a project's records (ADR 0033). `p` null is the unscoped
+// group's divider — root ideas/, shown beneath the projects.
+function ProjectBand({ p, recs }: { p: ProjectInfo | null; recs: IdeaRecord[] }) {
+  if (!p)
+    return (
+      <div style={{ margin: '14px 2px 4px', display: 'flex', alignItems: 'baseline', gap: 10 }}>
+        <span style={{ font: `400 8px/1 ${MONO_FONT}`, letterSpacing: '.16em', color: C.inkFaint }}>UNSCOPED</span>
+        <span style={{ font: `400 10.5px/1 ${SERIF}`, fontStyle: 'italic', color: C.inkFaint }}>
+          root ideas/ — records not scoped to any project
+        </span>
+      </div>
+    )
+  const seeded = recs.filter((r) => r.seed).length
+  return (
+    <div
+      style={{
+        marginTop: 14,
+        background: C.panelBg,
+        border: `1px solid ${C.border}`,
+        borderTop: `2px solid ${C.goldMid}`,
+        borderRadius: 2,
+        padding: '10px 16px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 14,
+      }}
+    >
+      <div style={{ minWidth: 0, flex: 1 }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
+          <span style={{ font: `600 9px/1 ${MONO_FONT}`, color: C.gold }}>project-{p.id}</span>
+          <span style={{ font: `400 15px/1.2 ${DISPLAY}`, color: C.ink }}>{p.title}</span>
+        </div>
+        {p.origin && (
+          <div style={{ font: `400 11px/1.45 ${SERIF}`, fontStyle: 'italic', color: C.inkSoft, marginTop: 4, maxWidth: '70ch' }}>{p.origin}</div>
+        )}
+      </div>
+      <div style={{ flex: 'none', textAlign: 'right', font: `400 8.5px/1.7 ${MONO_FONT}`, color: C.inkSoft }}>
+        <div>
+          status {p.status} · appetite {p.appetite}
+        </div>
+        <div>
+          {recs.length} record{recs.length === 1 ? '' : 's'} · {seeded} seeded ·{' '}
+          <span style={{ color: p.target === 'nexus' ? C.gold : C.inkFaint }}>target {p.target}</span>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export function GroundsView({ data, openRecord }: { data: EstateData; openRecord: (id: string) => void }) {
   const legendTypes = TYPE_ORDER.filter((t) => t in BANDC && t !== 'Seed')
   return (
     <div style={{ padding: '22px 24px' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 1000 }}>
-        {data.records.map((r) => {
+        {recordGroups(data).map((g) => (
+          <div key={g.key} style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            {g.project !== undefined && <ProjectBand p={g.project} recs={g.recs} />}
+            {g.recs.map((r) => {
           const counts: Record<string, number> = {}
           for (const a of r.artifacts) if (!a.terminal) counts[a.type] = (counts[a.type] ?? 0) + 1
           const segs = TYPE_ORDER.filter((t) => counts[t]).map((t) => ({
@@ -120,7 +173,24 @@ export function GroundsView({ data, openRecord }: { data: EstateData; openRecord
               </div>
             </button>
           )
-        })}
+            })}
+            {g.recs.length === 0 && g.project && (
+              <div
+                style={{
+                  background: C.contentBg,
+                  border: `1px dashed ${C.border}`,
+                  borderRadius: 2,
+                  padding: '12px 16px',
+                  font: `400 12px/1.5 ${SERIF}`,
+                  fontStyle: 'italic',
+                  color: C.inkSoft,
+                }}
+              >
+                no records yet — a project waiting for its first capture is not an error (ADR 0033)
+              </div>
+            )}
+          </div>
+        ))}
       </div>
       <div
         style={{

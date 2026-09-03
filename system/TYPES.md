@@ -178,7 +178,8 @@ needs no special handling: the as-of tips and the current tips coincide.
 
 ### Mechanics
 
-1. **A new record shell** — `ideas/NNNN-slug/` from `templates/idea.md`. Its
+1. **A new record shell** — `NNNN-slug/` from `templates/idea.md`, in the
+   source's tree unless the Direction says otherwise (ADR 0033). Its
    **Origin** section records the graft: the source id, the source snapshot, and
    the **Direction verbatim**.
 2. **Tip artifacts copied in** as the graft's starting artifacts, **renumbered

@@ -37,11 +37,28 @@ export interface StateSnap {
   est: string
 }
 
+// A project scopes records: a directory with its own ideas/ and exports/
+// (ADR 0033). Scope is location; ids stay global.
+export interface ProjectInfo {
+  id: string
+  fullId: string
+  slug: string
+  title: string
+  created: string
+  status: string
+  appetite: number
+  target: string
+  origin: string | null
+  refusals: string | null
+  recordIds: string[]
+}
+
 export interface IdeaRecord {
   id: string
   fullId: string
   title: string
   slug: string
+  projectId: string | null
   created: string
   status: string
   appetite: number
@@ -80,6 +97,7 @@ export interface EstateData {
   generatedAt: string
   estateRoot: string
   agents: AgentInfo[]
+  projects: ProjectInfo[]
   records: IdeaRecord[]
   survey: SurveyInfo | null
   relatesMentions: RelatesMention[]

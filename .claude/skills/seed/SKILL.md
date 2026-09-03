@@ -24,8 +24,13 @@ travel on the frontmatter and **nothing is gated**. Grade, never gate.
 
 Seeds leave **clean**: no session logs, no rejected framings, no baggage —
 the provenance stamp is the only thing that points backward. Write the export
-copy to `exports/`, sized and worded for its `audience:` (a coding agent and
-a friend starting a business need different Seeds). Close per protocol.
+copy to the record's own departure lounge — root `exports/` for an unscoped
+record, `projects/NNNN-slug/exports/` for a scoped one (a Seed colocates with
+its record, ADR 0033) — sized and worded for its `audience:` (a coding agent
+and a friend starting a business need different Seeds). For a `build-plan`
+Seed from a scoped record, the project's `target:` is the standing answer to
+the loop question — ask T only when the project has not said. Close per
+protocol.
 
 ## The contract
 

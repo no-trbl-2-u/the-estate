@@ -1,9 +1,30 @@
 // Pure graph derivation over the data contract — the durable spine.
 // Version-chain stacking and tip-finding, fan-out, the wall, the rungs,
 // map layout. No DOM, no React: this module survives every renderer.
-import type { Artifact, ArtifactN, IdeaRecord, StateSnap } from './types'
+import type { Artifact, ArtifactN, EstateData, IdeaRecord, ProjectInfo, StateSnap } from './types'
 
 export const art = (r: IdeaRecord, n: ArtifactN) => r.artifacts.find((a) => a.n === n)
+
+// ---- project grouping (ADR 0033: scope is location, grouping is display) ----
+// `project` undefined = flat mode (the estate has no projects at all);
+// `project` null = the unscoped group shown beneath the projects.
+export interface RecordGroup {
+  key: string
+  project?: ProjectInfo | null
+  recs: IdeaRecord[]
+}
+
+export function recordGroups(data: EstateData): RecordGroup[] {
+  if (!data.projects || data.projects.length === 0) return [{ key: 'all', recs: data.records }]
+  const groups: RecordGroup[] = data.projects.map((p) => ({
+    key: 'p' + p.id,
+    project: p,
+    recs: data.records.filter((r) => r.projectId === p.id),
+  }))
+  const unscoped = data.records.filter((r) => !r.projectId)
+  if (unscoped.length) groups.push({ key: 'unscoped', project: null, recs: unscoped })
+  return groups
+}
 
 export const pad = (n: number | string) => (n === 'S' ? 'seed' : String(n).padStart(4, '0'))
 

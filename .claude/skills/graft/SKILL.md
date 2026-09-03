@@ -49,7 +49,9 @@ handling; as-of tips and current tips coincide there.
 
 ## What you do
 
-1. **Create the record shell** — `ideas/NNNN-slug/` from `templates/idea.md`.
+1. **Create the record shell** — `NNNN-slug/` from `templates/idea.md`, in
+   the source's own tree: a graft lands beside its source unless the
+   Direction says otherwise (ADR 0033). The id is global either way.
    The **Origin** section records the graft: source id, source snapshot, and the
    **Direction verbatim**.
 2. **Copy the as-of tips in** as the graft's starting artifacts, **renumbered

@@ -34,6 +34,12 @@ function frontmatter(file) {
 }
 
 const rel = (p) => p.slice(root.length + 1).replaceAll('\\', '/');
+const dirsIn = (p) =>
+  existsSync(p)
+    ? readdirSync(p).filter((d) => {
+        try { return statSync(join(p, d)).isDirectory(); } catch { return false; }
+      })
+    : [];
 
 // --- Skills: frontmatter completeness and valid run: values -----------------
 const RUNS = new Set(['inline', 'fresh-eyes', 'quarantine']);
@@ -52,50 +58,102 @@ for (const d of readdirSync(skillsDir)) {
   }
 }
 
-// --- Ideas: state-head resolves; artifacts carry type/produced-by/inputs ----
-const ideasDir = join(root, 'ideas');
-const records = existsSync(ideasDir)
-  ? readdirSync(ideasDir).filter((d) => {
-      try { return statSync(join(ideasDir, d)).isDirectory(); } catch { return false; }
-    })
-  : [];
+// --- Trees: the root plus every project (ADR 0033) --------------------------
+// A tree is an ideas/ + exports/ pair. Scope is location: a record's project
+// is the directory that holds it, and a Seed lands in the lounge of the tree
+// that holds its record.
+const trees = [{ label: 'root', dir: root, ideasDir: join(root, 'ideas'), exportsDir: join(root, 'exports') }];
 
-for (const record of records) {
-  const dir = join(ideasDir, record);
-  const ideaFile = join(dir, 'idea.md');
-  if (!existsSync(ideaFile)) { errors.push(`${rel(dir)}: no idea.md`); continue; }
-  const idea = frontmatter(ideaFile);
-  if (!idea) { errors.push(`${rel(ideaFile)}: no frontmatter`); continue; }
-  if (!idea['state-head']) {
-    errors.push(`${rel(ideaFile)}: missing \`state-head:\``);
-  } else if (!existsSync(join(dir, idea['state-head']))) {
-    errors.push(`${rel(ideaFile)}: state-head "${idea['state-head']}" does not resolve`);
-  }
+const projectsDir = join(root, 'projects');
+const PROJECT_STATUS = new Set(['active', 'incubating', 'retired']);
+const PROJECT_TARGET = new Set(['nexus', 'none']);
+const projectIds = new Map(); // 'NNNN' -> dir name, for duplicate detection
+for (const d of dirsIn(projectsDir)) {
+  const dir = join(projectsDir, d);
+  if (!/^\d{4}-/.test(d)) { errors.push(`${rel(dir)}: project directory is not NNNN-slug`); continue; }
+  const num = d.slice(0, 4);
+  if (projectIds.has(num)) errors.push(`${rel(dir)}: project id ${num} already claimed by projects/${projectIds.get(num)}`);
+  projectIds.set(num, d);
 
-  const artifactsDir = join(dir, 'artifacts');
-  if (existsSync(artifactsDir)) {
-    for (const a of readdirSync(artifactsDir).filter((x) => x.endsWith('.md'))) {
-      const f = join(artifactsDir, a);
-      const fm = frontmatter(f);
-      if (!fm) { errors.push(`${rel(f)}: no frontmatter`); continue; }
-      if (!fm.type) errors.push(`${rel(f)}: missing \`type:\``);
-      if (!fm['produced-by']) errors.push(`${rel(f)}: missing \`produced-by:\``);
-      if (!fm.inputs || fm.inputs === '[]') {
-        warnings.push(`${rel(f)}: empty \`inputs:\` — lineage cannot be derived through it`);
+  const pf = join(dir, 'project.md');
+  if (!existsSync(pf)) {
+    errors.push(`${rel(dir)}: no project.md`);
+  } else {
+    const fm = frontmatter(pf);
+    if (!fm) { errors.push(`${rel(pf)}: no frontmatter`); }
+    else {
+      for (const key of ['id', 'title', 'created', 'status', 'appetite', 'target']) {
+        if (fm[key] === undefined || fm[key] === '') errors.push(`${rel(pf)}: missing \`${key}:\``);
+      }
+      if (fm.id && fm.id !== `project-${num}`) {
+        errors.push(`${rel(pf)}: \`id:\` "${fm.id}" does not match directory (expected project-${num})`);
+      }
+      if (fm.status && !PROJECT_STATUS.has(fm.status)) {
+        errors.push(`${rel(pf)}: status "${fm.status}" is not active|incubating|retired`);
+      }
+      if (fm.target && !PROJECT_TARGET.has(fm.target)) {
+        errors.push(`${rel(pf)}: target "${fm.target}" is not nexus|none`);
       }
     }
   }
+  trees.push({ label: `projects/${d}`, dir, ideasDir: join(dir, 'ideas'), exportsDir: join(dir, 'exports') });
+}
 
-  const stateDir = join(dir, 'state');
-  if (existsSync(stateDir)) {
-    for (const s of readdirSync(stateDir).filter((x) => x.endsWith('.md'))) {
-      const f = join(stateDir, s);
-      const fm = frontmatter(f);
-      if (!fm) { errors.push(`${rel(f)}: no frontmatter`); continue; }
-      if (fm.state === undefined) errors.push(`${rel(f)}: missing \`state:\``);
-      if (!fm.previous && !s.startsWith('0000')) {
-        errors.push(`${rel(f)}: missing \`previous:\` (only state 0000 may omit it)`);
+// --- Ideas: state-head resolves; artifacts carry type/produced-by/inputs ----
+for (const tree of trees) {
+  tree.records = dirsIn(tree.ideasDir);
+  for (const record of tree.records) {
+    const dir = join(tree.ideasDir, record);
+    const ideaFile = join(dir, 'idea.md');
+    if (!existsSync(ideaFile)) { errors.push(`${rel(dir)}: no idea.md`); continue; }
+    const idea = frontmatter(ideaFile);
+    if (!idea) { errors.push(`${rel(ideaFile)}: no frontmatter`); continue; }
+    if (!idea['state-head']) {
+      errors.push(`${rel(ideaFile)}: missing \`state-head:\``);
+    } else if (!existsSync(join(dir, idea['state-head']))) {
+      errors.push(`${rel(ideaFile)}: state-head "${idea['state-head']}" does not resolve`);
+    }
+
+    const artifactsDir = join(dir, 'artifacts');
+    if (existsSync(artifactsDir)) {
+      for (const a of readdirSync(artifactsDir).filter((x) => x.endsWith('.md'))) {
+        const f = join(artifactsDir, a);
+        const fm = frontmatter(f);
+        if (!fm) { errors.push(`${rel(f)}: no frontmatter`); continue; }
+        if (!fm.type) errors.push(`${rel(f)}: missing \`type:\``);
+        if (!fm['produced-by']) errors.push(`${rel(f)}: missing \`produced-by:\``);
+        if (!fm.inputs || fm.inputs === '[]') {
+          warnings.push(`${rel(f)}: empty \`inputs:\` — lineage cannot be derived through it`);
+        }
       }
+    }
+
+    const stateDir = join(dir, 'state');
+    if (existsSync(stateDir)) {
+      for (const s of readdirSync(stateDir).filter((x) => x.endsWith('.md'))) {
+        const f = join(stateDir, s);
+        const fm = frontmatter(f);
+        if (!fm) { errors.push(`${rel(f)}: no frontmatter`); continue; }
+        if (fm.state === undefined) errors.push(`${rel(f)}: missing \`state:\``);
+        if (!fm.previous && !s.startsWith('0000')) {
+          errors.push(`${rel(f)}: missing \`previous:\` (only state 0000 may omit it)`);
+        }
+      }
+    }
+  }
+}
+
+// Global id uniqueness (ADR 0033): idea-NNNN is one record, whichever tree
+// holds it. Directories organize; ids identify.
+const claimed = new Map(); // 'NNNN' -> tree label
+for (const tree of trees) {
+  for (const record of tree.records) {
+    const num = record.slice(0, 4);
+    if (!/^\d{4}$/.test(num)) continue; // shape errors reported per-record above
+    if (claimed.has(num)) {
+      errors.push(`${tree.label}/ideas/${record}: idea-${num} already claimed in ${claimed.get(num)}`);
+    } else {
+      claimed.set(num, `${tree.label}/ideas`);
     }
   }
 }
@@ -118,7 +176,6 @@ if (existsSync(inboxDir)) {
 }
 
 // --- Exports: a Seed behind its record; build-plan payload shape (ADR 0029) --
-const exportsDir = join(root, 'exports');
 const BUILD_PLAN_FILES = [ // the nexus-native shape (ADR 0030)
   'README.md', 'spec.md', 'nexus.adopt.json', 'plan/bearings.md',
   'plan/steps/01_build_plan.md', 'plan/phases/phase_1_bootstrap.md',
@@ -126,39 +183,53 @@ const BUILD_PLAN_FILES = [ // the nexus-native shape (ADR 0030)
 const stateNum = (s) => Number((s || '').match(/(\d{4})/)?.[1] ?? NaN);
 const base = (p) => (p || '').replace(/^"|"$/g, '').split('/').pop();
 
-if (existsSync(exportsDir)) {
-  const seedFiles = readdirSync(exportsDir).filter((x) => x.endsWith('-seed.md'));
-  const exportFms = seedFiles.map((s) => [s, frontmatter(join(exportsDir, s))]);
-
-  // Anything that names a stale export as reconciled: a later export's
-  // `supersedes:`, or a record artifact's `reconciles:`.
-  const reconciled = new Set();
-  for (const [, fm] of exportFms) if (fm?.supersedes) reconciled.add(base(fm.supersedes));
-  for (const record of records) {
-    const artifactsDir = join(ideasDir, record, 'artifacts');
+// Anything that names a stale export as reconciled: a later export's
+// `supersedes:`, or a record artifact's `reconciles:`. Gathered across every
+// tree — a re-seed after a cross-tree move still reconciles.
+const reconciled = new Set();
+for (const tree of trees) {
+  tree.exportFms = existsSync(tree.exportsDir)
+    ? readdirSync(tree.exportsDir)
+        .filter((x) => x.endsWith('-seed.md'))
+        .map((s) => [s, frontmatter(join(tree.exportsDir, s))])
+    : [];
+  for (const [, fm] of tree.exportFms) if (fm?.supersedes) reconciled.add(base(fm.supersedes));
+  for (const record of tree.records) {
+    const artifactsDir = join(tree.ideasDir, record, 'artifacts');
     if (!existsSync(artifactsDir)) continue;
     for (const a of readdirSync(artifactsDir).filter((x) => x.endsWith('.md'))) {
       const fm = frontmatter(join(artifactsDir, a));
       if (fm?.reconciles) reconciled.add(base(fm.reconciles));
     }
   }
+}
 
-  for (const [s, fm] of exportFms) {
-    const f = join(exportsDir, s);
+for (const tree of trees) {
+  for (const [s, fm] of tree.exportFms) {
+    const f = join(tree.exportsDir, s);
     if (!fm) { errors.push(`${rel(f)}: no frontmatter`); continue; }
     const origin = (fm.origin || '').match(/idea-(\d{4})\s*@\s*state\/(\d{4})/);
     if (!origin) { errors.push(`${rel(f)}: \`origin:\` is not "idea-NNNN @ state/NNNN"`); continue; }
 
-    const record = records.find((r) => r.startsWith(`${origin[1]}-`));
-    if (!record) { errors.push(`${rel(f)}: origin idea-${origin[1]} has no record`); continue; }
-    const head = stateNum(frontmatter(join(ideasDir, record, 'idea.md'))?.['state-head']);
+    // Colocation (ADR 0033): the origin record must live in this tree.
+    const record = tree.records.find((r) => r.startsWith(`${origin[1]}-`));
+    if (!record) {
+      const elsewhere = claimed.get(origin[1]);
+      errors.push(
+        elsewhere
+          ? `${rel(f)}: origin idea-${origin[1]} lives in ${elsewhere} — a Seed lands in the lounge of the tree that holds its record (ADR 0033)`
+          : `${rel(f)}: origin idea-${origin[1]} has no record`,
+      );
+      continue;
+    }
+    const head = stateNum(frontmatter(join(tree.ideasDir, record, 'idea.md'))?.['state-head']);
 
     // The anchor is the *sealing* state — the one whose `outputs:` names this
     // export — not `origin:`. A Seed reads the record at state N and the close
     // then writes state N+1 recording the export, so origin is one behind by
     // construction on every healthy Seed. Staleness is work done *after* the
     // seal. Falls back to origin when no state claims the export.
-    const stateDir = join(ideasDir, record, 'state');
+    const stateDir = join(tree.ideasDir, record, 'state');
     let seal = Number(origin[2]);
     if (existsSync(stateDir)) {
       for (const st of readdirSync(stateDir).filter((x) => x.endsWith('.md'))) {
@@ -178,7 +249,7 @@ if (existsSync(exportsDir)) {
       } else {
         const payload = fm.payload.replace(/\/+$/, '');
         for (const p of BUILD_PLAN_FILES) {
-          if (!existsSync(join(exportsDir, payload, p))) errors.push(`${rel(f)}: build-plan payload missing ${payload}/${p}`);
+          if (!existsSync(join(tree.exportsDir, payload, p))) errors.push(`${rel(f)}: build-plan payload missing ${payload}/${p}`);
         }
       }
     }
@@ -188,5 +259,7 @@ if (existsSync(exportsDir)) {
 // --- Report -----------------------------------------------------------------
 for (const w of warnings) console.log(`warn  ${w}`);
 for (const e of errors) console.log(`ERROR ${e}`);
-console.log(`\n${errors.length} error(s), ${warnings.length} warning(s) across ${records.length} record(s).`);
+const nRecords = trees.reduce((n, t) => n + t.records.length, 0);
+const nProjects = trees.length - 1;
+console.log(`\n${errors.length} error(s), ${warnings.length} warning(s) across ${nRecords} record(s) in ${nProjects} project(s) + root.`);
 process.exit(errors.length ? 1 : 0);
