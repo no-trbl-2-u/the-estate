@@ -113,6 +113,5 @@ structurally, never enforced.
 | [AUDIT-PROMPT.md](AUDIT-PROMPT.md) | Standalone brief for an outside agent auditing this implementation |
 | [AUDIT-REPORT.md](AUDIT-REPORT.md) | The 2026-08-26 audit's findings; fixes recorded in ADR 0015 |
 | [BRAINSTORM.md](BRAINSTORM.md) | Historical design log |
-| [BUILD-PROMPT.md](BUILD-PROMPT.md) | Historical build brief |
 | [AGENTS.md](AGENTS.md) | Orientation for agents in this repo |
 | [CLAUDE.md](CLAUDE.md) | Imports `AGENTS.md` so Claude Code loads the orientation at session start |

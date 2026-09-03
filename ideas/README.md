@@ -13,12 +13,15 @@ One directory per Idea Record:
 ```
 ideas/NNNN-slug/
   idea.md          # identity + origin (templates/idea.md); origin is never edited
-  state/           # immutable snapshots, copied forward: 0000.md, 0001.md, ...
+  state/           # immutable snapshots, one per session: 0000.md, 0001.md, ...
   artifacts/       # typed artifacts (templates/artifact.md), NNNN-slug.md
 ```
 
-**State is immutable.** Every session copies the latest snapshot forward and
-updates the copy. Time travel is picking up an older file; branching is copying
+**State is immutable.** Every session writes a *new* snapshot recording its
+**delta** — what it established, plus the live tensions and questions and an
+honest current-state declaration (ADR 0028). Prior content is never copied
+forward; history lives in the chain and in git.
+Time travel is picking up an older file; branching is copying
 forward from an older snapshot into a new record — the source is never
 *edited*, because nothing here is ever edited. Lineage is derived from the
 `inputs:`/`previous:` chains; `relates:` in `idea.md` holds the hand-authored

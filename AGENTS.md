@@ -58,8 +58,8 @@ frontmatter and nowhere else by hand; `system/registry.md` is **generated**
 `scripts/validate-estate.mjs`; a claim the validator does not check is
 guidance, not law.
 
-[BRAINSTORM.md](BRAINSTORM.md) and [BUILD-PROMPT.md](BUILD-PROMPT.md) are
-**historical records**, preserved unedited, and ADRs are immutable — a
+[BRAINSTORM.md](BRAINSTORM.md) is a **historical record**, preserved
+unedited, and ADRs are immutable — a
 decision is superseded by a new ADR, never edited in place. Where they
 conflict with `system/`, `system/` wins.
 [docs/idea-pipeline.html](docs/idea-pipeline.html) is an approved visual — do

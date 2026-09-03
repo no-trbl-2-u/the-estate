@@ -37,7 +37,7 @@ is a feature request, not a synonym.
 | **Seed** | The terminal export: Horizon + Trajectory + next concrete move + at least one refusal + provenance stamp. Leaves clean, to `exports/`. A run that stops early may export a **Brief** instead. | `system/TYPES.md`, `templates/seed.md` |
 | **Status** | Where a record stands: `active`, incubating, or retired. Changed only by transition verbs (`incubate`, `retire`); nothing is ever deleted. | `templates/idea.md`, the keeper's skills |
 | **Appetite** | Hand-set heat on a record — how much the operator currently cares. T's to set, never inferred. | `templates/idea.md` |
-| **Handoff packet** | What the Steward gives a dispatched agent: the state snapshot, input artifacts, lenses, requested shape. *(Currently exists only in the dispatching session — the unaddressable steering layer named in idea-0001's Framing.)* | `system/STEWARD.md`, `ideas/0001-the-estate/artifacts/0003-framing.md` |
+| **Handoff packet** | What the Steward gives a dispatched agent: the state snapshot, input artifacts, lenses, requested shape. *(Currently exists only in the dispatching session — the unaddressable steering layer named in idea-0001's Framing.)* | `system/STEWARD.md`; idea-0001 Framing (tag `ideas-archive-2026-09-03`) |
 
 ## The operator's UI vocabulary, mapped
 
@@ -69,7 +69,7 @@ This file describes; it never governs. New terms enter the canon through
 | **Quarantine** | The dispatch reason for `research` (web bulk, untrusted content) and `survey` (the whole-portfolio read): the inputs must not enter the main window. | `system/LAW.md` |
 | **Handback packet** | What a dispatched verb returns: `artifact-path`, classifier verdicts, gold nuggets, open questions, tensions — and nothing else. The transcript is never duplicated into the record. | `system/LAW.md` |
 | **Writer's discipline** | Artifacts carry the work in the performing voice, verbatim where it matters; state carries the session as a delta; record frontmatter is written at the close. For dispatched verbs this is a literal two-writer seam. | `system/LAW.md` |
-| **Steering layer** | Everything that aims the verbs — handoff packets, route derivations, nugget selection. Produces no artifacts; named *unaddressable* by idea-0001's Framing. | `ideas/0001-the-estate/artifacts/0003-framing.md` |
+| **Steering layer** | Everything that aims the verbs — handoff packets, route derivations, nugget selection. Produces no artifacts; named *unaddressable* by idea-0001's Framing. | idea-0001 Framing (tag `ideas-archive-2026-09-03`) |
 
 ### Machinery
 
@@ -129,8 +129,8 @@ because a UI reader will be clicking on them constantly.
 | **Check date** | **2026-09-25** — the estate's own falsifier clock: failed if no evidence of use outside this repo by then. | `system/FALSIFIERS.md` |
 | **Named failure mode** | *"Building it is more fun than using it."* Machinery elaboration while `ideas/` holds nothing live must be said out loud. | `system/FALSIFIERS.md` |
 | **Tension vs. open question** | A tension awaits a **choice** between competing framings and may never resolve; an open question awaits an **answer**. Different sections, different fates. | `templates/idea.md` |
-| **Gold nuggets** | The state section preserving a session's best-phrased findings — carried with the standing warning that quotability is not evidence (residue item 6, held under challenge). | `templates/state.md`, `ideas/0001-the-estate/artifacts/0002-residue-challenged.md` |
-| **Residue** | Session observations about *the estate itself*, filed to idea-0001 rather than to the idea being worked. Operator's coinage, 2026-08-27. | `ideas/0001-the-estate/artifacts/0001-first-full-arc-residue.md` |
+| **Gold nuggets** | The state section preserving a session's best-phrased findings — carried with the standing warning that quotability is not evidence (residue item 6, held under challenge). | `templates/state.md`; idea-0001 residue (tag `ideas-archive-2026-09-03`) |
+| **Residue** | Session observations about *the estate itself*, filed to idea-0001 rather than to the idea being worked. Operator's coinage, 2026-08-27. | idea-0001 residue (tag `ideas-archive-2026-09-03`) |
 | **ADR** | Architecture Decision Record, `docs/adr/` — every major decision with its reasoning, indexed. | `docs/adr/` |
 | **OKF** | The Open Knowledge Format — how Findings cite sources, mark credibility, and carry `stale_after:` shelf lives. External knowledge rots on a schedule the other types don't have. | `reference/okf-spec.md`, ADR 0018 |
 | **Promotion** | A finding with cross-record value becomes a `reference/` concept citing the artifact as its source — never relocated out of the record. | `system/TYPES.md` |
