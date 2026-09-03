@@ -46,6 +46,11 @@ function ProjectBand({ p, recs }: { p: ProjectInfo | null; recs: IdeaRecord[] })
         <div>
           {recs.length} record{recs.length === 1 ? '' : 's'} · {seeded} seeded ·{' '}
           <span style={{ color: p.target === 'nexus' ? C.gold : C.inkFaint }}>target {p.target}</span>
+          {p.pendingMaterial > 0 && (
+            <span style={{ color: C.red }}>
+              {' '}· {p.pendingMaterial} on the front step
+            </span>
+          )}
         </div>
       </div>
     </div>

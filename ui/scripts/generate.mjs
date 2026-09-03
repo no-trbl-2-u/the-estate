@@ -200,6 +200,15 @@ if (existsSync(projectsDir)) {
       target: String(pfm.target || 'none'),
       origin: originSec ? firstParagraphs(plainText(originSec), 1, 300) || null : null,
       refusals: refusalsSec ? firstParagraphs(plainText(refusalsSec), 2, 400) || null : null,
+      // slips still pending on the project's front step (ADR 0034)
+      pendingMaterial: (() => {
+        const ib = join(projectsDir, d, 'inbox')
+        if (!existsSync(ib)) return 0
+        return readdirSync(ib).filter((f) => {
+          if (!f.endsWith('.md') || f === 'README.md') return false
+          return splitFrontmatter(readFileSync(join(ib, f), 'utf8')).fm.status === 'pending'
+        }).length
+      })(),
       recordIds: [], // filled after the walk
     })
     trees.push({ project: numId, base: join(projectsDir, d), prefix: `projects/${d}/` })
@@ -451,7 +460,7 @@ Records may be scoped to a project — a directory with its own ideas/ and
 exports/ (ADR 0033). Unscoped records live at the root as before.
 
 ${projects
-  .map((p) => `- project-${p.id}: ${p.title} — status ${p.status}, appetite ${p.appetite}, target ${p.target}, ${p.recordIds.length} record${p.recordIds.length === 1 ? '' : 's'}`)
+  .map((p) => `- project-${p.id}: ${p.title} — status ${p.status}, appetite ${p.appetite}, target ${p.target}, ${p.recordIds.length} record${p.recordIds.length === 1 ? '' : 's'}${p.pendingMaterial ? `, ${p.pendingMaterial} slip${p.pendingMaterial === 1 ? '' : 's'} on the front step` : ''}`)
   .join('\n')}
 ` : ''}
 ## Records

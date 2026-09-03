@@ -158,9 +158,11 @@ for (const tree of trees) {
   }
 }
 
-// --- Inbox: slips are stamped ----------------------------------------------
-const inboxDir = join(root, 'inbox');
-if (existsSync(inboxDir)) {
+// --- Inboxes: slips are stamped. The root front step, and every project's
+// own (onboarded material lands scoped — ADR 0034) ---------------------------
+for (const tree of trees) {
+  const inboxDir = join(tree.dir, 'inbox');
+  if (!existsSync(inboxDir)) continue;
   for (const s of readdirSync(inboxDir).filter((x) => x.endsWith('.md') && x !== 'README.md')) {
     const f = join(inboxDir, s);
     const fm = frontmatter(f);

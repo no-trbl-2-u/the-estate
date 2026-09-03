@@ -78,7 +78,7 @@ This file describes; it never governs. New terms enter the canon through
 |---|---|---|
 | **Verb family** | The seven signatures: Refiner `a→a`, Transformer `a→b`, Decomposer `a→[b]`, Aggregator `[a]→b`, Reader, Transition, Edge author. | `system/TYPES.md` |
 | **Boundary input** | `Text` (capture), `Question` (research), `Direction` (graft), and `Slip` — operator words crossing into the system, not artifacts already in it. | `system/TYPES.md` |
-| **Slip** | A jotted thought in `inbox/`: the one *durable* boundary input. Pre-record and pre-artifact — no lineage, no classifiers, no producing agent's voice. Stamped when processed, never deleted. | `system/TYPES.md`, `inbox/README.md` |
+| **Slip** | A thought or supplied document made durable on a front step — the root `inbox/` (via `jot`) or a project's own `inbox/` (via `onboard`, with a `source:` stamp): the one *durable* boundary input. Pre-record and pre-artifact — no lineage, no classifiers, no producing agent's voice. Stamped when processed, never deleted. | `system/TYPES.md`, `inbox/README.md`, ADR 0034 |
 | **Direction** | The operator's words for *why this branch exists*, required by `graft` and recorded verbatim in the new record's Origin. A graft without one is a copy. | `system/TYPES.md` |
 | **Graft edge** | The `relates` pair a `graft` writes. Machine-produced and derivable, unlike an authored edge; denormalized so the source can name its descendants without a scan. Only **authored** edges count toward `connective`. | `system/TYPES.md`, `system/SCORING.md` |
 | **Tip (as of a snapshot)** | What `graft` inherits: for each artifact type, the version no successor supersedes *as of the source snapshot* — never the source's current tips. | `system/TYPES.md` |

@@ -11,6 +11,12 @@ generated: { by: claude-code/2026-08-31, at: 2026-08-31T00:00:00Z }
 The estate's front step. A thought lands here in under a minute, and the
 ceremony that turns it into a record happens later, in its own session.
 
+This root inbox is the home of the **unscoped** slip — the stray thought,
+pre-project by nature. A project has a front step of its own:
+`projects/NNNN-slug/inbox/`, where `/onboard` parks supplied material as
+slips under the same law, plus a `source:` field naming where each piece
+came from (ADR 0034). Everything below applies to both.
+
 This exists because the ceremony is real and the ceremony is the problem. A new
 idea normally costs a record shell, a `capture`, a state snapshot,
 and a close — correct, and far too much to spend on a thought that arrived

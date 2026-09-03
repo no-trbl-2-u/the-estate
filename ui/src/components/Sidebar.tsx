@@ -110,6 +110,9 @@ export function Sidebar({
                 </span>
                 <span style={{ font: `400 7.5px/1 ${MONO_FONT}`, color: g.project?.target === 'nexus' ? C.gold : C.inkFaint, flex: 'none' }}>
                   {g.project ? `project-${g.project.id}${g.project.target === 'nexus' ? ' · nexus' : ''}` : 'root'}
+                  {g.project && g.project.pendingMaterial > 0 && (
+                    <span style={{ color: C.red }}> · {g.project.pendingMaterial} waiting</span>
+                  )}
                 </span>
               </div>
             )}

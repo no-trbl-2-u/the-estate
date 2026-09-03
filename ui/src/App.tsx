@@ -40,7 +40,8 @@ function useIsMobile() {
 export default function App() {
   const isMobile = useIsMobile()
   const [recId, setRecId] = useState(data.records[0]?.id ?? '')
-  const [view, setView] = useState<ViewKey>(isMobile ? 'shelf' : 'record')
+  // an empty estate has no record to open — land on the Grounds instead
+  const [view, setView] = useState<ViewKey>(isMobile ? 'shelf' : data.records.length ? 'record' : 'grounds')
   const [sel, setSel] = useState<Selection | null>(null)
   const [showRungs, setShowRungs] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(true)
@@ -131,7 +132,7 @@ export default function App() {
     return (
       <div style={{ height: '100%', overflow: 'hidden', background: C.contentBg, position: 'relative' }}>
         {view === 'shelf' && <MobileShelf data={data} openRecord={openRecord} openView={openView} />}
-        {view === 'record' && <MobileMap rec={rec} sel={sel} setSel={setSel} back={() => openView('shelf')} />}
+        {view === 'record' && rec && <MobileMap rec={rec} sel={sel} setSel={setSel} back={() => openView('shelf')} />}
         {view === 'estate' && <MobileEstate data={data} openView={openView} back={() => openView('shelf')} />}
         {view !== 'shelf' && view !== 'record' && view !== 'estate' && (
           <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: C.contentBg }}>
@@ -152,8 +153,14 @@ export default function App() {
       {sidebarOpen && <Sidebar data={data} recId={recId} view={view} openRecord={openRecord} openView={openView} />}
       <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', background: C.contentBg, overflow: 'hidden' }}>
         <Header data={data} view={view} rec={rec} sidebarOpen={sidebarOpen} toggleSidebar={() => setSidebarOpen((v) => !v)} />
-        {view === 'record' ? (
+        {view === 'record' && rec ? (
           <TravelMap rec={rec} sel={sel} setSel={setSel} showRungs={showRungs} />
+        ) : view === 'record' ? (
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ font: '400 13px/1.6 Georgia, serif', fontStyle: 'italic', color: C.inkSoft }}>
+              No records yet — the estate is waiting for its first capture.
+            </span>
+          </div>
         ) : (
           <div style={{ flex: 1, overflow: 'auto' }}>{viewContent}</div>
         )}
