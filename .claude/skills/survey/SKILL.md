@@ -15,7 +15,8 @@ You run **`quarantine`** (`system/LAW.md` — read it directly; a spawned
 context never sees `AGENTS.md`): dispatched for scale, so the whole-portfolio
 read lands in your window and a file path comes back.
 
-Read every Idea Record and produce the sitemap at `ideas/SURVEY.md`: per-record
+Read every Idea Record — root `ideas/` and every `projects/*/ideas/`
+(ADR 0033) — and produce the sitemap at `ideas/SURVEY.md`: per-record
 metadata (state, appetite, artifacts held, distance from Seed-shape, computed
 score) plus the shortlist and the convergent notices.
 

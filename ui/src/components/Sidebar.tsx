@@ -1,5 +1,5 @@
 import type { EstateData, IdeaRecord, ViewKey } from '../lib/types'
-import { ago, agentCounts, nonTerminalCount } from '../lib/derive'
+import { ago, agentCounts, nonTerminalCount, recordGroups } from '../lib/derive'
 import { C, DISPLAY, MONO_FONT, SERIF, TYPE_ORDER, VIEW_GLYPHS } from '../lib/theme'
 import { GlyphMark, MonoLabel, Plate, SeedWax, statusDotColor } from './bits'
 import { typeCounts } from '../lib/derive'
@@ -82,52 +82,84 @@ export function Sidebar({
         <Plate text="ESTATE VIEW" />
         <div style={{ font: `400 8.5px/1.5 ${MONO_FONT}`, color: C.inkSoft, marginTop: 9 }}>generated {data.generatedAt}</div>
         <div style={{ font: `400 8.5px/1.5 ${MONO_FONT}`, color: C.inkFaint }}>
-          covers {data.records.length} records · read-only
+          covers {data.records.length} records{data.projects.length > 0 ? ` · ${data.projects.length} project${data.projects.length === 1 ? '' : 's'}` : ''} · read-only
         </div>
       </div>
 
       <div style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', padding: '13px 12px 10px' }}>
         <MonoLabel style={{ padding: '0 4px 9px' }}>RECORDS</MonoLabel>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {data.records.map((r) => {
-            const on = isMap && r.id === recId
-            return (
-              <button
-                key={r.id}
-                onClick={() => openRecord(r.id)}
-                className="hov-border"
+        {recordGroups(data).map((g, gi) => (
+          <div key={g.key}>
+            {g.project !== undefined && (
+              <div
                 style={{
-                  background: on ? C.goldBg : '#EFF0E9',
-                  border: `1px solid ${on ? C.goldMid : C.borderLt}`,
-                  borderLeft: `3px solid ${on ? C.gold : 'transparent'}`,
-                  borderRadius: 2,
-                  padding: '8px 9px',
-                  cursor: 'pointer',
-                  display: 'block',
-                  width: '100%',
+                  margin: `${gi === 0 ? 0 : 13}px 2px 7px`,
+                  paddingBottom: 5,
+                  borderBottom: `1px solid ${C.borderLt}`,
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  justifyContent: 'space-between',
+                  gap: 8,
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8 }}>
-                  <span style={{ font: `600 9px/1 ${MONO_FONT}`, color: on ? C.gold : C.inkSoft }}>{r.id}</span>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                    {r.seed && <SeedWax />}
-                    <span
-                      title={`status: ${r.status}`}
-                      style={{ width: 5, height: 5, borderRadius: '50%', background: statusDotColor(r.status), display: 'inline-block' }}
-                    />
-                  </span>
+                <span
+                  title={g.project ? `project-${g.project.id} · status ${g.project.status} · appetite ${g.project.appetite}` : 'root ideas/ — records not scoped to any project'}
+                  style={{ font: `400 11.5px/1.2 ${SERIF}`, fontStyle: 'italic', color: g.project ? C.inkMid : C.inkSoft, minWidth: 0 }}
+                >
+                  {g.project ? g.project.title : 'Unscoped'}
+                </span>
+                <span style={{ font: `400 7.5px/1 ${MONO_FONT}`, color: g.project?.target === 'nexus' ? C.gold : C.inkFaint, flex: 'none' }}>
+                  {g.project ? `project-${g.project.id}${g.project.target === 'nexus' ? ' · nexus' : ''}` : 'root'}
+                </span>
+              </div>
+            )}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {g.recs.map((r) => {
+                const on = isMap && r.id === recId
+                return (
+                  <button
+                    key={r.id}
+                    onClick={() => openRecord(r.id)}
+                    className="hov-border"
+                    style={{
+                      background: on ? C.goldBg : '#EFF0E9',
+                      border: `1px solid ${on ? C.goldMid : C.borderLt}`,
+                      borderLeft: `3px solid ${on ? C.gold : 'transparent'}`,
+                      borderRadius: 2,
+                      padding: '8px 9px',
+                      cursor: 'pointer',
+                      display: 'block',
+                      width: '100%',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8 }}>
+                      <span style={{ font: `600 9px/1 ${MONO_FONT}`, color: on ? C.gold : C.inkSoft }}>{r.id}</span>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                        {r.seed && <SeedWax />}
+                        <span
+                          title={`status: ${r.status}`}
+                          style={{ width: 5, height: 5, borderRadius: '50%', background: statusDotColor(r.status), display: 'inline-block' }}
+                        />
+                      </span>
+                    </div>
+                    <div style={{ font: `400 13.5px/1.25 ${DISPLAY}`, color: C.ink, margin: '5px 0 6px', textWrap: 'pretty' }}>{r.title}</div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                      <AppetiteBars r={r} />
+                      <span style={{ font: `400 8px/1 ${MONO_FONT}`, color: C.inkSoft }}>
+                        {nonTerminalCount(r)}a · {r.states.length}s · {ago(r.headDate, data.generatedAt)}
+                      </span>
+                    </div>
+                  </button>
+                )
+              })}
+              {g.recs.length === 0 && (
+                <div style={{ font: `400 10.5px/1.5 ${SERIF}`, fontStyle: 'italic', color: C.inkFaint, padding: '2px 4px 4px' }}>
+                  no records yet — a project waiting for its first capture
                 </div>
-                <div style={{ font: `400 13.5px/1.25 ${DISPLAY}`, color: C.ink, margin: '5px 0 6px', textWrap: 'pretty' }}>{r.title}</div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-                  <AppetiteBars r={r} />
-                  <span style={{ font: `400 8px/1 ${MONO_FONT}`, color: C.inkSoft }}>
-                    {nonTerminalCount(r)}a · {r.states.length}s · {ago(r.headDate, data.generatedAt)}
-                  </span>
-                </div>
-              </button>
-            )
-          })}
-        </div>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
 
       <div

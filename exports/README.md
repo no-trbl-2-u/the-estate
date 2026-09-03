@@ -11,6 +11,12 @@ generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
 The departure lounge. When a Seed (or early-exit Brief) leaves for a real
 project, its final export copy lands here first: `exports/NNNN-slug-seed.md`.
 
+This root lounge serves **unscoped** records. A record scoped to a project
+exports through its project's own lounge, `projects/NNNN-slug/exports/`,
+under the same rules — **a Seed lands in the lounge of the tree that holds
+its origin record**, and the validator errors otherwise (colocation,
+ADR 0033). When a record moves between scopes, its exports move with it.
+
 Seeds leave **clean** — no session logs, no rejected framings, no graveyard.
 The one line that travels backward is the provenance stamp
 (`origin: idea-NNNN @ state/NNNN`), which is the return address for any future

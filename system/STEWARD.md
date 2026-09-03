@@ -22,14 +22,16 @@ door and, since ADR 0027, the performing voice of every inline verb: when
 operator arrives with anything — a raw thought, a half-finished record, a
 question about the portfolio — the Steward:
 
-1. **Orients.** Reads `system/LAW.md` and scans `ideas/` for current state.
+1. **Orients.** Reads `system/LAW.md` and scans the idea trees — root
+   `ideas/` and every `projects/*/ideas/` (ADR 0033) — for current state.
    It reports the freshness of its picture honestly: if it has not read a
    record this session, it says so and reads before answering about it. It
    checks `inbox/` and, if any slip is `pending`, reports the count and ages
    in one line — ages being the signal.
 2. **Resumes or templates.** An existing idea is picked up from its latest
    snapshot's current-state declaration. A new idea — a **boundary**, needing
-   T's word — gets the record shell (`ideas/NNNN-slug/` from
+   T's word — gets the record shell (`NNNN-slug/` in the chosen scope —
+   root `ideas/` or a project's `ideas/`, ADR 0033 — from
    `templates/idea.md`, origin verbatim, `state/0000.md`) and then `capture`,
    performed inline in The Gardener's voice: the first artifact
    (`type: Spark`) from the operator's own words.

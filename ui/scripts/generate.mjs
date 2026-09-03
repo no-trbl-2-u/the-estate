@@ -1,9 +1,10 @@
 // Estate View generator — zero-dependency Node script.
-// Walks ideas/, exports/, ideas/SURVEY.md and system/registry.md at the estate
-// root, parses the narrow frontmatter subset actually in use, and emits
-// src/data/estate.json. Parsing only: graph derivation (chains, tips, layout)
-// lives in src/lib/derive.ts so the same data contract can later be served
-// from a database instead of this file.
+// Walks the idea trees — root ideas/ + exports/, and every project's
+// projects/NNNN-slug/{project.md,ideas/,exports/} (ADR 0033) — plus
+// ideas/SURVEY.md and system/registry.md, parses the narrow frontmatter
+// subset actually in use, and emits src/data/estate.json. Parsing only:
+// graph derivation (chains, tips, layout) lives in src/lib/derive.ts so the
+// same data contract can later be served from a database instead of this file.
 import { readFileSync, readdirSync, writeFileSync, existsSync, statSync, mkdirSync } from 'node:fs'
 import { join, dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -169,15 +170,48 @@ const verbToAgent = parseRegistry()
 const agentFor = (verb) => verbToAgent[verb] || null
 const monoFor = (agent) => MONO[agent] || (agent ? agent.replace(/^The\s+/, '').slice(0, 2) : '??')
 
-const ideasDir = join(ROOT, 'ideas')
-const recordDirs = readdirSync(ideasDir).filter((d) => {
-  return /^\d{4}-/.test(d) && statSync(join(ideasDir, d)).isDirectory()
-})
+// The trees: root, plus every project directory (ADR 0033). Scope is
+// location — a record's project is the tree that holds it.
+const trees = [{ project: null, base: ROOT, prefix: '' }]
+const projects = []
+const projectsDir = join(ROOT, 'projects')
+if (existsSync(projectsDir)) {
+  for (const d of readdirSync(projectsDir).sort()) {
+    if (!/^\d{4}-/.test(d) || !statSync(join(projectsDir, d)).isDirectory()) continue
+    const pmPath = join(projectsDir, d, 'project.md')
+    let pfm = {}
+    let pbody = ''
+    if (existsSync(pmPath)) {
+      const parsed = splitFrontmatter(readFileSync(pmPath, 'utf8'))
+      pfm = parsed.fm
+      pbody = parsed.body
+    }
+    const numId = d.slice(0, 4)
+    const originSec = section(pbody, 'Origin')
+    const refusalsSec = section(pbody, 'Refusals')
+    projects.push({
+      id: numId,
+      fullId: String(pfm.id || 'project-' + numId),
+      slug: d,
+      title: String(pfm.title || d.slice(5)),
+      created: String(pfm.created || ''),
+      status: String(pfm.status || 'active'),
+      appetite: typeof pfm.appetite === 'number' ? pfm.appetite : 0,
+      target: String(pfm.target || 'none'),
+      origin: originSec ? firstParagraphs(plainText(originSec), 1, 300) || null : null,
+      refusals: refusalsSec ? firstParagraphs(plainText(refusalsSec), 2, 400) || null : null,
+      recordIds: [], // filled after the walk
+    })
+    trees.push({ project: numId, base: join(projectsDir, d), prefix: `projects/${d}/` })
+  }
+}
 
-// Seeds indexed by origin record id ("idea-0003")
-const exportsDir = join(ROOT, 'exports')
+// Seeds indexed by origin record id ("idea-0003"), gathered from every
+// tree's lounge; the validator enforces colocation, this stays tolerant.
 const seedsByRecord = {}
-if (existsSync(exportsDir)) {
+for (const tree of trees) {
+  const exportsDir = join(tree.base, 'exports')
+  if (!existsSync(exportsDir)) continue
   for (const f of readdirSync(exportsDir)) {
     if (!f.endsWith('.md') || f === 'README.md') continue
     const text = readFileSync(join(exportsDir, f), 'utf8')
@@ -186,19 +220,31 @@ if (existsSync(exportsDir)) {
     const om = /^(idea-\d{4})\s*@\s*(\S+)/.exec(String(fm.origin || ''))
     const recId = om ? om[1] : null
     if (!recId) continue
-    seedsByRecord[recId] = { file: 'exports/' + f, fm, body }
+    seedsByRecord[recId] = { file: tree.prefix + 'exports/' + f, fm, body }
   }
 }
 
 function artifactNFromPath(p, recordDirName) {
-  // "ideas/<dir>/artifacts/0009-....md" -> 9 (only for this record's artifacts)
-  const m = new RegExp(`^ideas/${recordDirName}/artifacts/(\\d{4})-`).exec(p)
+  // "ideas/<dir>/artifacts/0009-....md" -> 9 (only for this record's
+  // artifacts); accepts the project-scoped and id-based forms too
+  const m = new RegExp(
+    `^(?:(?:projects/[^/]+/)?ideas/${recordDirName}|idea-${recordDirName.slice(0, 4)})/artifacts/(\\d{4})-`,
+  ).exec(p)
   return m ? parseInt(m[1], 10) : null
 }
 
 const records = []
-for (const dir of recordDirs) {
-  const base = join(ideasDir, dir)
+const recordWalk = []
+for (const tree of trees) {
+  const treeIdeas = join(tree.base, 'ideas')
+  if (!existsSync(treeIdeas)) continue
+  for (const d of readdirSync(treeIdeas)) {
+    if (/^\d{4}-/.test(d) && statSync(join(treeIdeas, d)).isDirectory()) {
+      recordWalk.push({ dir: d, base: join(treeIdeas, d), projectId: tree.project })
+    }
+  }
+}
+for (const { dir, base, projectId } of recordWalk) {
   const ideaText = readFileSync(join(base, 'idea.md'), 'utf8')
   const { fm: ideaFm, body: ideaBody } = splitFrontmatter(ideaText)
   const numId = dir.slice(0, 4)
@@ -283,7 +329,7 @@ for (const dir of recordDirs) {
       for (const p of outputs) {
         const an = artifactNFromPath(p, dir)
         if (an !== null) out.push(an)
-        else if (/^exports\//.test(p) && seed && p === seed.file) out.push('S')
+        else if (seed && (p === seed.file || seed.file.endsWith('/' + p.replace(/^\.\//, '')))) out.push('S')
         else steer.push(p)
       }
       const est = section(body, 'Established')
@@ -305,6 +351,7 @@ for (const dir of recordDirs) {
     fullId: String(ideaFm.id || 'idea-' + numId),
     title: String(ideaFm.title || dir.slice(5)),
     slug: dir,
+    projectId,
     created: String(ideaFm.created || ''),
     status: String(ideaFm.status || 'active'),
     appetite: typeof ideaFm.appetite === 'number' ? ideaFm.appetite : 0,
@@ -328,10 +375,13 @@ for (const dir of recordDirs) {
 // display order: most recently moved first
 records.sort((a, b) => (a.headDate < b.headDate ? 1 : a.headDate > b.headDate ? -1 : b.id.localeCompare(a.id)))
 
+// membership is the directory listing; recordIds is a view of it
+for (const p of projects) p.recordIds = records.filter((r) => r.projectId === p.id).map((r) => r.id)
+
 // -- survey --
 let survey = null
 {
-  const p = join(ideasDir, 'SURVEY.md')
+  const p = join(ROOT, 'ideas', 'SURVEY.md')
   if (existsSync(p)) {
     const { fm } = splitFrontmatter(readFileSync(p, 'utf8'))
     survey = {
@@ -360,6 +410,7 @@ const data = {
   generatedAt: stamp,
   estateRoot: '~/the-estate',
   agents: AGENTS.map((a) => ({ ...a, mono: MONO[a.name] })),
+  projects,
   records,
   survey,
   relatesMentions,
@@ -369,7 +420,7 @@ mkdirSync(dirname(OUT), { recursive: true })
 writeFileSync(OUT, JSON.stringify(data, null, 2))
 const nArt = records.reduce((s, r) => s + r.artifacts.length, 0)
 const nSt = records.reduce((s, r) => s + r.states.length, 0)
-console.log(`estate.json: ${records.length} records, ${nArt} artifacts (incl. seeds), ${nSt} states -> ${OUT}`)
+console.log(`estate.json: ${projects.length} projects, ${records.length} records, ${nArt} artifacts (incl. seeds), ${nSt} states -> ${OUT}`)
 
 // ---------- the plain-text editions: llms.txt, llms-full.txt, sitemap.xml ----------
 // The estate's text derivation was always the spine ("proven as plain text");
@@ -392,14 +443,23 @@ const llms = `# Estate View
 > inputs; the Seed is the terminal export that leaves the walls.
 
 This snapshot was generated ${data.generatedAt} and covers ${records.length} records
-(${nArt} artifacts including seeds, ${nSt} state snapshots, ${seededCount} exported).
+(${nArt} artifacts including seeds, ${nSt} state snapshots, ${seededCount} exported${projects.length ? `, ${projects.length} project${projects.length === 1 ? '' : 's'}` : ''}).
+${projects.length ? `
+## Projects
 
+Records may be scoped to a project — a directory with its own ideas/ and
+exports/ (ADR 0033). Unscoped records live at the root as before.
+
+${projects
+  .map((p) => `- project-${p.id}: ${p.title} — status ${p.status}, appetite ${p.appetite}, target ${p.target}, ${p.recordIds.length} record${p.recordIds.length === 1 ? '' : 's'}`)
+  .join('\n')}
+` : ''}
 ## Records
 
 ${records
   .map(
     (r) =>
-      `- idea-${r.id}: ${r.title} — status ${r.status}, appetite ${r.appetite}${r.placeholder ? ' (placeholder)' : ''}, ` +
+      `- idea-${r.id}: ${r.title} — ${r.projectId ? `project-${r.projectId}, ` : ''}status ${r.status}, appetite ${r.appetite}${r.placeholder ? ' (placeholder)' : ''}, ` +
       `${r.artifacts.filter((a) => !a.terminal).length} artifacts, ${r.states.length} states, ` +
       `${r.seed ? `seeded (${r.seed})` : 'no export'}`,
   )
@@ -426,7 +486,7 @@ const fullParts = [
 for (const r of records) {
   fullParts.push(`\n${'='.repeat(72)}\n# idea-${r.id}: ${r.title}\n${'='.repeat(72)}\n`)
   fullParts.push(
-    `status: ${r.status} · appetite: ${r.appetite}${r.placeholder ? ' (placeholder)' : ''} · created: ${r.created} · state-head: ${r.stateHead}${r.seed ? ` · seed: ${r.seed}` : ''}`,
+    `status: ${r.status} · appetite: ${r.appetite}${r.placeholder ? ' (placeholder)' : ''} · created: ${r.created} · state-head: ${r.stateHead}${r.projectId ? ` · project: project-${r.projectId} (${projects.find((p) => p.id === r.projectId)?.title ?? '?'})` : ''}${r.seed ? ` · seed: ${r.seed}` : ''}`,
   )
   if (r.relatesNote) fullParts.push(`relates (note, not an edge): ${r.relatesNote}`)
   fullParts.push(`\n## Artifacts — the agents' track\n`)

@@ -61,10 +61,11 @@ export function headerFor(data: EstateData, view: ViewKey, rec: IdeaRecord | und
       if (!rec) return { plate: '', title: '', sub: '', isMap: false }
       const na = nonTerminalCount(rec)
       const head = rec.states.length ? rec.states[rec.states.length - 1].n : 0
+      const proj = rec.projectId ? data.projects.find((p) => p.id === rec.projectId) : null
       return {
         plate: rec.id,
         title: rec.title,
-        sub: `the travel map · ${plur(na, 'artifact')} · ${plur(rec.states.length, 'state')} · state-head ${pad(head)}${rec.seed ? ' · seeded' : ''}`,
+        sub: `${proj ? `project-${proj.id} · ${proj.title} · ` : ''}the travel map · ${plur(na, 'artifact')} · ${plur(rec.states.length, 'state')} · state-head ${pad(head)}${rec.seed ? ' · seeded' : ''}`,
         isMap: true,
       }
     }
@@ -72,7 +73,7 @@ export function headerFor(data: EstateData, view: ViewKey, rec: IdeaRecord | und
       return {
         plate: 'THE GROUNDS',
         title: 'The Grounds',
-        sub: `${numWord(data.records.length)} records · ${nArt} artifacts · ${totalStates(data.records)} states · ${nExports} exports · ${nEdges} relates edges`,
+        sub: `${data.projects.length ? `${numWord(data.projects.length)} project${data.projects.length === 1 ? '' : 's'} · ` : ''}${numWord(data.records.length)} records · ${nArt} artifacts · ${totalStates(data.records)} states · ${nExports} exports · ${nEdges} relates edges`,
         isMap: false,
       }
     case 'household':
