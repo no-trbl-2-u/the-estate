@@ -15,7 +15,7 @@ sources:
 
 A lens biases the **angle** of a verb without changing its operation.
 Optional and additive — a session may apply zero, one, or several — and
-passed to the office in the handoff packet. Lenses need no office and no
+passed to the voice in the handoff packet. Lenses need no voice and no
 binding, because they modify a verb rather than performing work.
 
 | Lens | Bias |

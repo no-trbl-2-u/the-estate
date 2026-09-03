@@ -16,6 +16,6 @@ A concrete, sequenced step: its outcome, its dependencies, and what
 "done" looks like. Recursive — a Phase may decompose into Phases, to any
 depth that stays useful, stopping when a step is startable as-is.
 
-* Produced by [phase](../verbs/phase.md)
-* Consumed by [phase](../verbs/phase.md) (recursion) and optionally
-  [seed](../verbs/seed.md)
+* Produced by `phase`
+* Consumed by `phase` (recursion) and optionally
+  `seed`

@@ -17,5 +17,5 @@ rejected, why, and what would reopen it — plus which tensions it resolves
 and which it leaves alive. Its `inputs:` cites the state snapshot that
 held the tensions, so its lineage chains like everything else.
 
-* Produced by [decide](../verbs/decide.md)
+* Produced by `decide`
 * Consumed by the operator; later sessions resume from it

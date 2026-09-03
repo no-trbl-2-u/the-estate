@@ -28,10 +28,10 @@ Three properties, each a way the pattern could quietly degrade:
    about that idea.
 2. **Self-criticism is the payload.** A residue reporting only what worked has
    failed. The value is in what was improvised, skipped, or never run.
-   [challenge](../verbs/challenge.md) on a residue is the natural next step,
+   `challenge` on a residue is the natural next step,
    and has already happened once.
-3. **Produced by [capture](../verbs/capture.md)**, performed by
-   [The Gardener](../offices/gardener.md) — the office that receives what
+3. **Produced by `capture`**, performed by
+   **The Gardener** — the voice that receives what
    arrives. Fidelity over polish, as always.
 
 ## Boundaries
@@ -43,7 +43,7 @@ Not [Findings](./findings.md): nothing outside the walls was consulted. Not an
 
 ## Why the handback packet does not replace it
 
-A handback packet ([the law](../law.md)) reports on the **verb's own work**,
+A handback packet ([the law](../../system/LAW.md)) reports on the **verb's own work**,
 from inside a dispatch. A residue reports on the **machinery**, from outside
 any one verb — and the sessions that generate the richest residue are exactly
 those where **no verb ran**. The two observe different things and coexist.

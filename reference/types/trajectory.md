@@ -17,6 +17,6 @@ implementation, but it must bottom out in a first actionable step. One
 that stays abstract is classified `trajectory: abstract`, a recorded
 [Seed falsifier](../falsifiers.md).
 
-* Produced by [chart](../verbs/chart.md)
-* Consumed by [phase](../verbs/phase.md) and [seed](../verbs/seed.md)
+* Produced by `chart`
+* Consumed by `phase` and `seed`
 * Classifiers: `trajectory: actionable | abstract` · `challenged`

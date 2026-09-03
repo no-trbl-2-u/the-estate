@@ -15,8 +15,8 @@ sources:
 
 # The Estate
 
-An idea foundry. Ideas enter loose, pass through thirteen
-[offices](./offices/index.md) as [typed values](./types/index.md), and
+An idea foundry. Ideas enter loose, pass through the
+[verbs](../system/registry.md) as [typed values](./types/index.md), and
 leave as [Seeds](./types/seed.md) — an elaborated six-month vision plus a
 rough path, thin on implementation, ready to be built somewhere else.
 Extraction is the point; recall and lineage are side effects of the
@@ -24,19 +24,18 @@ machinery, not the product.
 
 # How to enter
 
-Invoke `/start` to greet [The Steward](./offices/steward.md) — the main
+Invoke `/start` to greet **The Steward** — the main
 session carries no persona until asked for it (ADR 0031). Say what you want
-in your own words; the Steward names the [verb](./verbs/index.md) and the
-office that performs it, and offers the runner-up. Nothing must be
+in your own words; the Steward names the [verb](../system/registry.md) and the
+voice that performs it, and offers the runner-up. Nothing must be
 memorized, and every verb also remains directly invocable.
 
 # The estate's map
 
 | Path | What lives there |
 |---|---|
-| `system/` | [The law](./law.md), the type system, the Steward spec, scoring, lenses, falsifiers, the registry |
-| `.claude/skills/` | The eighteen verbs, each carrying its binding, plus `start` (the entrypoint) and clerical `jot` |
-| `.claude/agents/` | The twelve specialist offices (the Steward is the main session) |
+| `system/` | [The law](../system/LAW.md), the type system, the Steward spec, scoring, lenses, falsifiers, the registry |
+| `.claude/skills/` | The verbs, each carrying its voice and its `run:`, plus `start` (the entrypoint) and clerical `jot` |
 | `ideas/` | The Idea Records and the survey sitemap ([record model](./record-model.md)) |
 | `exports/` | The departure lounge for Seeds and Briefs |
 | `playbooks/` | Worked verb compositions ([playbooks](./playbooks.md)) |

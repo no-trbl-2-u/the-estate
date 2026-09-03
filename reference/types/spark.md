@@ -16,5 +16,5 @@ The original thought made durable — the operator's own words, metaphors,
 and energy, untidied. Every Idea Record's first artifact is a Spark; the
 record shell the Steward creates is not one.
 
-* Produced by [capture](../verbs/capture.md)
-* Consumed by [frame](../verbs/frame.md)
+* Produced by `capture`
+* Consumed by `frame`

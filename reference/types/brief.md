@@ -14,8 +14,8 @@ sources:
 
 What leaves when a run stops before Seed-shape and the operator exports
 anyway — a legitimate exit, labeled honestly by its classifiers. Produced
-by [seed](../verbs/seed.md) when components are missing. **Grade, never
+by `seed` when components are missing. **Grade, never
 gate**: nothing blocks a Brief.
 
-* Produced by [seed](../verbs/seed.md) (components missing)
+* Produced by `seed` (components missing)
 * Leaves the estate via `exports/`

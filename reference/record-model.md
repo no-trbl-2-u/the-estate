@@ -43,14 +43,14 @@ retired record is branching; and old states become **documentation**.
 
 # Artifacts are immutable too
 
-A [refiner](./verbs/explore.md) writes a *new file* whose `inputs:` names
+A refiner (`explore`) writes a *new file* whose `inputs:` names
 its predecessor; the current version is the tip of the chain.
-[challenge](./verbs/challenge.md) revises as a new version and sets its
+`challenge` revises as a new version and sets its
 classifiers there.
 
 # Branching, exactly — the `graft` verb
 
-Performed by [graft](./verbs/graft.md) (The Gardener), not by hand.
+Performed by `graft` (The Gardener), not by hand.
 
 1. The **Direction** — the operator's words for why the branch exists — is
    required. Without one a graft is a copy.
@@ -78,7 +78,7 @@ are state, so it returns them and the Steward writes them.
 trade is real: a derived edge exists only if the writer faithfully
 recorded `inputs:`.
 
-[relates](./verbs/relate.md) holds the exceptions, of two kinds. The
+`relates` holds the exceptions, of two kinds. The
 **authored** edge is exempt because no machinery can make it. The
 **graft** edge is derivable but stored anyway, so that the *source* can
 name its descendants without a scan of every record. Only authored edges
