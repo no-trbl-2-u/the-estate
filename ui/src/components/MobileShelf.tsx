@@ -42,6 +42,7 @@ export function MobileShelf({
     { k: 'survey', name: 'Survey', dashed: true },
     { k: 'relates', name: 'Relates', dashed: true },
     { k: 'exports', name: 'Exports' },
+    { k: 'how', name: 'How it works' },
     { k: 'settings', name: 'Settings' },
   ]
   return (
