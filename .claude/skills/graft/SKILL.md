@@ -28,47 +28,23 @@ is not the first.
 If you do not have a Direction, ask the operator for one. Do not infer it
 from the snapshot.
 
-## Tip semantics — as of the snapshot, never current
-
-This is the one thing that is easy to get wrong and expensive to get wrong.
-
-> For each artifact type present at the source snapshot, inherit the version
-> that **no successor of the same type supersedes *as of that snapshot***.
-
-**Not the source record's current tips.** A graft taken from state 4 of a
-record now at state 13 inherits what state 4 could see, and nothing later.
-Artifacts written after state-N **must not leak backward** into the graft.
-
-Read it off the snapshots, not the directory: walk `state/0000` → `state/N`,
-collect each snapshot's `outputs:`, and take the last of each type. Do **not**
-list the source's `artifacts/` and filter by date — file dates are not the
-record, and the `outputs:` chain is.
-
-Grafting from the head snapshot is the ordinary case and needs no special
-handling; as-of tips and current tips coincide there.
-
 ## What you do
 
-1. **Create the record shell** — `NNNN-slug/` from `templates/idea.md`, in
-   the source's own tree: a graft lands beside its source unless the
-   Direction says otherwise (ADR 0033). The id is global either way.
-   The **Origin** section records the graft: source id, source snapshot, and the
-   **Direction verbatim**.
-2. **Copy the as-of tips in** as the graft's starting artifacts, **renumbered
-   from 0001** in the new record's own sequence. Each one's `inputs:` cites the
-   **source record's original artifact path** — cross-record lineage, honestly
-   recorded. Do not rewrite their bodies: they arrived as they were, and the
-   Direction is where the branch is stated.
-3. **Hand the close its pointers.** State is written at the close, not by
-   this verb. The graft's `state/0000.md` must carry the cross-record pointer
-   `previous: idea-NNNN/state/000K.md` (the sole place `previous:` crosses
-   records, and what `parent` derivation reads) and `inputs:` citing that
-   same snapshot.
-4. **Name the two `relates` edges** — `<source-id>` for the graft's `idea.md`,
-   `<graft-id>` for the source's. Record frontmatter is state and is written
-   at the close; you are not authoring an edge as your purpose, you are
-   producing a record whose existence implies one. This is why `graft` does
-   not tread on The Cartographer's `relate`.
+The mechanics have one home: `system/TYPES.md` § *`graft` — branching, made
+real* — **Tip semantics** (which artifacts the graft inherits) and
+**Mechanics** (the shell, the copied tips, the `state/0000.md` pointer, the
+two `relates` edges). Perform them as written there. Two things are easy to
+get wrong and expensive to get wrong:
+
+- **Tips are as of the snapshot, never current.** Read them off the
+  `outputs:` chain from `state/0000` to `state/N`; never list the source's
+  `artifacts/` and filter by date.
+- **State is written at the close, not by this verb.** Hand the close its
+  pointers and name the two `relates` edges; do not write frontmatter
+  yourself.
+
+Do not rewrite the inherited artifacts' bodies: they arrived as they were,
+and the Direction is where the branch is stated.
 
 ## What this verb reports at the close
 
