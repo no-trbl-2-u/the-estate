@@ -7,6 +7,8 @@ generated: { by: claude-code/2026-08-31, at: 2026-08-31T00:00:00Z }
 status: approved by T, 2026-08-31 — D1–D4 resolved per their recommendations
 ---
 
+> Historical record (pre-ADR 0027). The .claude/agents/ layer it references was retired; office names survive only as skill voice: values.
+
 # Load-Bearing Updates Plan
 
 Six structural changes to the spark → seed flow, decided in the architecture
