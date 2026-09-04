@@ -129,15 +129,26 @@ function firstParagraphs(text, n = 2, maxLen = 700) {
 
 // ---------- registry: verb -> agent ----------
 
+// Read verb -> office off the generated registry table. Column-order
+// independent by construction: the verb is the backticked cell, the office is
+// the bold one. A positional regex here silently attributed every artifact to
+// The Steward once the table's columns changed (residue idea-0001/0001), so
+// this parses by cell shape and shouts if it finds nothing.
 function parseRegistry() {
   const verbToAgent = {}
   const path = join(ROOT, 'system', 'registry.md')
   if (existsSync(path)) {
     const text = readFileSync(path, 'utf8')
     for (const line of text.split(/\r?\n/)) {
-      const m = /^\|\s*`([\w-]+)`\s*\|[^|]*\|[^|]*\|\s*\*\*([^*]+)\*\*\s*\|/.exec(line)
-      if (m) verbToAgent[m[1]] = m[2].trim()
+      if (!line.startsWith('|')) continue
+      const cells = line.split('|').slice(1, -1).map((c) => c.trim())
+      const verb = cells.map((c) => /^`([\w-]+)`$/.exec(c)).find(Boolean)
+      const agent = cells.map((c) => /^\*\*([^*]+)\*\*$/.exec(c)).find(Boolean)
+      if (verb && agent) verbToAgent[verb[1]] = agent[1].trim()
     }
+  }
+  if (Object.keys(verbToAgent).length === 0) {
+    console.warn('WARNING: system/registry.md yielded no verb→office rows — every artifact will fall back to The Steward. The table shape changed; fix this parser.')
   }
   return verbToAgent
 }
