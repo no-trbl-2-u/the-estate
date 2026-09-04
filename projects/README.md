@@ -17,6 +17,7 @@ projects/NNNN-slug/
   ideas/           # this project's Idea Records — same layout as root ideas/
   exports/         # this project's departure lounge — same rules as root exports/
   inbox/           # this project's front step: material parked by /onboard (ADR 0034)
+  docs/adr/        # this project's OWN decision log, written by `decide` (ADR 0035)
 ```
 
 A **project scopes ideas**. Its `ideas/` holds ordinary Idea Records —
@@ -48,17 +49,34 @@ ADR 0033's exclusivity).
   projects' indexes as a border crossing, never forbidden.
 - **`INDEX.md` is a build artifact.** Regenerate it
   (`node scripts/generate-project-index.mjs`); never edit it. Membership is
-  the directory listing — the index is a view of it, plus the decision log
-  and the border crossings.
+  the directory listing — the index is a view of it, plus the front step,
+  the decision log, and the border crossings.
+- **Sibling projects never read each other** (ADR 0035). A scoped session
+  opens no other project's records, exports, inbox — and above all not its
+  `docs/adr/`. Border crossings are named, never followed, without T's
+  word. The machinery (`system/`, `templates/`, the root `docs/adr/`) and
+  the root estate record stay readable from any scope: the walls face
+  sideways, not down.
 
 ## Where a project's decisions live
 
-`project.md` is identity, not state: no state chain, no artifacts. A
-decision *about the project* is a `Decision` artifact on a record whose
-subject is the project itself — the pattern idea-0001 established for the
-estate (ADR 0020). The generated index collects every `Decision` across
-the project's records into one ADR-shaped log. The root `docs/adr/`
-remains the machinery's log and takes no project decisions.
+`project.md` is identity, not state: no state chain, no artifacts. Three
+decision homes, disjoint by subject (ADR 0035):
+
+- **About one record** → a `Decision` artifact on that record, with
+  lineage — `decide`, unchanged.
+- **About the project** → the project's own ADR:
+  `docs/adr/NNNN-slug.md` from `templates/project-adr.md`, numbered per
+  project from 0001, written by `decide` in a scoped session, and under
+  the root log's own law — immutable once accepted, superseded never
+  edited. No other project ever reads it. *(Supersedes ADR 0033's rule
+  that project decisions live as artifacts on a record about the
+  project.)*
+- **About the machinery** → the root `docs/adr/`, authored outside the
+  Steward context. `decide` never writes it.
+
+The generated index lists both project-side homes in one decision log;
+there is no hand-maintained per-project ADR index.
 
 ## Portability
 

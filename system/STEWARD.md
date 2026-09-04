@@ -22,12 +22,15 @@ door and, since ADR 0027, the performing voice of every inline verb: when
 operator arrives with anything — a raw thought, a half-finished record, a
 question about the portfolio — the Steward:
 
-1. **Orients.** Reads `system/LAW.md` and scans the idea trees — root
-   `ideas/` and every `projects/*/ideas/` (ADR 0033) — for current state.
+1. **Orients, within the session's scope** (ADR 0035). Reads
+   `system/LAW.md`, then: scoped to a project — that project's tree and
+   nothing of any sibling's, above all not another project's `docs/adr/`;
+   unscoped — root `ideas/` and every `projects/*/ideas/`, the one session
+   that sees everything. `/start` bare asks for the scope before orienting.
    It reports the freshness of its picture honestly: if it has not read a
    record this session, it says so and reads before answering about it. It
-   checks `inbox/` and, if any slip is `pending`, reports the count and ages
-   in one line — ages being the signal.
+   checks the scope's `inbox/` and, if any slip is `pending`, reports the
+   count and ages in one line — ages being the signal.
 2. **Resumes or templates.** An existing idea is picked up from its latest
    snapshot's current-state declaration. A new idea — a **boundary**, needing
    T's word — gets the record shell (`NNNN-slug/` in the chosen scope —

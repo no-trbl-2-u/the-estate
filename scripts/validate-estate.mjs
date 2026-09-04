@@ -96,6 +96,24 @@ for (const d of dirsIn(projectsDir)) {
       }
     }
   }
+  // Project ADRs (ADR 0035): NNNN-slug.md, frontmatter present, numbers
+  // unique within this log. Numbering is per-log; collisions across
+  // projects are fine — the logs never read each other.
+  const adrDir = join(dir, 'docs', 'adr');
+  if (existsSync(adrDir)) {
+    const adrNums = new Map();
+    for (const a of readdirSync(adrDir).filter((x) => x.endsWith('.md') && x !== 'README.md')) {
+      const f = join(adrDir, a);
+      const m = /^(\d{4})-/.exec(a);
+      if (!m) { errors.push(`${rel(f)}: project ADR is not NNNN-slug.md`); continue; }
+      if (adrNums.has(m[1])) {
+        errors.push(`${rel(f)}: ADR ${m[1]} already claimed by ${adrNums.get(m[1])} in this project's log`);
+      }
+      adrNums.set(m[1], a);
+      if (!frontmatter(f)) errors.push(`${rel(f)}: no frontmatter`);
+    }
+  }
+
   trees.push({ label: `projects/${d}`, dir, ideasDir: join(dir, 'ideas'), exportsDir: join(dir, 'exports') });
 }
 

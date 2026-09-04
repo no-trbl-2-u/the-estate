@@ -55,6 +55,15 @@ for (const p of dirsIn(projectsDir)) {
   const crossings = [];
   const seeds = mdIn(exportsDir).filter((f) => f.endsWith('-seed.md'));
 
+  // the project's own ADRs, authored by decide (ADR 0035)
+  const adrs = mdIn(join(dir, 'docs', 'adr'))
+    .filter((f) => f !== 'README.md')
+    .sort()
+    .map((f) => {
+      const afm = frontmatter(join(dir, 'docs', 'adr', f));
+      return `| [${f.slice(0, 4)}](docs/adr/${f}) | ${afm.description || afm.title || f} |`;
+    });
+
   // the front step: onboarded material parked as slips (ADR 0034)
   const slips = mdIn(join(dir, 'inbox'))
     .filter((f) => f !== 'README.md')
@@ -130,12 +139,18 @@ ${slips.join('\n')}` : '*Nothing waiting — no onboarded material on this proje
 
 ## Decision log
 
-${decisions.length ? `Every \`Decision\` artifact across this project's records — the project's
-ADR-shaped log, generated, with the artifacts as the single authoring surface.
+Two disjoint scopes (ADR 0035): the project's own ADRs — authored by
+\`decide\` when the subject is the project, immutable, superseded never
+edited, read by no other project — then every \`Decision\` artifact sealed
+on this project's records.
 
-| Date | Decision | Record | Artifact |
+${adrs.length ? `| ADR | Decision |
+|---|---|
+${adrs.join('\n')}` : '*No project ADRs — `decide` has not ratified a project-level decision here.*'}
+
+${decisions.length ? `| Date | Decision | Record | Artifact |
 |---|---|---|---|
-${decisions.join('\n')}` : '*No Decisions recorded — `decide` has not run in this project.*'}
+${decisions.join('\n')}` : '*No Decision artifacts — `decide` has not run on any of this project\'s records.*'}
 
 ## Border crossings
 
@@ -146,6 +161,6 @@ ${[...new Set(crossings)].join('\n')}` : '*None — this project is fully self-c
 `;
   writeFileSync(join(dir, 'INDEX.md'), out);
   written++;
-  console.log(`projects/${p}/INDEX.md: ${records.length} record(s), ${slips.length} slip(s), ${decisions.length} decision(s), ${crossings.length} crossing(s)`);
+  console.log(`projects/${p}/INDEX.md: ${records.length} record(s), ${slips.length} slip(s), ${adrs.length} ADR(s), ${decisions.length} decision(s), ${crossings.length} crossing(s)`);
 }
 console.log(written ? `${written} index(es) regenerated.` : 'No projects — nothing to index.');
