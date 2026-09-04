@@ -151,6 +151,37 @@ The Spark made from a slip is `capture` in The Gardener's voice, written from
 the slip verbatim. The ceremony is deferred, never skipped; slips are stamped
 when processed, never deleted.
 
+## The human-attention tag
+
+Every leg a `chart` writes and every step a `phase` writes answers one
+question: **can an agent do this?** If yes, no tag. If it is a "no matter
+what, AI can't do this," it carries `**[HUMAN ATTENTION]**` inline — a step
+marker, not a frontmatter classifier (ADR 0020).
+
+An untagged step is not a default — it is a claim that the work is
+agent-performable, and a tagged step an agent later completes without T's
+hands refutes that tag directly.
+
+Work an agent cannot do: choices whose *content* is T's judgment; purchases,
+payments, billing; identity, credentials, consent, account ownership;
+physical-world acts; acts inside T's own relationships; taste calls T has
+reserved; anything a human must be personally or legally answerable for.
+
+**Grey band:** where an agent can prepare, draft, or drive right up to the
+line of consent, tag the step *and say what the agent does up to that line*.
+A tag is a boundary marker, not an abdication.
+
+**Decomposition does not inherit the tag.** A `phase` run over a tagged
+parent re-evaluates each child — decomposition often isolates the human-only
+part into one child and frees the rest.
+
+Do not tag on "needs T's approval" — that criterion would mark every
+boundary step and discriminate nothing. Tag on hands, not sign-off.
+
+T's standing decision, 2026-08-28. The sealed Decision was
+`idea-0001/artifacts/0008-human-attention-tag.md`, wiped by ADR 0032 and
+preserved at tag `ideas-archive-2026-09-03`.
+
 ## Where the law lives
 
 This file is the single source of truth. Inline verbs receive it through the
