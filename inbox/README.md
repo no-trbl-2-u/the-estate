@@ -63,23 +63,18 @@ is a complete and honest value.
 
 Processing a slip **stamps it**: `status: processed`, `became:` filled in. It
 does not remove the file, and neither does discarding it. This is the estate's
-preservation law applied at the boundary (`AGENTS.md`, *Lineage and clean
-state*): retiring preserves the record whole, and a slip the operator decided
-against is a record of a decision.
+preservation law applied at the boundary (`system/LAW.md`, *The writer's
+discipline*): prior snapshots are never edited, retiring preserves the record
+whole, and a slip the operator decided against is a record of a decision.
 
 The inbox therefore grows without bound, and that is correct. It is an arrival
 log, not a queue that must be drained to zero.
 
 ## Processing
 
-Not a verb — a normal Steward session over the shelf of pending slips. The
-Steward surfaces the count and ages at greeting; per slip it proposes one of:
-
-- **A new record** — shell plus an inline `capture` in The Gardener's voice,
-  with the Spark written **from the slip verbatim**. The slip's own words are
-  the boundary input, which is what makes the deferral lossless.
-- **A merge** into an existing record.
-- **A discard, with a reason.**
-
-New records are a boundary (ADR 0028): the Steward proposes per slip and
-waits. A batch of slips is a batch of proposals.
+Not a verb — a normal Steward session over the shelf of pending slips, per
+`system/STEWARD.md` § *Intake: `jot` and the inbox*: count and ages at
+greeting; per slip a new record (a boundary — proposed, then waited on), a
+merge, or a discard with a reason; the slip stamped, never deleted. The Spark
+made from a slip is `capture` **from the slip verbatim** — the slip's own
+words are the boundary input, which is what makes the deferral lossless.

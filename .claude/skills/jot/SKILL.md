@@ -12,8 +12,8 @@ run: inline
 Catch the thought. Stop.
 
 This is the **fastest** thing in the estate and its speed is the feature. A
-thought that costs a record shell, a dispatched `capture`, a state snapshot and
-a close does not get written down at all when it arrives between two other
+thought that costs a record shell, a `capture`, a state snapshot and a close
+does not get written down at all when it arrives between two other
 things — and the loss is silent, which is what makes it expensive. `jot` trades
 ceremony for arrival.
 
@@ -46,8 +46,8 @@ less licence.
 perfectly valid slip; processing is where it gets asked about, and asking here
 costs exactly the interruption `jot` exists to avoid.
 
-**Zero ceremony.** No record shell. No artifact. No `capture` dispatch. **No
-state snapshot, and no close protocol** — there is no record to snapshot, and
+**Zero ceremony.** No record shell. No artifact. No `capture`. **No state
+snapshot, and no close protocol** — there is no record to snapshot, and
 `jot` opens no session. This is the deferral, and it is the whole design.
 
 **Zero proposals.** Do not offer to process it, route it, or turn it into a
@@ -69,8 +69,7 @@ operator had spoken the words that day.
 
 ## Afterwards
 
-The slip sits `pending` until an inbox-processing session. The Steward surfaces
-pending slips at greeting (count and ages) and proposes, per slip: a new record,
-a merge into an existing one, or a discard with a reason. Processing **stamps**
-the slip — `status: processed`, `became:` filled — and never deletes it.
-See [`inbox/README.md`](../../../inbox/README.md).
+The slip sits `pending` until an inbox-processing session — not yours to
+open. What that session does is `system/STEWARD.md` § *Intake: `jot` and the
+inbox*; what a slip is, and the law that it is stamped and never deleted, is
+[`inbox/README.md`](../../../inbox/README.md).
