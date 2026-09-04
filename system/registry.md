@@ -32,6 +32,7 @@ every verb has a voice, every verb declares how it runs.
 | `graft` | `(Idea @ state-N, Direction) → Idea` | **The Gardener** | `inline` |
 | `incubate` | `Idea → Idea` | **The Keeper** | `inline` |
 | `jot` | `Text → Slip` | **The Steward** | `inline` |
+| `onboard` | `(Text, [Material]) → (Project, [Slip])` | **The Steward** | `inline` |
 | `phase` | `Trajectory → [Phase]` | **The Surveyor** | `inline` |
 | `relate` | `(Idea, Idea) → relates` | **The Cartographer** | `inline` |
 | `research` | `Question → Findings` | **The Factor** | `quarantine` |
@@ -44,8 +45,10 @@ every verb has a voice, every verb declares how it runs.
 the verb's voice; **fresh-eyes** — dispatched because the session's context is
 a liability (`review`/`compare` conditionally, per their skills);
 **quarantine** — dispatched because the inputs must not enter the main window.
-`jot` is the Steward's clerical duty, not a verb (ADR 0023); it appears here
-because it has a skill file, and its slip is a boundary input, not an artifact.
+`jot` and `onboard` are the Steward's clerical duties, not verbs (ADR 0023,
+ADR 0034); they appear here because they have skill files, and their products
+— slips and a project shell — are boundary inputs and a container, not
+artifacts.
 
 ## Lenses
 

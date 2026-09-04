@@ -50,6 +50,7 @@ export interface ProjectInfo {
   target: string
   origin: string | null
   refusals: string | null
+  pendingMaterial: number
   recordIds: string[]
 }
 

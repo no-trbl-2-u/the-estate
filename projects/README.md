@@ -13,16 +13,20 @@ One directory per project (ADR 0033):
 ```
 projects/NNNN-slug/
   project.md       # identity, hand-authored (templates/project.md); Origin never edited
-  INDEX.md         # GENERATED — records, decision log, border crossings
+  INDEX.md         # GENERATED — records, front step, decision log, border crossings
   ideas/           # this project's Idea Records — same layout as root ideas/
   exports/         # this project's departure lounge — same rules as root exports/
+  inbox/           # this project's front step: material parked by /onboard (ADR 0034)
 ```
 
 A **project scopes ideas**. Its `ideas/` holds ordinary Idea Records —
 `ideas/README.md` describes them and nothing about a record changes by
 being scoped. The root `ideas/` and `exports/` still exist and hold
-**unscoped** work; `inbox/` stays at the root because a Slip is pre-record
-and pre-project by definition.
+**unscoped** work. The root `inbox/` remains the home of the stray thought,
+which is pre-project by nature; supplied material that arrives *with* its
+project — via `/onboard` — parks on the project's own `inbox/` as slips,
+verbatim, under the same stamped-never-deleted law (ADR 0034 amending
+ADR 0033's exclusivity).
 
 ## The rules
 

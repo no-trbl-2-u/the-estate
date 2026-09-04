@@ -45,8 +45,10 @@ Two verb signatures name inputs that are not artifact types, deliberately:
 `jot` has the signature **`Text → Slip`**, and a `Slip` is the exception that
 proves the boundary-input rule rather than breaking it.
 
-A Slip is **pre-record and pre-artifact**: operator words made durable on the
-front step (`inbox/`) while they wait for a verb to consume them. It has no
+A Slip is **pre-record and pre-artifact**: operator words made durable on a
+front step — the root `inbox/`, or a project's own `inbox/` where `onboard`
+parks supplied material with a `source:` stamp (ADR 0034) — while they wait
+for a verb to consume them. It has no
 record, no lineage, no classifiers, no `inputs:` chain, and no producing verb
 in the artifact sense — it is `Text` that has been written down, not `Text`
 that has been transformed. It appears on the **left** edge of a later signature

@@ -129,15 +129,26 @@ function firstParagraphs(text, n = 2, maxLen = 700) {
 
 // ---------- registry: verb -> agent ----------
 
+// Read verb -> office off the generated registry table. Column-order
+// independent by construction: the verb is the backticked cell, the office is
+// the bold one. A positional regex here silently attributed every artifact to
+// The Steward once the table's columns changed (residue idea-0001/0001), so
+// this parses by cell shape and shouts if it finds nothing.
 function parseRegistry() {
   const verbToAgent = {}
   const path = join(ROOT, 'system', 'registry.md')
   if (existsSync(path)) {
     const text = readFileSync(path, 'utf8')
     for (const line of text.split(/\r?\n/)) {
-      const m = /^\|\s*`([\w-]+)`\s*\|[^|]*\|[^|]*\|\s*\*\*([^*]+)\*\*\s*\|/.exec(line)
-      if (m) verbToAgent[m[1]] = m[2].trim()
+      if (!line.startsWith('|')) continue
+      const cells = line.split('|').slice(1, -1).map((c) => c.trim())
+      const verb = cells.map((c) => /^`([\w-]+)`$/.exec(c)).find(Boolean)
+      const agent = cells.map((c) => /^\*\*([^*]+)\*\*$/.exec(c)).find(Boolean)
+      if (verb && agent) verbToAgent[verb[1]] = agent[1].trim()
     }
+  }
+  if (Object.keys(verbToAgent).length === 0) {
+    console.warn('WARNING: system/registry.md yielded no verb→office rows — every artifact will fall back to The Steward. The table shape changed; fix this parser.')
   }
   return verbToAgent
 }
@@ -200,6 +211,15 @@ if (existsSync(projectsDir)) {
       target: String(pfm.target || 'none'),
       origin: originSec ? firstParagraphs(plainText(originSec), 1, 300) || null : null,
       refusals: refusalsSec ? firstParagraphs(plainText(refusalsSec), 2, 400) || null : null,
+      // slips still pending on the project's front step (ADR 0034)
+      pendingMaterial: (() => {
+        const ib = join(projectsDir, d, 'inbox')
+        if (!existsSync(ib)) return 0
+        return readdirSync(ib).filter((f) => {
+          if (!f.endsWith('.md') || f === 'README.md') return false
+          return splitFrontmatter(readFileSync(join(ib, f), 'utf8')).fm.status === 'pending'
+        }).length
+      })(),
       recordIds: [], // filled after the walk
     })
     trees.push({ project: numId, base: join(projectsDir, d), prefix: `projects/${d}/` })
@@ -451,7 +471,7 @@ Records may be scoped to a project — a directory with its own ideas/ and
 exports/ (ADR 0033). Unscoped records live at the root as before.
 
 ${projects
-  .map((p) => `- project-${p.id}: ${p.title} — status ${p.status}, appetite ${p.appetite}, target ${p.target}, ${p.recordIds.length} record${p.recordIds.length === 1 ? '' : 's'}`)
+  .map((p) => `- project-${p.id}: ${p.title} — status ${p.status}, appetite ${p.appetite}, target ${p.target}, ${p.recordIds.length} record${p.recordIds.length === 1 ? '' : 's'}${p.pendingMaterial ? `, ${p.pendingMaterial} slip${p.pendingMaterial === 1 ? '' : 's'} on the front step` : ''}`)
   .join('\n')}
 ` : ''}
 ## Records

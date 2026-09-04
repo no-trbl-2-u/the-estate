@@ -55,6 +55,15 @@ for (const p of dirsIn(projectsDir)) {
   const crossings = [];
   const seeds = mdIn(exportsDir).filter((f) => f.endsWith('-seed.md'));
 
+  // the front step: onboarded material parked as slips (ADR 0034)
+  const slips = mdIn(join(dir, 'inbox'))
+    .filter((f) => f !== 'README.md')
+    .sort()
+    .map((f) => {
+      const sfm = frontmatter(join(dir, 'inbox', f));
+      return `| \`inbox/${f}\` | ${sfm.status || '?'} | ${sfm.source || '—'} | ${sfm.became && sfm.became !== '""' ? sfm.became : '—'} |`;
+    });
+
   for (const r of records) {
     const rdir = join(ideasDir, r);
     const fm = frontmatter(join(rdir, 'idea.md'));
@@ -110,6 +119,15 @@ ${records.length ? `| Record | Title | Status | Appetite | Head | Artifacts | Se
 |---|---|---|---|---|---|---|
 ${rows.join('\n')}` : '*No records yet — a project waiting for its first capture is not an error (ADR 0033).*'}
 
+## Front step
+
+${slips.length ? `Material parked by \`onboard\` (ADR 0034) — verbatim, stamped when a verb
+consumes it, never deleted:
+
+| Slip | Status | Source | Became |
+|---|---|---|---|
+${slips.join('\n')}` : '*Nothing waiting — no onboarded material on this project\'s front step.*'}
+
 ## Decision log
 
 ${decisions.length ? `Every \`Decision\` artifact across this project's records — the project's
@@ -128,6 +146,6 @@ ${[...new Set(crossings)].join('\n')}` : '*None — this project is fully self-c
 `;
   writeFileSync(join(dir, 'INDEX.md'), out);
   written++;
-  console.log(`projects/${p}/INDEX.md: ${records.length} record(s), ${decisions.length} decision(s), ${crossings.length} crossing(s)`);
+  console.log(`projects/${p}/INDEX.md: ${records.length} record(s), ${slips.length} slip(s), ${decisions.length} decision(s), ${crossings.length} crossing(s)`);
 }
 console.log(written ? `${written} index(es) regenerated.` : 'No projects — nothing to index.');

@@ -66,8 +66,10 @@ ${rows}
 the verb's voice; **fresh-eyes** — dispatched because the session's context is
 a liability (\`review\`/\`compare\` conditionally, per their skills);
 **quarantine** — dispatched because the inputs must not enter the main window.
-\`jot\` is the Steward's clerical duty, not a verb (ADR 0023); it appears here
-because it has a skill file, and its slip is a boundary input, not an artifact.
+\`jot\` and \`onboard\` are the Steward's clerical duties, not verbs (ADR 0023,
+ADR 0034); they appear here because they have skill files, and their products
+— slips and a project shell — are boundary inputs and a container, not
+artifacts.
 
 ## Lenses
 

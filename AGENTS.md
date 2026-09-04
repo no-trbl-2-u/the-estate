@@ -25,7 +25,7 @@ needs. Nothing here has to be loaded first for that to work.
 **T (the operator) has final authority.** T's explicit word is required for:
 
 - anything leaving the estate — exports, commits, pushes
-- creating a new record, or dispatching a subagent
+- creating a new record or project, or dispatching a subagent
 - structural changes to the system itself — new directories, file
   conventions, record schema, the verb list, the voices
 
