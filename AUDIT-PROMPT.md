@@ -6,6 +6,8 @@ tags: [audit]
 generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
 ---
 
+> Historical record (pre-ADR 0027). The .claude/agents/ layer it references was retired; office names survive only as skill voice: values.
+
 # Audit Prompt — The Estate implementation review
 
 Paste this into a fresh session with no prior context. It is a standalone

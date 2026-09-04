@@ -6,6 +6,8 @@ tags: [audit, report]
 generated: { by: claude-code/2026-08-26, at: 2026-08-26T00:00:00Z }
 ---
 
+> Historical record (pre-ADR 0027). The .claude/agents/ layer it references was retired; office names survive only as skill voice: values.
+
 # Audit Report — think-tank implementation review
 
 Conducted 2026-08-26 against `AUDIT-PROMPT.md`, by an outside session with no

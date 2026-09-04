@@ -47,6 +47,7 @@ graft edge is a lost fact, not a tidy one.
 ## Staleness is mandatory metadata
 
 The survey is derived data and goes stale the moment any record advances. Stamp
-it with `generated:` and the exact `state-head` of every record covered, so the
-Steward can diff against reality and know the survey is stale rather than
-trusting it. A survey that cannot be checked is worse than none.
+it with `generated:` and fill `covers:` with the exact `state-head` of every
+record covered — the field `ideas/SURVEY.md` already carries and the Steward
+diffs against reality at greeting — so a stale survey is detectable rather
+than trusted. A survey that cannot be checked is worse than none.

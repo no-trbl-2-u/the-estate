@@ -9,7 +9,7 @@ generated: { by: claude-code/2026-08-25, at: 2026-08-25T00:00:00Z }
 # The Type System
 
 Artifacts in The Estate are **typed values**. Verbs are functions over those types,
-and each verb is performed by exactly one named agent (`system/LAW.md`).
+and each verb is performed in exactly one named voice (`system/LAW.md`).
 Composition is what makes "not the same pipeline every time" possible: the route an
 idea takes is derived from what it *has* versus what it still *needs*, never from a
 fixed sequence.
@@ -199,11 +199,11 @@ needs no special handling: the as-of tips and the current tips coincide.
    derivable in both directions or it is not derivable at all — a source record
    that cannot tell you a branch was taken from it has lost the fact.
 
-**Both `relates` writes are the Steward's.** Record frontmatter is state
-(`system/LAW.md`); the performing agent **returns** the edges. This is the same
-rule `relate` already follows, so The Cartographer's ownership of `relate` is
-untouched: `graft` does not author an edge as its purpose, it produces a record
-whose existence implies one.
+**Both `relates` writes belong to the close.** Record frontmatter is state
+(`system/LAW.md`); the verb **names** the edges and the session writes them
+when it closes as the Steward. This is the same rule `relate` already follows,
+so The Cartographer's `relate` is untouched: `graft` does not author an edge
+as its purpose, it produces a record whose existence implies one.
 
 The close writes **two** states: the graft's `0000`, and a state copied forward
 on the **source** noting that the graft was taken. The source is not edited —
