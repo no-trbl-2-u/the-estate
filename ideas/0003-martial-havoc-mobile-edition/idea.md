@@ -2,7 +2,7 @@
 id: idea-0003
 title: "Martial Havoc, mobile edition"
 created: 2026-09-05
-state-head: state/0012.md
+state-head: state/0014.md
 status: active
 appetite: 2
 relates: [idea-0002]
