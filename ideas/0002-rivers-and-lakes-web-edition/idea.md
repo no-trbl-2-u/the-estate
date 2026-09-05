@@ -2,10 +2,10 @@
 id: idea-0002
 title: "Rivers and Lakes, web edition"
 created: 2026-09-05
-state-head: state/0009.md
+state-head: state/0010.md
 status: active
 appetite: 2
-relates: []
+relates: [idea-0003]
 ---
 
 # Rivers and Lakes, web edition
